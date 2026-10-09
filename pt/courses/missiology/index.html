@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <title>Missiologia dos povos não alcançados | Consórcio Teológico Pentecostal</title>
+    <meta name="description" content="Aulas semanais com gravações, leituras e discussões. Livros-texto: The Core, The Assignment com caderno de trabalho. Histórias do evangelho.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f7f8fa;
+        --surface: #ffffff;
+        --ink: #111827;
+        --body: #344454;
+        --rule: #d9dde2;
+        --red: #b81d25;
+        --red-deep: #94171d;
+        --warm: #f7f4ee;
+        --quiet: #eef1f4;
+        --deep: #181d23;
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--red-deep); text-underline-offset: 4px; }
+      a:hover { text-decoration-thickness: 2px; }
+      a:focus-visible, video:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        min-height: 62px;
+        padding: 0 clamp(24px, 6vw, 76px);
+        border-top: 5px solid var(--red);
+        border-bottom: 1px solid #343a41;
+        background: var(--deep);
+      }
+      .top-nav a {
+        color: #ffffff;
+        font-size: .84rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .top-nav a:hover { text-decoration: underline; }
+      .masthead {
+        padding: clamp(58px, 8vw, 100px) clamp(24px, 7vw, 90px) clamp(52px, 7vw, 82px);
+        background: var(--warm);
+        border-bottom: 1px solid var(--rule);
+      }
+      .masthead h1 {
+        max-width: 920px;
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.8rem, 6vw, 5.4rem);
+        font-weight: 600;
+        line-height: .98;
+        letter-spacing: -.025em;
+        text-wrap: balance;
+      }
+      .masthead p {
+        max-width: 760px;
+        margin: 24px 0 0;
+        color: var(--body);
+        font-size: clamp(1rem, 1.4vw, 1.12rem);
+        line-height: 1.75;
+      }
+      .canvas-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        margin-top: 30px;
+        padding: 13px 20px;
+        color: #ffffff;
+        background: var(--red-deep);
+        font-size: .88rem;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+        text-decoration: none;
+      }
+      .canvas-cta:hover { background: var(--red); text-decoration: none; }
+      .catalog {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .catalog-card {
+        display: flex;
+        min-height: 220px;
+        flex-direction: column;
+        padding: clamp(26px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+        color: inherit;
+        text-decoration: none;
+      }
+      .catalog-card h2 {
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+      .catalog-card p { margin: 18px 0 0; color: var(--body); line-height: 1.68; }
+      .modules {
+        display: grid;
+        gap: 24px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .module {
+        padding: clamp(25px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+      }
+      .module > h2 {
+        margin: 0 0 26px;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+        font-weight: 600;
+        line-height: 1.08;
+      }
+      .items { display: grid; gap: 14px; }
+      .item {
+        padding: 19px 0 0;
+        border-top: 1px solid var(--rule);
+      }
+      .item:first-child { padding-top: 0; border-top: 0; }
+      .item h3 { margin: 0; font-size: .98rem; line-height: 1.5; }
+      .type {
+        display: inline-block;
+        margin-top: 7px;
+        color: var(--red-deep);
+        font-size: .68rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .resource-link { display: inline-block; font-weight: 700; line-height: 1.5; }
+      .page-text { margin: 10px 0 0; color: var(--body); line-height: 1.68; white-space: pre-line; }
+      .video-item h3 { margin-bottom: 14px; }
+      video { display: block; width: 100%; max-width: 860px; background: #000000; }
+      @media (max-width: 720px) {
+        .catalog { grid-template-columns: 1fr; }
+        .catalog-card { min-height: 0; }
+        .top-nav { padding-inline: 24px; }
+      }
+    
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+      .lang-switch a {
+        color: #ffffff;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-decoration: none;
+        opacity: .55;
+      }
+      .lang-switch a:hover { opacity: 1; text-decoration: underline; }
+      .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
+</style>
+  <link rel="alternate" hreflang="en" href="https://ptconline.global/courses/missiology"><link rel="alternate" hreflang="es" href="https://ptconline.global/es/courses/missiology"><link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/courses/missiology"></head>
+  <body>
+    <nav class="top-nav" aria-label="Principal">
+      <a href="/pt/">Início</a>
+      <a href="/pt/courses/">Cursos</a>
+    <span class="lang-switch" aria-label="Language"><a href="/courses/missiology/" hreflang="en">EN</a><a href="/es/courses/missiology/" hreflang="es">ES</a><a href="/pt/courses/missiology/" hreflang="pt" aria-current="true">PT</a></span></nav>
+    <header class="masthead">
+      <h1>Missiologia dos povos não alcançados</h1>
+      <p>Aulas semanais com gravações, leituras e discussões. Livros-texto: The Core, The Assignment com caderno de trabalho. Histórias do evangelho.</p>
+      <a class="canvas-cta" href="https://canvaslite.instructure.com/courses/15690" target="_blank" rel="noopener noreferrer">Abrir este curso no Canvas <span aria-hidden="true">↗</span></a>
+    </header>
+    <main class="modules">
+      <section class="module">
+        <h2>Boas-vindas</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Vídeo de orientação</h3>
+            <video src="https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1" controls preload="metadata">
+              <track kind="subtitles" src="/assets/orientation_pt.vtt" srclang="pt" label="Português" />
+            </video>
+          </article>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/p2khqypmhg1r1bz/Missiology%20of%20Unreached%20People%20Groups%20Syllabus.pdf?raw=1" target="_blank" rel="noopener noreferrer">Programa do curso: Missiologia dos povos não alcançados</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/a7o9yiohreqmzvn/The%20Core.pdf?raw=1" target="_blank" rel="noopener noreferrer">Livro-texto: The Core</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/xv81qoqbgcf1hgx/The%20Assignment.pdf?raw=1" target="_blank" rel="noopener noreferrer">Livro-texto: The Assignment</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/3kpvh2651vd35qd/The%20Assignment%20Workbook.pdf?raw=1" target="_blank" rel="noopener noreferrer">Livro-texto: The Assignment Workbook</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/68lh07a2p179uuv/Gospel%20Stories.pdf?raw=1" target="_blank" rel="noopener noreferrer">Histórias do evangelho</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/okxt5hzub47ogsh/Shorthand%20Gospel.pdf?raw=1" target="_blank" rel="noopener noreferrer">História resumida do evangelho</a>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Semana 1 - A tarefa</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Gravação da aula da semana 1</h3>
+            <video src="https://www.dropbox.com/s/stiiuic5omhlo2v/Missiology%20of%20Unreached.Week%201.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <h3>Leituras: Semana 1</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Caderno de tarefas: Semana 1</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Discussão: A tarefa</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>2016GSECpresentation.pptx</h3>
+            <span class="type">Anexo</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Semana 2 - Céu aberto</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Gravação da aula da semana 2</h3>
+            <video src="https://www.dropbox.com/s/kz0g45hn9rxwqw8/Missiology%20of%20Unreached.Week%202.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <h3>Leituras: Semana 2</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Caderno de tarefas: Semana 2</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://drive.google.com/file/d/13GwryTMXt2LztszSwKymAIg5qfX8IJOl/view?usp=sharing" target="_blank" rel="noopener noreferrer">Conversa sobre o mapa do evangelho</a>
+          </div>
+          <div class="item">
+            <h3>Discussão: Céu aberto</h3>
+            <span class="type">Discussão</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Semana 3 - Jesus satisfeito</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Gravação da aula da semana 3</h3>
+            <video src="https://www.dropbox.com/s/mfoybj0hagyf5p4/Missiology%20of%20Unreached.Week%203.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <h3>Leituras: Semana 3</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Caderno de tarefas: Semana 3</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Discussão: Jesus satisfeito</h3>
+            <span class="type">Discussão</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Semana 4 - A tarefa inacabada</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Gravação da aula da semana 4</h3>
+            <video src="https://www.dropbox.com/s/g94rpsu09a2dkvl/Missiology%20of%20Unreached.Week%204.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <h3>Leituras: Semana 4</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Caderno de tarefas: Semana 4</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Discussão: A tarefa inacabada</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Revisão de UPG/UUPG</h3>
+            <span class="type">Tarefa</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Semana 5 - Fundamentos do evangelho</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Gravação da aula da semana 5</h3>
+            <video src="https://www.dropbox.com/s/bedvs527j1lm704/Missiology%20of%20Unreached.Week%205.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <h3>Leituras: Semana 5</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Caderno de tarefas: Semana 5</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Discussão: Fundamentos do evangelho</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Redação curta</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Telling My Story.pdf</h3>
+            <span class="type">Anexo</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Semana 6 - Ele guiará</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Gravação da aula da semana 6</h3>
+            <video src="https://www.dropbox.com/s/11rwbtto4y3ek3z/Missiology%20of%20Unreached.Week%206.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <h3>Leituras: Semana 6</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Caderno de tarefas: Semana 6</h3>
+            <span class="type">Tarefa</span>
+          </div>
+          <div class="item">
+            <h3>Discussão: Ele guiará</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Trabalho final</h3>
+            <span class="type">Tarefa</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
