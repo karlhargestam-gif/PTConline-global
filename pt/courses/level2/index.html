@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <title>Nível 2 | Consórcio Teológico Pentecostal</title>
+    <meta name="description" content="Sessões de desenvolvimento de liderança com Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Discipulado, multiplicação e a ferramenta do círculo de igrejas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f7f8fa;
+        --surface: #ffffff;
+        --ink: #111827;
+        --body: #344454;
+        --rule: #d9dde2;
+        --red: #b81d25;
+        --red-deep: #94171d;
+        --warm: #f7f4ee;
+        --quiet: #eef1f4;
+        --deep: #181d23;
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--red-deep); text-underline-offset: 4px; }
+      a:hover { text-decoration-thickness: 2px; }
+      a:focus-visible, video:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        min-height: 62px;
+        padding: 0 clamp(24px, 6vw, 76px);
+        border-top: 5px solid var(--red);
+        border-bottom: 1px solid #343a41;
+        background: var(--deep);
+      }
+      .top-nav a {
+        color: #ffffff;
+        font-size: .84rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .top-nav a:hover { text-decoration: underline; }
+      .masthead {
+        padding: clamp(58px, 8vw, 100px) clamp(24px, 7vw, 90px) clamp(52px, 7vw, 82px);
+        background: var(--warm);
+        border-bottom: 1px solid var(--rule);
+      }
+      .masthead h1 {
+        max-width: 920px;
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.8rem, 6vw, 5.4rem);
+        font-weight: 600;
+        line-height: .98;
+        letter-spacing: -.025em;
+        text-wrap: balance;
+      }
+      .masthead p {
+        max-width: 760px;
+        margin: 24px 0 0;
+        color: var(--body);
+        font-size: clamp(1rem, 1.4vw, 1.12rem);
+        line-height: 1.75;
+      }
+      .canvas-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        margin-top: 30px;
+        padding: 13px 20px;
+        color: #ffffff;
+        background: var(--red-deep);
+        font-size: .88rem;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+        text-decoration: none;
+      }
+      .canvas-cta:hover { background: var(--red); text-decoration: none; }
+      .catalog {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .catalog-card {
+        display: flex;
+        min-height: 220px;
+        flex-direction: column;
+        padding: clamp(26px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+        color: inherit;
+        text-decoration: none;
+      }
+      .catalog-card h2 {
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+      .catalog-card p { margin: 18px 0 0; color: var(--body); line-height: 1.68; }
+      .modules {
+        display: grid;
+        gap: 24px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .module {
+        padding: clamp(25px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+      }
+      .module > h2 {
+        margin: 0 0 26px;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+        font-weight: 600;
+        line-height: 1.08;
+      }
+      .items { display: grid; gap: 14px; }
+      .item {
+        padding: 19px 0 0;
+        border-top: 1px solid var(--rule);
+      }
+      .item:first-child { padding-top: 0; border-top: 0; }
+      .item h3 { margin: 0; font-size: .98rem; line-height: 1.5; }
+      .type {
+        display: inline-block;
+        margin-top: 7px;
+        color: var(--red-deep);
+        font-size: .68rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .resource-link { display: inline-block; font-weight: 700; line-height: 1.5; }
+      .page-text { margin: 10px 0 0; color: var(--body); line-height: 1.68; white-space: pre-line; }
+      .video-item h3 { margin-bottom: 14px; }
+      video { display: block; width: 100%; max-width: 860px; background: #000000; }
+      @media (max-width: 720px) {
+        .catalog { grid-template-columns: 1fr; }
+        .catalog-card { min-height: 0; }
+        .top-nav { padding-inline: 24px; }
+      }
+    
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+      .lang-switch a {
+        color: #ffffff;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-decoration: none;
+        opacity: .55;
+      }
+      .lang-switch a:hover { opacity: 1; text-decoration: underline; }
+      .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
+</style>
+  <link rel="alternate" hreflang="en" href="https://ptconline.global/courses/level2"><link rel="alternate" hreflang="es" href="https://ptconline.global/es/courses/level2"><link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/courses/level2"></head>
+  <body>
+    <nav class="top-nav" aria-label="Principal">
+      <a href="/pt/">Início</a>
+      <a href="/pt/courses/">Cursos</a>
+    <span class="lang-switch" aria-label="Language"><a href="/courses/level2/" hreflang="en">EN</a><a href="/es/courses/level2/" hreflang="es">ES</a><a href="/pt/courses/level2/" hreflang="pt" aria-current="true">PT</a></span></nav>
+    <header class="masthead">
+      <h1>Nível 2</h1>
+      <p>Sessões de desenvolvimento de liderança com Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Discipulado, multiplicação e a ferramenta do círculo de igrejas.</p>
+      <a class="canvas-cta" href="https://canvaslite.instructure.com/courses/15702" target="_blank" rel="noopener noreferrer">Abrir este curso no Canvas <span aria-hidden="true">↗</span></a>
+    </header>
+    <main class="modules">
+      <section class="module">
+        <h2>Bem-vindos!</h2>
+        <div class="items">
+          <div class="item">
+            <h3>Introdução</h3>
+            <span class="type">Discussão</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Desenvolvimento de liderança</h2>
+        <div class="items">
+          <div class="item">
+            <h3>Apresentação sobre não alcançados - Karl Hargestam</h3>
+            <span class="type">Anexo</span>
+          </div>
+          <div class="item">
+            <h3>Permanecendo fiéis àquilo para que Deus nos chamou - Karl Hargestam</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Liderando e amando como Jesus - Tamara Gutel</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Liderando aqueles ao seu redor - Eman Hernandez</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Liderando a si mesmo e aos outros - Mikael Boman</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>A humildade na liderança - Marie Vanderwal</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Pioneiro - Sessão 1</h3>
+            <span class="type">Discussão</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Discipulado</h2>
+        <div class="items">
+          <div class="item">
+            <h3>Discipulado - Sessão 1</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.youtube.com/watch?v=aKK9eAyr2H0" target="_blank" rel="noopener noreferrer">O poder da multiplicação</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://youtu.be/vQPXVcQ_Huc?si=1ME7W4Hrp07PyILx" target="_blank" rel="noopener noreferrer">Ferramenta do círculo de igrejas</a>
+          </div>
+          <div class="item">
+            <h3>Discipulado - Sessão 2</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <article class="item">
+            <h3>Recursos mencionados na sessão 2</h3>
+            <p class="page-text">Recursos mencionados na sessão 2
+Aqui estão alguns dos recursos que Oliver mencionou na sessão 2.
+The Bible - Youtube Playlist
+Prayer - Youtube Playlist
+Are You A Follower of Jesus - Video
+Waha App - Um aplicativo com diferentes temas de estudo bíblico que você pode percorrer sozinho ou em grupo</p>
+          </article>
+          <div class="item">
+            <h3>Discipulado - Sessão 3</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Discipulado - Sessão 4</h3>
+            <span class="type">Discussão</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Pioneiro</h2>
+        <div class="items">
+          <div class="item">
+            <h3>Pioneiro - Sessão 1</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Pioneiro - Sessão 2</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Pioneiro - Sessão 3</h3>
+            <span class="type">Discussão</span>
+          </div>
+          <div class="item">
+            <h3>Pioneiro - Sessão 4</h3>
+            <span class="type">Discussão</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Inteligência cultural</h2>
+        <div class="items">
+
+        </div>
+      </section>
+      <section class="module">
+        <h2>Teórica e missiologia</h2>
+        <div class="items">
+          <div class="item">
+            <h3>The Whole World and the Unreached - Lausanne Movement.pdf</h3>
+            <span class="type">Anexo</span>
+          </div>
+          <div class="item">
+            <h3>why-include-religion-when-defining-south-asia-peoples.pdf</h3>
+            <span class="type">Anexo</span>
+          </div>
+          <div class="item">
+            <h3>Least Reached Peoples - Lausanne Movement.pdf</h3>
+            <span class="type">Anexo</span>
+          </div>
+          <div class="item">
+            <h3>are-people-groups-the-same-as-language-groups.pdf</h3>
+            <span class="type">Anexo</span>
+          </div>
+          <div class="item">
+            <h3>Josefsson_Understanding_Unreached_Slutversion.pdf</h3>
+            <span class="type">Anexo</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Praticidade missionária</h2>
+        <div class="items">
+
+        </div>
+      </section>
+      <section class="module">
+        <h2>Leading A School</h2>
+        <div class="items">
+
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
