@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <title>Cursos | Consorcio Teológico Pentecostal</title>
+    <meta name="description" content="Cursos abiertos, gratuitos para ver y estudiar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f7f8fa;
+        --surface: #ffffff;
+        --ink: #111827;
+        --body: #344454;
+        --rule: #d9dde2;
+        --red: #b81d25;
+        --red-deep: #94171d;
+        --warm: #f7f4ee;
+        --quiet: #eef1f4;
+        --deep: #181d23;
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--red-deep); text-underline-offset: 4px; }
+      a:hover { text-decoration-thickness: 2px; }
+      a:focus-visible, video:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        min-height: 62px;
+        padding: 0 clamp(24px, 6vw, 76px);
+        border-top: 5px solid var(--red);
+        border-bottom: 1px solid #343a41;
+        background: var(--deep);
+      }
+      .top-nav a {
+        color: #ffffff;
+        font-size: .84rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .top-nav a:hover { text-decoration: underline; }
+      .masthead {
+        padding: clamp(58px, 8vw, 100px) clamp(24px, 7vw, 90px) clamp(52px, 7vw, 82px);
+        background: var(--warm);
+        border-bottom: 1px solid var(--rule);
+      }
+      .masthead h1 {
+        max-width: 920px;
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.8rem, 6vw, 5.4rem);
+        font-weight: 600;
+        line-height: .98;
+        letter-spacing: -.025em;
+        text-wrap: balance;
+      }
+      .masthead p {
+        max-width: 760px;
+        margin: 24px 0 0;
+        color: var(--body);
+        font-size: clamp(1rem, 1.4vw, 1.12rem);
+        line-height: 1.75;
+      }
+      .catalog {
+        display: grid;
+        gap: clamp(66px, 8vw, 96px);
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .catalog-entity {
+        padding-top: clamp(30px, 4vw, 42px);
+        border-top: 4px solid var(--red);
+      }
+      .entity-heading {
+        display: grid;
+        grid-template-columns: minmax(190px, .58fr) minmax(0, 1.42fr);
+        gap: clamp(32px, 6vw, 82px);
+        align-items: start;
+        margin-bottom: 30px;
+      }
+      .entity-name {
+        margin: 0;
+        color: var(--red-deep);
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .13em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+      .entity-heading h2 {
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+      .entity-heading p:not(.entity-name) {
+        max-width: 680px;
+        margin: 14px 0 0;
+        color: var(--body);
+        font-size: .97rem;
+        line-height: 1.72;
+      }
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .course-grid.single { grid-template-columns: minmax(0, 720px); }
+      .catalog-card {
+        display: flex;
+        min-height: 220px;
+        flex-direction: column;
+        padding: clamp(26px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+        color: inherit;
+        text-decoration: none;
+      }
+      .catalog-card h3 {
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+      .catalog-card p { margin: 18px 0 0; color: var(--body); line-height: 1.68; }
+      .catalog-card .teachers {
+        color: var(--red-deep);
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .06em;
+      }
+      .application-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        margin-top: 30px;
+        padding-top: 26px;
+        border-top: 1px solid var(--rule);
+      }
+      .application-panel p {
+        max-width: 650px;
+        margin: 0;
+        color: var(--body);
+        font-size: .94rem;
+        line-height: 1.68;
+      }
+      .application-link {
+        display: inline-flex;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 12px 18px;
+        color: #ffffff;
+        background: var(--red-deep);
+        font-size: .84rem;
+        font-weight: 700;
+        line-height: 1.35;
+        text-align: center;
+        text-decoration: none;
+      }
+      .application-link:hover { background: var(--red); text-decoration: none; }
+      .modules {
+        display: grid;
+        gap: 24px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .module {
+        padding: clamp(25px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+      }
+      .module > h2 {
+        margin: 0 0 26px;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+        font-weight: 600;
+        line-height: 1.08;
+      }
+      .items { display: grid; gap: 14px; }
+      .item {
+        padding: 19px 0 0;
+        border-top: 1px solid var(--rule);
+      }
+      .item:first-child { padding-top: 0; border-top: 0; }
+      .item h3 { margin: 0; font-size: .98rem; line-height: 1.5; }
+      .type {
+        display: inline-block;
+        margin-top: 7px;
+        color: var(--red-deep);
+        font-size: .68rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .resource-link { display: inline-block; font-weight: 700; line-height: 1.5; }
+      .page-text { margin: 10px 0 0; color: var(--body); line-height: 1.68; white-space: pre-line; }
+      .video-item h3 { margin-bottom: 14px; }
+      video { display: block; width: 100%; max-width: 860px; background: #000000; }
+      @media (max-width: 720px) {
+        .entity-heading,
+        .course-grid,
+        .course-grid.single { grid-template-columns: 1fr; }
+        .entity-heading { gap: 20px; }
+        .catalog-card { min-height: 0; }
+        .application-panel {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .application-link { width: 100%; }
+        .top-nav { padding-inline: 24px; }
+      }
+    
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+      .lang-switch a {
+        color: #ffffff;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-decoration: none;
+        opacity: .55;
+      }
+      .lang-switch a:hover { opacity: 1; text-decoration: underline; }
+      .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
+</style>
+  <link rel="alternate" hreflang="en" href="https://ptconline.global/courses"><link rel="alternate" hreflang="es" href="https://ptconline.global/es/courses"><link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/courses"></head>
+  <body>
+    <nav class="top-nav" aria-label="Principal">
+      <a href="/es/">Inicio</a>
+      <a href="/es/courses/">Cursos</a>
+    <span class="lang-switch" aria-label="Language"><a href="/courses/" hreflang="en">EN</a><a href="/es/courses/" hreflang="es" aria-current="true">ES</a><a href="/pt/courses/" hreflang="pt">PT</a></span></nav>
+    <header class="masthead">
+      <h1>Cursos</h1>
+      <p>Cursos abiertos, gratuitos para ver y estudiar.</p>
+    </header>
+    <main class="catalog">
+      <section class="catalog-entity" aria-labelledby="mission-one-eleven-heading">
+        <div class="entity-heading">
+          <p class="entity-name">Mission One Eleven</p>
+          <div>
+            <h2 id="mission-one-eleven-heading">Cursos de formación misionera</h2>
+            <p>Siete cursos abiertos del plan de estudios de Mission One Eleven, desde fundamentos de misiología hasta la práctica y la formación avanzada en liderazgo.</p>
+          </div>
+        </div>
+
+        <div class="course-grid">
+          <a class="catalog-card" href="/es/courses/missiology/">
+            <h3>Misiología de los grupos étnicos no alcanzados</h3>
+            <p>Clases semanales con grabaciones, lecturas y discusiones. Libros de texto: The Core, The Assignment con cuaderno de trabajo. Historias del evangelio.</p>
+          </a>
+          <a class="catalog-card" href="/es/courses/orality/">
+            <h3>Métodos de oralidad</h3>
+            <p>Clases semanales en video. Libros de texto: Building on Firm Foundations, The Core. Historias del evangelio y evaluaciones de personalidad.</p>
+          </a>
+          <a class="catalog-card" href="/es/courses/formation/">
+            <h3>Formación espiritual en un contexto misional</h3>
+            <p>Clases y discusiones semanales que incluyen Counting the Cost. Libro de texto: Following Jesus. Panorama de las religiones del mundo.</p>
+          </a>
+          <a class="catalog-card" href="/es/courses/acts/">
+            <h3>Libro de los Hechos</h3>
+            <p>Clases semanales en video con lecturas y exámenes por capítulo. Un recorrido por Hechos con libro de texto.</p>
+          </a>
+          <a class="catalog-card" href="/es/courses/mentoring/">
+            <h3>Mentoreo</h3>
+            <p>Mentoring in Missions: un recorrido guiado de 11 semanas.</p>
+          </a>
+          <a class="catalog-card" href="/es/courses/practicum/">
+            <h3>Práctica de Mission One Eleven</h3>
+            <p>Práctica en el extranjero: preparación previa al viaje (documentos, vacunas, primeros auxilios, políticas, capacitación cultural), evaluación posterior al viaje y trabajo final.</p>
+          </a>
+          <a class="catalog-card" href="/es/courses/level2/">
+            <h3>Nivel 2</h3>
+            <p>Sesiones de desarrollo de liderazgo con Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal. Discipulado, multiplicación y la herramienta del círculo de iglesias.</p>
+          </a>
+        </div>
+
+        <div class="application-panel">
+          <p>Estos cursos están disponibles como material didáctico abierto. Mission One Eleven gestiona su vía de certificados e inscripción por separado.</p>
+          <a class="application-link" href="https://www.missiononeeleven.se/home/sign-up/" target="_blank" rel="noopener noreferrer">Solicitar certificado o inscripción <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="catalog-entity" aria-labelledby="messenger-college-heading">
+        <div class="entity-heading">
+          <p class="entity-name">Messenger College</p>
+          <div>
+            <h2 id="messenger-college-heading">Oferta de cursos universitarios</h2>
+            <p>Un curso abierto de ética cristiana de educadores de Messenger College, presentado aquí para el estudio y la formación ministerial.</p>
+          </div>
+        </div>
+
+        <div class="course-grid single">
+          <a class="catalog-card" href="/es/courses/ethics/">
+            <h3>La iglesia y los dilemas morales contemporáneos</h3>
+            <p class="teachers">Doug Petersen and Jennifer Hargestam</p>
+            <p>Un curso de ética cristiana para líderes eclesiásticos contemporáneos: marcos de razonamiento ético, cinco principios fundamentales, ética del Antiguo y Nuevo Testamento, y análisis de estudios de caso. Grabaciones semanales de clases, notas de enseñanza, lecturas y trabajo guiado de casos.</p>
+          </a>
+        </div>
+
+        <div class="application-panel">
+          <p>Este curso abierto no otorga por sí mismo crédito académico ni un título. Las solicitudes de títulos las gestiona directamente Messenger College.</p>
+          <a class="application-link" href="https://www.messengercollege.edu/apply" target="_blank" rel="noopener noreferrer">Solicitar admisión en Messenger College <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
