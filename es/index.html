@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <title>Consorcio Teológico Pentecostal | Educación pentecostal global</title>
+    <meta name="description" content="El Consorcio Teológico Pentecostal es una plataforma educativa de PCG Global Missions que conecta enseñanza pentecostal confiable, mentores locales, universidades y socios misioneros en todo el mundo.">
+    <meta name="keywords" content="Consorcio Teológico Pentecostal, PTC, PCG Global Missions, educación pentecostal, educación teológica, misiones globales, Messenger College, Mission One Eleven">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ptconline.global/es">
+    <meta property="og:title" content="Consorcio Teológico Pentecostal | Educación pentecostal global">
+    <meta property="og:description" content="Una red global creciente que conecta enseñanza pentecostal confiable, mentores locales, universidades y socios misioneros.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ptconline.global">
+    <meta property="og:image" content="https://cdn.prod.website-files.com/5da396c9848a167a29dc6619/5e5d87f5afa1fe3db60c93e1_ThursNight-355.jpg">
+    <meta property="og:image:alt" content="Reunión pentecostal de adoración">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Consorcio Teológico Pentecostal | Educación pentecostal global">
+    <meta name="twitter:description" content="Una red global creciente que conecta enseñanza pentecostal confiable, mentores locales, universidades y socios misioneros.">
+    <meta name="twitter:image" content="https://cdn.prod.website-files.com/5da396c9848a167a29dc6619/5e5d87f5afa1fe3db60c93e1_ThursNight-355.jpg">
+    <link rel="icon" type="image/png" href="/assets/pcg-flame.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f7f8fa;
+        --surface: #ffffff;
+        --ink: #111827;
+        --body: #344454;
+        --rule: #d9dde2;
+        --red: #b81d25;
+        --red-deep: #94171d;
+        --warm: #f7f4ee;
+        --quiet: #eef1f4;
+        --deep: #181d23;
+        --deep-body: #d7dde2;
+        --hero-ink: #ffffff;
+        --hero-body: #edf0f2;
+        --hero-rule: rgba(255, 255, 255, 0.32);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+
+      body {
+        margin: 0;
+        min-height: 100svh;
+        background: var(--page);
+        color: var(--ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main {
+        min-height: 100svh;
+        padding: 0;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100svh;
+        margin: 0;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        overflow: hidden;
+        background: var(--surface);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 690px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        isolation: isolate;
+        color: var(--hero-ink);
+        background-image: url("https://cdn.prod.website-files.com/5da396c9848a167a29dc6619/5e5d87f5afa1fe3db60c93e1_ThursNight-355.jpg");
+        background-position: center 42%;
+        background-size: cover;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(90deg, rgba(42, 8, 11, 0.94) 0%, rgba(63, 10, 14, 0.82) 46%, rgba(17, 21, 28, 0.52) 100%),
+          linear-gradient(0deg, rgba(17, 21, 28, 0.48), rgba(17, 21, 28, 0.04) 58%);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 5px;
+        background: var(--red);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        justify-self: start;
+        gap: 13px;
+        margin: 0 clamp(28px, 5vw, 68px);
+        padding: clamp(34px, 5vw, 54px) 0 22px;
+        border-bottom: 1px solid var(--hero-rule);
+      }
+
+      .brand img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+
+      .brand span {
+        color: var(--hero-ink);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .content {
+        align-self: center;
+        display: grid;
+        grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+        gap: clamp(52px, 8vw, 118px);
+        padding: clamp(58px, 8vw, 102px) clamp(28px, 7vw, 86px) clamp(72px, 9vw, 112px);
+      }
+
+      .wordmark {
+        margin: 0;
+        align-self: start;
+        color: var(--hero-ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(7rem, 14vw, 11.5rem);
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.035em;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.24);
+      }
+
+      .message {
+        max-width: 650px;
+        padding-top: 1px;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 24px;
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .status::before {
+        content: "";
+        width: 38px;
+        height: 2px;
+        background: var(--red);
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--hero-ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.75rem, 5.4vw, 4.9rem);
+        font-weight: 600;
+        line-height: 0.96;
+        letter-spacing: -0.022em;
+        text-wrap: balance;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.22);
+      }
+
+      .vision {
+        max-width: 600px;
+        margin: clamp(28px, 4vw, 40px) 0 0;
+        color: var(--hero-body);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.35rem, 2.35vw, 1.8rem);
+        font-weight: 400;
+        line-height: 1.32;
+      }
+
+      .global-vision {
+        max-width: 600px;
+        margin: 18px 0 0;
+        color: var(--hero-ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.18rem, 2vw, 1.5rem);
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .scripture {
+        white-space: nowrap;
+        color: #f0c8ca;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 0.64em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .purpose {
+        max-width: 540px;
+        margin: 22px 0 0;
+        padding-top: 18px;
+        border-top: 1px solid var(--hero-rule);
+        color: var(--hero-body);
+        font-size: 0.98rem;
+        font-weight: 400;
+        line-height: 1.65;
+      }
+
+      .vision-section {
+        padding: clamp(72px, 9vw, 116px) clamp(28px, 7vw, 86px) clamp(76px, 9vw, 122px);
+        background: var(--surface);
+      }
+
+      .vision-intro {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
+        gap: clamp(44px, 8vw, 112px);
+        align-items: start;
+      }
+
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 10px 0 0;
+        color: var(--red);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .section-label::before {
+        content: "";
+        width: 38px;
+        height: 2px;
+        background: var(--red);
+      }
+
+      .vision-copy h2 {
+        max-width: 700px;
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.4rem, 4.5vw, 4.15rem);
+        font-weight: 600;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+
+      .vision-copy p {
+        max-width: 690px;
+        margin: 26px 0 0;
+        color: var(--body);
+        font-size: clamp(1rem, 1.35vw, 1.1rem);
+        line-height: 1.78;
+      }
+
+      .pillars {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(26px, 4vw, 48px);
+        margin-top: clamp(58px, 7vw, 82px);
+      }
+
+      .pillar {
+        padding-top: 22px;
+        border-top: 3px solid var(--red);
+      }
+
+      .pillar h3 {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.55rem, 2.2vw, 2rem);
+        font-weight: 600;
+        line-height: 1.1;
+      }
+
+      .pillar p {
+        margin: 14px 0 0;
+        color: var(--body);
+        font-size: 0.93rem;
+        line-height: 1.68;
+      }
+
+      .worldwide-context {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
+        gap: clamp(44px, 8vw, 112px);
+        margin-top: clamp(72px, 9vw, 108px);
+        padding-top: clamp(48px, 6vw, 70px);
+        border-top: 1px solid var(--rule);
+      }
+
+      .worldwide-copy h3 {
+        max-width: 700px;
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 3.7vw, 3.35rem);
+        font-weight: 600;
+        line-height: 1.06;
+        letter-spacing: -0.018em;
+        text-wrap: balance;
+      }
+
+      .worldwide-copy p {
+        max-width: 700px;
+        margin: 22px 0 0;
+        color: var(--body);
+        font-size: clamp(1rem, 1.3vw, 1.08rem);
+        line-height: 1.78;
+      }
+
+      .partners-section {
+        padding: clamp(72px, 9vw, 116px) clamp(28px, 7vw, 86px) clamp(76px, 9vw, 122px);
+        background: var(--warm);
+        border-top: 1px solid var(--rule);
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
+        gap: clamp(44px, 8vw, 112px);
+        align-items: start;
+      }
+
+      .section-heading h2 {
+        max-width: 720px;
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.35rem, 4.4vw, 4rem);
+        font-weight: 600;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+
+      .section-heading p:not(.section-label) {
+        max-width: 680px;
+        margin: 24px 0 0;
+        color: var(--body);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .partner-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(22px, 3vw, 34px);
+        margin-top: clamp(52px, 7vw, 78px);
+      }
+
+      .partner-card {
+        display: flex;
+        min-height: 320px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: clamp(28px, 4vw, 42px);
+        background: var(--surface);
+        border-top: 4px solid var(--rule);
+      }
+
+      .partner-card.featured { border-top-color: var(--red); }
+
+      .partner-photo {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        margin: 0 0 28px;
+        object-fit: cover;
+        background: var(--quiet);
+      }
+
+      .partner-photo.messenger { object-position: center 46%; }
+      .partner-photo.mission-one-eleven { object-position: center 35%; }
+
+      .partner-role {
+        margin: 0 0 22px;
+        color: var(--red-deep);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.45;
+        text-transform: uppercase;
+      }
+
+      .partner-card h3 {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+
+      .partner-card p:not(.partner-role) {
+        margin: 20px 0 30px;
+        color: var(--body);
+        font-size: 0.97rem;
+        line-height: 1.72;
+      }
+
+      .partner-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin-top: auto;
+        color: var(--red-deep);
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .partner-link:hover { text-decoration: underline; }
+      .partner-link:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 4px;
+      }
+
+      .library-section {
+        padding: clamp(72px, 9vw, 116px) clamp(28px, 7vw, 86px) clamp(76px, 9vw, 122px);
+        background: var(--surface);
+        border-top: 1px solid var(--rule);
+      }
+
+      .library-series {
+        margin-top: clamp(52px, 7vw, 78px);
+      }
+
+      .library-entity {
+        padding-top: clamp(30px, 4vw, 42px);
+        border-top: 4px solid var(--red);
+      }
+
+      .library-entity + .library-entity {
+        margin-top: clamp(66px, 8vw, 96px);
+      }
+
+      .entity-heading {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
+        gap: clamp(32px, 6vw, 82px);
+        align-items: start;
+        margin-bottom: 30px;
+      }
+
+      .entity-name {
+        margin: 0;
+        color: var(--red-deep);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .entity-heading h3 {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+
+      .entity-heading p:not(.entity-name) {
+        max-width: 680px;
+        margin: 14px 0 0;
+        color: var(--body);
+        font-size: 0.97rem;
+        line-height: 1.72;
+      }
+
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .course-card {
+        color: inherit;
+        text-decoration: none;
+        display: flex;
+        min-height: 300px;
+        flex-direction: column;
+        padding: clamp(25px, 3vw, 34px);
+        background: var(--quiet);
+        border-top: 3px solid var(--red);
+      }
+
+      .course-card:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 4px;
+      }
+
+      .course-number {
+        margin: 0 0 18px;
+        color: var(--red-deep);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .course-card h3 {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.65rem, 2.3vw, 2.2rem);
+        font-weight: 600;
+        line-height: 1.08;
+      }
+
+      .course-description {
+        margin: 17px 0 24px;
+        color: var(--body);
+        font-size: 0.94rem;
+        line-height: 1.68;
+      }
+
+      .course-formats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin: auto 0 0;
+        padding: 18px 0 0;
+        border-top: 1px solid var(--rule);
+        color: var(--body);
+        font-size: 0.76rem;
+        font-weight: 700;
+        line-height: 1.45;
+        list-style: none;
+      }
+
+      .course-formats li:not(:last-child)::after {
+        content: "·";
+        margin-left: 16px;
+        color: var(--red);
+      }
+
+      .level-two {
+        display: grid;
+        grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr);
+        gap: clamp(26px, 4vw, 52px);
+        min-height: 0;
+        margin-top: 18px;
+        background: var(--warm);
+      }
+
+      .level-two .course-description {
+        margin-bottom: 0;
+      }
+
+      .level-two .course-formats {
+        align-self: end;
+      }
+
+      .course-grid.single {
+        grid-template-columns: minmax(0, 720px);
+      }
+
+      .application-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        margin-top: 30px;
+        padding: 26px 0 0;
+        border-top: 1px solid var(--rule);
+      }
+
+      .application-panel p {
+        max-width: 650px;
+        margin: 0;
+        color: var(--body);
+        font-size: 0.94rem;
+        line-height: 1.68;
+      }
+
+      .application-link {
+        display: inline-flex;
+        flex: none;
+        align-items: center;
+        gap: 9px;
+        min-height: 46px;
+        padding: 12px 18px;
+        color: #ffffff;
+        background: var(--red-deep);
+        font-size: 0.84rem;
+        font-weight: 700;
+        line-height: 1.35;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .application-link:hover { background: var(--red); }
+      .application-link:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 4px;
+      }
+
+      .collaboration-section {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
+        gap: clamp(44px, 8vw, 112px);
+        padding: clamp(72px, 9vw, 116px) clamp(28px, 7vw, 86px) clamp(76px, 9vw, 122px);
+        color: #ffffff;
+        background: var(--deep);
+      }
+
+      .collaboration-section .section-label { color: #f3b9bc; }
+      .collaboration-section .section-label::before { background: var(--red); }
+
+      .collaboration-copy h2 {
+        max-width: 730px;
+        margin: 0;
+        color: #ffffff;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.35rem, 4.5vw, 4.15rem);
+        font-weight: 600;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+
+      .collaboration-copy p {
+        max-width: 700px;
+        margin: 25px 0 0;
+        color: var(--deep-body);
+        font-size: clamp(1rem, 1.35vw, 1.1rem);
+        line-height: 1.78;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 24px clamp(28px, 5vw, 68px) 27px;
+        background: var(--warm);
+        border-top: 1px solid var(--rule);
+        color: var(--body);
+        font-size: 0.84rem;
+        line-height: 1.45;
+      }
+
+      .footer p { margin: 0; }
+
+      .footer-links {
+        display: flex;
+        flex: none;
+        flex-wrap: wrap;
+        gap: 12px 22px;
+      }
+
+      .footer a {
+        color: var(--red-deep);
+        font-weight: 700;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .footer a:hover { text-decoration: underline; }
+      .footer a:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 980px) {
+        .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 720px) {
+        main { padding: 0; }
+        .page {
+          min-height: 100svh;
+          box-shadow: none;
+        }
+        .hero {
+          min-height: 760px;
+          background-position: 57% center;
+        }
+        .hero::before {
+          background:
+            linear-gradient(180deg, rgba(42, 8, 11, 0.88) 0%, rgba(47, 9, 12, 0.82) 52%, rgba(17, 21, 28, 0.84) 100%);
+        }
+        .brand {
+          margin-inline: 24px;
+          padding-top: 32px;
+        }
+        .content {
+          grid-template-columns: 1fr;
+          gap: 34px;
+          padding: 54px 24px 66px;
+        }
+        .wordmark { font-size: clamp(6.5rem, 31vw, 9rem); }
+        .message { padding-top: 0; }
+        h1 { max-width: 11ch; }
+        .vision-intro,
+        .worldwide-context,
+        .section-heading,
+        .entity-heading,
+        .collaboration-section {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .section-label { margin-top: 0; }
+        .pillars { grid-template-columns: 1fr; gap: 34px; }
+        .partner-list { grid-template-columns: 1fr; }
+        .partner-card { min-height: 0; }
+        .course-grid,
+        .course-grid.single { grid-template-columns: 1fr; }
+        .course-card { min-height: 0; }
+        .level-two { grid-template-columns: 1fr; }
+        .application-panel {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .application-link { width: 100%; justify-content: center; }
+        .footer {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+          padding-inline: 24px;
+        }
+        .footer-links { flex-direction: column; gap: 8px; }
+      }
+
+      @media (max-width: 390px) {
+        .brand span { font-size: 0.7rem; letter-spacing: 0.1em; }
+        .content { padding-top: 46px; padding-bottom: 58px; }
+        h1 { font-size: clamp(2.5rem, 13vw, 3.25rem); }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .content { animation: arrive 520ms ease-out both; }
+        @keyframes arrive {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      }
+    
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+      .lang-switch a {
+        color: #ffffff;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-decoration: none;
+        opacity: .55;
+      }
+      .lang-switch a:hover { opacity: 1; text-decoration: underline; }
+      .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
+</style>
+  <link rel="alternate" hreflang="en" href="https://ptconline.global/"><link rel="alternate" hreflang="es" href="https://ptconline.global/es"><link rel="alternate" hreflang="pt" href="https://ptconline.global/pt"></head>
+  <body>
+    <main>
+      <div class="page">
+        <section class="hero" aria-label="Reunión pentecostal de adoración">
+          <header class="brand" aria-label="PCG Global Missions">
+            <img src="/assets/pcg-flame.png" alt="Llama de PCG">
+            <span>PCG Global Missions</span>
+          <span class="lang-switch" aria-label="Language"><a href="/" hreflang="en">EN</a><a href="/es/" hreflang="es" aria-current="true">ES</a><a href="/pt/" hreflang="pt">PT</a></span></header>
+
+          <div class="content" aria-labelledby="consortium-name">
+            <p class="wordmark" aria-hidden="true">PTC</p>
+            <div class="message">
+              <p class="status">Próximamente</p>
+              <h1 id="consortium-name">Consorcio Teológico Pentecostal</h1>
+              <p class="vision">Un actor colaborativo global para el desarrollo del ministerio pentecostal: cursos compartidos, mentores y rutas de aprendizaje en idiomas locales.</p>
+              <p class="global-vision">Una vía escalable desde la fidelidad local hasta lo último de la tierra. <span class="scripture">Hechos 1:8</span></p>
+              <p class="purpose">Competencia ministerial fiel y acceso en idiomas locales.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="vision-section" aria-labelledby="vision-heading">
+          <div class="vision-intro">
+            <p class="section-label">La visión</p>
+            <div class="vision-copy">
+              <h2 id="vision-heading">Aprendizaje arraigado localmente, compartido en una familia pentecostal global.</h2>
+              <p>PTC está tomando forma como una red creciente de iglesias y comunidades de aprendizaje que pueden compartir enseñanza pentecostal confiable honrando el idioma, la sabiduría y la vida ministerial de cada lugar.</p>
+              <p>El camino comienza con algo útil: un curso, comprendido en un idioma local, recorrido con un mentor local y aplicado en el ministerio real. Desde allí, el siguiente paso fiel puede abrirse a una vida de formación, servicio y aprendizaje compartido.</p>
+            </div>
+          </div>
+
+          <div class="pillars" aria-label="Pilares de la visión">
+            <article class="pillar">
+              <h3>Compartido más allá de las fronteras</h3>
+              <p>Una red global conectada donde las iglesias e instituciones aportan, aprenden unas de otras y fortalecen todo el movimiento.</p>
+            </article>
+            <article class="pillar">
+              <h3>Arraigado en cada lugar</h3>
+              <p>Aprendizaje impartido en idiomas locales, guiado por mentores locales y moldeado por las realidades del ministerio en el terreno.</p>
+            </article>
+            <article class="pillar">
+              <h3>Formados para la misión</h3>
+              <p>Cada paso va del entendimiento a la práctica: del testimonio fiel en casa hacia los pueblos y lugares que aún esperan.</p>
+            </article>
+          </div>
+
+          <div class="worldwide-context">
+            <p class="section-label">Horizonte mundial</p>
+            <div class="worldwide-copy">
+              <h3>Una mesa compartida para un movimiento pentecostal mundial.</h3>
+              <p>A través de naciones, idiomas y generaciones, el movimiento pentecostal lleva consigo profunda sabiduría local, testimonio vivo y un llamado compartido a formar líderes para toda la Iglesia. PTC vislumbra que estas fortalezas se conecten cada vez más: un aprendizaje que puede viajar sin perder sus raíces, y relaciones que permiten que una parte de la familia global fortalezca a otra.</p>
+              <p>El objetivo no es hacer que todos los contextos sean iguales. Es crear un lugar común para la enseñanza confiable, la mentoría local y el intercambio intercultural, para que los líderes puedan crecer donde sirven, las universidades aporten lo que llevan consigo y el movimiento en su conjunto aprenda unido.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="partners-section" aria-labelledby="partners-heading">
+          <div class="section-heading">
+            <p class="section-label">Socios educativos</p>
+            <div>
+              <h2 id="partners-heading">Socios educativos de PCG Global Missions</h2>
+              <p>PTC se está formando a través de relaciones que conectan la formación académica con la preparación misionera práctica. Estos socios aportan fortalezas complementarias a una vía pentecostal compartida de aprendizaje.</p>
+            </div>
+          </div>
+
+          <div class="partner-list">
+            <article class="partner-card featured">
+              <img class="partner-photo messenger" src="/assets/messenger-college-classroom.jpg" alt="Un instructor de Messenger College enseñando a estudiantes en un aula">
+              <p class="partner-role">Socio inicial de la vía académica</p>
+              <h3>Messenger College</h3>
+              <p>Una universidad cristiana que sirve como socio inicial de la vía académica, ayudando a afianzar la visión del Consorcio en educación superior confiable mientras abre puertas al aprendizaje en toda la familia misionera global.</p>
+              <a class="partner-link" href="https://messengercollege.edu/" target="_blank" rel="noopener noreferrer">Visitar Messenger College <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="partner-card">
+              <img class="partner-photo mission-one-eleven" src="/assets/mission-one-eleven-pioneer.jpg" alt="Un misionero pionero de Mission One Eleven con una mochila">
+              <p class="partner-role">Cantera de estudiantes pioneros</p>
+              <h3>Mission One Eleven</h3>
+              <p>Un socio de formación misionera enfocado en jóvenes que cultiva una cantera de estudiantes pioneros, formando una nueva generación para escuchar, aprender, cruzar culturas y dar fieles primeros pasos en la misión global.</p>
+              <a class="partner-link" href="https://missiononeeleven.com/" target="_blank" rel="noopener noreferrer">Visitar Mission One Eleven <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </section>
+
+        <section class="library-section" aria-labelledby="library-heading">
+          <div class="section-heading">
+            <p class="section-label">Material didáctico abierto</p>
+            <div>
+              <h2 id="library-heading">La biblioteca de aprendizaje</h2>
+              <p>Explore los materiales de los cursos de cada socio educativo. Los cursos abiertos están separados de la vía formal de solicitud de cada institución.</p>
+              <a class="partner-link" href="/es/courses/">Ver todos los cursos</a>
+            </div>
+          </div>
+
+          <div class="library-series">
+            <section class="library-entity" aria-labelledby="mission-one-eleven-courses">
+              <div class="entity-heading">
+                <p class="entity-name">Mission One Eleven</p>
+                <div>
+                  <h3 id="mission-one-eleven-courses">Cursos de formación misionera</h3>
+                  <p>Siete cursos abiertos del plan de estudios de Mission One Eleven, desde fundamentos de misiología hasta la práctica y la formación avanzada en liderazgo.</p>
+                </div>
+              </div>
+
+              <div class="course-grid">
+                <a class="course-card" href="/es/courses/missiology/">
+                  <p class="course-number">Curso 01</p>
+                  <h3>Misiología de los grupos étnicos no alcanzados</h3>
+                  <p class="course-description">Estudio de <cite>The Core</cite> y <cite>The Assignment</cite> con cuaderno de trabajo, acompañado de historias del evangelio.</p>
+                  <ul class="course-formats" aria-label="Formatos del curso">
+                    <li>Clases semanales</li>
+                    <li>Grabaciones</li>
+                    <li>Lecturas</li>
+                    <li>Discusiones</li>
+                  </ul>
+                </a>
+
+                <a class="course-card" href="/es/courses/orality/">
+                  <p class="course-number">Curso 02</p>
+                  <h3>Métodos de oralidad</h3>
+                  <p class="course-description"><cite>Building on Firm Foundations</cite> y <cite>The Core</cite> enmarcan historias del evangelio y evaluaciones de personalidad.</p>
+                  <ul class="course-formats" aria-label="Formatos del curso">
+                    <li>Clases semanales en video</li>
+                    <li>Libros de texto</li>
+                    <li>historias del evangelio</li>
+                    <li>Evaluaciones de personalidad</li>
+                  </ul>
+                </a>
+
+                <a class="course-card" href="/es/courses/formation/">
+                  <p class="course-number">Curso 03</p>
+                  <h3>Formación espiritual en un contexto misional</h3>
+                  <p class="course-description">La formación incluye «Counting the Cost», <cite>Following Jesus</cite> y un panorama de las religiones del mundo.</p>
+                  <ul class="course-formats" aria-label="Formatos del curso">
+                    <li>Clases semanales</li>
+                    <li>Discusiones</li>
+                    <li>Estudio con libro de texto</li>
+                  </ul>
+                </a>
+
+                <a class="course-card" href="/es/courses/acts/">
+                  <p class="course-number">Curso 04</p>
+                  <h3>Libro de los Hechos</h3>
+                  <p class="course-description">Un estudio del libro de los Hechos con libro de texto, apoyado por clases semanales en video, lecturas y exámenes por capítulo.</p>
+                  <ul class="course-formats" aria-label="Formatos del curso">
+                    <li>Clases semanales en video</li>
+                    <li>Lecturas</li>
+                    <li>Exámenes por capítulo</li>
+                  </ul>
+                </a>
+
+                <a class="course-card" href="/es/courses/mentoring/">
+                  <p class="course-number">Curso 05</p>
+                  <h3>Mentoreo</h3>
+                  <p class="course-description"><cite>Mentoring in Missions</cite> es un recorrido guiado de 11 semanas.</p>
+                  <ul class="course-formats" aria-label="Formatos del curso">
+                    <li>11 semanas</li>
+                    <li>Recorrido guiado</li>
+                  </ul>
+                </a>
+
+                <a class="course-card" href="/es/courses/practicum/">
+                  <p class="course-number">Curso 06</p>
+                  <h3>Práctica de Mission One Eleven</h3>
+                  <p class="course-description">Una práctica en el extranjero con documentos previos al viaje, vacunas, primeros auxilios, políticas y capacitación cultural, seguida de una evaluación posterior y un trabajo final.</p>
+                  <ul class="course-formats" aria-label="Formatos del curso">
+                    <li>Preparación</li>
+                    <li>Capacitación cultural</li>
+                    <li>Evaluación posterior</li>
+                    <li>Trabajo final</li>
+                  </ul>
+                </a>
+              </div>
+
+              <a class="course-card level-two" href="/es/courses/level2/">
+                <div>
+                  <p class="course-number">Curso 07 · Nivel 2</p>
+                  <h3>Nivel 2</h3>
+                  <p class="course-description">Sesiones de desarrollo de liderazgo con Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal.</p>
+                </div>
+                <ul class="course-formats" aria-label="Formatos del curso">
+                  <li>Desarrollo de liderazgo</li>
+                  <li>Discipulado</li>
+                  <li>Multiplicación</li>
+                  <li>Herramienta del círculo de iglesias</li>
+                </ul>
+              </a>
+
+              <div class="application-panel">
+                <p>Los cursos anteriores están disponibles como material didáctico abierto. Mission One Eleven gestiona su vía de certificados e inscripción por separado.</p>
+                <a class="application-link" href="https://www.missiononeeleven.se/home/sign-up/" target="_blank" rel="noopener noreferrer">Solicitar certificado o inscripción <span aria-hidden="true">↗</span></a>
+              </div>
+            </section>
+
+            <section class="library-entity" aria-labelledby="messenger-college-courses">
+              <div class="entity-heading">
+                <p class="entity-name">Messenger College</p>
+                <div>
+                  <h3 id="messenger-college-courses">Oferta de cursos universitarios</h3>
+                  <p>Un curso abierto de ética cristiana de educadores de Messenger College, presentado aquí para el estudio y la formación ministerial.</p>
+                </div>
+              </div>
+
+              <div class="course-grid single">
+                <a class="course-card" href="/es/courses/ethics/">
+                  <p class="course-number">Doug Petersen and Jennifer Hargestam</p>
+                  <h3>La iglesia y los dilemas morales contemporáneos</h3>
+                  <p class="course-description">Un curso de ética cristiana para líderes eclesiásticos contemporáneos: marcos de razonamiento ético, cinco principios fundamentales, ética del Antiguo y Nuevo Testamento, y análisis de estudios de caso. Notas de enseñanza, lecturas y trabajo guiado de casos.</p>
+                </a>
+              </div>
+
+              <div class="application-panel">
+                <p>Este curso abierto no otorga por sí mismo crédito académico ni un título. Las solicitudes de títulos las gestiona directamente Messenger College.</p>
+                <a class="application-link" href="https://www.messengercollege.edu/apply" target="_blank" rel="noopener noreferrer">Solicitar admisión en Messenger College <span aria-hidden="true">↗</span></a>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="collaboration-section" aria-labelledby="collaboration-heading">
+          <p class="section-label">Colaboración global</p>
+          <div class="collaboration-copy">
+            <h2 id="collaboration-heading">Una red mundial creciente de universidades y colaboradores.</h2>
+            <p>La visión más amplia es una red relacional en construcción: universidades pentecostales, iglesias, educadores, mentores y líderes misioneros compartiendo lo que saben y aprendiendo unos de otros entre regiones. Cada colaborador puede fortalecer el acceso, la sabiduría contextual y la formación fiel sin borrar el llamado distintivo de ningún lugar.</p>
+            <p>A medida que esas relaciones crezcan, PTC puede convertirse en un punto de encuentro entre el aprendizaje establecido y los líderes emergentes: un bien común global donde se comparten recursos, se fortalece la capacidad local y se forma a la próxima generación para el servicio, desde la iglesia local hasta lo último de la tierra.</p>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>En conexión con el departamento de Educación Global de PCG Global Missions, con una vía académica vinculada a Messenger College.</p>
+          <nav class="footer-links" aria-label="Enlaces relacionados">
+            <a href="https://WWW.PCG.ORG/missions/global-education?cc9b0749_page=6" target="_blank" rel="noopener noreferrer">Educación Global <span aria-hidden="true">↗</span></a>
+            <a href="https://www.pcgmission.org" target="_blank" rel="noopener noreferrer">PCG Global Missions <span aria-hidden="true">↗</span></a>
+          </nav>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
