@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <title>Methods of Orality | Pentecostal Theological Consortium</title>
+    <meta name="description" content="Weekly video classes. Textbooks: Building on Firm Foundations, The Core. Gospel stories and personality assessments.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f7f8fa;
+        --surface: #ffffff;
+        --ink: #111827;
+        --body: #344454;
+        --rule: #d9dde2;
+        --red: #b81d25;
+        --red-deep: #94171d;
+        --warm: #f7f4ee;
+        --quiet: #eef1f4;
+        --deep: #181d23;
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--red-deep); text-underline-offset: 4px; }
+      a:hover { text-decoration-thickness: 2px; }
+      a:focus-visible, video:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        min-height: 62px;
+        padding: 0 clamp(24px, 6vw, 76px);
+        border-top: 5px solid var(--red);
+        border-bottom: 1px solid #343a41;
+        background: var(--deep);
+      }
+      .top-nav a {
+        color: #ffffff;
+        font-size: .84rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .top-nav a:hover { text-decoration: underline; }
+      .masthead {
+        padding: clamp(58px, 8vw, 100px) clamp(24px, 7vw, 90px) clamp(52px, 7vw, 82px);
+        background: var(--warm);
+        border-bottom: 1px solid var(--rule);
+      }
+      .masthead h1 {
+        max-width: 920px;
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.8rem, 6vw, 5.4rem);
+        font-weight: 600;
+        line-height: .98;
+        letter-spacing: -.025em;
+        text-wrap: balance;
+      }
+      .masthead p {
+        max-width: 760px;
+        margin: 24px 0 0;
+        color: var(--body);
+        font-size: clamp(1rem, 1.4vw, 1.12rem);
+        line-height: 1.75;
+      }
+      .canvas-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        margin-top: 30px;
+        padding: 13px 20px;
+        color: #ffffff;
+        background: var(--red-deep);
+        font-size: .88rem;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+        text-decoration: none;
+      }
+      .canvas-cta:hover { background: var(--red); text-decoration: none; }
+      .catalog {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .catalog-card {
+        display: flex;
+        min-height: 220px;
+        flex-direction: column;
+        padding: clamp(26px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+        color: inherit;
+        text-decoration: none;
+      }
+      .catalog-card h2 {
+        margin: 0;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+      .catalog-card p { margin: 18px 0 0; color: var(--body); line-height: 1.68; }
+      .modules {
+        display: grid;
+        gap: 24px;
+        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
+        background: var(--surface);
+      }
+      .module {
+        padding: clamp(25px, 3vw, 38px);
+        border-top: 3px solid var(--red);
+        background: var(--quiet);
+      }
+      .module > h2 {
+        margin: 0 0 26px;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+        font-weight: 600;
+        line-height: 1.08;
+      }
+      .items { display: grid; gap: 14px; }
+      .item {
+        padding: 19px 0 0;
+        border-top: 1px solid var(--rule);
+      }
+      .item:first-child { padding-top: 0; border-top: 0; }
+      .item h3 { margin: 0; font-size: .98rem; line-height: 1.5; }
+      .type {
+        display: inline-block;
+        margin-top: 7px;
+        color: var(--red-deep);
+        font-size: .68rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .resource-link { display: inline-block; font-weight: 700; line-height: 1.5; }
+      .page-text { margin: 10px 0 0; color: var(--body); line-height: 1.68; white-space: pre-line; }
+      .video-item h3 { margin-bottom: 14px; }
+      video { display: block; width: 100%; max-width: 860px; background: #000000; }
+      @media (max-width: 720px) {
+        .catalog { grid-template-columns: 1fr; }
+        .catalog-card { min-height: 0; }
+        .top-nav { padding-inline: 24px; }
+      }
+    
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+      .lang-switch a {
+        color: #ffffff;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-decoration: none;
+        opacity: .55;
+      }
+      .lang-switch a:hover { opacity: 1; text-decoration: underline; }
+      .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
+</style>
+  <link rel="alternate" hreflang="en" href="https://ptconline.global/courses/orality"><link rel="alternate" hreflang="es" href="https://ptconline.global/es/courses/orality"><link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/courses/orality"></head>
+  <body>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/courses/">Courses</a>
+    <span class="lang-switch" aria-label="Language"><a href="/courses/orality/" hreflang="en" aria-current="true">EN</a><a href="/es/courses/orality/" hreflang="es">ES</a><a href="/pt/courses/orality/" hreflang="pt">PT</a></span></nav>
+    <header class="masthead">
+      <h1>Methods of Orality</h1>
+      <p>Weekly video classes. Textbooks: Building on Firm Foundations, The Core. Gospel stories and personality assessments.</p>
+      <a class="canvas-cta" href="https://canvaslite.instructure.com/courses/15693" target="_blank" rel="noopener noreferrer">Open this course in Canvas <span aria-hidden="true">↗</span></a>
+    </header>
+    <main class="modules">
+      <section class="module">
+        <h2>Welcome</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Orientation Video</h3>
+            <video src="https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1" controls preload="metadata"></video>
+          </article>
+          <div class="item">
+            <a class="resource-link" href="/assets/syllabi/orality-syllabus.pdf" target="_blank" rel="noopener noreferrer">Syllabus Methods of Orality</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/p5t5wfecs3in8c8/BFF%20Vol%2001_Combined.pdf?raw=1" target="_blank" rel="noopener noreferrer">Textbook: Building on Firm Foundations</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/oceuxgm2uj4we22/Core%20Teaching%20-%20book%20format.pdf?raw=1" target="_blank" rel="noopener noreferrer">Textbook: The Core</a>
+          </div>
+          <article class="item video-item">
+            <h3>Video: EE Tow</h3>
+            <video src="https://www.dropbox.com/s/2c5mszxuwookosa/EE-Taow.The.Mouk.Story.2008.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_ee_taow_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/68lh07a2p179uuv/Gospel%20Stories.pdf?raw=1" target="_blank" rel="noopener noreferrer">MOE Gospel Stories</a>
+          </div>
+          <div class="item">
+            <a class="resource-link" href="https://www.dropbox.com/s/okxt5hzub47ogsh/Shorthand%20Gospel.pdf?raw=1" target="_blank" rel="noopener noreferrer">Shorthand Gospel</a>
+          </div>
+          <div class="item">
+            <h3>Personality Tests</h3>
+            <span class="type">Discussion</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Week 1 - Firm Foundations</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Week 1 Class Recording</h3>
+            <video src="https://www.dropbox.com/s/ooy0nteewbs4sgj/Methods%20of%20Orality.Week%201.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_w1_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <h3>Readings: Week 1</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Discussion: Firm Foundations Part 1</h3>
+            <span class="type">Discussion</span>
+          </div>
+          <div class="item">
+            <h3>Stories: 1-6</h3>
+            <span class="type">Assignment</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Week 2 - Firm Foundations</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Week 2 Video Class Recording</h3>
+            <video src="https://www.dropbox.com/s/f2vej2vfmybsf7q/Methods%20of%20Orality.Week%202.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_w2_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <h3>Readings: Week 2</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Discussion: Firm Foundation Part 2</h3>
+            <span class="type">Discussion</span>
+          </div>
+          <div class="item">
+            <h3>Stories: 7-12</h3>
+            <span class="type">Assignment</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Week 3 - Basis for Faith</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Week 3 Video Class Recording</h3>
+            <video src="https://www.dropbox.com/s/s2w7sljvyt4t99a/Methods%20of%20Orality.Week%203.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_w3_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <h3>Readings: Week 3</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Discussion: Basis For Faith Part 1</h3>
+            <span class="type">Discussion</span>
+          </div>
+          <div class="item">
+            <h3>Stories: 13-18</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Short Essay</h3>
+            <span class="type">Assignment</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Week 4 - Basis for Faith</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Week 4 Video Class Recording</h3>
+            <video src="https://www.dropbox.com/s/3gkv7gu75ciicn0/Methods%20of%20Orality.Week%204.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_w4_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <h3>Readings: Week 4</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Discussion: Basis for Faith Part 2</h3>
+            <span class="type">Discussion</span>
+          </div>
+          <div class="item">
+            <h3>Stories: 19-24</h3>
+            <span class="type">Assignment</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Week 5 - Storytelling</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Week 5 Video Class Recording</h3>
+            <video src="https://www.dropbox.com/s/cxmcs4u5wgy2652/Methods%20of%20Orality.Week%205.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_w5_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <h3>Readings: Week 5</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Discussion: Storytelling Part 1</h3>
+            <span class="type">Discussion</span>
+          </div>
+          <div class="item">
+            <h3>Stories: 25-30</h3>
+            <span class="type">Assignment</span>
+          </div>
+        </div>
+      </section>
+      <section class="module">
+        <h2>Week 6 - Storytelling</h2>
+        <div class="items">
+          <article class="item video-item">
+            <h3>Week 6 Video Class Recording</h3>
+            <video src="https://www.dropbox.com/s/gi9yovthqmh8uwc/Methods%20of%20Orality.Week%206.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/subtitles/orality_w6_pt.vtt" srclang="pt" label="Português" /></video>
+          </article>
+          <div class="item">
+            <h3>Readings: Week 6</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Discussion: Storytelling Part 2</h3>
+            <span class="type">Discussion</span>
+          </div>
+          <div class="item">
+            <h3>Stories: 31-34</h3>
+            <span class="type">Assignment</span>
+          </div>
+          <div class="item">
+            <h3>Final Paper</h3>
+            <span class="type">Assignment</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
