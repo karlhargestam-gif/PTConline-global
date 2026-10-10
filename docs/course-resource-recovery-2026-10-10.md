@@ -37,3 +37,13 @@ A 404 does not distinguish deletion from an account-access restriction. Recover 
 - `python3 .github/scripts/course_resource_check.py --base-url https://PREVIEW-HOST` checks actual anonymous HTTP document bytes and course links; no credentials/cookies are sent.
 - Resolved the existing conflict with main in the Portuguese course index, retaining the Portuguese metadata plus main's canonical/structured-data and CI work.
 - Vercel project: `prj_6dWan46TvirlneWSo3bOqcBKABAV`, team `team_9ZcwXjk9QXaA0Vs1ccdUrmI0`, preview branch `i18n/pt-content`. Direct deployment inspection currently returns a team-scope 403; the CLI is not installed. Use the existing Git-integrated preview from the branch push and verify its reported result. Do not promote to production.
+
+## Verified preview result
+
+The existing Git integration recovered successfully at commit `c04e6be0489a5d6ea540465d4cb266804a243fc4`. Vercel reported **Ready**, deployment `dpl_GxPmBPgYAPcjQu8nYne7bxBe6s7J`; GitHub Site check run `38090188101` passed. PR #2 remains draft, unmerged, and mergeable. The GitHub tree matches the locally verified tree byte-for-byte.
+
+Review: https://ptconline-global-git-i18n-pt-content-karlhargestam-gif.vercel.app/pt/courses/
+
+Anonymous GET checks for all three recovered PDFs and the five affected Portuguese course pages returned HTTP 302 to Vercel SSO. These checks establish that the preview is protected, not that the deployed document bodies are publicly accessible. The supported authenticated Vercel fetch also returned 403 because the current connection lacks access to this project/team. No protection was disabled. A reviewer with Vercel access can use the preview; completing hosted body/browser verification requires an authorized Vercel connection.
+
+An anonymous local HTTP server using the exact deployed tree passed all 3 PDF content-type/byte/hash checks and all 15 course-page checks. The Portuguese video hook was also exercised for absent translations, activating a verified replacement, clearing its unavailable label, and preserving English behavior. Production was not changed.
