@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "name": "Pentecostal Theological Consortium course catalog",
+  "generatedBy": ".github/scripts/build_catalog.py",
+  "note": "Generated from the course pages. 'pageTranslations' lists the languages in which the course page itself is published; it says nothing about subtitles, dubbing, credit or certificates.",
+  "catalogPages": {
+    "en": "https://ptconline.global/courses",
+    "es": "https://ptconline.global/es/courses",
+    "pt": "https://ptconline.global/pt/courses"
+  },
+  "courses": [
+    {
+      "id": "missiology",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Missiology of Unreached People Groups",
+          "description": "Weekly classes with recordings, readings and discussions. Textbooks: The Core, The Assignment with workbook. Gospel stories.",
+          "url": "https://ptconline.global/courses/missiology"
+        },
+        "es": {
+          "title": "Misiología de los grupos étnicos no alcanzados",
+          "description": "Clases semanales con grabaciones, lecturas y discusiones. Libros de texto: The Core, The Assignment con cuaderno de trabajo. Historias del evangelio.",
+          "url": "https://ptconline.global/es/courses/missiology"
+        },
+        "pt": {
+          "title": "Missiologia dos povos não alcançados",
+          "description": "Aulas semanais com gravações, leituras e discussões. Livros-texto: The Core, The Assignment com caderno de trabalho. Histórias do evangelho.",
+          "url": "https://ptconline.global/pt/courses/missiology"
+        }
+      }
+    },
+    {
+      "id": "orality",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Methods of Orality",
+          "description": "Weekly video classes. Textbooks: Building on Firm Foundations, The Core. Gospel stories and personality assessments.",
+          "url": "https://ptconline.global/courses/orality"
+        },
+        "es": {
+          "title": "Métodos de oralidad",
+          "description": "Clases semanales en video. Libros de texto: Building on Firm Foundations, The Core. Historias del evangelio y evaluaciones de personalidad.",
+          "url": "https://ptconline.global/es/courses/orality"
+        },
+        "pt": {
+          "title": "Métodos de oralidade",
+          "description": "Aulas semanais em vídeo. Livros-texto: Building on Firm Foundations, The Core. Histórias do evangelho e avaliações de personalidade.",
+          "url": "https://ptconline.global/pt/courses/orality"
+        }
+      }
+    },
+    {
+      "id": "formation",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Spiritual Formation in a Missional Context",
+          "description": "Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.",
+          "url": "https://ptconline.global/courses/formation"
+        },
+        "es": {
+          "title": "Formación espiritual en un contexto misional",
+          "description": "Clases y discusiones semanales que incluyen Counting the Cost. Libro de texto: Following Jesus. Panorama de las religiones del mundo.",
+          "url": "https://ptconline.global/es/courses/formation"
+        },
+        "pt": {
+          "title": "Formação espiritual em um contexto missional",
+          "description": "Aulas e discussões semanais incluindo Counting the Cost. Livro-texto: Following Jesus. Visão geral das religiões do mundo.",
+          "url": "https://ptconline.global/pt/courses/formation"
+        }
+      }
+    },
+    {
+      "id": "acts",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Book of Acts",
+          "description": "Weekly video classes with readings and chapter tests. A textbook journey through Acts.",
+          "url": "https://ptconline.global/courses/acts"
+        },
+        "es": {
+          "title": "Libro de los Hechos",
+          "description": "Clases semanales en video con lecturas y exámenes por capítulo. Un recorrido por Hechos con libro de texto.",
+          "url": "https://ptconline.global/es/courses/acts"
+        },
+        "pt": {
+          "title": "Livro de Atos",
+          "description": "Aulas semanais em vídeo com leituras e provas por capítulo. Uma jornada por Atos com livro-texto.",
+          "url": "https://ptconline.global/pt/courses/acts"
+        }
+      }
+    },
+    {
+      "id": "mentoring",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Mentoring",
+          "description": "Mentoring in Missions: an 11-week guided journey.",
+          "url": "https://ptconline.global/courses/mentoring"
+        },
+        "es": {
+          "title": "Mentoreo",
+          "description": "Mentoring in Missions: un recorrido guiado de 11 semanas.",
+          "url": "https://ptconline.global/es/courses/mentoring"
+        },
+        "pt": {
+          "title": "Mentoria",
+          "description": "Mentoring in Missions: uma jornada guiada de 11 semanas.",
+          "url": "https://ptconline.global/pt/courses/mentoring"
+        }
+      }
+    },
+    {
+      "id": "practicum",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Mission One Eleven Practicum",
+          "description": "Overseas practicum: pre-trip preparation (documents, vaccinations, first aid, policies, cultural training), post-trip debrief and final paper.",
+          "url": "https://ptconline.global/courses/practicum"
+        },
+        "es": {
+          "title": "Práctica de Mission One Eleven",
+          "description": "Práctica en el extranjero: preparación previa al viaje (documentos, vacunas, primeros auxilios, políticas, capacitación cultural), evaluación posterior al viaje y trabajo final.",
+          "url": "https://ptconline.global/es/courses/practicum"
+        },
+        "pt": {
+          "title": "Estágio do Mission One Eleven",
+          "description": "Estágio no exterior: preparação pré-viagem (documentos, vacinas, primeiros socorros, políticas, treinamento cultural), avaliação pós-viagem e trabalho final.",
+          "url": "https://ptconline.global/pt/courses/practicum"
+        }
+      }
+    },
+    {
+      "id": "level2",
+      "provider": "Mission One Eleven",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Level 2 Track",
+          "description": "Leadership development sessions with Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman and Marie Vanderwal. Discipleship, multiplication and the church circle tool.",
+          "url": "https://ptconline.global/courses/level2"
+        },
+        "es": {
+          "title": "Nivel 2",
+          "description": "Sesiones de desarrollo de liderazgo con Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal. Discipulado, multiplicación y la herramienta del círculo de iglesias.",
+          "url": "https://ptconline.global/es/courses/level2"
+        },
+        "pt": {
+          "title": "Nível 2",
+          "description": "Sessões de desenvolvimento de liderança com Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Discipulado, multiplicação e a ferramenta do círculo de igrejas.",
+          "url": "https://ptconline.global/pt/courses/level2"
+        }
+      }
+    },
+    {
+      "id": "ethics",
+      "provider": "Messenger College",
+      "pageTranslations": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "pages": {
+        "en": {
+          "title": "Church and Contemporary Moral Issues",
+          "description": "A Christian ethics course for contemporary church leaders: ethical reasoning frameworks, five core principles, Old and New Testament ethics, and case-study analysis. Weekly class recordings, teaching notes, readings, and guided case work.",
+          "url": "https://ptconline.global/courses/ethics"
+        },
+        "es": {
+          "title": "La iglesia y los dilemas morales contemporáneos",
+          "description": "A Christian ethics course for contemporary church leaders: ethical reasoning frameworks, five core principles, Old and New Testament ethics, and case-study analysis. Weekly class recordings, teaching notes, readings, and guided case work.",
+          "url": "https://ptconline.global/es/courses/ethics"
+        },
+        "pt": {
+          "title": "A igreja e as questões morais contemporâneas",
+          "description": "A Christian ethics course for contemporary church leaders: ethical reasoning frameworks, five core principles, Old and New Testament ethics, and case-study analysis. Weekly class recordings, teaching notes, readings, and guided case work.",
+          "url": "https://ptconline.global/pt/courses/ethics"
+        }
+      }
+    }
+  ]
+}
