@@ -6,7 +6,7 @@
   fetch('/assets/video-map.pt.json').then(function(r){return r.ok?r.json():{}}).then(function(map){
     document.querySelectorAll('[data-video-key]').forEach(function(el){
       var e=map[el.getAttribute('data-video-key')]; if(!e||!e.pt) return;
-      if(el.tagName==='VIDEO'){el.src=e.pt;} else {el.href=e.pt;}
+      if(el.tagName==='VIDEO'){el.src=e.pt;} else {el.href=e.pt; el.removeAttribute('aria-disabled'); var notice=el.nextElementSibling; if(notice && notice.classList.contains('resource-unavailable')) notice.remove();}
       el.setAttribute('data-video-lang','pt');
     });
   }).catch(function(){});
