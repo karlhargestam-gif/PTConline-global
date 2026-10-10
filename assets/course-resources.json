@@ -1,0 +1,60 @@
+{
+  "syllabi": [
+    {
+      "course": "acts",
+      "title": "Book of Acts",
+      "path": "/assets/syllabi/acts-syllabus.pdf",
+      "sha256": "be5b8f66d330c2b954e1ffb5f5c1c0aba2977ebd73be3b471eab0366f4aed9e3",
+      "size": 201123,
+      "source_id": "id:nXckjvYkeNQAAAAAAAAdTQ",
+      "old_link_id": "e8jy6m4ebycmw2w",
+      "language": "en",
+      "verified": "2026-10-10"
+    },
+    {
+      "course": "orality",
+      "title": "Methods of Orality",
+      "path": "/assets/syllabi/orality-syllabus.pdf",
+      "sha256": "651f28f0fe2279819d38c43234126e694cec80bd4894d4b3d680a0a6428a44fe",
+      "size": 232368,
+      "source_id": "id:nXckjvYkeNQAAAAAAAAdBQ",
+      "old_link_id": "jgv0cel2x74ha3e",
+      "language": "en",
+      "verified": "2026-10-10"
+    },
+    {
+      "course": "missiology",
+      "title": "Missiology of Unreached People Groups",
+      "path": "/assets/syllabi/missiology-syllabus.pdf",
+      "sha256": "553e85e618e09a9e74fae187987edc6451da3519f56ef18e4d54ac3ad24c762c",
+      "size": 235479,
+      "source_id": "id:nXckjvYkeNQAAAAAAAAczg",
+      "old_link_id": "p2khqypmhg1r1bz",
+      "language": "en",
+      "verified": "2026-10-10"
+    }
+  ],
+  "unavailable_videos": [
+    {
+      "id": "1hQ7A1ArpNsPl369BzIJcI4rTQ1UaBxHK",
+      "title": "Welcome / Orientation Video",
+      "courses": [
+        "mentoring",
+        "practicum"
+      ],
+      "status": "unavailable",
+      "verified": "2026-10-10",
+      "reason": "HTTP 404 anonymously and through connected Drive account; exact original not recovered"
+    },
+    {
+      "id": "13GwryTMXt2LztszSwKymAIg5qfX8IJOl",
+      "title": "Gospel Map Talk",
+      "courses": [
+        "missiology"
+      ],
+      "status": "unavailable",
+      "verified": "2026-10-10",
+      "reason": "HTTP 404 anonymously and through connected Drive account; exact original not recovered"
+    }
+  ]
+}
