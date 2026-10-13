@@ -1,0 +1,158 @@
+{
+  "id": "practicum",
+  "provider": "moe",
+  "order": 6,
+  "canvas": "https://canvaslite.instructure.com/courses/15701",
+  "title": {
+    "en": "Mission One Eleven Practicum",
+    "es": "Práctica de Mission One Eleven",
+    "pt": "Estágio do Mission One Eleven"
+  },
+  "description": {
+    "en": "Overseas practicum: pre-trip preparation (documents, vaccinations, first aid, policies, cultural training), post-trip debrief and final paper.",
+    "es": "Práctica en el extranjero: preparación previa al viaje (documentos, vacunas, primeros auxilios, políticas, capacitación cultural), evaluación posterior al viaje y trabajo final.",
+    "pt": "Estágio no exterior: preparação pré-viagem (documentos, vacinas, primeiros socorros, políticas, treinamento cultural), avaliação pós-viagem e trabalho final."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Open courseware",
+    "es": "Curso abierto",
+    "pt": "Curso aberto"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome",
+        "es": "Bienvenida",
+        "pt": "Boas-vindas"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Orientation Video",
+            "es": "Video de orientación",
+            "pt": "Vídeo de orientação"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/orientation_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "syllabus",
+          "title": {
+            "en": "Mission One Eleven overseas practicum syllabus",
+            "es": "Programa de la práctica en el extranjero de Mission One Eleven",
+            "pt": "Programa do estágio no exterior da Mission One Eleven"
+          },
+          "format": "PDF"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "MOE Gospel Stories",
+            "es": "MOE Gospel Stories",
+            "pt": "MOE Gospel Stories"
+          },
+          "format": "PDF"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Shorthand Gospel",
+            "es": "Shorthand Gospel",
+            "pt": "Shorthand Gospel"
+          },
+          "format": "PDF"
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Pre-Overseas Trip",
+        "es": "Antes del viaje al extranjero",
+        "pt": "Antes da viagem ao exterior"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Passport",
+            "es": "Pasaporte",
+            "pt": "Passaporte"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Visa",
+            "es": "Visa",
+            "pt": "Visto"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Vaccinations",
+            "es": "Vacunas",
+            "pt": "Vacinas"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "First Aid Training",
+            "es": "Capacitación en primeros auxilios",
+            "pt": "Treinamento em primeiros socorros"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Policies and Procedures",
+            "es": "Políticas y procedimientos",
+            "pt": "Políticas e procedimentos"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Cultural Training",
+            "es": "Capacitación cultural",
+            "pt": "Treinamento cultural"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Post-Overseas Trip",
+        "es": "Después del viaje al extranjero",
+        "pt": "Após a viagem ao exterior"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Final Paper",
+            "es": "Trabajo final",
+            "pt": "Trabalho final"
+          }
+        }
+      ],
+      "kind": "section"
+    }
+  ]
+}

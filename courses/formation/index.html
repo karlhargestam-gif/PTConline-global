@@ -1,241 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="light">
-    <meta name="theme-color" content="#ffffff">
-    <title>Spiritual Formation in a Missional Context | Pentecostal Theological Consortium</title>
-    <meta name="description" content="Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
-    <style>
-      :root {
-        color-scheme: light;
-        --page: #f7f8fa;
-        --surface: #ffffff;
-        --ink: #111827;
-        --body: #344454;
-        --rule: #d9dde2;
-        --red: #b81d25;
-        --red-deep: #94171d;
-        --warm: #f7f4ee;
-        --quiet: #eef1f4;
-        --deep: #181d23;
-      }
-      * { box-sizing: border-box; }
-      html, body { min-height: 100%; }
-      body {
-        margin: 0;
-        background: var(--page);
-        color: var(--ink);
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      a { color: var(--red-deep); text-underline-offset: 4px; }
-      a:hover { text-decoration-thickness: 2px; }
-      a:focus-visible, video:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
-      .site-banner {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px 26px;
-        min-height: 66px;
-        padding: 10px clamp(24px, 6vw, 76px);
-        background: var(--surface);
-        border-top: 5px solid var(--red);
-        border-bottom: 1px solid var(--rule);
-      }
-      .banner-brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 11px;
-        color: var(--ink);
-        text-decoration: none;
-      }
-      .banner-brand img { width: 30px; height: 30px; object-fit: contain; }
-      .banner-name {
-        font-size: .78rem;
-        font-weight: 700;
-        letter-spacing: .09em;
-        text-transform: uppercase;
-      }
-      .banner-nav { display: flex; align-items: center; gap: 22px; }
-      .banner-nav a {
-        color: var(--ink);
-        font-size: .84rem;
-        font-weight: 700;
-        text-decoration: none;
-      }
-      .banner-nav a:hover { color: var(--red-deep); text-decoration: underline; }
-      .site-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 24px clamp(24px, 6vw, 76px) 27px;
-        background: var(--warm);
-        border-top: 1px solid var(--rule);
-        color: var(--body);
-        font-size: .84rem;
-        line-height: 1.45;
-      }
-      .site-footer p { margin: 0; max-width: 660px; }
-      .site-footer .footer-links {
-        display: flex;
-        flex: none;
-        flex-wrap: wrap;
-        gap: 12px 22px;
-      }
-      .site-footer a {
-        color: var(--red-deep);
-        font-weight: 700;
-        text-decoration: none;
-        text-underline-offset: 4px;
-      }
-      .site-footer a:hover { text-decoration: underline; }
-      @media (max-width: 720px) {
-        .site-banner { padding-inline: 24px; }
-        .site-footer {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 12px;
-          padding-inline: 24px;
-        }
-      }
-      .masthead {
-        padding: clamp(58px, 8vw, 100px) clamp(24px, 7vw, 90px) clamp(52px, 7vw, 82px);
-        background: var(--warm);
-        border-bottom: 1px solid var(--rule);
-      }
-      .masthead h1 {
-        max-width: 920px;
-        margin: 0;
-        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.8rem, 6vw, 5.4rem);
-        font-weight: 600;
-        line-height: .98;
-        letter-spacing: -.025em;
-        text-wrap: balance;
-      }
-      .masthead p {
-        max-width: 760px;
-        margin: 24px 0 0;
-        color: var(--body);
-        font-size: clamp(1rem, 1.4vw, 1.12rem);
-        line-height: 1.75;
-      }
-      .canvas-cta {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 9px;
-        min-height: 48px;
-        margin-top: 30px;
-        padding: 13px 20px;
-        color: #ffffff;
-        background: var(--red-deep);
-        font-size: .88rem;
-        font-weight: 700;
-        line-height: 1.4;
-        text-align: center;
-        text-decoration: none;
-      }
-      .canvas-cta:hover { background: var(--red); text-decoration: none; }
-      .catalog {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
-        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
-        background: var(--surface);
-      }
-      .catalog-card {
-        display: flex;
-        min-height: 220px;
-        flex-direction: column;
-        padding: clamp(26px, 3vw, 38px);
-        border-top: 3px solid var(--red);
-        background: var(--quiet);
-        color: inherit;
-        text-decoration: none;
-      }
-      .catalog-card h2 {
-        margin: 0;
-        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(1.7rem, 3vw, 2.5rem);
-        font-weight: 600;
-        line-height: 1.05;
-      }
-      .catalog-card p { margin: 18px 0 0; color: var(--body); line-height: 1.68; }
-      .modules {
-        display: grid;
-        gap: 24px;
-        padding: clamp(42px, 7vw, 84px) clamp(24px, 7vw, 90px) clamp(70px, 9vw, 110px);
-        background: var(--surface);
-      }
-      .module {
-        padding: clamp(25px, 3vw, 38px);
-        border-top: 3px solid var(--red);
-        background: var(--quiet);
-      }
-      .module > h2 {
-        margin: 0 0 26px;
-        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(1.65rem, 2.8vw, 2.35rem);
-        font-weight: 600;
-        line-height: 1.08;
-      }
-      .items { display: grid; gap: 14px; }
-      .item {
-        padding: 19px 0 0;
-        border-top: 1px solid var(--rule);
-      }
-      .item:first-child { padding-top: 0; border-top: 0; }
-      .item h3 { margin: 0; font-size: .98rem; line-height: 1.5; }
-      .type {
-        display: inline-block;
-        margin-top: 7px;
-        color: var(--red-deep);
-        font-size: .68rem;
-        font-weight: 700;
-        letter-spacing: .1em;
-        text-transform: uppercase;
-      }
-      .resource-link { display: inline-block; font-weight: 700; line-height: 1.5; }
-      .page-text { margin: 10px 0 0; color: var(--body); line-height: 1.68; white-space: pre-line; }
-      .video-item h3 { margin-bottom: 14px; }
-      video { display: block; width: 100%; max-width: 860px; background: #000000; }
-      @media (max-width: 720px) {
-        .catalog { grid-template-columns: 1fr; }
-        .catalog-card { min-height: 0; }
-        
-      }
-    
-      .lang-switch {
-        display: inline-flex;
-        align-items: center;
-        gap: 14px;
-        margin-left: auto;
-      }
-      .lang-switch a {
-        color: var(--ink);
-        font-size: .72rem;
-        font-weight: 700;
-        letter-spacing: .1em;
-        text-decoration: none;
-        opacity: .55;
-      }
-      .lang-switch a:hover { opacity: 1; text-decoration: underline; }
-      .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
-</style>
-  <link rel="canonical" href="https://ptconline.global/courses/formation">
-  <link rel="alternate" hreflang="en" href="https://ptconline.global/courses/formation"><link rel="alternate" hreflang="es" href="https://ptconline.global/es/courses/formation"><link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/courses/formation">  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://ptconline.global/courses/formation/#webpage", "url": "https://ptconline.global/courses/formation", "name": "Spiritual Formation in a Missional Context | Pentecostal Theological Consortium", "inLanguage": "en", "publisher": {"@id": "https://ptconline.global/#organization"}}</script>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#332D26">
+<title>Spiritual Formation in a Missional Context | Pentecostal Theological Consortium</title>
+<meta name="description" content="Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ptconline.global/courses/formation">
+<meta property="og:title" content="Spiritual Formation in a Missional Context | Pentecostal Theological Consortium">
+<meta property="og:description" content="Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ptconline.global/courses/formation">
+<meta property="og:image" content="https://ptconline.global/assets/og-image.jpg">
+<meta property="og:image:alt" content="A Pentecostal worship gathering">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spiritual Formation in a Missional Context | Pentecostal Theological Consortium">
+<meta name="twitter:description" content="Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.">
+<meta name="twitter:image" content="https://ptconline.global/assets/og-image.jpg">
+<link rel="icon" type="image/png" href="/assets/pcg-flame.png">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/course.css">
+<link rel="alternate" hreflang="en" href="https://ptconline.global/courses/formation">
+<link rel="alternate" hreflang="es" href="https://ptconline.global/es/courses/formation">
+<link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/courses/formation">
+<link rel="alternate" hreflang="x-default" href="https://ptconline.global/courses/formation">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "@id": "https://ptconline.global/courses/formation#course", "url": "https://ptconline.global/courses/formation", "name": "Spiritual Formation in a Missional Context", "description": "Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.", "inLanguage": "en", "provider": {"@type": "Organization", "name": "Mission One Eleven", "url": "https://missiononeeleven.com/"}, "isAccessibleForFree": true, "publisher": {"@id": "https://ptconline.global/#organization"}}</script>
+
 </head>
-  <body>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
     <header class="site-banner">
       <a class="banner-brand" href="/" aria-label="Pentecostal Theological Consortium (PTC)">
         <img src="/assets/pcg-flame.png" alt="PCG flame">
@@ -247,154 +44,165 @@
       </nav>
       <span class="lang-switch" aria-label="Language"><a href="/courses/formation/" hreflang="en" aria-current="true">EN</a><a href="/es/courses/formation/" hreflang="es">ES</a><a href="/pt/courses/formation/" hreflang="pt">PT</a></span>
     </header>
-    <header class="masthead">
-      <h1>Spiritual Formation in a Missional Context</h1>
-      <p>Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.</p>
-      <a class="canvas-cta" href="https://canvaslite.instructure.com/courses/15695" target="_blank" rel="noopener noreferrer">Open this course in Canvas <span aria-hidden="true">↗</span></a>
-    </header>
-    <main class="modules">
-      <section class="module">
-        <h2>Welcome</h2>
-        <div class="items">
-          <article class="item video-item">
-            <h3>Orientation Video</h3>
-            <video src="https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1" controls preload="metadata"></video>
-          </article>
-          <div class="item">
-            <a class="resource-link" href="/assets/resources/spiritual-formation-syllabus.pdf" target="_blank" rel="noopener noreferrer">Syllabus Spiritual Formation in a Missional Context</a>
-          </div>
-          <div class="item">
-            <a class="resource-link" href="/assets/resources/following-jesus.pdf" target="_blank" rel="noopener noreferrer">Textbook: Following Jesus</a>
-          </div>
-        </div>
-      </section>
-      <section class="module">
-        <h2>Week 1: Introduction</h2>
-        <div class="items">
-          <article class="item video-item">
-            <h3>Week 1 Class Recording</h3>
-            <video src="https://www.dropbox.com/s/5gwtji9pzqu206j/SF.Week%201%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
-          </article>
-          <div class="item">
-            <h3>Readings: Week 1</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Discussion: Counting the Cost</h3>
-            <span class="type">Discussion</span>
-          </div>
-        </div>
-      </section>
-      <section class="module">
-        <h2>Week 2 - A Responder</h2>
-        <div class="items">
-          <article class="item video-item">
-            <h3>Week 2 Video Recording</h3>
-            <video src="https://www.dropbox.com/s/o0ky0szun2ckepg/SF.Week%202%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
-          </article>
-          <div class="item">
-            <h3>Readings: Week 2</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Discussion: Responder</h3>
-            <span class="type">Discussion</span>
-          </div>
-          <div class="item">
-            <h3>Great World Religions.pptx</h3>
-            <span class="type">Attachment</span>
-          </div>
-          <div class="item">
-            <h3>EXAMPLE Religion Christianity.pptx</h3>
-            <span class="type">Attachment</span>
-          </div>
-        </div>
-      </section>
-      <section class="module">
-        <h2>Week 3 - Nehemiah</h2>
-        <div class="items">
-          <article class="item video-item">
-            <h3>Week 3 Video Recording</h3>
-            <video src="https://www.dropbox.com/s/cwzkrc5k78271vh/SF.Week%203%20Video.W21.mp4?raw=1" controls preload="metadata"></video>
-          </article>
-          <div class="item">
-            <h3>Readings: Week 3</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Discussion: Nehemiah</h3>
-            <span class="type">Discussion</span>
-          </div>
-        </div>
-      </section>
-      <section class="module">
-        <h2>Week 4 - God's Provision</h2>
-        <div class="items">
-          <article class="item video-item">
-            <h3>Week 4 Class Recording</h3>
-            <video src="https://www.dropbox.com/s/mj3jonsxh9tj0a8/SF.Week%204%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
-          </article>
-          <div class="item">
-            <h3>Readings: Week 4</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Discussion: God’s Provision</h3>
-            <span class="type">Discussion</span>
-          </div>
-        </div>
-      </section>
-      <section class="module">
-        <h2>Week 5 - Follow Me: The Call</h2>
-        <div class="items">
-          <div class="item">
-            <h3>Readings: Week 5</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Discussion: Follow Me</h3>
-            <span class="type">Discussion</span>
-          </div>
-        </div>
-      </section>
-      <section class="module">
-        <h2>Week 6 - Spiritual Warfare</h2>
-        <div class="items">
-          <article class="item video-item">
-            <h3>Week 6 Class Recording</h3>
-            <video src="https://www.dropbox.com/s/loo58zpuo5nyxl8/SF.Week%206%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
-          </article>
-          <div class="item">
-            <h3>Readings: Week 6</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Discussion: Spiritual Warfare</h3>
-            <span class="type">Discussion</span>
-          </div>
-          <div class="item">
-            <h3>Missionary Report</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>Vocabulary Exam</h3>
-            <span class="type">Quiz</span>
-          </div>
-          <div class="item">
-            <h3>Glossary of Terms.xlsx</h3>
-            <span class="type">Attachment</span>
-          </div>
-          <div class="item">
-            <h3>Great World Religions Project</h3>
-            <span class="type">Assignment</span>
-          </div>
-          <div class="item">
-            <h3>EXAMPLE Religion Christianity.pptx</h3>
-            <span class="type">Attachment</span>
-          </div>
-        </div>
-      </section>
-    </main>
+<main id="main" class="course-page">
+<div class="banner">
+  <img src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">
+</div>
+<header class="masthead">
+  <p class="kicker">Mission One Eleven</p>
+  <h1>Spiritual Formation in a Missional Context</h1>
+  <p class="lead">Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.</p>
+  <dl class="course-meta">
+    <div><dt>Provider</dt><dd>Mission One Eleven</dd></div>
+    <div><dt>Length</dt><dd>6 weeks</dd></div>
+    <div><dt>Teaching language</dt><dd>English</dd></div>
+    <div><dt>Level</dt><dd>Open courseware</dd></div>
+  </dl>
+  <div class="actions">
+    <a class="button" href="https://canvaslite.instructure.com/courses/15695" target="_blank" rel="noopener noreferrer">Open this course in Canvas</a>
+    <a class="button secondary" href="/enroll/">How enrollment works</a>
+  </div>
+</header>
+<div class="course">
+<section class="week" id="section-0">
+  
+  <h2>Welcome</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Video (Dropbox, MP4):</strong> Orientation Video</p><video src="https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1" controls preload="metadata"><track kind="subtitles" src="/assets/orientation_pt.vtt" srclang="pt" label="Português"></video>
+</li>
+<li>
+<p><strong>Syllabus (PDF, 189 KB):</strong> <a href="/assets/resources/spiritual-formation-syllabus.pdf" target="_blank" rel="noopener noreferrer">Syllabus Spiritual Formation in a Missional Context</a></p>
+</li>
+<li>
+<p><strong>Reading (PDF, 718 KB):</strong> <a href="/assets/resources/following-jesus.pdf" target="_blank" rel="noopener noreferrer">Textbook: Following Jesus</a></p>
+</li>
+</ul>
+</section>
+
+<section class="week" id="week-1">
+  <p class="kicker">Week 1</p>
+  <h2>Week 1: Introduction</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Video (Dropbox, MP4):</strong> Week 1 Class Recording</p><video src="https://www.dropbox.com/s/5gwtji9pzqu206j/SF.Week%201%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
+</li>
+<li>
+<p><strong>Assignment:</strong> Readings: Week 1 <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Discussion:</strong> Discussion: Counting the Cost <span class="where">In Canvas</span></p>
+</li>
+</ul>
+</section>
+
+<section class="week" id="week-2">
+  <p class="kicker">Week 2</p>
+  <h2>Week 2: A Responder</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Video (Dropbox, MP4):</strong> Week 2 Video Recording</p><video src="https://www.dropbox.com/s/o0ky0szun2ckepg/SF.Week%202%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
+</li>
+<li>
+<p><strong>Assignment:</strong> Readings: Week 2 <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Discussion:</strong> Discussion: Responder <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Lecture slides (PowerPoint):</strong> Great World Religions <span class="where">Not posted on this site.</span></p>
+</li>
+<li>
+<p><strong>Lecture slides (PowerPoint):</strong> Example: Christianity <span class="where">Not posted on this site.</span></p>
+</li>
+</ul>
+</section>
+
+<section class="week" id="week-3">
+  <p class="kicker">Week 3</p>
+  <h2>Week 3: Nehemiah</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Video (Dropbox, MP4):</strong> Week 3 Video Recording</p><video src="https://www.dropbox.com/s/cwzkrc5k78271vh/SF.Week%203%20Video.W21.mp4?raw=1" controls preload="metadata"></video>
+</li>
+<li>
+<p><strong>Assignment:</strong> Readings: Week 3 <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Discussion:</strong> Discussion: Nehemiah <span class="where">In Canvas</span></p>
+</li>
+</ul>
+</section>
+
+<section class="week" id="week-4">
+  <p class="kicker">Week 4</p>
+  <h2>Week 4: God&#x27;s Provision</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Video (Dropbox, MP4):</strong> Week 4 Class Recording</p><video src="https://www.dropbox.com/s/mj3jonsxh9tj0a8/SF.Week%204%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
+</li>
+<li>
+<p><strong>Assignment:</strong> Readings: Week 4 <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Discussion:</strong> Discussion: God’s Provision <span class="where">In Canvas</span></p>
+</li>
+</ul>
+</section>
+
+<section class="week" id="week-5">
+  <p class="kicker">Week 5</p>
+  <h2>Week 5: Follow Me: The Call</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Assignment:</strong> Readings: Week 5 <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Discussion:</strong> Discussion: Follow Me <span class="where">In Canvas</span></p>
+</li>
+</ul>
+</section>
+
+<section class="week" id="week-6">
+  <p class="kicker">Week 6</p>
+  <h2>Week 6: Spiritual Warfare</h2>
+  <div class="accent" aria-hidden="true"></div>
+  <ul class="resources">
+<li>
+<p><strong>Video (Dropbox, MP4):</strong> Week 6 Class Recording</p><video src="https://www.dropbox.com/s/loo58zpuo5nyxl8/SF.Week%206%20Video.F20.mp4?raw=1" controls preload="metadata"></video>
+</li>
+<li>
+<p><strong>Assignment:</strong> Readings: Week 6 <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Discussion:</strong> Discussion: Spiritual Warfare <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Assignment:</strong> Missionary Report <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Quiz:</strong> Vocabulary Exam <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Attachment (Excel):</strong> Glossary of terms <span class="where">Not posted on this site.</span></p>
+</li>
+<li>
+<p><strong>Assignment:</strong> Great World Religions Project <span class="where">In Canvas</span></p>
+</li>
+<li>
+<p><strong>Lecture slides (PowerPoint):</strong> Example: Christianity <span class="where">Not posted on this site.</span></p>
+</li>
+</ul>
+</section>
+
+</div>
+</main>
     <footer class="site-footer">
       <p>Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God.</p>
       <nav class="footer-links" aria-label="PCG Global Missions">
@@ -402,5 +210,5 @@
         <a href="https://www.pcgmission.org" target="_blank" rel="noopener noreferrer">PCG Global Missions <span aria-hidden="true">↗</span></a>
       </nav>
     </footer>
-  </body>
+</body>
 </html>

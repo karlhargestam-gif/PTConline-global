@@ -1,0 +1,341 @@
+{
+  "id": "formation",
+  "provider": "moe",
+  "order": 3,
+  "canvas": "https://canvaslite.instructure.com/courses/15695",
+  "title": {
+    "en": "Spiritual Formation in a Missional Context",
+    "es": "Formación espiritual en un contexto misional",
+    "pt": "Formação espiritual em um contexto missional"
+  },
+  "description": {
+    "en": "Weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview.",
+    "es": "Clases y discusiones semanales que incluyen Counting the Cost. Libro de texto: Following Jesus. Panorama de las religiones del mundo.",
+    "pt": "Aulas e discussões semanais incluindo Counting the Cost. Livro-texto: Following Jesus. Visão geral das religiões do mundo."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Open courseware",
+    "es": "Curso abierto",
+    "pt": "Curso aberto"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome",
+        "es": "Bienvenida",
+        "pt": "Boas-vindas"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Orientation Video",
+            "es": "Video de orientación",
+            "pt": "Vídeo de orientação"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1"
+        },
+        {
+          "kind": "syllabus",
+          "title": {
+            "en": "Syllabus Spiritual Formation in a Missional Context",
+            "es": "Programa: Spiritual Formation in a Missional Context",
+            "pt": "Programa: Spiritual Formation in a Missional Context"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/spiritual-formation-syllabus.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Textbook: Following Jesus",
+            "es": "Libro de texto: Following Jesus",
+            "pt": "Livro-texto: Following Jesus"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/following-jesus.pdf"
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Introduction",
+        "es": "Introducción",
+        "pt": "Introdução"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 1 Class Recording",
+            "es": "Grabación de la clase de la semana 1",
+            "pt": "Gravação da aula da semana 1"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/5gwtji9pzqu206j/SF.Week%201%20Video.F20.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 1",
+            "es": "Lecturas: Semana 1",
+            "pt": "Leituras: Semana 1"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Counting the Cost",
+            "es": "Discusión: Calculando el costo",
+            "pt": "Discussão: Calculando o custo"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 1
+    },
+    {
+      "title": {
+        "en": "A Responder",
+        "es": "El que responde",
+        "pt": "O respondedor"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 2 Video Recording",
+            "es": "Grabación de video de la semana 2",
+            "pt": "Gravação de vídeo da semana 2"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/o0ky0szun2ckepg/SF.Week%202%20Video.F20.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 2",
+            "es": "Lecturas: Semana 2",
+            "pt": "Leituras: Semana 2"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Responder",
+            "es": "Discusión: El que responde",
+            "pt": "Discussão: O respondedor"
+          }
+        },
+        {
+          "kind": "slides",
+          "title": {
+            "en": "Great World Religions",
+            "es": "Great World Religions",
+            "pt": "Great World Religions"
+          },
+          "format": "PowerPoint"
+        },
+        {
+          "kind": "slides",
+          "title": {
+            "en": "Example: Christianity",
+            "es": "Example: Christianity",
+            "pt": "Example: Christianity"
+          },
+          "format": "PowerPoint"
+        }
+      ],
+      "kind": "week",
+      "n": 2
+    },
+    {
+      "title": {
+        "en": "Nehemiah",
+        "es": "Nehemías",
+        "pt": "Neemias"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 3 Video Recording",
+            "es": "Grabación de video de la semana 3",
+            "pt": "Gravação de vídeo da semana 3"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/cwzkrc5k78271vh/SF.Week%203%20Video.W21.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 3",
+            "es": "Lecturas: Semana 3",
+            "pt": "Leituras: Semana 3"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Nehemiah",
+            "es": "Discusión: Nehemías",
+            "pt": "Discussão: Neemias"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 3
+    },
+    {
+      "title": {
+        "en": "God's Provision",
+        "es": "La provisión de Dios",
+        "pt": "A provisão de Deus"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 4 Class Recording",
+            "es": "Grabación de la clase de la semana 4",
+            "pt": "Gravação da aula da semana 4"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/mj3jonsxh9tj0a8/SF.Week%204%20Video.F20.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 4",
+            "es": "Lecturas: Semana 4",
+            "pt": "Leituras: Semana 4"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: God’s Provision",
+            "es": "Discusión: La provisión de Dios",
+            "pt": "Discussão: A provisão de Deus"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 4
+    },
+    {
+      "title": {
+        "en": "Follow Me: The Call",
+        "es": "Sígueme: El llamado",
+        "pt": "Segue-me: O chamado"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 5",
+            "es": "Lecturas: Semana 5",
+            "pt": "Leituras: Semana 5"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Follow Me",
+            "es": "Discusión: Sígueme",
+            "pt": "Discussão: Segue-me"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 5
+    },
+    {
+      "title": {
+        "en": "Spiritual Warfare",
+        "es": "Guerra espiritual",
+        "pt": "Guerra espiritual"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 6 Class Recording",
+            "es": "Grabación de la clase de la semana 6",
+            "pt": "Gravação da aula da semana 6"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/loo58zpuo5nyxl8/SF.Week%206%20Video.F20.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 6",
+            "es": "Lecturas: Semana 6",
+            "pt": "Leituras: Semana 6"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Spiritual Warfare",
+            "es": "Discusión: Guerra espiritual",
+            "pt": "Discussão: Guerra espiritual"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Missionary Report",
+            "es": "Informe misionero",
+            "pt": "Relatório missionário"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Vocabulary Exam",
+            "es": "Examen de vocabulario",
+            "pt": "Prova de vocabulário"
+          }
+        },
+        {
+          "kind": "attachment",
+          "title": {
+            "en": "Glossary of terms",
+            "es": "Glossary of terms",
+            "pt": "Glossary of terms"
+          },
+          "format": "Excel"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Great World Religions Project",
+            "es": "Proyecto de grandes religiones del mundo",
+            "pt": "Projeto das grandes religiões do mundo"
+          }
+        },
+        {
+          "kind": "slides",
+          "title": {
+            "en": "Example: Christianity",
+            "es": "Example: Christianity",
+            "pt": "Example: Christianity"
+          },
+          "format": "PowerPoint"
+        }
+      ],
+      "kind": "week",
+      "n": 6
+    }
+  ],
+  "weeks": 6
+}

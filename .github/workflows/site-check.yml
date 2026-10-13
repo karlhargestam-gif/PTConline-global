@@ -15,5 +15,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+      - name: Check generated pages match the content model
+        run: python3 scripts/build.py --check
       - name: Check page size, canonical URLs, structured data, links, robots and sitemap
         run: python3 .github/scripts/site_check.py --host ptconline.global --max-page-kb 1024

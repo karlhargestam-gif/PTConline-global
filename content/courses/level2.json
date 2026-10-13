@@ -1,0 +1,338 @@
+{
+  "id": "level2",
+  "provider": "moe",
+  "order": 7,
+  "canvas": "https://canvaslite.instructure.com/courses/15702",
+  "title": {
+    "en": "Level 2 Track",
+    "es": "Nivel 2",
+    "pt": "Nível 2"
+  },
+  "description": {
+    "en": "Leadership development sessions with Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman and Marie Vanderwal. Discipleship, multiplication and the church circle tool.",
+    "es": "Sesiones de desarrollo de liderazgo con Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal. Discipulado, multiplicación y la herramienta del círculo de iglesias.",
+    "pt": "Sessões de desenvolvimento de liderança com Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Discipulado, multiplicação e a ferramenta do círculo de igrejas."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Level 2",
+    "es": "Nivel 2",
+    "pt": "Nível 2"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome!",
+        "es": "¡Bienvenidos!",
+        "pt": "Bem-vindos!"
+      },
+      "items": [
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Introduction",
+            "es": "Introducción",
+            "pt": "Introdução"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Leadership Development",
+        "es": "Desarrollo de liderazgo",
+        "pt": "Desenvolvimento de liderança"
+      },
+      "items": [
+        {
+          "kind": "attachment",
+          "title": {
+            "en": "Unreached Presentation - Karl Hargestam",
+            "es": "Presentación sobre no alcanzados - Karl Hargestam",
+            "pt": "Apresentação sobre não alcançados - Karl Hargestam"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Remaining Faithful to What God Has Called Us To - Karl Hargestam",
+            "es": "Permaneciendo fieles a lo que Dios nos ha llamado - Karl Hargestam",
+            "pt": "Permanecendo fiéis àquilo para que Deus nos chamou - Karl Hargestam"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Leading and Loving Like Jesus - Tamara Gutel",
+            "es": "Guiando y amando como Jesús - Tamara Gutel",
+            "pt": "Liderando e amando como Jesus - Tamara Gutel"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Leading Those Around You - Eman Hernandez",
+            "es": "Guiando a quienes te rodean - Eman Hernandez",
+            "pt": "Liderando aqueles ao seu redor - Eman Hernandez"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Leading Yourself and Others - Mikael Boman",
+            "es": "Guiándote a ti mismo y a otros - Mikael Boman",
+            "pt": "Liderando a si mesmo e aos outros - Mikael Boman"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Humility in Leadership - Marie Vanderwal",
+            "es": "La humildad en el liderazgo - Marie Vanderwal",
+            "pt": "A humildade na liderança - Marie Vanderwal"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Pioneer - Session 1",
+            "es": "Pionero - Sesión 1",
+            "pt": "Pioneiro - Sessão 1"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Discipleship",
+        "es": "Discipulado",
+        "pt": "Discipulado"
+      },
+      "items": [
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discipleship - Session 1",
+            "es": "Discipulado - Sesión 1",
+            "pt": "Discipulado - Sessão 1"
+          }
+        },
+        {
+          "kind": "video",
+          "title": {
+            "en": "The Power of Multiplication",
+            "es": "El poder de la multiplicación",
+            "pt": "O poder da multiplicação"
+          },
+          "format": "YouTube",
+          "href": "https://www.youtube.com/watch?v=aKK9eAyr2H0"
+        },
+        {
+          "kind": "video",
+          "title": {
+            "en": "Church Circle Tool",
+            "es": "Herramienta del círculo de iglesias",
+            "pt": "Ferramenta do círculo de igrejas"
+          },
+          "format": "YouTube",
+          "href": "https://youtu.be/vQPXVcQ_Huc?si=1ME7W4Hrp07PyILx"
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discipleship - Session 2",
+            "es": "Discipulado - Sesión 2",
+            "pt": "Discipulado - Sessão 2"
+          }
+        },
+        {
+          "kind": "note",
+          "title": {
+            "en": "Resources Mentioned in Session 2",
+            "es": "Recursos mencionados en la sesión 2",
+            "pt": "Recursos mencionados na sessão 2"
+          },
+          "text": {
+            "en": "Resources Mentioned in Session 2 \nHere are some of the resources that Oliver mentioned in Session 2. \nThe Bible - Youtube Playlist \nPrayer - Youtube Playlist \nAre You A Follower of Jesus - Video \nWaha App - An application that has different Bible study topics that you can go through by yourself or a group of people",
+            "es": "Recursos mencionados en la sesión 2\nEstos son algunos de los recursos que Oliver mencionó en la sesión 2.\nThe Bible - Youtube Playlist\nPrayer - Youtube Playlist\nAre You A Follower of Jesus - Video\nWaha App - Una aplicación con diferentes temas de estudio bíblico que puedes recorrer solo o en grupo",
+            "pt": "Recursos mencionados na sessão 2\nAqui estão alguns dos recursos que Oliver mencionou na sessão 2.\nThe Bible - Youtube Playlist\nPrayer - Youtube Playlist\nAre You A Follower of Jesus - Video\nWaha App - Um aplicativo com diferentes temas de estudo bíblico que você pode percorrer sozinho ou em grupo"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discipleship - Session 3",
+            "es": "Discipulado - Sesión 3",
+            "pt": "Discipulado - Sessão 3"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discipleship - Session 4",
+            "es": "Discipulado - Sesión 4",
+            "pt": "Discipulado - Sessão 4"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Pioneer",
+        "es": "Pionero",
+        "pt": "Pioneiro"
+      },
+      "items": [
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Pioneer - Session 1",
+            "es": "Pionero - Sesión 1",
+            "pt": "Pioneiro - Sessão 1"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Pioneer - Session 2",
+            "es": "Pionero - Sesión 2",
+            "pt": "Pioneiro - Sessão 2"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Pioneer - Session 3",
+            "es": "Pionero - Sesión 3",
+            "pt": "Pioneiro - Sessão 3"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Pioneer - Session 4",
+            "es": "Pionero - Sesión 4",
+            "pt": "Pioneiro - Sessão 4"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Cultural Intelligence",
+        "es": "Inteligencia cultural",
+        "pt": "Inteligência cultural"
+      },
+      "items": [
+        {
+          "kind": "note",
+          "title": {
+            "en": "",
+            "es": "",
+            "pt": ""
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Theoretical and Missiology",
+        "es": "Teórica y misiología",
+        "pt": "Teórica e missiologia"
+      },
+      "items": [
+        {
+          "kind": "reading",
+          "title": {
+            "en": "The Whole World and the Unreached (Lausanne Movement)",
+            "es": "The Whole World and the Unreached (Lausanne Movement)",
+            "pt": "The Whole World and the Unreached (Lausanne Movement)"
+          },
+          "format": "PDF"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Why include religion when defining South Asia peoples",
+            "es": "Why include religion when defining South Asia peoples",
+            "pt": "Why include religion when defining South Asia peoples"
+          },
+          "format": "PDF"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Least Reached Peoples (Lausanne Movement)",
+            "es": "Least Reached Peoples (Lausanne Movement)",
+            "pt": "Least Reached Peoples (Lausanne Movement)"
+          },
+          "format": "PDF"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Are people groups the same as language groups?",
+            "es": "Are people groups the same as language groups?",
+            "pt": "Are people groups the same as language groups?"
+          },
+          "format": "PDF"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Josefsson, Understanding Unreached",
+            "es": "Josefsson, Understanding Unreached",
+            "pt": "Josefsson, Understanding Unreached"
+          },
+          "format": "PDF"
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Missionary Practicality",
+        "es": "Aspectos prácticos del misionero",
+        "pt": "Praticidade missionária"
+      },
+      "items": [
+        {
+          "kind": "note",
+          "title": {
+            "en": "",
+            "es": "",
+            "pt": ""
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Leading A School",
+        "es": "Leading A School",
+        "pt": "Leading A School"
+      },
+      "items": [
+        {
+          "kind": "note",
+          "title": {
+            "en": "",
+            "es": "",
+            "pt": ""
+          }
+        }
+      ],
+      "kind": "section"
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "id": "mentoring",
+  "provider": "moe",
+  "order": 5,
+  "canvas": "https://canvaslite.instructure.com/courses/15699",
+  "title": {
+    "en": "Mentoring",
+    "es": "Mentoreo",
+    "pt": "Mentoria"
+  },
+  "description": {
+    "en": "Mentoring in Missions: an 11-week guided journey.",
+    "es": "Mentoring in Missions: un recorrido guiado de 11 semanas.",
+    "pt": "Mentoring in Missions: uma jornada guiada de 11 semanas."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Open courseware",
+    "es": "Curso abierto",
+    "pt": "Curso aberto"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome",
+        "es": "Bienvenida",
+        "pt": "Boas-vindas"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Orientation Video",
+            "es": "Video de orientación",
+            "pt": "Vídeo de orientação"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/orientation_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "syllabus",
+          "format": "PDF",
+          "title": {
+            "en": "Mentoring in Missions",
+            "es": "Mentoring in Missions",
+            "pt": "Mentoring in Missions"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "kind": "week",
+      "n": 1,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 1",
+            "es": "Mentoreo - Semana 1",
+            "pt": "Mentoria - Semana 1"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 2,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 2",
+            "es": "Mentoreo - Semana 2",
+            "pt": "Mentoria - Semana 2"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 3,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 3",
+            "es": "Mentoreo - Semana 3",
+            "pt": "Mentoria - Semana 3"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 4,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 4",
+            "es": "Mentoreo - Semana 4",
+            "pt": "Mentoria - Semana 4"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 5,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 5",
+            "es": "Mentoreo - Semana 5",
+            "pt": "Mentoria - Semana 5"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 6,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 6",
+            "es": "Mentoreo - Semana 6",
+            "pt": "Mentoria - Semana 6"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 7,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 7",
+            "es": "Mentoreo - Semana 7",
+            "pt": "Mentoria - Semana 7"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 8,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 8",
+            "es": "Mentoreo - Semana 8",
+            "pt": "Mentoria - Semana 8"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 9,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 9",
+            "es": "Mentoreo - Semana 9",
+            "pt": "Mentoria - Semana 9"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 10,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 10",
+            "es": "Mentoreo - Semana 10",
+            "pt": "Mentoria - Semana 10"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "week",
+      "n": 11,
+      "title": {
+        "en": "Mentoring",
+        "es": "Mentoreo",
+        "pt": "Mentoria"
+      },
+      "items": [
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Mentoring Week 11",
+            "es": "Mentoreo - Semana 11",
+            "pt": "Mentoria - Semana 11"
+          }
+        }
+      ]
+    }
+  ],
+  "weeks": 11
+}

@@ -140,10 +140,15 @@ def check(root, host, max_page_kb):
             if cp.scheme != "https" or cp.hostname != host:
                 errors.append(f"{rel}: canonical {c!r} must be an absolute https URL on {host}")
 
+        for key in ("og:title", "og:description", "og:image", "twitter:card"):
+            if not p.meta.get(key):
+                errors.append(f"{rel}: missing {key}")
         for key in ("og:image", "twitter:image"):
             v = p.meta.get(key)
             if v and not v.startswith("https://"):
                 errors.append(f"{rel}: {key} must be an absolute https URL, got {v!r}")
+        if "hreflang=\"x-default\"" not in html and "hreflang='x-default'" not in html:
+            errors.append(f"{rel}: missing hreflang x-default")
 
         for block in p.jsonld:
             try:
