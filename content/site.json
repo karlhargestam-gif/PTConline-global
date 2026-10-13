@@ -19,14 +19,43 @@
   },
   "messengerApplyUrl": "https://www.messengercollege.edu",
   "moeEnrollUrl": "https://www.missiononeeleven.se/home/sign-up/",
-  "globalEducationUrl": "https://WWW.PCG.ORG/missions/global-education?cc9b0749_page=6",
+  "globalEducationUrl": "https://pcgmission.org/#global-education",
   "pcgUrl": "https://www.pcgmission.org",
   "moeUrl": "https://missiononeeleven.com/",
   "messengerUrl": "https://www.messengercollege.edu/",
   "ui": {
     "skip": { "en": "Skip to content", "es": "Saltar al contenido", "pt": "Ir para o conteúdo" },
     "navLabel": { "en": "Primary", "es": "Principal", "pt": "Principal" },
-    "footerLabel": { "en": "Site", "es": "Sitio", "pt": "Site" },
+    "bannerName": {
+      "en": "Pentecostal Theological Consortium (PTC)",
+      "es": "Consorcio Teológico Pentecostal (PTC)",
+      "pt": "Consórcio Teológico Pentecostal (PTC)"
+    },
+    "flameAlt": {
+      "en": "PCG flame",
+      "es": "Llama de PCG",
+      "pt": "Chama do PCG"
+    },
+    "homeFooterLabel": {
+      "en": "Related links",
+      "es": "Enlaces relacionados",
+      "pt": "Links relacionados"
+    },
+    "courseFooterLabel": {
+      "en": "PCG Global Missions",
+      "es": "PCG Global Missions",
+      "pt": "PCG Global Missions"
+    },
+    "homeFooterNote": {
+      "en": "Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God, connected with its Global Education department and an academic pathway through Messenger College.",
+      "es": "El Consorcio Teológico Pentecostal (PTC) es una iniciativa de PCG Global Missions, Pentecostal Church of God, en conexión con su departamento de Educación Global y una vía académica a través de Messenger College.",
+      "pt": "O Consórcio Teológico Pentecostal (PTC) é uma iniciativa do PCG Global Missions, Pentecostal Church of God, em conexão com seu departamento de Educação Global e uma via acadêmica por meio do Messenger College."
+    },
+    "courseFooterNote": {
+      "en": "Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God.",
+      "es": "El Consorcio Teológico Pentecostal (PTC) es una iniciativa de PCG Global Missions, Pentecostal Church of God.",
+      "pt": "O Consórcio Teológico Pentecostal (PTC) é uma iniciativa do PCG Global Missions, Pentecostal Church of God."
+    },
     "home": { "en": "Home", "es": "Inicio", "pt": "Início" },
     "courses": { "en": "Courses", "es": "Cursos", "pt": "Cursos" },
     "about": { "en": "About", "es": "Acerca de", "pt": "Sobre" },
@@ -37,11 +66,6 @@
     "copyright": { "en": "Copyright", "es": "Derechos de autor", "pt": "Direitos autorais" },
     "globalEducation": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
     "pcg": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" },
-    "footerNote": {
-      "en": "Connected with the Global Education department at PCG Global Missions, with an academic pathway connection to Messenger College.",
-      "es": "En conexión con el departamento de Educación Global de PCG Global Missions, con una vía académica vinculada a Messenger College.",
-      "pt": "Em conexão com o departamento de Educação Global do PCG Global Missions, com uma via acadêmica vinculada ao Messenger College."
-    },
     "openCanvas": {
       "en": "Open this course in Canvas",
       "es": "Abrir este curso en Canvas",

@@ -86,7 +86,7 @@
           ]
         },
         "links": [
-          { "href": "https://WWW.PCG.ORG/missions/global-education?cc9b0749_page=6", "label": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" } },
+          { "href": "https://pcgmission.org/#global-education", "label": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" } },
           { "href": "https://www.pcgmission.org", "label": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" } }
         ]
       },

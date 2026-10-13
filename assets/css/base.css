@@ -82,16 +82,99 @@ body {
   margin-right: 8px;
 }
 
+.site-banner {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  min-height: 66px;
+  padding: 10px clamp(24px, 6vw, 76px);
+  background: #ffffff;
+  border-top: 5px solid #b81d25;
+  border-bottom: 1px solid #d9dde2;
+  color: #111827;
+}
+
+.banner-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #111827;
+  text-decoration: none;
+}
+
+.banner-brand img { width: 30px; height: 30px; object-fit: contain; }
+
+.banner-name {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.banner-nav { display: flex; align-items: center; gap: 22px; }
+
+.banner-nav a {
+  color: #111827;
+  font-size: .84rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.banner-nav a:hover { color: #94171d; text-decoration: underline; }
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px clamp(24px, 6vw, 76px) 27px;
+  background: #f7f4ee;
+  border-top: 1px solid #d9dde2;
+  color: #344454;
+  font-size: .84rem;
+  line-height: 1.45;
+}
+
+.site-footer p { margin: 0; max-width: 660px; }
+
+.site-footer .footer-links {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+}
+
+.site-footer a {
+  color: #94171d;
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.site-footer a:hover { text-decoration: underline; }
+
 .lang-switch {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-left: auto;
 }
 
-.lang-switch a { opacity: 0.55; letter-spacing: 0.08em; font-size: 0.75rem; }
+.lang-switch a {
+  color: #111827;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-decoration: none;
+  opacity: .55;
+}
+
 .lang-switch a:hover,
-.lang-switch a[aria-current="true"] { opacity: 1; }
+.lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
 
 .footer {
   display: flex;
@@ -149,5 +232,11 @@ body {
 
 @media (max-width: 720px) {
   .button { width: 100%; }
-  .lang-switch { margin-left: 0; }
+  .site-banner { padding-inline: 24px; }
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-inline: 24px;
+  }
 }

@@ -93,12 +93,6 @@ HOME_MESSENGER = {
     ],
 }
 
-HOME_NAV = {
-    "en": [("courses/", "Courses"), ("about/", "About"), ("enroll/", "How to enroll"), ("contact/", "Contact")],
-    "es": [("courses/", "Cursos"), ("about/", "Acerca de"), ("enroll/", "Cómo inscribirse"), ("contact/", "Contacto")],
-    "pt": [("courses/", "Cursos"), ("about/", "Sobre"), ("enroll/", "Como se inscrever"), ("contact/", "Contato")],
-}
-
 LENGTH_OVERRIDE = {
     "practicum": {
         "en": "Overseas practicum",
@@ -180,7 +174,10 @@ class Site:
             self.courses.append(load_json(path))
         self.courses.sort(key=lambda course: (course["provider"], course["order"]))
         self.head = (PARTIALS / "head.tpl").read_text(encoding="utf-8")
+        self.banner_t = (PARTIALS / "banner.tpl").read_text(encoding="utf-8")
+        self.banner_home_t = (PARTIALS / "banner-home.tpl").read_text(encoding="utf-8")
         self.footer_t = (PARTIALS / "footer.tpl").read_text(encoding="utf-8")
+        self.footer_home_t = (PARTIALS / "footer-home.tpl").read_text(encoding="utf-8")
         self.week_t = (PARTIALS / "week.tpl").read_text(encoding="utf-8")
         self.ui = self.site["ui"]
 
@@ -205,31 +202,52 @@ class Site:
         key = "moeName" if provider == "moe" else "messengerName"
         return self.ui[key][lang]
 
-    def footer(self, lang):
-        links = []
-        for key, route in (
-            ("about", "about"),
-            ("enroll", "enroll"),
-            ("contact", "contact"),
-            ("privacy", "privacy"),
-            ("terms", "terms"),
-            ("copyright", "copyright"),
-        ):
-            links.append(f'<a href="{href_for(lang, route)}">{esc(self.ui[key][lang])}</a>')
-        links.append(
-            f'<a href="{esc(self.site["globalEducationUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["globalEducation"][lang])}</a>'
-        )
-        links.append(
-            f'<a href="{esc(self.site["pcgUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["pcg"][lang])}</a>'
-        )
+    def lang_links(self, lang, route):
+        parts = []
+        for code in LANGS:
+            current = ' aria-current="true"' if code == lang else ""
+            parts.append(
+                f'<a href="{href_for(code, route)}" hreflang="{code}"{current}>{code.upper()}</a>'
+            )
+        return "".join(parts)
+
+    def flame_src(self, lang, home):
+        if home and lang == "en":
+            return "assets/pcg-flame.png"
+        return "/assets/pcg-flame.png"
+
+    def banner(self, lang, route, home=False):
+        mapping = {
+            "home_href": href_for(lang, ""),
+            "name": esc(self.ui["bannerName"][lang]),
+            "flame_src": self.flame_src(lang, home),
+            "flame_alt": esc(self.ui["flameAlt"][lang]),
+            "nav_label": esc(self.ui["navLabel"][lang]),
+            "courses_href": href_for(lang, "courses"),
+            "courses_label": esc(self.ui["courses"][lang]),
+            "home_label": esc(self.ui["home"][lang]),
+            "pcg_url": esc(self.site["pcgUrl"]),
+            "pcg_label": esc(self.ui["pcg"][lang]),
+            "lang_switch": self.lang_links(lang, route),
+        }
+        template = self.banner_home_t if home else self.banner_t
+        return fill(template, mapping).rstrip("\n")
+
+    def footer(self, lang, home=False):
+        note_key = "homeFooterNote" if home else "courseFooterNote"
+        label_key = "homeFooterLabel" if home else "courseFooterLabel"
+        template = self.footer_home_t if home else self.footer_t
         return fill(
-            self.footer_t,
+            template,
             {
-                "note": esc(self.ui["footerNote"][lang]),
-                "label": esc(self.ui["footerLabel"][lang]),
-                "links": "\n    ".join(links),
+                "note": esc(self.ui[note_key][lang]),
+                "label": esc(self.ui[label_key][lang]),
+                "global_education_url": esc(self.site["globalEducationUrl"]),
+                "global_education": esc(self.ui["globalEducation"][lang]),
+                "pcg_url": esc(self.site["pcgUrl"]),
+                "pcg": esc(self.ui["pcg"][lang]),
             },
-        )
+        ).rstrip("\n")
 
     def hreflang(self, route):
         lines = []
@@ -241,40 +259,6 @@ class Site:
             f'<link rel="alternate" hreflang="x-default" href="{canonical_for(self.site, "en", route)}">'
         )
         return "\n".join(lines)
-
-    def nav(self, lang, route):
-        items = [
-            ("home", ""),
-            ("courses", "courses"),
-            ("about", "about"),
-            ("enroll", "enroll"),
-            ("contact", "contact"),
-        ]
-
-        def current_for(item_route):
-            if item_route == "courses" and (route == "courses" or route.startswith("courses/")):
-                return ' aria-current="page"'
-            if route == item_route:
-                return ' aria-current="page"'
-            return ""
-
-        parts = [f'<a class="nav-brand" href="{href_for(lang, "")}">PTC</a>']
-        for key, item_route in items:
-            parts.append(
-                f'<a href="{href_for(lang, item_route)}"{current_for(item_route)}>{esc(self.ui[key][lang])}</a>'
-            )
-        langs = []
-        for code in LANGS:
-            current = ' aria-current="true"' if code == lang else ""
-            langs.append(
-                f'<a href="{href_for(code, route)}" hreflang="{code}"{current}>{code.upper()}</a>'
-            )
-        return (
-            f'<nav class="top-nav" aria-label="{esc(self.ui["navLabel"][lang])}">\n'
-            f'  {" ".join(parts)}\n'
-            f'  <span class="lang-switch" aria-label="Language">{" ".join(langs)}</span>\n'
-            f"</nav>"
-        )
 
     def jsonld(self, kind, lang, route, title, description, extra=None):
         url = canonical_for(self.site, lang, route)
@@ -312,7 +296,7 @@ class Site:
         return (
             f'<!doctype html>\n<html lang="{lang}">\n<head>\n{head}\n</head>\n<body>\n'
             f'<a class="skip-link" href="#main">{esc(self.ui["skip"][lang])}</a>\n'
-            f"{self.nav(lang, route)}\n"
+            f"{self.banner(lang, route)}\n"
             f'<main id="main" class="{main_class}">\n{body}\n</main>\n'
             f"{self.footer(lang)}\n</body>\n</html>\n"
         )
@@ -646,20 +630,6 @@ class Site:
         )
         self.emit("sitemap.xml", xml)
 
-    def home_links(self, lang):
-        base = prefix(lang)
-        anchors = []
-        for route, label in HOME_NAV[lang]:
-            href = f"{base}/{route}" if base else f"/{route}"
-            anchors.append(f'<a href="{href}">{esc(label)}</a>')
-        return (
-            '<nav class="home-links" aria-label="'
-            + esc(self.ui["navLabel"][lang])
-            + '">'
-            + "".join(anchors)
-            + "</nav>"
-        )
-
     def patch_home(self, lang):
         rel = "index.html" if lang == "en" else f"{lang}/index.html"
         text = (ROOT / rel).read_text(encoding="utf-8")
@@ -693,12 +663,6 @@ class Site:
         for old_text, new_text in HOME_MESSENGER[lang]:
             if old_text in text:
                 text = text.replace(old_text, new_text)
-        if 'class="home-links"' not in text:
-            text = text.replace(
-                '<span class="lang-switch"',
-                self.home_links(lang) + '<span class="lang-switch"',
-                1,
-            )
         if 'class="skip-link"' not in text:
             text = text.replace(
                 "<body>\n",
@@ -707,8 +671,24 @@ class Site:
             )
         if 'id="content"' not in text:
             text = text.replace('<div class="content"', '<div class="content" id="content"', 1)
-        footer = self.footer(lang).strip()
-        text = re.sub(r"<footer class=\"footer\">.*?</footer>", footer, text, count=1, flags=re.S)
+        banner = self.banner(lang, "", home=True)
+        if not re.search(r'<header class="site-banner">', text):
+            raise SystemExit(f"{rel}: site banner missing")
+        text = re.sub(
+            r"[ \t]*<header class=\"site-banner\">.*?</header>",
+            banner,
+            text,
+            count=1,
+            flags=re.S,
+        )
+        footer = self.footer(lang, home=True)
+        text = re.sub(
+            r"[ \t]*<footer class=\"footer\">.*?</footer>",
+            footer,
+            text,
+            count=1,
+            flags=re.S,
+        )
         self.emit(rel, text)
 
     def build(self):

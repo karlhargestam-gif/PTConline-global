@@ -18,7 +18,7 @@ python3 .github/scripts/site_check.py --host ptconline.global
 | `content/site.json` | Shared UI strings, the Messenger lock notice, and partner URLs |
 | `content/pages.json` | About, Contact, How to enroll, Privacy, Terms, Copyright |
 | `content/courses/*.json` | One file per course |
-| `src/partials/*.tpl` | Head, footer and week-block markup |
+| `src/partials/*.tpl` | Head, home and course banners, footers, and week-block markup |
 | `assets/css/` | Fonts, site chrome, home page, course pages |
 
 The lock sentence is `lockNotice` in `content/site.json`. Change it there and rebuild. Every locked page and the Messenger catalog read that field.
