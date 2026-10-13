@@ -1,0 +1,351 @@
+{
+  "about": {
+    "title": {
+      "en": "About",
+      "es": "Acerca de",
+      "pt": "Sobre"
+    },
+    "description": {
+      "en": "What the Pentecostal Theological Consortium is, who the education partners are, and what this website does.",
+      "es": "Qué es el Consorcio Teológico Pentecostal, quiénes son los socios educativos y qué hace este sitio.",
+      "pt": "O que é o Consórcio Teológico Pentecostal, quem são os parceiros educacionais e o que este site faz."
+    },
+    "sections": [
+      {
+        "heading": { "en": "A shared table", "es": "Una mesa compartida", "pt": "Uma mesa compartilhada" },
+        "paragraphs": {
+          "en": [
+            "Pentecostal Theological Consortium (PTC) is taking shape as a global learning network of Pentecostal Church of God Global Missions. The aim is trusted Pentecostal teaching that can travel, while the language, mentors and ministry of each place stay intact.",
+            "The pathway starts with something a leader can use: one course, in a language they understand, walked through with a local mentor and applied in real ministry."
+          ],
+          "es": [
+            "El Consorcio Teológico Pentecostal (PTC) está tomando forma como una red global de aprendizaje de Pentecostal Church of God Global Missions. El fin es una enseñanza pentecostal confiable que pueda viajar, mientras el idioma, los mentores y el ministerio de cada lugar permanecen.",
+            "El camino empieza con algo que un líder puede usar: un curso, en un idioma que comprende, recorrido con un mentor local y aplicado en el ministerio real."
+          ],
+          "pt": [
+            "O Consórcio Teológico Pentecostal (PTC) está tomando forma como uma rede global de aprendizado da Pentecostal Church of God Global Missions. O objetivo é um ensino pentecostal confiável que possa viajar, enquanto o idioma, os mentores e o ministério de cada lugar permanecem.",
+            "O caminho começa com algo que um líder pode usar: um curso, em um idioma que ele compreende, percorrido com um mentor local e aplicado no ministério real."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Education partners", "es": "Socios educativos", "pt": "Parceiros educacionais" },
+        "paragraphs": {
+          "en": [
+            "Mission One Eleven prepares pioneer missionaries. Its seven courses on this site are open courseware: watch, read and study without an account on ptconline.global.",
+            "Messenger College is the academic pathway partner. Its credit courses are listed as overviews. The college keeps the full materials and the admission decision."
+          ],
+          "es": [
+            "Mission One Eleven prepara misioneros pioneros. Sus siete cursos en este sitio son material abierto: se pueden ver, leer y estudiar sin una cuenta en ptconline.global.",
+            "Messenger College es el socio de la vía académica. Sus cursos con crédito aparecen como resúmenes. La universidad conserva los materiales completos y la decisión de admisión."
+          ],
+          "pt": [
+            "A Mission One Eleven prepara missionários pioneiros. Seus sete cursos neste site são material aberto: podem ser assistidos, lidos e estudados sem uma conta em ptconline.global.",
+            "O Messenger College é o parceiro da via acadêmica. Seus cursos com crédito aparecem como resumos. A faculdade guarda os materiais completos e a decisão de admissão."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "What this website is", "es": "Qué es este sitio", "pt": "O que este site é" },
+        "paragraphs": {
+          "en": [
+            "ptconline.global is the multilingual front door and catalog. It is not the system that enrolls a student, records progress or issues a certificate. Those steps happen with the partner that owns the course.",
+            "Pages are published in English, Spanish and Portuguese. The teaching videos are in English. Portuguese captions are on the videos that have a caption file."
+          ],
+          "es": [
+            "ptconline.global es la puerta y el catálogo en varios idiomas. No es el sistema que inscribe a un estudiante, registra el avance ni emite un certificado. Esos pasos ocurren con el socio dueño del curso.",
+            "Las páginas están en inglés, español y portugués. Los videos de enseñanza están en inglés. Hay subtítulos en portugués en los videos que tienen un archivo de subtítulos."
+          ],
+          "pt": [
+            "ptconline.global é a porta de entrada e o catálogo em vários idiomas. Não é o sistema que inscreve um aluno, registra o progresso ou emite um certificado. Esses passos acontecem com o parceiro dono do curso.",
+            "As páginas estão em inglês, espanhol e português. Os vídeos de ensino estão em inglês. Há legendas em português nos vídeos que têm um arquivo de legenda."
+          ]
+        }
+      }
+    ]
+  },
+  "contact": {
+    "title": { "en": "Contact", "es": "Contacto", "pt": "Contato" },
+    "description": {
+      "en": "How to reach Global Education, Mission One Eleven and Messenger College.",
+      "es": "Cómo contactar a Educación Global, Mission One Eleven y Messenger College.",
+      "pt": "Como falar com Educação Global, Mission One Eleven e Messenger College."
+    },
+    "sections": [
+      {
+        "heading": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
+        "paragraphs": {
+          "en": [
+            "PTC is connected with the Global Education department at PCG Global Missions. This site does not yet publish a separate PTC email address. Start with the department page, or with the partner that runs the course you need."
+          ],
+          "es": [
+            "PTC está conectado con el departamento de Educación Global de PCG Global Missions. Este sitio todavía no publica un correo propio de PTC. Empiece por la página del departamento, o por el socio que dirige el curso que necesita."
+          ],
+          "pt": [
+            "O PTC está ligado ao departamento de Educação Global do PCG Global Missions. Este site ainda não publica um e-mail próprio do PTC. Comece pela página do departamento, ou pelo parceiro que conduz o curso de que você precisa."
+          ]
+        },
+        "links": [
+          { "href": "https://WWW.PCG.ORG/missions/global-education?cc9b0749_page=6", "label": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" } },
+          { "href": "https://www.pcgmission.org", "label": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" } }
+        ]
+      },
+      {
+        "heading": { "en": "Course partners", "es": "Socios de los cursos", "pt": "Parceiros dos cursos" },
+        "paragraphs": {
+          "en": [
+            "For a Mission One Eleven certificate or cohort, use the Mission One Eleven sign-up. For Messenger College admission, use the college site. Questions about a locked college course go to the college, not to a download on this site."
+          ],
+          "es": [
+            "Para un certificado o un grupo de Mission One Eleven, use la inscripción de Mission One Eleven. Para la admisión en Messenger College, use el sitio de la universidad. Las preguntas sobre un curso universitario bloqueado van a la universidad, no a una descarga de este sitio."
+          ],
+          "pt": [
+            "Para um certificado ou uma turma da Mission One Eleven, use a inscrição da Mission One Eleven. Para a admissão no Messenger College, use o site da faculdade. Perguntas sobre um curso universitário bloqueado vão para a faculdade, não para um download deste site."
+          ]
+        },
+        "links": [
+          { "href": "https://missiononeeleven.com/", "label": { "en": "Mission One Eleven", "es": "Mission One Eleven", "pt": "Mission One Eleven" } },
+          { "href": "https://www.missiononeeleven.se/home/sign-up/", "label": { "en": "Mission One Eleven sign-up", "es": "Inscripción de Mission One Eleven", "pt": "Inscrição da Mission One Eleven" } },
+          { "href": "https://www.messengercollege.edu", "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" } }
+        ]
+      }
+    ]
+  },
+  "enroll": {
+    "title": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" },
+    "description": {
+      "en": "How to study an open course, request a Mission One Eleven certificate, or apply to Messenger College.",
+      "es": "Cómo estudiar un curso abierto, pedir un certificado de Mission One Eleven o solicitar admisión en Messenger College.",
+      "pt": "Como estudar um curso aberto, pedir um certificado da Mission One Eleven ou candidatar-se ao Messenger College."
+    },
+    "sections": [
+      {
+        "heading": { "en": "1. Study an open course", "es": "1. Estudiar un curso abierto", "pt": "1. Estudar um curso aberto" },
+        "paragraphs": {
+          "en": [
+            "Open the course and use the videos, readings and week outline. You do not create an account on ptconline.global. A local mentor can walk through the same page with you. Watching a course here does not by itself give a certificate or academic credit."
+          ],
+          "es": [
+            "Abra el curso y use los videos, las lecturas y el esquema semanal. No se crea una cuenta en ptconline.global. Un mentor local puede recorrer la misma página con usted. Ver un curso aquí no otorga por sí solo un certificado ni crédito académico."
+          ],
+          "pt": [
+            "Abra o curso e use os vídeos, as leituras e o roteiro semanal. Você não cria uma conta em ptconline.global. Um mentor local pode percorrer a mesma página com você. Assistir a um curso aqui não concede, por si só, um certificado nem crédito acadêmico."
+          ]
+        },
+        "links": [
+          { "href": "/courses/", "label": { "en": "Browse courses", "es": "Ver los cursos", "pt": "Ver os cursos" }, "internal": true }
+        ]
+      },
+      {
+        "heading": { "en": "2. Certificate or cohort with Mission One Eleven", "es": "2. Certificado o grupo con Mission One Eleven", "pt": "2. Certificado ou turma com a Mission One Eleven" },
+        "paragraphs": {
+          "en": [
+            "Mission One Eleven handles enrollment and certificates for its training. Use their sign-up. Canvas, linked from each open course, is where class assignments are turned in when a cohort is running."
+          ],
+          "es": [
+            "Mission One Eleven gestiona la inscripción y los certificados de su formación. Use su formulario de inscripción. Canvas, enlazado desde cada curso abierto, es donde se entregan las tareas cuando hay un grupo en marcha."
+          ],
+          "pt": [
+            "A Mission One Eleven cuida da inscrição e dos certificados da sua formação. Use a inscrição deles. O Canvas, ligado a partir de cada curso aberto, é onde as tarefas são entregues quando uma turma está em andamento."
+          ]
+        },
+        "links": [
+          { "href": "https://www.missiononeeleven.se/home/sign-up/", "label": { "en": "Apply for certificate or enrollment", "es": "Solicitar certificado o inscripción", "pt": "Solicitar certificado ou inscrição" } }
+        ]
+      },
+      {
+        "heading": { "en": "3. Credit at Messenger College", "es": "3. Crédito en Messenger College", "pt": "3. Crédito no Messenger College" },
+        "paragraphs": {
+          "en": [
+            "Messenger College courses on this site are locked. The page shows the overview and the lock notice, and it does not publish the lectures, notes or assignments. Apply at the college. Admission and credit are the college’s decision."
+          ],
+          "es": [
+            "Los cursos de Messenger College en este sitio están bloqueados. La página muestra el resumen y el aviso de bloqueo, y no publica las clases, las notas ni las tareas. Solicite en la universidad. La admisión y el crédito los decide la universidad."
+          ],
+          "pt": [
+            "Os cursos do Messenger College neste site estão bloqueados. A página mostra o resumo e o aviso de bloqueio, e não publica as aulas, as notas nem as tarefas. Candidate-se na faculdade. A admissão e o crédito são decisão da faculdade."
+          ]
+        },
+        "links": [
+          { "href": "/courses/messenger/", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
+          { "href": "https://www.messengercollege.edu", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "title": { "en": "Privacy", "es": "Privacidad", "pt": "Privacidade" },
+    "description": {
+      "en": "How ptconline.global handles visits, videos and links. This notice is not legal advice.",
+      "es": "Cómo ptconline.global trata las visitas, los videos y los enlaces. Este aviso no es asesoría legal.",
+      "pt": "Como o ptconline.global trata as visitas, os vídeos e os links. Este aviso não é aconselhamento jurídico."
+    },
+    "sections": [
+      {
+        "heading": { "en": "This site", "es": "Este sitio", "pt": "Este site" },
+        "paragraphs": {
+          "en": [
+            "ptconline.global is a static catalog. It has no student account, no shopping cart and no form that stores what you type. Reading a page does not create a PTC profile.",
+            "The site is hosted on Vercel. The host may keep ordinary server logs, such as the address of the page, the time, and a browser identifier, in order to run and protect the service. PTC does not sell personal information.",
+            "This page describes how the site works. It is not legal advice. A counsel review is still needed before this notice is treated as final."
+          ],
+          "es": [
+            "ptconline.global es un catálogo estático. No tiene cuenta de estudiante, ni carrito, ni un formulario que guarde lo que usted escribe. Leer una página no crea un perfil de PTC.",
+            "El sitio está alojado en Vercel. El alojamiento puede guardar registros ordinarios del servidor, como la dirección de la página, la hora y un identificador del navegador, para operar y proteger el servicio. PTC no vende información personal.",
+            "Esta página describe cómo funciona el sitio. No es asesoría legal. Aún hace falta una revisión de un abogado antes de tratar este aviso como definitivo."
+          ],
+          "pt": [
+            "ptconline.global é um catálogo estático. Não tem conta de aluno, nem carrinho, nem um formulário que guarde o que você digita. Ler uma página não cria um perfil do PTC.",
+            "O site está hospedado na Vercel. A hospedagem pode guardar registros comuns do servidor, como o endereço da página, a hora e um identificador do navegador, para operar e proteger o serviço. O PTC não vende informações pessoais.",
+            "Esta página descreve como o site funciona. Não é aconselhamento jurídico. Ainda é necessária uma revisão de um advogado antes de tratar este aviso como definitivo."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Videos and other sites", "es": "Videos y otros sitios", "pt": "Vídeos e outros sites" },
+        "paragraphs": {
+          "en": [
+            "Class videos are played from Dropbox, YouTube or Vimeo. Those services can set their own cookies or collect usage data when a video loads or when you follow a link. Their policies govern that collection, not this page.",
+            "Links to Canvas, Mission One Eleven, Messenger College and PCG Global Missions leave this site. What you do there is covered by that organization."
+          ],
+          "es": [
+            "Los videos de clase se reproducen desde Dropbox, YouTube o Vimeo. Esos servicios pueden colocar sus propias cookies o recoger datos de uso cuando un video carga o cuando usted sigue un enlace. Sus políticas rigen esa recogida, no esta página.",
+            "Los enlaces a Canvas, Mission One Eleven, Messenger College y PCG Global Missions salen de este sitio. Lo que usted haga allí lo cubre esa organización."
+          ],
+          "pt": [
+            "Os vídeos das aulas são reproduzidos a partir do Dropbox, do YouTube ou do Vimeo. Esses serviços podem definir os próprios cookies ou recolher dados de uso quando um vídeo carrega ou quando você segue um link. As políticas deles regem essa coleta, não esta página.",
+            "Links para o Canvas, a Mission One Eleven, o Messenger College e o PCG Global Missions saem deste site. O que você fizer lá é coberto por essa organização."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Questions", "es": "Preguntas", "pt": "Perguntas" },
+        "paragraphs": {
+          "en": [
+            "To ask about this notice, use the Global Education page linked from the footer. If a direct PTC address is published later, this page will say so."
+          ],
+          "es": [
+            "Para preguntar sobre este aviso, use la página de Educación Global enlazada en el pie. Si más adelante se publica una dirección directa de PTC, esta página lo dirá."
+          ],
+          "pt": [
+            "Para perguntar sobre este aviso, use a página de Educação Global ligada no rodapé. Se mais tarde for publicado um endereço direto do PTC, esta página dirá."
+          ]
+        }
+      }
+    ]
+  },
+  "terms": {
+    "title": { "en": "Terms", "es": "Términos", "pt": "Termos" },
+    "description": {
+      "en": "Terms for using the ptconline.global catalog and open courseware.",
+      "es": "Términos de uso del catálogo y del material abierto de ptconline.global.",
+      "pt": "Termos de uso do catálogo e do material aberto de ptconline.global."
+    },
+    "sections": [
+      {
+        "heading": { "en": "Using the catalog", "es": "Uso del catálogo", "pt": "Uso do catálogo" },
+        "paragraphs": {
+          "en": [
+            "You may read the pages and study the open Mission One Eleven courses for personal learning and ministry training. That use does not make you a student of Messenger College, and it does not earn a PTC certificate.",
+            "Do not present a download from this site as a grade, a transcript or a diploma. Certificates come from Mission One Eleven. Credit and degrees come from Messenger College, after the college admits you.",
+            "Locked Messenger College pages are overviews. Do not try to reconstruct or republish materials the college has not placed here."
+          ],
+          "es": [
+            "Puede leer las páginas y estudiar los cursos abiertos de Mission One Eleven para el aprendizaje personal y la formación ministerial. Ese uso no lo hace estudiante de Messenger College ni le otorga un certificado de PTC.",
+            "No presente una descarga de este sitio como una calificación, un expediente o un diploma. Los certificados los da Mission One Eleven. El crédito y los títulos los da Messenger College, después de admitirle.",
+            "Las páginas bloqueadas de Messenger College son resúmenes. No intente reconstruir ni volver a publicar materiales que la universidad no ha colocado aquí."
+          ],
+          "pt": [
+            "Você pode ler as páginas e estudar os cursos abertos da Mission One Eleven para aprendizagem pessoal e formação ministerial. Esse uso não faz de você aluno do Messenger College nem lhe dá um certificado do PTC.",
+            "Não apresente um download deste site como uma nota, um histórico ou um diploma. Os certificados vêm da Mission One Eleven. O crédito e os diplomas vêm do Messenger College, depois que a faculdade admite você.",
+            "As páginas bloqueadas do Messenger College são resumos. Não tente reconstruir nem republicar materiais que a faculdade não colocou aqui."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Materials and other services", "es": "Materiales y otros servicios", "pt": "Materiais e outros serviços" },
+        "paragraphs": {
+          "en": [
+            "Textbooks, videos and syllabi stay under the copyright of their owners. See the copyright page before you copy a file or post it somewhere else.",
+            "Canvas, Dropbox, YouTube, Vimeo, Mission One Eleven and Messenger College have their own terms. PTC does not control those services.",
+            "The catalog is offered as it stands. A video link or a file can change when a partner updates a course. These terms are a plain-language description and still need counsel’s review."
+          ],
+          "es": [
+            "Los libros, los videos y los programas siguen bajo los derechos de sus dueños. Vea la página de derechos de autor antes de copiar un archivo o publicarlo en otro lugar.",
+            "Canvas, Dropbox, YouTube, Vimeo, Mission One Eleven y Messenger College tienen sus propios términos. PTC no controla esos servicios.",
+            "El catálogo se ofrece tal como está. Un enlace de video o un archivo puede cambiar cuando un socio actualiza un curso. Estos términos son una descripción en lenguaje sencillo y aún necesitan la revisión de un abogado."
+          ],
+          "pt": [
+            "Os livros, os vídeos e os programas continuam sob os direitos dos seus donos. Veja a página de direitos autorais antes de copiar um arquivo ou publicá-lo em outro lugar.",
+            "Canvas, Dropbox, YouTube, Vimeo, Mission One Eleven e Messenger College têm os próprios termos. O PTC não controla esses serviços.",
+            "O catálogo é oferecido como está. Um link de vídeo ou um arquivo pode mudar quando um parceiro atualiza um curso. Estes termos são uma descrição em linguagem simples e ainda precisam da revisão de um advogado."
+          ]
+        }
+      }
+    ]
+  },
+  "copyright": {
+    "title": { "en": "Copyright", "es": "Derechos de autor", "pt": "Direitos autorais" },
+    "description": {
+      "en": "Who owns the catalog text, the Mission One Eleven logo, and the course files hosted on ptconline.global.",
+      "es": "De quién es el texto del catálogo, el logotipo de Mission One Eleven y los archivos de cursos alojados en ptconline.global.",
+      "pt": "De quem é o texto do catálogo, o logotipo da Mission One Eleven e os arquivos de cursos hospedados em ptconline.global."
+    },
+    "sections": [
+      {
+        "heading": { "en": "Catalog text and logo", "es": "Texto del catálogo y logotipo", "pt": "Texto do catálogo e logotipo" },
+        "paragraphs": {
+          "en": [
+            "The page text written for ptconline.global belongs to the Pentecostal Theological Consortium, connected with PCG Global Missions, unless a page says otherwise.",
+            "The Mission One Eleven wordmark on the Mission One Eleven course pages is the official logo of Mission One Eleven. It is hosted here so those pages do not depend on the partner site. It is not a PTC mark, and it is not redrawn or recolored.",
+            "Partner names — Messenger College, Mission One Eleven, and Pentecostal Church of God — remain the property of those organizations."
+          ],
+          "es": [
+            "El texto escrito para ptconline.global pertenece al Consorcio Teológico Pentecostal, en conexión con PCG Global Missions, salvo que una página diga otra cosa.",
+            "El logotipo de Mission One Eleven en las páginas de sus cursos es el logotipo oficial de Mission One Eleven. Está alojado aquí para que esas páginas no dependan del sitio del socio. No es una marca de PTC, y no se redibuja ni se cambia de color.",
+            "Los nombres de los socios — Messenger College, Mission One Eleven y Pentecostal Church of God — siguen siendo propiedad de esas organizaciones."
+          ],
+          "pt": [
+            "O texto escrito para ptconline.global pertence ao Consórcio Teológico Pentecostal, em conexão com o PCG Global Missions, salvo quando uma página diz outra coisa.",
+            "O logotipo da Mission One Eleven nas páginas dos cursos dela é o logotipo oficial da Mission One Eleven. Está hospedado aqui para que essas páginas não dependam do site do parceiro. Não é uma marca do PTC, e não é redesenhado nem recolorido.",
+            "Os nomes dos parceiros — Messenger College, Mission One Eleven e Pentecostal Church of God — continuam sendo propriedade dessas organizações."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Course files", "es": "Archivos de los cursos", "pt": "Arquivos dos cursos" },
+        "paragraphs": {
+          "en": [
+            "Readings, workbooks and videos are used for the open courses. Copyright stays with the authors, publishers and partners who hold it. Hosting a file for students of these courses is not a grant to copy it into another book, site or course.",
+            "A rights review of the textbooks and of any Messenger College material is still open. Until that review is done, do not treat a file on this site as cleared for republication. The files linked from the open courses are listed below with their sizes.",
+            "Messenger College course materials are not published on this site. A locked page is an overview only."
+          ],
+          "es": [
+            "Las lecturas, los cuadernos y los videos se usan para los cursos abiertos. Los derechos siguen con los autores, las editoriales y los socios que los tienen. Alojar un archivo para los estudiantes de estos cursos no autoriza a copiarlo en otro libro, sitio o curso.",
+            "Sigue abierta una revisión de derechos de los libros de texto y de cualquier material de Messenger College. Hasta que esa revisión termine, no trate un archivo de este sitio como autorizado para volver a publicarse. Los archivos enlazados desde los cursos abiertos se listan abajo con su tamaño.",
+            "Los materiales de los cursos de Messenger College no se publican en este sitio. Una página bloqueada es solo un resumen."
+          ],
+          "pt": [
+            "As leituras, os cadernos e os vídeos são usados para os cursos abertos. Os direitos permanecem com os autores, as editoras e os parceiros que os detêm. Hospedar um arquivo para os alunos destes cursos não autoriza a copiá-lo em outro livro, site ou curso.",
+            "Ainda está aberta uma revisão de direitos dos livros-texto e de qualquer material do Messenger College. Até essa revisão terminar, não trate um arquivo deste site como liberado para republicação. Os arquivos ligados a partir dos cursos abertos estão listados abaixo com o tamanho.",
+            "Os materiais dos cursos do Messenger College não são publicados neste site. Uma página bloqueada é apenas um resumo."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Takedown", "es": "Retiro", "pt": "Remoção" },
+        "paragraphs": {
+          "en": [
+            "If you hold the rights in a file on this site and want it removed or credited differently, contact Global Education through the link in the footer and name the file."
+          ],
+          "es": [
+            "Si usted tiene los derechos de un archivo de este sitio y quiere que se retire o que se acredite de otra manera, contacte a Educación Global por el enlace del pie e indique el archivo."
+          ],
+          "pt": [
+            "Se você tem os direitos de um arquivo deste site e quer que ele seja removido ou creditado de outro modo, fale com Educação Global pelo link do rodapé e indique o arquivo."
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "host": "https://ptconline.global",
+  "ogImage": "https://ptconline.global/assets/og-image.jpg",
+  "name": {
+    "en": "Pentecostal Theological Consortium",
+    "es": "Consorcio Teológico Pentecostal",
+    "pt": "Consórcio Teológico Pentecostal"
+  },
+  "ogAlt": {
+    "en": "A Pentecostal worship gathering",
+    "es": "Reunión pentecostal de adoración",
+    "pt": "Reunião pentecostal de adoração"
+  },
+  "locale": { "en": "en_US", "es": "es_ES", "pt": "pt_BR" },
+  "lockNotice": {
+    "en": "Locked regionally pending articulation or partnership agreement",
+    "es": "Bloqueado regionalmente hasta un acuerdo de articulación o de colaboración.",
+    "pt": "Bloqueado regionalmente até um acordo de articulação ou parceria."
+  },
+  "messengerApplyUrl": "https://www.messengercollege.edu",
+  "moeEnrollUrl": "https://www.missiononeeleven.se/home/sign-up/",
+  "globalEducationUrl": "https://WWW.PCG.ORG/missions/global-education?cc9b0749_page=6",
+  "pcgUrl": "https://www.pcgmission.org",
+  "moeUrl": "https://missiononeeleven.com/",
+  "messengerUrl": "https://www.messengercollege.edu/",
+  "ui": {
+    "skip": { "en": "Skip to content", "es": "Saltar al contenido", "pt": "Ir para o conteúdo" },
+    "navLabel": { "en": "Primary", "es": "Principal", "pt": "Principal" },
+    "footerLabel": { "en": "Site", "es": "Sitio", "pt": "Site" },
+    "home": { "en": "Home", "es": "Inicio", "pt": "Início" },
+    "courses": { "en": "Courses", "es": "Cursos", "pt": "Cursos" },
+    "about": { "en": "About", "es": "Acerca de", "pt": "Sobre" },
+    "enroll": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" },
+    "contact": { "en": "Contact", "es": "Contacto", "pt": "Contato" },
+    "privacy": { "en": "Privacy", "es": "Privacidad", "pt": "Privacidade" },
+    "terms": { "en": "Terms", "es": "Términos", "pt": "Termos" },
+    "copyright": { "en": "Copyright", "es": "Derechos de autor", "pt": "Direitos autorais" },
+    "globalEducation": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
+    "pcg": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" },
+    "footerNote": {
+      "en": "Connected with the Global Education department at PCG Global Missions, with an academic pathway connection to Messenger College.",
+      "es": "En conexión con el departamento de Educación Global de PCG Global Missions, con una vía académica vinculada a Messenger College.",
+      "pt": "Em conexão com o departamento de Educação Global do PCG Global Missions, com uma via acadêmica vinculada ao Messenger College."
+    },
+    "openCanvas": {
+      "en": "Open this course in Canvas",
+      "es": "Abrir este curso en Canvas",
+      "pt": "Abrir este curso no Canvas"
+    },
+    "howEnroll": {
+      "en": "How enrollment works",
+      "es": "Cómo funciona la inscripción",
+      "pt": "Como funciona a inscrição"
+    },
+    "applyMessenger": {
+      "en": "Apply at Messenger College",
+      "es": "Solicitar en Messenger College",
+      "pt": "Candidatar-se no Messenger College"
+    },
+    "applyMoe": {
+      "en": "Apply for certificate or enrollment",
+      "es": "Solicitar certificado o inscripción",
+      "pt": "Solicitar certificado ou inscrição"
+    },
+    "provider": { "en": "Provider", "es": "Proveedor", "pt": "Provedor" },
+    "length": { "en": "Length", "es": "Duración", "pt": "Duração" },
+    "language": { "en": "Teaching language", "es": "Idioma de enseñanza", "pt": "Idioma de ensino" },
+    "level": { "en": "Level", "es": "Nivel", "pt": "Nível" },
+    "weeks": { "en": "weeks", "es": "semanas", "pt": "semanas" },
+    "week": { "en": "Week", "es": "Semana", "pt": "Semana" },
+    "locked": { "en": "Locked", "es": "Bloqueado", "pt": "Bloqueado" },
+    "unavailable": { "en": "Unavailable", "es": "No disponible", "pt": "Indisponível" },
+    "notPosted": {
+      "en": "Not posted on this site.",
+      "es": "No publicado en este sitio.",
+      "pt": "Não publicado neste site."
+    },
+    "inCanvas": { "en": "In Canvas", "es": "En Canvas", "pt": "No Canvas" },
+    "emptySection": {
+      "en": "No files for this section are posted on this site.",
+      "es": "No hay archivos de esta sección publicados en este sitio.",
+      "pt": "Nenhum arquivo desta seção está publicado neste site."
+    },
+    "moeName": { "en": "Mission One Eleven", "es": "Mission One Eleven", "pt": "Mission One Eleven" },
+    "messengerName": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" },
+    "catalogTitle": { "en": "Courses", "es": "Cursos", "pt": "Cursos" },
+    "catalogLead": {
+      "en": "Mission One Eleven courses are open to watch and study. Messenger College courses are listed as overviews until an agreement is in place.",
+      "es": "Los cursos de Mission One Eleven están abiertos para ver y estudiar. Los cursos de Messenger College aparecen como resúmenes hasta que haya un acuerdo.",
+      "pt": "Os cursos da Mission One Eleven estão abertos para assistir e estudar. Os cursos do Messenger College aparecem como resumos até que haja um acordo."
+    },
+    "moeLead": {
+      "en": "Seven open courses, from missiology through the practicum and the Level 2 track.",
+      "es": "Siete cursos abiertos, desde la misiología hasta la práctica y la vía de nivel 2.",
+      "pt": "Sete cursos abertos, da missiologia ao estágio e à trilha de nível 2."
+    },
+    "moePanel": {
+      "en": "These courses are open courseware. Mission One Eleven handles its certificate and enrollment pathway separately.",
+      "es": "Estos cursos son material abierto. Mission One Eleven gestiona por separado el certificado y la inscripción.",
+      "pt": "Estes cursos são material aberto. A Mission One Eleven trata à parte o certificado e a inscrição."
+    },
+    "messengerLead": {
+      "en": "College courses are listed here with a lock badge. This site publishes the overview only.",
+      "es": "Los cursos universitarios aparecen aquí con una marca de bloqueo. Este sitio publica solo el resumen.",
+      "pt": "Os cursos universitários aparecem aqui com um selo de bloqueio. Este site publica apenas o resumo."
+    },
+    "messengerCatalogTitle": {
+      "en": "Messenger College",
+      "es": "Messenger College",
+      "pt": "Messenger College"
+    },
+    "messengerCatalogLead": {
+      "en": "Credit courses stay with Messenger College. Each card on this page is an overview. Full materials are not published here.",
+      "es": "Los cursos con crédito permanecen en Messenger College. Cada ficha de esta página es un resumen. Los materiales completos no se publican aquí.",
+      "pt": "Os cursos com crédito permanecem no Messenger College. Cada ficha desta página é um resumo. Os materiais completos não são publicados aqui."
+    },
+    "overviewLabel": { "en": "Overview", "es": "Resumen", "pt": "Resumo" },
+    "labels": {
+      "video": { "en": "Video", "es": "Video", "pt": "Vídeo" },
+      "reading": { "en": "Reading", "es": "Lectura", "pt": "Leitura" },
+      "workbook": { "en": "Workbook", "es": "Cuaderno", "pt": "Caderno" },
+      "slides": { "en": "Lecture slides", "es": "Diapositivas", "pt": "Slides da aula" },
+      "assignment": { "en": "Assignment", "es": "Tarea", "pt": "Tarefa" },
+      "discussion": { "en": "Discussion", "es": "Discusión", "pt": "Discussão" },
+      "quiz": { "en": "Quiz", "es": "Cuestionario", "pt": "Questionário" },
+      "syllabus": { "en": "Syllabus", "es": "Programa", "pt": "Programa" },
+      "attachment": { "en": "Attachment", "es": "Archivo", "pt": "Arquivo" },
+      "note": { "en": "Note", "es": "Nota", "pt": "Nota" }
+    }
+  }
+}

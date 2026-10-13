@@ -1,0 +1,438 @@
+{
+  "id": "missiology",
+  "provider": "moe",
+  "order": 1,
+  "canvas": "https://canvaslite.instructure.com/courses/15690",
+  "title": {
+    "en": "Missiology of Unreached People Groups",
+    "es": "Misiología de los grupos étnicos no alcanzados",
+    "pt": "Missiologia dos povos não alcançados"
+  },
+  "description": {
+    "en": "Weekly classes with recordings, readings and discussions. Textbooks: The Core, The Assignment with workbook. Gospel stories.",
+    "es": "Clases semanales con grabaciones, lecturas y discusiones. Libros de texto: The Core, The Assignment con cuaderno de trabajo. Historias del evangelio.",
+    "pt": "Aulas semanais com gravações, leituras e discussões. Livros-texto: The Core, The Assignment com caderno de trabalho. Histórias do evangelho."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Open courseware",
+    "es": "Curso abierto",
+    "pt": "Curso aberto"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome",
+        "es": "Bienvenida",
+        "pt": "Boas-vindas"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Orientation Video",
+            "es": "Video de orientación",
+            "pt": "Vídeo de orientação"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/orientation_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "syllabus",
+          "format": "PDF",
+          "status": "unavailable",
+          "title": {
+            "en": "Missiology of Unreached People Groups Class Syllabus",
+            "es": "Programa del curso: Misiología de los grupos étnicos no alcanzados",
+            "pt": "Programa do curso: Missiologia dos povos não alcançados"
+          }
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Textbook: The Core",
+            "es": "Libro de texto: The Core",
+            "pt": "Livro-texto: The Core"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/the-core.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Textbook: The Assignment",
+            "es": "Libro de texto: The Assignment",
+            "pt": "Livro-texto: The Assignment"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/the-assignment.pdf"
+        },
+        {
+          "kind": "workbook",
+          "title": {
+            "en": "Textbook: The Assignment Workbook",
+            "es": "Libro de texto: The Assignment Workbook",
+            "pt": "Livro-texto: The Assignment Workbook"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/the-assignment-workbook.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Gospel Stories",
+            "es": "Historias del evangelio",
+            "pt": "Histórias do evangelho"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/gospel-stories.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Shorthand Gospel Story",
+            "es": "Historia abreviada del evangelio",
+            "pt": "História resumida do evangelho"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/shorthand-gospel.pdf"
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "The Assignment",
+        "es": "La asignación",
+        "pt": "A tarefa"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 1 Class Recording",
+            "es": "Grabación de la clase de la semana 1",
+            "pt": "Gravação da aula da semana 1"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/stiiuic5omhlo2v/Missiology%20of%20Unreached.Week%201.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 1",
+            "es": "Lecturas: Semana 1",
+            "pt": "Leituras: Semana 1"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Assignment Workbook: Week 1",
+            "es": "Cuaderno de tareas: Semana 1",
+            "pt": "Caderno de tarefas: Semana 1"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: The Assignment",
+            "es": "Discusión: La asignación",
+            "pt": "Discussão: A tarefa"
+          }
+        },
+        {
+          "kind": "slides",
+          "title": {
+            "en": "GSEC presentation, 2016",
+            "es": "GSEC presentation, 2016",
+            "pt": "GSEC presentation, 2016"
+          },
+          "format": "PowerPoint"
+        }
+      ],
+      "kind": "week",
+      "n": 1
+    },
+    {
+      "title": {
+        "en": "Open Heaven",
+        "es": "Cielo abierto",
+        "pt": "Céu aberto"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 2 Class Recording",
+            "es": "Grabación de la clase de la semana 2",
+            "pt": "Gravação da aula da semana 2"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/kz0g45hn9rxwqw8/Missiology%20of%20Unreached.Week%202.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 2",
+            "es": "Lecturas: Semana 2",
+            "pt": "Leituras: Semana 2"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Assignment Workbook: Week 2",
+            "es": "Cuaderno de tareas: Semana 2",
+            "pt": "Caderno de tarefas: Semana 2"
+          }
+        },
+        {
+          "kind": "video",
+          "title": {
+            "en": "Gospel Map Talk",
+            "es": "Charla del mapa del evangelio",
+            "pt": "Conversa sobre o mapa do evangelho"
+          },
+          "format": "Vimeo",
+          "href": "https://vimeo.com/113801439"
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Open Heaven",
+            "es": "Discusión: Cielo abierto",
+            "pt": "Discussão: Céu aberto"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 2
+    },
+    {
+      "title": {
+        "en": "Jesus Satisfied",
+        "es": "Jesús satisfecho",
+        "pt": "Jesus satisfeito"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 3 Class Recording",
+            "es": "Grabación de la clase de la semana 3",
+            "pt": "Gravação da aula da semana 3"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/mfoybj0hagyf5p4/Missiology%20of%20Unreached.Week%203.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 3",
+            "es": "Lecturas: Semana 3",
+            "pt": "Leituras: Semana 3"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Assignment Workbook: Week 3",
+            "es": "Cuaderno de tareas: Semana 3",
+            "pt": "Caderno de tarefas: Semana 3"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Jesus Satisfied",
+            "es": "Discusión: Jesús satisfecho",
+            "pt": "Discussão: Jesus satisfeito"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 3
+    },
+    {
+      "title": {
+        "en": "Unfinished Assignment",
+        "es": "La asignación inconclusa",
+        "pt": "A tarefa inacabada"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 4 Class Recording",
+            "es": "Grabación de la clase de la semana 4",
+            "pt": "Gravação da aula da semana 4"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/g94rpsu09a2dkvl/Missiology%20of%20Unreached.Week%204.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 4",
+            "es": "Lecturas: Semana 4",
+            "pt": "Leituras: Semana 4"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Assignment Workbook: Week 4",
+            "es": "Cuaderno de tareas: Semana 4",
+            "pt": "Caderno de tarefas: Semana 4"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Unfinished Assignment",
+            "es": "Discusión: La asignación inconclusa",
+            "pt": "Discussão: A tarefa inacabada"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "UPG/UUPG Review",
+            "es": "Repaso de UPG/UUPG",
+            "pt": "Revisão de UPG/UUPG"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 4
+    },
+    {
+      "title": {
+        "en": "Gospel Basics",
+        "es": "Fundamentos del evangelio",
+        "pt": "Fundamentos do evangelho"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 5 Class Recording",
+            "es": "Grabación de la clase de la semana 5",
+            "pt": "Gravação da aula da semana 5"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/bedvs527j1lm704/Missiology%20of%20Unreached.Week%205.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 5",
+            "es": "Lecturas: Semana 5",
+            "pt": "Leituras: Semana 5"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Assignment Workbook: Week 5",
+            "es": "Cuaderno de tareas: Semana 5",
+            "pt": "Caderno de tarefas: Semana 5"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Gospel Basics",
+            "es": "Discusión: Fundamentos del evangelio",
+            "pt": "Discussão: Fundamentos do evangelho"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Short Essay",
+            "es": "Ensayo breve",
+            "pt": "Redação curta"
+          }
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Telling My Story",
+            "es": "Telling My Story",
+            "pt": "Telling My Story"
+          },
+          "format": "PDF"
+        }
+      ],
+      "kind": "week",
+      "n": 5
+    },
+    {
+      "title": {
+        "en": "He Will Lead",
+        "es": "Él guiará",
+        "pt": "Ele guiará"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 6 Class Recording",
+            "es": "Grabación de la clase de la semana 6",
+            "pt": "Gravação da aula da semana 6"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/11rwbtto4y3ek3z/Missiology%20of%20Unreached.Week%206.mp4?raw=1"
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 6",
+            "es": "Lecturas: Semana 6",
+            "pt": "Leituras: Semana 6"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Assignment Workbook: Week 6",
+            "es": "Cuaderno de tareas: Semana 6",
+            "pt": "Caderno de tarefas: Semana 6"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: He Will Lead",
+            "es": "Discusión: Él guiará",
+            "pt": "Discussão: Ele guiará"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Final Paper",
+            "es": "Trabajo final",
+            "pt": "Trabalho final"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 6
+    }
+  ],
+  "weeks": 6
+}

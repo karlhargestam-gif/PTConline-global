@@ -1,0 +1,228 @@
+.banner {
+  background: #332D26;
+  border-bottom: 4px solid #B2242E;
+  padding: 16px clamp(16px, 4vw, 48px);
+}
+
+.banner img {
+  height: 36px;
+  width: auto;
+  display: block;
+  border: 0;
+}
+
+.masthead,
+.catalog,
+.course {
+  padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 48px) clamp(40px, 6vw, 72px);
+}
+
+.masthead h1,
+.week h2,
+.prose h1,
+.prose h2,
+.catalog h1,
+.catalog h2,
+.catalog-card h3 {
+  font-family: Lato, "Franklin Gothic Medium", "Libre Franklin", Arial, sans-serif;
+  color: #332D26;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.masthead h1,
+.prose h1,
+.catalog h1 {
+  margin: 8px 0 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  max-width: 40rem;
+  text-wrap: balance;
+}
+
+.kicker,
+.meta-label {
+  margin: 0;
+  color: #59554F;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 42rem;
+  margin: 16px 0 0;
+  color: #332D26;
+}
+
+.teachers {
+  margin: 12px 0 0;
+  color: #59554F;
+  font-weight: 700;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.course-meta div { min-width: 8rem; }
+.course-meta dt {
+  margin: 0;
+  color: #59554F;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.course-meta dd { margin: 2px 0 0; font-weight: 700; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.course { display: grid; gap: 22px; max-width: 920px; }
+
+.week {
+  background: #ffffff;
+  border-top: 4px solid #B2242E;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.week h2 { margin: 4px 0 0; font-size: clamp(1.35rem, 2.5vw, 1.75rem); }
+
+.accent {
+  width: 56px;
+  height: 3px;
+  background: #B2242E;
+  margin: 10px 0 16px;
+}
+
+.resources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.resources li,
+.note-block {
+  padding-top: 12px;
+  border-top: 1px solid #D8D0C4;
+}
+
+.resources li:first-child { padding-top: 0; border-top: 0; }
+
+.resources p,
+.note-block p { margin: 0; }
+
+.resources a { color: #B2242E; font-weight: 700; }
+
+.where,
+.unavailable,
+.hint {
+  color: #59554F;
+  font-weight: 600;
+}
+
+.file-size { color: #59554F; font-weight: 600; }
+
+.note-text {
+  margin-top: 8px;
+  white-space: pre-line;
+  color: #332D26;
+}
+
+video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 10px;
+  background: #000000;
+}
+
+.lock-badge {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 8px;
+  border: 1px solid #B2242E;
+  color: #B2242E;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.notice {
+  background: #ffffff;
+  border: 1px solid #D8D0C4;
+  border-left: 4px solid #B2242E;
+  padding: 14px 16px;
+  margin: 18px 0;
+  max-width: 42rem;
+}
+
+.notice p { margin: 0; font-weight: 700; }
+
+.provider-block { margin-top: 36px; }
+.provider-block + .provider-block { margin-top: 48px; padding-top: 28px; border-top: 1px solid #D8D0C4; }
+
+.provider-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+  margin: 0 0 12px;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px;
+  background: #ffffff;
+  border-top: 3px solid #B2242E;
+  color: inherit;
+  text-decoration: none;
+}
+
+.catalog-card h3 { margin: 0; font-size: 1.35rem; }
+.catalog-card p { margin: 10px 0 0; color: #332D26; }
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: auto;
+  padding-top: 14px;
+  color: #59554F;
+  font-size: 0.78rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.prose { max-width: 42rem; }
+.prose h2 { font-size: 1.35rem; margin: 28px 0 8px; }
+.prose p { margin: 0 0 12px; }
+.prose ul { margin: 0 0 12px; padding-left: 1.2rem; }
+.prose a { color: #B2242E; }
+.prose .file-list { padding-left: 1.1rem; }
+.prose .file-list li { margin: 4px 0; }
+
+@media (max-width: 720px) {
+  .catalog-grid { grid-template-columns: 1fr; }
+  .actions { flex-direction: column; }
+  .actions .button { width: 100%; }
+}

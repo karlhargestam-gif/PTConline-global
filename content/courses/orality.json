@@ -1,0 +1,452 @@
+{
+  "id": "orality",
+  "provider": "moe",
+  "order": 2,
+  "canvas": "https://canvaslite.instructure.com/courses/15693",
+  "title": {
+    "en": "Methods of Orality",
+    "es": "Métodos de oralidad",
+    "pt": "Métodos de oralidade"
+  },
+  "description": {
+    "en": "Weekly video classes. Textbooks: Building on Firm Foundations, The Core. Gospel stories and personality assessments.",
+    "es": "Clases semanales en video. Libros de texto: Building on Firm Foundations, The Core. Historias del evangelio y evaluaciones de personalidad.",
+    "pt": "Aulas semanais em vídeo. Livros-texto: Building on Firm Foundations, The Core. Histórias do evangelho e avaliações de personalidade."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Open courseware",
+    "es": "Curso abierto",
+    "pt": "Curso aberto"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome",
+        "es": "Bienvenida",
+        "pt": "Boas-vindas"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Orientation Video",
+            "es": "Video de orientación",
+            "pt": "Vídeo de orientação"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1"
+        },
+        {
+          "kind": "syllabus",
+          "format": "PDF",
+          "status": "unavailable",
+          "title": {
+            "en": "Syllabus Methods of Orality",
+            "es": "Programa: Methods of Orality",
+            "pt": "Ementa: Métodos de Oralidade"
+          }
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Textbook: Building on Firm Foundations",
+            "es": "Libro de texto: Building on Firm Foundations",
+            "pt": "Livro-texto: Building on Firm Foundations"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/building-on-firm-foundations.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Textbook: The Core",
+            "es": "Libro de texto: The Core",
+            "pt": "Livro-texto: The Core"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/the-core.pdf"
+        },
+        {
+          "kind": "video",
+          "title": {
+            "en": "Video: EE Tow",
+            "es": "Video: EE Tow",
+            "pt": "Vídeo: EE-Taow"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/2c5mszxuwookosa/EE-Taow.The.Mouk.Story.2008.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_ee_taow_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "MOE Gospel Stories",
+            "es": "Historias del evangelio de MOE",
+            "pt": "Histórias do evangelho do MOE"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/gospel-stories.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Shorthand Gospel",
+            "es": "Evangelio abreviado",
+            "pt": "Evangelho resumido"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/shorthand-gospel.pdf"
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Personality Tests",
+            "es": "Pruebas de personalidad",
+            "pt": "Testes de personalidade"
+          }
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Firm Foundations",
+        "es": "Fundamentos firmes",
+        "pt": "Fundamentos firmes"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 1 Class Recording",
+            "es": "Grabación de la clase de la semana 1",
+            "pt": "Gravação da aula da semana 1"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ooy0nteewbs4sgj/Methods%20of%20Orality.Week%201.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_w1_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 1",
+            "es": "Lecturas: Semana 1",
+            "pt": "Leituras: Semana 1"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Firm Foundations Part 1",
+            "es": "Discusión: Fundamentos firmes, parte 1",
+            "pt": "Discussão: Fundamentos firmes, parte 1"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Stories: 1-6",
+            "es": "Historias: 1-6",
+            "pt": "Histórias: 1-6"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 1
+    },
+    {
+      "title": {
+        "en": "Firm Foundations",
+        "es": "Fundamentos firmes",
+        "pt": "Fundamentos firmes"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 2 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 2",
+            "pt": "Gravação da videoaula da semana 2"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/f2vej2vfmybsf7q/Methods%20of%20Orality.Week%202.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_w2_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 2",
+            "es": "Lecturas: Semana 2",
+            "pt": "Leituras: Semana 2"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Firm Foundation Part 2",
+            "es": "Discusión: Fundamento firme, parte 2",
+            "pt": "Discussão: Fundamento firme, parte 2"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Stories: 7-12",
+            "es": "Historias: 7-12",
+            "pt": "Histórias: 7-12"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 2
+    },
+    {
+      "title": {
+        "en": "Basis for Faith",
+        "es": "Fundamento de la fe",
+        "pt": "Fundamento da fé"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 3 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 3",
+            "pt": "Gravação da videoaula da semana 3"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/s2w7sljvyt4t99a/Methods%20of%20Orality.Week%203.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_w3_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 3",
+            "es": "Lecturas: Semana 3",
+            "pt": "Leituras: Semana 3"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Basis For Faith Part 1",
+            "es": "Discusión: Fundamento de la fe, parte 1",
+            "pt": "Discussão: Fundamento da fé, parte 1"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Stories: 13-18",
+            "es": "Historias: 13-18",
+            "pt": "Histórias: 13-18"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Short Essay",
+            "es": "Ensayo breve",
+            "pt": "Redação curta"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 3
+    },
+    {
+      "title": {
+        "en": "Basis for Faith",
+        "es": "Fundamento de la fe",
+        "pt": "Fundamento da fé"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 4 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 4",
+            "pt": "Gravação da videoaula da semana 4"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/3gkv7gu75ciicn0/Methods%20of%20Orality.Week%204.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_w4_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 4",
+            "es": "Lecturas: Semana 4",
+            "pt": "Leituras: Semana 4"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Basis for Faith Part 2",
+            "es": "Discusión: Fundamento de la fe, parte 2",
+            "pt": "Discussão: Fundamento da fé, parte 2"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Stories: 19-24",
+            "es": "Historias: 19-24",
+            "pt": "Histórias: 19-24"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 4
+    },
+    {
+      "title": {
+        "en": "Storytelling",
+        "es": "Narración de historias",
+        "pt": "Contação de histórias"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 5 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 5",
+            "pt": "Gravação da videoaula da semana 5"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/cxmcs4u5wgy2652/Methods%20of%20Orality.Week%205.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_w5_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 5",
+            "es": "Lecturas: Semana 5",
+            "pt": "Leituras: Semana 5"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Storytelling Part 1",
+            "es": "Discusión: Narración de historias, parte 1",
+            "pt": "Discussão: Contação de histórias, parte 1"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Stories: 25-30",
+            "es": "Historias: 25-30",
+            "pt": "Histórias: 25-30"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 5
+    },
+    {
+      "title": {
+        "en": "Storytelling",
+        "es": "Narración de historias",
+        "pt": "Contação de histórias"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 6 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 6",
+            "pt": "Gravação da videoaula da semana 6"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/gi9yovthqmh8uwc/Methods%20of%20Orality.Week%206.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/orality_w6_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Readings: Week 6",
+            "es": "Lecturas: Semana 6",
+            "pt": "Leituras: Semana 6"
+          }
+        },
+        {
+          "kind": "discussion",
+          "title": {
+            "en": "Discussion: Storytelling Part 2",
+            "es": "Discusión: Narración de historias, parte 2",
+            "pt": "Discussão: Contação de histórias, parte 2"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Stories: 31-34",
+            "es": "Historias: 31-34",
+            "pt": "Histórias: 31-34"
+          }
+        },
+        {
+          "kind": "assignment",
+          "title": {
+            "en": "Final Paper",
+            "es": "Trabajo final",
+            "pt": "Trabalho final"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 6
+    }
+  ],
+  "weeks": 6
+}

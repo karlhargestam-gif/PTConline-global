@@ -1,0 +1,58 @@
+/* Lato and Open Sans (Mission One Eleven web faces) and Crimson Text (PTC pages).
+   SIL Open Font License: assets/fonts/OFL.txt */
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/lato-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/lato-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/open-sans-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/open-sans-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/open-sans-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/crimson-text-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/crimson-text-600.woff2") format("woff2");
+}

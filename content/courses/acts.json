@@ -1,0 +1,327 @@
+{
+  "id": "acts",
+  "provider": "moe",
+  "order": 4,
+  "canvas": "https://canvaslite.instructure.com/courses/15697",
+  "title": {
+    "en": "Book of Acts",
+    "es": "Libro de los Hechos",
+    "pt": "Livro de Atos"
+  },
+  "description": {
+    "en": "Weekly video classes with readings and chapter tests. A textbook journey through Acts.",
+    "es": "Clases semanales en video con lecturas y exámenes por capítulo. Un recorrido por Hechos con libro de texto.",
+    "pt": "Aulas semanais em vídeo com leituras e provas por capítulo. Uma jornada por Atos com livro-texto."
+  },
+  "teachingLanguage": {
+    "en": "English",
+    "es": "Inglés",
+    "pt": "Inglês"
+  },
+  "level": {
+    "en": "Open courseware",
+    "es": "Curso abierto",
+    "pt": "Curso aberto"
+  },
+  "blocks": [
+    {
+      "title": {
+        "en": "Welcome",
+        "es": "Bienvenida",
+        "pt": "Boas-vindas"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Orientation Video",
+            "es": "Video de orientación",
+            "pt": "Vídeo de orientação"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/ocbeb795lqkazli/MOE%20Orientation%202021.mp4?raw=1"
+        },
+        {
+          "kind": "syllabus",
+          "title": {
+            "en": "Syllabus",
+            "es": "Programa",
+            "pt": "Programa"
+          },
+          "format": "PDF",
+          "href": "/assets/syllabi/acts-syllabus.pdf"
+        },
+        {
+          "kind": "reading",
+          "title": {
+            "en": "Acts of the Holy Spirit",
+            "es": "Acts of the Holy Spirit",
+            "pt": "Acts of the Holy Spirit"
+          },
+          "format": "PDF",
+          "href": "/assets/resources/acts-of-the-holy-spirit.pdf"
+        }
+      ],
+      "kind": "section"
+    },
+    {
+      "title": {
+        "en": "Chapters 1–2",
+        "es": "Capítulos 1–2",
+        "pt": "Capítulos 1–2"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 1 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 1",
+            "pt": "Gravação da videoaula da semana 1"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/oglojlmzgdmsopn/Book%20of%20Acts.Week%201.mp4?raw=1"
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Week 1 Reading",
+            "es": "Lectura de la semana 1",
+            "pt": "Leitura da semana 1"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 1 Test",
+            "es": "Examen del capítulo 1",
+            "pt": "Prova do capítulo 1"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 2 Test",
+            "es": "Examen del capítulo 2",
+            "pt": "Prova do capítulo 2"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 1
+    },
+    {
+      "title": {
+        "en": "Chapters 3–4",
+        "es": "Capítulos 3–4",
+        "pt": "Capítulos 3–4"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 2 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 2",
+            "pt": "Gravação da videoaula da semana 2"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/1v2eol6eym6ablg/Book%20of%20Acts.Week%202.mp4?raw=1"
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Week 2 Reading",
+            "es": "Lectura de la semana 2",
+            "pt": "Leitura da semana 2"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 3 Test",
+            "es": "Examen del capítulo 3",
+            "pt": "Prova do capítulo 3"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 4 Test",
+            "es": "Examen del capítulo 4",
+            "pt": "Prova do capítulo 4"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 2
+    },
+    {
+      "title": {
+        "en": "Chapters 5–7",
+        "es": "Capítulos 5–7",
+        "pt": "Capítulos 5–7"
+      },
+      "items": [
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Week 3 Reading",
+            "es": "Lectura de la semana 3",
+            "pt": "Leitura da semana 3"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 5 Test",
+            "es": "Examen del capítulo 5",
+            "pt": "Prova do capítulo 5"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 6 Test",
+            "es": "Examen del capítulo 6",
+            "pt": "Prova do capítulo 6"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 7 Test",
+            "es": "Examen del capítulo 7",
+            "pt": "Prova do capítulo 7"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 3
+    },
+    {
+      "title": {
+        "en": "Chapters 8–9",
+        "es": "Capítulos 8–9",
+        "pt": "Capítulos 8–9"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 4 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 4",
+            "pt": "Gravação da videoaula da semana 4"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/qc1rimgc296mw0t/Book%20of%20Acts.Week%204.mp4?raw=1"
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Week 4 Reading",
+            "es": "Lectura de la semana 4",
+            "pt": "Leitura da semana 4"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 8 Test",
+            "es": "Examen del capítulo 8",
+            "pt": "Prova do capítulo 8"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 9 Test",
+            "es": "Examen del capítulo 9",
+            "pt": "Prova do capítulo 9"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 4
+    },
+    {
+      "title": {
+        "en": "Chapters 10–11",
+        "es": "Capítulos 10–11",
+        "pt": "Capítulos 10–11"
+      },
+      "items": [
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Week 5 Reading",
+            "es": "Lectura de la semana 5",
+            "pt": "Leitura da semana 5"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 10 Test",
+            "es": "Examen del capítulo 10",
+            "pt": "Prova do capítulo 10"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 11 Test",
+            "es": "Examen del capítulo 11",
+            "pt": "Prova do capítulo 11"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 5
+    },
+    {
+      "title": {
+        "en": "Chapters 12–13",
+        "es": "Capítulos 12–13",
+        "pt": "Capítulos 12–13"
+      },
+      "items": [
+        {
+          "kind": "video",
+          "title": {
+            "en": "Week 6 Video Class Recording",
+            "es": "Grabación de la videoclase de la semana 6",
+            "pt": "Gravação da videoaula da semana 6"
+          },
+          "format": "Dropbox, MP4",
+          "src": "https://www.dropbox.com/s/elvdg0z2iq913su/Book%20of%20Acts.Week%206.mp4?raw=1"
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Week 6 Reading",
+            "es": "Lectura de la semana 6",
+            "pt": "Leitura da semana 6"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 12 Test",
+            "es": "Examen del capítulo 12",
+            "pt": "Prova do capítulo 12"
+          }
+        },
+        {
+          "kind": "quiz",
+          "title": {
+            "en": "Chapter 13 Test",
+            "es": "Examen del capítulo 13",
+            "pt": "Prova do capítulo 13"
+          }
+        }
+      ],
+      "kind": "week",
+      "n": 6
+    }
+  ],
+  "weeks": 6
+}
