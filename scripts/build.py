@@ -585,6 +585,34 @@ class Site:
             },
         }
 
+    def person_node(self, lang, description):
+        host = self.site["host"]
+        job_title = {
+            "en": "Global Missions Director",
+            "es": "Director de Misiones Globales",
+            "pt": "Diretor de Missões Globais",
+        }
+        return {
+            "@type": "Person",
+            "@id": host + "/about/karl-hargestam#person",
+            "name": "Karl Hargestam",
+            "jobTitle": job_title[lang],
+            "description": description,
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Pentecostal Church of God",
+                "url": "https://www.pcg.org/about/leadership",
+            },
+            "affiliation": {"@id": host + "/#organization"},
+            "url": canonical_for(self.site, "en", "about/karl-hargestam"),
+            "sameAs": [
+                "https://pcgmission.org",
+                "https://www.pcg.org/about/leadership",
+                "https://about.me/hargestam",
+                "https://karlhargestam.com",
+            ],
+        }
+
     def render_prose(self, page_id, lang):
         page = self.pages[page_id]
         title = page["title"][lang]
@@ -611,13 +639,38 @@ class Site:
             if page_id == "copyright" and section["heading"]["en"] == "Course files":
                 extra = self.hosted_files(lang)
             sections.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{links}{extra}")
-        body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(title)}</h1><p class="lead">{esc(description)}</p></header>
+        lead = "" if page.get("lead") is False else f"<p class=\"lead\">{esc(description)}</p>"
+        body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(title)}</h1>{lead}</header>
 <article class="prose catalog">
 {''.join(sections)}
 </article>'''
+        if page.get("schema") == "person":
+            url = canonical_for(self.site, lang, page_id)
+            person = self.person_node(lang, description)
+            data = {
+                "@context": "https://schema.org",
+                "@graph": [
+                    self.organization_node(lang),
+                    person,
+                    {
+                        "@type": "ProfilePage",
+                        "@id": url + "#webpage",
+                        "url": url,
+                        "name": title,
+                        "description": description,
+                        "inLanguage": lang,
+                        "isPartOf": {"@id": self.site["host"] + "/#website"},
+                        "publisher": {"@id": self.site["host"] + "/#organization"},
+                        "mainEntity": {"@id": person["@id"]},
+                    },
+                ],
+            }
+            linked_data = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+        else:
+            linked_data = self.jsonld("page", lang, page_id, title, description)
         html_page = self.document(
             lang, page_id, title, description, body,
-            self.jsonld("page", lang, page_id, title, description),
+            linked_data,
             "prose-page",
         )
         self.emit(self.out_path(lang, page_id), html_page)
@@ -639,7 +692,7 @@ class Site:
         return f'<ul class="file-list">{items}</ul>'
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "contact", "enroll", "privacy", "terms", "copyright"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
         urls = []
         for route in routes:
