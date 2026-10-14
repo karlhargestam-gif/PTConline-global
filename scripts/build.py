@@ -267,22 +267,28 @@ class Site:
         else:
             data = {
                 "@context": "https://schema.org",
-                "@type": "WebPage",
-                "@id": url + "#webpage",
-                "url": url,
-                "name": title,
-                "description": description,
-                "inLanguage": lang,
-                "isPartOf": {"@id": self.site["host"] + "/#website"},
-                "publisher": {"@id": self.site["host"] + "/#organization"},
+                "@graph": [
+                    self.organization_node(lang),
+                    {
+                        "@type": "WebPage",
+                        "@id": url + "#webpage",
+                        "url": url,
+                        "name": title,
+                        "description": description,
+                        "inLanguage": lang,
+                        "isPartOf": {"@id": self.site["host"] + "/#website"},
+                        "publisher": {"@id": self.site["host"] + "/#organization"},
+                    },
+                ],
             }
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
     def document(self, lang, route, title, description, body, jsonld, main_class, exact_title=False, og_type="website"):
-        if exact_title or title.endswith(SITE_SUFFIX[lang]):
+        suffix = self.site.get("seoPhrase", {}).get(lang) or SITE_SUFFIX[lang]
+        if exact_title or title.endswith(suffix) or title.endswith(SITE_SUFFIX[lang]):
             full_title = title
         else:
-            full_title = f"{title} | {SITE_SUFFIX[lang]}"
+            full_title = f"{title} | {suffix}"
         head = fill(
             self.head,
             {
@@ -389,8 +395,8 @@ class Site:
         url = canonical_for(self.site, lang, route)
         provider = "Mission One Eleven" if course["provider"] == "moe" else "Messenger College"
         provider_url = self.site["moeUrl"] if course["provider"] == "moe" else self.site["messengerUrl"]
-        data = {
-            "@context": "https://schema.org",
+        host = self.site["host"]
+        course_node = {
             "@type": "Course",
             "@id": url + "#course",
             "url": url,
@@ -399,7 +405,11 @@ class Site:
             "inLanguage": "en",
             "provider": {"@type": "Organization", "name": provider, "url": provider_url},
             "isAccessibleForFree": not course.get("locked", False),
-            "publisher": {"@id": self.site["host"] + "/#organization"},
+            "publisher": {"@id": host + "/#organization"},
+        }
+        data = {
+            "@context": "https://schema.org",
+            "@graph": [self.organization_node(lang), course_node],
         }
         return self.jsonld("course", lang, route, course["title"][lang], course["description"][lang], data)
 
@@ -524,11 +534,13 @@ class Site:
   </section>
 </div>'''
         title = self.ui["catalogTitle"][lang]
+        seo = self.ui.get("catalogSeoTitle", {}).get(lang) or title
         description = self.ui["catalogLead"][lang]
         page = self.document(
-            lang, "courses", title, description, body,
-            self.jsonld("page", lang, "courses", title, description),
+            lang, "courses", seo, description, body,
+            self.jsonld("page", lang, "courses", seo, description),
             "catalog-page",
+            exact_title=seo != title,
         )
         self.emit(self.out_path(lang, "courses"), page)
 
@@ -558,7 +570,7 @@ class Site:
         )
         self.emit(self.out_path(lang, "courses/messenger"), page)
 
-    def organization_node(self):
+    def organization_node(self, lang):
         host = self.site["host"]
         return {
             "@type": "EducationalOrganization",
@@ -566,6 +578,7 @@ class Site:
             "name": "Pentecostal Theological Consortium",
             "alternateName": "PTC",
             "url": host + "/",
+            "description": self.site["orgDescription"][lang],
             "logo": host + "/assets/pcg-flame.png",
             "parentOrganization": {
                 "@type": "Organization",
@@ -574,45 +587,6 @@ class Site:
                 "url": "https://www.pcgmission.org/",
             },
         }
-
-    def person_schema(self, page, lang, route, title, description):
-        url = canonical_for(self.site, lang, route)
-        person_id = url + "#person"
-        org = self.organization_node()
-        source = page["person"]
-        works = source["worksFor"]
-        person = {
-            "@type": "Person",
-            "@id": person_id,
-            "name": source["name"],
-            "jobTitle": source["jobTitle"][lang],
-            "url": url,
-            "worksFor": {
-                "@type": "Organization",
-                "name": works["name"],
-                "alternateName": works["alternateName"],
-                "url": works["url"],
-            },
-            "affiliation": {"@id": org["@id"]},
-            "sameAs": list(source["sameAs"]),
-        }
-        image = source.get("image")
-        if image:
-            person["image"] = image
-        webpage = {
-            "@type": "ProfilePage",
-            "@id": url + "#webpage",
-            "url": url,
-            "name": title,
-            "description": description,
-            "inLanguage": lang,
-            "isPartOf": {"@id": self.site["host"] + "/#website"},
-            "publisher": {"@id": org["@id"]},
-            "mainEntity": {"@id": person_id},
-            "about": {"@id": person_id},
-        }
-        data = {"@context": "https://schema.org", "@graph": [org, person, webpage]}
-        return self.jsonld("raw", lang, route, title, description, data)
 
     def render_prose(self, page_id, lang):
         page = self.pages[page_id]
@@ -644,18 +618,12 @@ class Site:
 <article class="prose catalog">
 {''.join(sections)}
 </article>'''
-        if page.get("person"):
-            schema = self.person_schema(page, lang, page_id, title, description)
-            og_type = "profile"
-        else:
-            schema = self.jsonld("page", lang, page_id, title, description)
-            og_type = "website"
+        seo = (page.get("seoTitle") or {}).get(lang) or title
         html_page = self.document(
-            lang, page_id, title, description, body,
-            schema,
+            lang, page_id, seo, description, body,
+            self.jsonld("page", lang, page_id, seo, description),
             "prose-page",
-            exact_title=bool(page.get("exactTitle")),
-            og_type=og_type,
+            exact_title=seo != title,
         )
         self.emit(self.out_path(lang, page_id), html_page)
 
@@ -676,7 +644,7 @@ class Site:
         return f'<ul class="file-list">{items}</ul>'
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright"]
+        routes = ["", "courses", "courses/messenger", "about", "contact", "enroll", "privacy", "terms", "copyright"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
         urls = []
         for route in routes:

@@ -5,10 +5,15 @@
       "es": "Acerca de",
       "pt": "Sobre"
     },
+    "seoTitle": {
+      "en": "Pentecostal Theological Training for National Leaders",
+      "es": "Formación teológica pentecostal para líderes nacionales",
+      "pt": "Formação teológica pentecostal para líderes nacionais"
+    },
     "description": {
-      "en": "What the Pentecostal Theological Consortium is, who the education partners are, and what this website does.",
-      "es": "Qué es el Consorcio Teológico Pentecostal, quiénes son los socios educativos y qué hace este sitio.",
-      "pt": "O que é o Consórcio Teológico Pentecostal, quem são os parceiros educacionais e o que este site faz."
+      "en": "A multilingual catalog of Pentecostal theological training and missionary training online for national leaders.",
+      "es": "Un catálogo multilingüe de formación teológica pentecostal y formación misionera en línea para líderes nacionales.",
+      "pt": "Um catálogo multilíngue de formação teológica pentecostal e treinamento missionário online para líderes nacionais."
     },
     "sections": [
       {
@@ -46,27 +51,6 @@
         }
       },
       {
-        "heading": { "en": "Leadership", "es": "Liderazgo", "pt": "Liderança" },
-        "paragraphs": {
-          "en": [
-            "Karl Hargestam is Director of PCG (Pentecostal Church of God) Global Missions. He leads One Chance and Operation Uttermost, a global ministry and leadership effort spanning about 110 nations, and he is connected with PTC and Mission One Eleven."
-          ],
-          "es": [
-            "Karl Hargestam es director de PCG (Pentecostal Church of God) Global Missions. Dirige One Chance y Operation Uttermost, un esfuerzo global de ministerio y liderazgo que abarca unas 110 naciones, y está conectado con PTC y Mission One Eleven."
-          ],
-          "pt": [
-            "Karl Hargestam é diretor de PCG (Pentecostal Church of God) Global Missions. Ele lidera One Chance e Operation Uttermost, um esforço global de ministério e liderança que abrange cerca de 110 nações, e está ligado ao PTC e à Mission One Eleven."
-          ]
-        },
-        "links": [
-          {
-            "href": "/about/karl-hargestam/",
-            "label": { "en": "Karl Hargestam", "es": "Karl Hargestam", "pt": "Karl Hargestam" },
-            "internal": true
-          }
-        ]
-      },
-      {
         "heading": { "en": "What this website is", "es": "Qué es este sitio", "pt": "O que este site é" },
         "paragraphs": {
           "en": [
@@ -82,119 +66,6 @@
             "As páginas estão em inglês, espanhol e português. Os vídeos de ensino estão em inglês. Há legendas em português nos vídeos que têm um arquivo de legenda."
           ]
         }
-      }
-    ]
-  },
-  "about/karl-hargestam": {
-    "exactTitle": true,
-    "person": {
-      "name": "Karl Hargestam",
-      "jobTitle": {
-        "en": "Director, PCG Global Missions",
-        "es": "Director de PCG Global Missions",
-        "pt": "Diretor de PCG Global Missions"
-      },
-      "worksFor": {
-        "name": "Pentecostal Church of God",
-        "alternateName": "PCG Global Missions",
-        "url": "https://pcgmission.org"
-      },
-      "sameAs": [
-        "https://pcgmission.org",
-        "https://www.linkedin.com/in/karl-hargestam-72327034",
-        "https://about.me/hargestam",
-        "https://missiononeeleven.com"
-      ]
-    },
-    "title": {
-      "en": "Karl Hargestam: Director, PCG Global Missions",
-      "es": "Karl Hargestam: Director de PCG Global Missions",
-      "pt": "Karl Hargestam: Diretor de PCG Global Missions"
-    },
-    "description": {
-      "en": "Director of PCG Global Missions. Karl Hargestam leads One Chance and Operation Uttermost across about 110 nations, connected with PTC and Mission One Eleven.",
-      "es": "Director de PCG Global Missions. Karl Hargestam dirige One Chance y Operation Uttermost en unas 110 naciones, conectado con PTC y Mission One Eleven.",
-      "pt": "Diretor do PCG Global Missions. Karl Hargestam lidera One Chance e Operation Uttermost em cerca de 110 nações, ligado ao PTC e à Mission One Eleven."
-    },
-    "sections": [
-      {
-        "heading": {
-          "en": "Director of PCG Global Missions",
-          "es": "Director de PCG Global Missions",
-          "pt": "Diretor de PCG Global Missions"
-        },
-        "paragraphs": {
-          "en": [
-            "Karl Hargestam is Director of PCG (Pentecostal Church of God) Global Missions.",
-            "He leads One Chance and Operation Uttermost, a global ministry and leadership effort spanning about 110 nations."
-          ],
-          "es": [
-            "Karl Hargestam es director de PCG (Pentecostal Church of God) Global Missions.",
-            "Dirige One Chance y Operation Uttermost, un esfuerzo global de ministerio y liderazgo que abarca unas 110 naciones."
-          ],
-          "pt": [
-            "Karl Hargestam é diretor de PCG (Pentecostal Church of God) Global Missions.",
-            "Ele lidera One Chance e Operation Uttermost, um esforço global de ministério e liderança que abrange cerca de 110 nações."
-          ]
-        }
-      },
-      {
-        "heading": {
-          "en": "Connected with PTC and Mission One Eleven",
-          "es": "Conectado con PTC y Mission One Eleven",
-          "pt": "Ligado ao PTC e à Mission One Eleven"
-        },
-        "paragraphs": {
-          "en": [
-            "He is connected with the Pentecostal Theological Consortium (PTC) and with Mission One Eleven.",
-            "PTC is taking shape as a global learning network of PCG Global Missions. The aim is trusted Pentecostal teaching that can travel, while the language, mentors and ministry of each place stay intact.",
-            "Mission One Eleven prepares pioneer missionaries. Its seven courses on this site are open courseware."
-          ],
-          "es": [
-            "Está conectado con el Consorcio Teológico Pentecostal (PTC) y con Mission One Eleven.",
-            "El Consorcio Teológico Pentecostal (PTC) está tomando forma como una red global de aprendizaje de Pentecostal Church of God Global Missions. El fin es una enseñanza pentecostal confiable que pueda viajar, mientras el idioma, los mentores y el ministerio de cada lugar permanecen.",
-            "Mission One Eleven prepara misioneros pioneros. Sus siete cursos en este sitio son material abierto."
-          ],
-          "pt": [
-            "Está ligado ao Consórcio Teológico Pentecostal (PTC) e à Mission One Eleven.",
-            "O Consórcio Teológico Pentecostal (PTC) está tomando forma como uma rede global de aprendizado da Pentecostal Church of God Global Missions. O objetivo é um ensino pentecostal confiável que possa viajar, enquanto o idioma, os mentores e o ministério de cada lugar permanecem.",
-            "A Mission One Eleven prepara missionários pioneiros. Seus sete cursos neste site são material aberto."
-          ]
-        },
-        "links": [
-          { "href": "https://pcgmission.org", "label": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" } },
-          { "href": "https://missiononeeleven.com", "label": { "en": "Mission One Eleven", "es": "Mission One Eleven", "pt": "Mission One Eleven" } },
-          { "href": "https://www.linkedin.com/in/karl-hargestam-72327034", "label": { "en": "LinkedIn", "es": "LinkedIn", "pt": "LinkedIn" } },
-          { "href": "https://about.me/hargestam", "label": { "en": "about.me", "es": "about.me", "pt": "about.me" } }
-        ]
-      },
-      {
-        "heading": {
-          "en": "Leadership development on this catalog",
-          "es": "Desarrollo de liderazgo en este catálogo",
-          "pt": "Desenvolvimento de liderança neste catálogo"
-        },
-        "paragraphs": {
-          "en": [
-            "Level 2 includes leadership development sessions with Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman and Marie Vanderwal. Discipleship, multiplication and the church circle tool.",
-            "Sessions named with Karl Hargestam include “Unreached Presentation - Karl Hargestam” and “Remaining Faithful to What God Has Called Us To - Karl Hargestam.”"
-          ],
-          "es": [
-            "El nivel 2 incluye sesiones de desarrollo de liderazgo con Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal. Discipulado, multiplicación y la herramienta del círculo de iglesias.",
-            "Las sesiones que llevan su nombre incluyen “Presentación sobre no alcanzados - Karl Hargestam” y “Permaneciendo fieles a lo que Dios nos ha llamado - Karl Hargestam”."
-          ],
-          "pt": [
-            "O nível 2 inclui sessões de desenvolvimento de liderança com Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Discipulado, multiplicação e a ferramenta do círculo de igrejas.",
-            "As sessões que levam o seu nome incluem “Apresentação sobre não alcançados - Karl Hargestam” e “Permanecendo fiéis àquilo para que Deus nos chamou - Karl Hargestam”."
-          ]
-        },
-        "links": [
-          {
-            "href": "/courses/level2/",
-            "label": { "en": "Level 2", "es": "Nivel 2", "pt": "Nível 2" },
-            "internal": true
-          }
-        ]
       }
     ]
   },
@@ -247,10 +118,15 @@
   },
   "enroll": {
     "title": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" },
+    "seoTitle": {
+      "en": "Missionary Training Online for National Leaders",
+      "es": "Formación misionera en línea para líderes nacionales",
+      "pt": "Treinamento missionário online para líderes nacionais"
+    },
     "description": {
-      "en": "How to study an open course, request a Mission One Eleven certificate, or apply to Messenger College.",
-      "es": "Cómo estudiar un curso abierto, pedir un certificado de Mission One Eleven o solicitar admisión en Messenger College.",
-      "pt": "Como estudar um curso aberto, pedir um certificado da Mission One Eleven ou candidatar-se ao Messenger College."
+      "en": "How to study missionary training online, request a Mission One Eleven certificate, or apply for Pentecostal theological training at Messenger College.",
+      "es": "Cómo estudiar formación misionera en línea, pedir un certificado de Mission One Eleven o solicitar formación teológica pentecostal en Messenger College.",
+      "pt": "Como estudar treinamento missionário online, pedir um certificado da Mission One Eleven ou candidatar-se à formação teológica pentecostal no Messenger College."
     },
     "sections": [
       {
