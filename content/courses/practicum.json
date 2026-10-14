@@ -64,7 +64,8 @@
             "es": "MOE Gospel Stories",
             "pt": "MOE Gospel Stories"
           },
-          "format": "PDF"
+          "format": "PDF",
+          "href": "/assets/resources/gospel-stories.pdf"
         },
         {
           "kind": "reading",
@@ -73,7 +74,8 @@
             "es": "Shorthand Gospel",
             "pt": "Shorthand Gospel"
           },
-          "format": "PDF"
+          "format": "PDF",
+          "href": "/assets/resources/shorthand-gospel.pdf"
         }
       ],
       "kind": "section"

@@ -30,69 +30,6 @@ ORIENTATION_TRACK = {
     "label": "Português",
 }
 
-HOME_STATUS = {
-    "en": ("Coming soon", "Open for study"),
-    "es": ("Próximamente", "Abierto para el estudio"),
-    "pt": ("Em breve", "Aberto para estudo"),
-}
-
-HOME_MESSENGER = {
-    "en": [
-        (
-            "An open Christian ethics course from Messenger College educators, presented here for study and ministry formation.",
-            "An overview of a Messenger College ethics course. Full materials stay off this site until an articulation or partnership agreement is in place.",
-        ),
-        (
-            "A Christian ethics course for contemporary church leaders: ethical reasoning frameworks, five core principles, Old and New Testament ethics, and case-study analysis. Teaching notes, readings and guided case work.",
-            "A Christian ethics course for contemporary church leaders: ethical reasoning frameworks, five core principles, Old and New Testament ethics, and case-study analysis.",
-        ),
-        (
-            "<p class=\"course-number\">Doug Petersen and Jennifer Hargestam</p>",
-            "<p class=\"course-number\">Locked · Doug Petersen and Jennifer Hargestam</p>",
-        ),
-        (
-            "This open course does not itself confer academic credit or a degree. Degree applications are handled directly by Messenger College.",
-            "This listing does not confer academic credit or a degree. Messenger College handles admission.",
-        ),
-    ],
-    "es": [
-        (
-            "Un curso abierto de ética cristiana de educadores de Messenger College, presentado aquí para el estudio y la formación ministerial.",
-            "Un resumen de un curso de ética de Messenger College. Los materiales completos permanecen fuera de este sitio hasta que haya un acuerdo de articulación o de colaboración.",
-        ),
-        (
-            "Un curso de ética cristiana para líderes eclesiásticos contemporáneos: marcos de razonamiento ético, cinco principios fundamentales, ética del Antiguo y Nuevo Testamento, y análisis de estudios de caso. Notas de enseñanza, lecturas y trabajo guiado de casos.",
-            "Un curso de ética cristiana para líderes eclesiásticos contemporáneos: marcos de razonamiento ético, cinco principios fundamentales, ética del Antiguo y Nuevo Testamento, y análisis de estudios de caso.",
-        ),
-        (
-            "<p class=\"course-number\">Doug Petersen and Jennifer Hargestam</p>",
-            "<p class=\"course-number\">Bloqueado · Doug Petersen and Jennifer Hargestam</p>",
-        ),
-        (
-            "Este curso abierto no otorga por sí mismo crédito académico ni un título. Las solicitudes de títulos las gestiona directamente Messenger College.",
-            "Esta ficha no otorga crédito académico ni un título. Messenger College gestiona la admisión.",
-        ),
-    ],
-    "pt": [
-        (
-            "Um curso aberto de ética cristã de educadores do Messenger College, apresentado aqui para estudo e formação ministerial.",
-            "Um resumo de um curso de ética do Messenger College. Os materiais completos ficam fora deste site até que haja um acordo de articulação ou parceria.",
-        ),
-        (
-            "Um curso de ética cristã para líderes eclesiásticos contemporâneos: estruturas de raciocínio ético, cinco princípios fundamentais, ética do Antigo e do Novo Testamento, e análise de estudos de caso. Notas de ensino, leituras e trabalho guiado de casos.",
-            "Um curso de ética cristã para líderes eclesiásticos contemporâneos: estruturas de raciocínio ético, cinco princípios fundamentais, ética do Antigo e do Novo Testamento, e análise de estudos de caso.",
-        ),
-        (
-            "<p class=\"course-number\">Doug Petersen and Jennifer Hargestam</p>",
-            "<p class=\"course-number\">Bloqueado · Doug Petersen and Jennifer Hargestam</p>",
-        ),
-        (
-            "Este curso aberto não confere por si só crédito acadêmico nem diploma. As solicitações de diploma são tratadas diretamente pelo Messenger College.",
-            "Esta ficha não confere crédito acadêmico nem diploma. O Messenger College trata da admissão.",
-        ),
-    ],
-}
-
 LENGTH_OVERRIDE = {
     "practicum": {
         "en": "Overseas practicum",
@@ -554,6 +491,35 @@ class Site:
         )
         self.emit(self.out_path(lang, "courses/messenger"), page)
 
+    def person_node(self, description):
+        host = self.site["host"]
+        return {
+            "@type": "Person",
+            "@id": host + "/about/karl-hargestam#person",
+            "name": "Karl Hargestam",
+            "jobTitle": "Global Missions Director",
+            "description": description,
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Pentecostal Church of God",
+                "alternateName": "PCG",
+                "url": "https://www.pcg.org/",
+            },
+            "affiliation": {
+                "@type": "EducationalOrganization",
+                "name": "Pentecostal Theological Consortium",
+                "alternateName": "PTC",
+                "url": host + "/",
+            },
+            "url": canonical_for(self.site, "en", "about/karl-hargestam"),
+            "sameAs": [
+                "https://pcgmission.org",
+                "https://www.pcg.org/about/leadership",
+                "https://about.me/hargestam",
+                "https://karlhargestam.com",
+            ],
+        }
+
     def render_prose(self, page_id, lang):
         page = self.pages[page_id]
         title = page["title"][lang]
@@ -580,13 +546,36 @@ class Site:
             if page_id == "copyright" and section["heading"]["en"] == "Course files":
                 extra = self.hosted_files(lang)
             sections.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{links}{extra}")
-        body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(title)}</h1><p class="lead">{esc(description)}</p></header>
+        lead = "" if page.get("lead") is False else f"<p class=\"lead\">{esc(description)}</p>"
+        body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(title)}</h1>{lead}</header>
 <article class="prose catalog">
 {''.join(sections)}
 </article>'''
+        if page.get("schema") == "person":
+            url = canonical_for(self.site, lang, page_id)
+            person = self.person_node(description)
+            data = {
+                "@context": "https://schema.org",
+                "@graph": [
+                    person,
+                    {
+                        "@type": "ProfilePage",
+                        "@id": url + "#webpage",
+                        "url": url,
+                        "name": title,
+                        "description": description,
+                        "inLanguage": lang,
+                        "isPartOf": {"@id": self.site["host"] + "/#website"},
+                        "mainEntity": {"@id": person["@id"]},
+                    },
+                ],
+            }
+            linked_data = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+        else:
+            linked_data = self.jsonld("page", lang, page_id, title, description)
         html_page = self.document(
             lang, page_id, title, description, body,
-            self.jsonld("page", lang, page_id, title, description),
+            linked_data,
             "prose-page",
         )
         self.emit(self.out_path(lang, page_id), html_page)
@@ -608,7 +597,7 @@ class Site:
         return f'<ul class="file-list">{items}</ul>'
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "contact", "enroll", "privacy", "terms", "copyright"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
         urls = []
         for route in routes:
@@ -658,11 +647,6 @@ class Site:
                 f'<meta property="og:type" content="website">\n    <meta property="og:locale" content="{locale}">',
                 1,
             )
-        old, new = HOME_STATUS[lang]
-        text = text.replace(f"<p class=\"status\">{old}</p>", f"<p class=\"status\">{new}</p>")
-        for old_text, new_text in HOME_MESSENGER[lang]:
-            if old_text in text:
-                text = text.replace(old_text, new_text)
         if 'class="skip-link"' not in text:
             text = text.replace(
                 "<body>\n",
