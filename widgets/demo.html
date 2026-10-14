@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Course catalog widget demo | Pentecostal Theological Consortium</title>
+    <link rel="canonical" href="https://ptconline.global/widgets/demo.html">
+    <style>
+      :root { color-scheme: light dark; }
+      body { margin: 0; padding: 24px 16px; font-family: system-ui, sans-serif; background: #f7f8fa; color: #111827; }
+      @media (prefers-color-scheme: dark) { body { background: #0f1318; color: #f3f4f6; } }
+      main { max-width: 880px; margin: 0 auto; display: grid; gap: 32px; }
+      h1 { font-size: 1.3rem; margin: 0; }
+      h2 { font-size: 1rem; margin: 0 0 8px; }
+      code { font-size: .85em; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>&lt;ptc-course-catalog&gt; demo (not indexed)</h1>
+      <section>
+        <h2>Default (English pages)</h2>
+        <ptc-course-catalog><a href="/courses/">Browse the course catalog</a></ptc-course-catalog>
+      </section>
+      <section>
+        <h2><code>lang="es" limit="3"</code></h2>
+        <ptc-course-catalog lang="es" limit="3"><a href="/es/courses/">Ver el catálogo de cursos</a></ptc-course-catalog>
+      </section>
+    </main>
+    <script src="ptc-catalog.js" defer></script>
+  </body>
+</html>
