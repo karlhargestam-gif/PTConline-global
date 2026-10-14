@@ -8,7 +8,7 @@
 <link rel="canonical" href="{{canonical}}">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{{og_type}}">
 <meta property="og:url" content="{{canonical}}">
 <meta property="og:image" content="{{og_image}}">
 <meta property="og:image:alt" content="{{og_alt}}">

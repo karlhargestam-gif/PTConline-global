@@ -262,7 +262,7 @@ class Site:
 
     def jsonld(self, kind, lang, route, title, description, extra=None):
         url = canonical_for(self.site, lang, route)
-        if kind == "course":
+        if kind in ("course", "raw"):
             data = extra
         else:
             data = {
@@ -278,8 +278,11 @@ class Site:
             }
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
-    def document(self, lang, route, title, description, body, jsonld, main_class):
-        full_title = title if title.endswith(SITE_SUFFIX[lang]) else f"{title} | {SITE_SUFFIX[lang]}"
+    def document(self, lang, route, title, description, body, jsonld, main_class, exact_title=False, og_type="website"):
+        if exact_title or title.endswith(SITE_SUFFIX[lang]):
+            full_title = title
+        else:
+            full_title = f"{title} | {SITE_SUFFIX[lang]}"
         head = fill(
             self.head,
             {
@@ -289,6 +292,7 @@ class Site:
                 "og_image": self.site["ogImage"],
                 "og_alt": esc(self.site["ogAlt"][lang]),
                 "og_locale": self.site["locale"][lang],
+                "og_type": og_type,
                 "hreflang": self.hreflang(route),
                 "jsonld": jsonld,
             },
@@ -429,8 +433,8 @@ class Site:
         else:
             banner = ""
             if course["provider"] == "moe":
-                banner = '''<div class="banner">
-  <img src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">
+                banner = f'''<div class="banner">
+  <img src="/assets/moe/MOE_logo_white_official.png" alt="{esc(self.ui["moeLogoAlt"][lang])}">
 </div>'''
             blocks = "\n".join(self.render_block(block, lang, index) for index, block in enumerate(course["blocks"]))
             canvas = ""
@@ -496,7 +500,7 @@ class Site:
 </header>
 <div class="catalog">
   <section class="provider-block" aria-labelledby="moe-heading">
-    <img class="provider-logo" src="/assets/moe/MOE_logo_red_official.png" alt="Mission One Eleven">
+    <img class="provider-logo" src="/assets/moe/MOE_logo_red_official.png" alt="{esc(self.ui["moeLogoAlt"][lang])}">
     <h2 id="moe-heading">{esc(self.ui["moeName"][lang])}</h2>
     <p class="lead">{esc(self.ui["moeLead"][lang])}</p>
     <div class="catalog-grid">
@@ -554,6 +558,62 @@ class Site:
         )
         self.emit(self.out_path(lang, "courses/messenger"), page)
 
+    def organization_node(self):
+        host = self.site["host"]
+        return {
+            "@type": "EducationalOrganization",
+            "@id": host + "/#organization",
+            "name": "Pentecostal Theological Consortium",
+            "alternateName": "PTC",
+            "url": host + "/",
+            "logo": host + "/assets/pcg-flame.png",
+            "parentOrganization": {
+                "@type": "Organization",
+                "@id": "https://www.pcgmission.org/#organization",
+                "name": "Pentecostal Church of God Global Missions",
+                "url": "https://www.pcgmission.org/",
+            },
+        }
+
+    def person_schema(self, page, lang, route, title, description):
+        url = canonical_for(self.site, lang, route)
+        person_id = url + "#person"
+        org = self.organization_node()
+        source = page["person"]
+        works = source["worksFor"]
+        person = {
+            "@type": "Person",
+            "@id": person_id,
+            "name": source["name"],
+            "jobTitle": source["jobTitle"][lang],
+            "url": url,
+            "worksFor": {
+                "@type": "Organization",
+                "name": works["name"],
+                "alternateName": works["alternateName"],
+                "url": works["url"],
+            },
+            "affiliation": {"@id": org["@id"]},
+            "sameAs": list(source["sameAs"]),
+        }
+        image = source.get("image")
+        if image:
+            person["image"] = image
+        webpage = {
+            "@type": "ProfilePage",
+            "@id": url + "#webpage",
+            "url": url,
+            "name": title,
+            "description": description,
+            "inLanguage": lang,
+            "isPartOf": {"@id": self.site["host"] + "/#website"},
+            "publisher": {"@id": org["@id"]},
+            "mainEntity": {"@id": person_id},
+            "about": {"@id": person_id},
+        }
+        data = {"@context": "https://schema.org", "@graph": [org, person, webpage]}
+        return self.jsonld("raw", lang, route, title, description, data)
+
     def render_prose(self, page_id, lang):
         page = self.pages[page_id]
         title = page["title"][lang]
@@ -584,10 +644,18 @@ class Site:
 <article class="prose catalog">
 {''.join(sections)}
 </article>'''
+        if page.get("person"):
+            schema = self.person_schema(page, lang, page_id, title, description)
+            og_type = "profile"
+        else:
+            schema = self.jsonld("page", lang, page_id, title, description)
+            og_type = "website"
         html_page = self.document(
             lang, page_id, title, description, body,
-            self.jsonld("page", lang, page_id, title, description),
+            schema,
             "prose-page",
+            exact_title=bool(page.get("exactTitle")),
+            og_type=og_type,
         )
         self.emit(self.out_path(lang, page_id), html_page)
 
@@ -608,7 +676,7 @@ class Site:
         return f'<ul class="file-list">{items}</ul>'
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "contact", "enroll", "privacy", "terms", "copyright"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
         urls = []
         for route in routes:

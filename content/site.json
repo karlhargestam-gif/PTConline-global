@@ -7,9 +7,9 @@
     "pt": "Consórcio Teológico Pentecostal"
   },
   "ogAlt": {
-    "en": "A Pentecostal worship gathering",
-    "es": "Reunión pentecostal de adoración",
-    "pt": "Reunião pentecostal de adoração"
+    "en": "A Pentecostal worship gathering for training leaders and discipleship among the nations",
+    "es": "Reunión pentecostal de adoración para formar líderes y el discipulado entre las naciones",
+    "pt": "Reunião pentecostal de adoração para formar líderes e o discipulado entre as nações"
   },
   "locale": { "en": "en_US", "es": "es_ES", "pt": "pt_BR" },
   "lockNotice": {
@@ -32,9 +32,14 @@
       "pt": "Consórcio Teológico Pentecostal (PTC)"
     },
     "flameAlt": {
-      "en": "PCG flame",
-      "es": "Llama de PCG",
-      "pt": "Chama do PCG"
+      "en": "PCG flame, a mark of training leaders and discipleship among the nations",
+      "es": "Llama de PCG, signo de formación de líderes y discipulado entre las naciones",
+      "pt": "Chama do PCG, sinal de formação de líderes e discipulado entre as nações"
+    },
+    "moeLogoAlt": {
+      "en": "Mission One Eleven, training leaders for discipleship among the nations",
+      "es": "Mission One Eleven, formación de líderes para el discipulado entre las naciones",
+      "pt": "Mission One Eleven, formação de líderes para o discipulado entre as nações"
     },
     "homeFooterLabel": {
       "en": "Related links",
