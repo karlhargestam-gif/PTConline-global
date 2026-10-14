@@ -61,6 +61,57 @@
             "As páginas estão em inglês, espanhol e português. Os vídeos de ensino estão em inglês. Há legendas em português nos vídeos que têm um arquivo de legenda."
           ]
         }
+      },
+      {
+        "heading": {
+          "en": "Global Missions Director",
+          "es": "Director de Misiones Globales",
+          "pt": "Diretor de Missões Globais"
+        },
+        "paragraphs": {
+          "en": [
+            "Karl Hargestam is Global Missions Director of the Pentecostal Church of God (PCG), overseeing PCG Global Missions, including the Pentecostal Theological Consortium (PTC)."
+          ],
+          "es": [
+            "Karl Hargestam es director de Misiones Globales de la Pentecostal Church of God (PCG), supervisando PCG Global Missions, incluido el Consorcio Teológico Pentecostal (PTC)."
+          ],
+          "pt": [
+            "Karl Hargestam é diretor de Missões Globais da Pentecostal Church of God (PCG), supervisionando o PCG Global Missions, incluindo o Consórcio Teológico Pentecostal (PTC)."
+          ]
+        },
+        "links": [
+          {
+            "internal": true,
+            "href": "/about/karl-hargestam/",
+            "label": { "en": "Karl Hargestam", "es": "Karl Hargestam", "pt": "Karl Hargestam" }
+          }
+        ]
+      }
+    ]
+  },
+  "about/karl-hargestam": {
+    "title": { "en": "Karl Hargestam", "es": "Karl Hargestam", "pt": "Karl Hargestam" },
+    "description": {
+      "en": "Karl Hargestam is Global Missions Director of the Pentecostal Church of God (PCG), overseeing PCG Global Missions, including the Pentecostal Theological Consortium (PTC).",
+      "es": "Karl Hargestam es director de Misiones Globales de la Pentecostal Church of God (PCG), supervisando PCG Global Missions, incluido el Consorcio Teológico Pentecostal (PTC).",
+      "pt": "Karl Hargestam é diretor de Missões Globais da Pentecostal Church of God (PCG), supervisionando o PCG Global Missions, incluindo o Consórcio Teológico Pentecostal (PTC)."
+    },
+    "lead": false,
+    "schema": "person",
+    "sections": [
+      {
+        "heading": { "en": "Role", "es": "Función", "pt": "Função" },
+        "paragraphs": {
+          "en": [
+            "Karl Hargestam is Global Missions Director of the Pentecostal Church of God (PCG), overseeing PCG Global Missions, including the Pentecostal Theological Consortium (PTC)."
+          ],
+          "es": [
+            "Karl Hargestam es director de Misiones Globales de la Pentecostal Church of God (PCG), supervisando PCG Global Missions, incluido el Consorcio Teológico Pentecostal (PTC)."
+          ],
+          "pt": [
+            "Karl Hargestam é diretor de Missões Globais da Pentecostal Church of God (PCG), supervisionando o PCG Global Missions, incluindo o Consórcio Teológico Pentecostal (PTC)."
+          ]
+        }
       }
     ]
   },
@@ -168,7 +219,7 @@
         },
         "links": [
           { "href": "/courses/messenger/", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
-          { "href": "https://www.messengercollege.edu", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
+          { "href": "https://www.messengercollege.edu/apply", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
         ]
       }
     ]
