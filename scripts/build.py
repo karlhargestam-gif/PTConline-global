@@ -585,23 +585,19 @@ class Site:
             },
         }
 
-    def person_node(self, lang, description):
+    def person_node(self, description):
         host = self.site["host"]
-        job_title = {
-            "en": "Global Missions Director",
-            "es": "Director de Misiones Globales",
-            "pt": "Diretor de Missões Globais",
-        }
         return {
             "@type": "Person",
             "@id": host + "/about/karl-hargestam#person",
             "name": "Karl Hargestam",
-            "jobTitle": job_title[lang],
+            "jobTitle": "Global Missions Director",
             "description": description,
             "worksFor": {
                 "@type": "Organization",
                 "name": "Pentecostal Church of God",
-                "url": "https://www.pcg.org/about/leadership",
+                "alternateName": "PCG",
+                "url": "https://www.pcg.org/",
             },
             "affiliation": {"@id": host + "/#organization"},
             "url": canonical_for(self.site, "en", "about/karl-hargestam"),
@@ -646,7 +642,7 @@ class Site:
 </article>'''
         if page.get("schema") == "person":
             url = canonical_for(self.site, lang, page_id)
-            person = self.person_node(lang, description)
+            person = self.person_node(description)
             data = {
                 "@context": "https://schema.org",
                 "@graph": [

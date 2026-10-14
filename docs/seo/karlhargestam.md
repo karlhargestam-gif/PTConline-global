@@ -2,7 +2,7 @@
 
 These notes match the factual director profile on ptconline.global. Do not add promotional copy, a claim of about 110 nations, or a LinkedIn URL until that profile is confirmed.
 
-Karl Hargestam is Global Missions Director of the Pentecostal Church of God (PCG), serving together with Jennifer. He serves with the Pentecostal Theological Consortium (PTC), an initiative of PCG Global Missions. He does not lead PTC.
+Karl Hargestam is Global Missions Director of the Pentecostal Church of God (PCG), serving together with Jennifer. He oversees PCG Global Missions, including the Pentecostal Theological Consortium (PTC).
 
 ## Person JSON-LD
 
@@ -18,7 +18,8 @@ Paste this on karlhargestam.com. Point `url` at the live biography page if that 
   "worksFor": {
     "@type": "Organization",
     "name": "Pentecostal Church of God",
-    "url": "https://www.pcg.org/about/leadership"
+    "alternateName": "PCG",
+    "url": "https://www.pcg.org/"
   },
   "url": "https://karlhargestam.com",
   "sameAs": [
