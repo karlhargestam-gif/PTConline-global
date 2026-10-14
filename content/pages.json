@@ -5,15 +5,10 @@
       "es": "Acerca de",
       "pt": "Sobre"
     },
-    "seoTitle": {
-      "en": "Pentecostal Theological Training for National Leaders",
-      "es": "Formación teológica pentecostal para líderes nacionales",
-      "pt": "Formação teológica pentecostal para líderes nacionais"
-    },
     "description": {
-      "en": "A multilingual catalog of Pentecostal theological training and missionary training online for national leaders.",
-      "es": "Un catálogo multilingüe de formación teológica pentecostal y formación misionera en línea para líderes nacionales.",
-      "pt": "Um catálogo multilíngue de formação teológica pentecostal e treinamento missionário online para líderes nacionais."
+      "en": "What the Pentecostal Theological Consortium is, who the education partners are, and what this website does.",
+      "es": "Qué es el Consorcio Teológico Pentecostal, quiénes son los socios educativos y qué hace este sitio.",
+      "pt": "O que é o Consórcio Teológico Pentecostal, quem são os parceiros educacionais e o que este site faz."
     },
     "sections": [
       {
@@ -118,15 +113,10 @@
   },
   "enroll": {
     "title": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" },
-    "seoTitle": {
-      "en": "Missionary Training Online for National Leaders",
-      "es": "Formación misionera en línea para líderes nacionales",
-      "pt": "Treinamento missionário online para líderes nacionais"
-    },
     "description": {
-      "en": "How to study missionary training online, request a Mission One Eleven certificate, or apply for Pentecostal theological training at Messenger College.",
-      "es": "Cómo estudiar formación misionera en línea, pedir un certificado de Mission One Eleven o solicitar formación teológica pentecostal en Messenger College.",
-      "pt": "Como estudar treinamento missionário online, pedir um certificado da Mission One Eleven ou candidatar-se à formação teológica pentecostal no Messenger College."
+      "en": "How to study an open course, request a Mission One Eleven certificate, or apply to Messenger College.",
+      "es": "Cómo estudiar un curso abierto, pedir un certificado de Mission One Eleven o solicitar admisión en Messenger College.",
+      "pt": "Como estudar um curso aberto, pedir um certificado da Mission One Eleven ou candidatar-se ao Messenger College."
     },
     "sections": [
       {

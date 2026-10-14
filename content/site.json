@@ -6,15 +6,10 @@
     "es": "Consorcio Teológico Pentecostal",
     "pt": "Consórcio Teológico Pentecostal"
   },
-  "seoPhrase": {
-    "en": "Pentecostal Theological Training",
-    "es": "Formación teológica pentecostal",
-    "pt": "Formação teológica pentecostal"
-  },
   "orgDescription": {
-    "en": "Multilingual Pentecostal theological training and missionary training online for national leaders.",
-    "es": "Formación teológica pentecostal y formación misionera en línea, multilingüe, para líderes nacionales.",
-    "pt": "Formação teológica pentecostal e treinamento missionário online, multilíngue, para líderes nacionais."
+    "en": "A multilingual catalog of ministerial preparation courses from PCG Global Missions.",
+    "es": "Un catálogo multilingüe de cursos de preparación ministerial de PCG Global Missions.",
+    "pt": "Um catálogo multilíngue de cursos de preparação ministerial do PCG Global Missions."
   },
   "ogAlt": {
     "en": "A Pentecostal worship gathering for training leaders and discipleship among the nations",
@@ -123,15 +118,10 @@
     "moeName": { "en": "Mission One Eleven", "es": "Mission One Eleven", "pt": "Mission One Eleven" },
     "messengerName": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" },
     "catalogTitle": { "en": "Courses", "es": "Cursos", "pt": "Cursos" },
-    "catalogSeoTitle": {
-      "en": "Missionary Training Online | Pentecostal Theological Training",
-      "es": "Formación misionera en línea | Formación teológica pentecostal",
-      "pt": "Treinamento missionário online | Formação teológica pentecostal"
-    },
     "catalogLead": {
-      "en": "Multilingual missionary training online for national leaders. Mission One Eleven courses are open to watch and study. Messenger College courses are listed as overviews until an agreement is in place.",
-      "es": "Formación misionera en línea y multilingüe para líderes nacionales. Los cursos de Mission One Eleven están abiertos para ver y estudiar. Los cursos de Messenger College aparecen como resúmenes hasta que haya un acuerdo.",
-      "pt": "Treinamento missionário online e multilíngue para líderes nacionais. Os cursos da Mission One Eleven estão abertos para assistir e estudar. Os cursos do Messenger College aparecem como resumos até que haja um acordo."
+      "en": "Mission One Eleven ministerial preparation courses are open to watch and study. Messenger College courses are listed as overviews until an agreement is in place.",
+      "es": "Los cursos de preparación ministerial de Mission One Eleven están abiertos para ver y estudiar. Los cursos de Messenger College aparecen como resúmenes hasta que haya un acuerdo.",
+      "pt": "Os cursos de preparação ministerial da Mission One Eleven estão abertos para assistir e estudar. Os cursos do Messenger College aparecem como resumos até que haja um acordo."
     },
     "moeLead": {
       "en": "Seven open courses, from missiology through the practicum and the Level 2 track.",

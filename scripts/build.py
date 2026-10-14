@@ -284,11 +284,10 @@ class Site:
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
     def document(self, lang, route, title, description, body, jsonld, main_class, exact_title=False, og_type="website"):
-        suffix = self.site.get("seoPhrase", {}).get(lang) or SITE_SUFFIX[lang]
-        if exact_title or title.endswith(suffix) or title.endswith(SITE_SUFFIX[lang]):
+        if exact_title or title.endswith(SITE_SUFFIX[lang]):
             full_title = title
         else:
-            full_title = f"{title} | {suffix}"
+            full_title = f"{title} | {SITE_SUFFIX[lang]}"
         head = fill(
             self.head,
             {
@@ -534,13 +533,11 @@ class Site:
   </section>
 </div>'''
         title = self.ui["catalogTitle"][lang]
-        seo = self.ui.get("catalogSeoTitle", {}).get(lang) or title
         description = self.ui["catalogLead"][lang]
         page = self.document(
-            lang, "courses", seo, description, body,
-            self.jsonld("page", lang, "courses", seo, description),
+            lang, "courses", title, description, body,
+            self.jsonld("page", lang, "courses", title, description),
             "catalog-page",
-            exact_title=seo != title,
         )
         self.emit(self.out_path(lang, "courses"), page)
 
@@ -618,12 +615,10 @@ class Site:
 <article class="prose catalog">
 {''.join(sections)}
 </article>'''
-        seo = (page.get("seoTitle") or {}).get(lang) or title
         html_page = self.document(
-            lang, page_id, seo, description, body,
-            self.jsonld("page", lang, page_id, seo, description),
+            lang, page_id, title, description, body,
+            self.jsonld("page", lang, page_id, title, description),
             "prose-page",
-            exact_title=seo != title,
         )
         self.emit(self.out_path(lang, page_id), html_page)
 
