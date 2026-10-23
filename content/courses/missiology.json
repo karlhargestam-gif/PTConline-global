@@ -126,7 +126,24 @@
             "pt": "Gravação da aula da semana 1"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/stiiuic5omhlo2v/Missiology%20of%20Unreached.Week%201.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/stiiuic5omhlo2v/Missiology%20of%20Unreached.Week%201.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/missiology_w1_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w1_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w1_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -180,7 +197,24 @@
             "pt": "Gravação da aula da semana 2"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/kz0g45hn9rxwqw8/Missiology%20of%20Unreached.Week%202.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/kz0g45hn9rxwqw8/Missiology%20of%20Unreached.Week%202.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/missiology_w2_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w2_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w2_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -235,7 +269,24 @@
             "pt": "Gravação da aula da semana 3"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/mfoybj0hagyf5p4/Missiology%20of%20Unreached.Week%203.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/mfoybj0hagyf5p4/Missiology%20of%20Unreached.Week%203.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/missiology_w3_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w3_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w3_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -280,7 +331,24 @@
             "pt": "Gravação da aula da semana 4"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/g94rpsu09a2dkvl/Missiology%20of%20Unreached.Week%204.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/g94rpsu09a2dkvl/Missiology%20of%20Unreached.Week%204.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/missiology_w4_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w4_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w4_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -333,7 +401,24 @@
             "pt": "Gravação da aula da semana 5"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/bedvs527j1lm704/Missiology%20of%20Unreached.Week%205.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/bedvs527j1lm704/Missiology%20of%20Unreached.Week%205.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/missiology_w5_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w5_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w5_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -395,7 +480,24 @@
             "pt": "Gravação da aula da semana 6"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/11rwbtto4y3ek3z/Missiology%20of%20Unreached.Week%206.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/11rwbtto4y3ek3z/Missiology%20of%20Unreached.Week%206.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/missiology_w6_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w6_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/missiology_w6_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
