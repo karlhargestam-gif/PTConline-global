@@ -274,8 +274,12 @@ class Site:
             bits.append(f'<span class="unavailable">{esc(self.ui["unavailable"][lang])}</span>')
             body = f"<p>{''.join(bits)}</p>"
         elif src:
+            # The track in the page's own language is shown by default.
+            default_src = next((t["src"] for t in tracks if t["srclang"] == lang), None)
             track_html = "".join(
-                f'<track kind="subtitles" src="{esc(track["src"])}" srclang="{esc(track["srclang"])}" label="{esc(track["label"])}">'
+                f'<track kind="subtitles" src="{esc(track["src"])}" srclang="{esc(track["srclang"])}" label="{esc(track["label"])}"'
+                + (" default" if track["src"] == default_src else "")
+                + ">"
                 for track in tracks
             )
             body = (
