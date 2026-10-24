@@ -79,7 +79,24 @@
             "pt": "Gravação da videoaula da semana 1"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/oglojlmzgdmsopn/Book%20of%20Acts.Week%201.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/oglojlmzgdmsopn/Book%20of%20Acts.Week%201.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/acts_w1_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/acts_w1_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/acts_w1_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "quiz",
@@ -124,7 +141,24 @@
             "pt": "Gravação da videoaula da semana 2"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/1v2eol6eym6ablg/Book%20of%20Acts.Week%202.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/1v2eol6eym6ablg/Book%20of%20Acts.Week%202.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/acts_w2_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/acts_w2_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/acts_w2_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "quiz",
@@ -212,7 +246,24 @@
             "pt": "Gravação da videoaula da semana 4"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/qc1rimgc296mw0t/Book%20of%20Acts.Week%204.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/qc1rimgc296mw0t/Book%20of%20Acts.Week%204.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/acts_w4_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/acts_w4_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/acts_w4_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "quiz",

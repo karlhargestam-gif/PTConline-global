@@ -79,7 +79,24 @@
             "pt": "Gravação da aula da semana 1"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/5gwtji9pzqu206j/SF.Week%201%20Video.F20.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/5gwtji9pzqu206j/SF.Week%201%20Video.F20.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/formation_w1_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/formation_w1_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/formation_w1_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -116,7 +133,24 @@
             "pt": "Gravação de vídeo da semana 2"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/o0ky0szun2ckepg/SF.Week%202%20Video.F20.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/o0ky0szun2ckepg/SF.Week%202%20Video.F20.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/formation_w2_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/formation_w2_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/formation_w2_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -171,7 +205,24 @@
             "pt": "Gravação de vídeo da semana 3"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/cwzkrc5k78271vh/SF.Week%203%20Video.W21.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/cwzkrc5k78271vh/SF.Week%203%20Video.W21.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/formation_w3_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/formation_w3_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/formation_w3_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -208,7 +259,24 @@
             "pt": "Gravação da aula da semana 4"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/mj3jonsxh9tj0a8/SF.Week%204%20Video.F20.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/mj3jonsxh9tj0a8/SF.Week%204%20Video.F20.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/formation_w4_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/formation_w4_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/formation_w4_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
@@ -272,7 +340,24 @@
             "pt": "Gravação da aula da semana 6"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/loo58zpuo5nyxl8/SF.Week%206%20Video.F20.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/loo58zpuo5nyxl8/SF.Week%206%20Video.F20.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/formation_w6_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/formation_w6_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/formation_w6_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "assignment",
