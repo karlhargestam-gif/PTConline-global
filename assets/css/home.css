@@ -795,7 +795,7 @@
         font-weight: 700;
         letter-spacing: .1em;
         text-decoration: none;
-        opacity: .55;
+        opacity: .72; /* WCAG AA: ~6:1 on white (was .55 = 3.96:1) */
       }
       .lang-switch a:hover { opacity: 1; text-decoration: underline; }
       .lang-switch a[aria-current="true"] { opacity: 1; text-decoration: underline; }
