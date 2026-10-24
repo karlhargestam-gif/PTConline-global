@@ -106,6 +106,7 @@ class Site:
         self.errors = []
         self.site = load_json(CONTENT / "site.json")
         self.pages = load_json(CONTENT / "pages.json")
+        self.meta = load_json(CONTENT / "meta.json")["routes"]
         self.courses = []
         for path in sorted((CONTENT / "courses").glob("*.json")):
             self.courses.append(load_json(path))
@@ -215,8 +216,13 @@ class Site:
             }
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
+    def meta_description(self, lang, route, description):
+        """Search snippet for the head tags. Visible text keeps the full description."""
+        return self.meta.get(route, {}).get(lang) or description
+
     def document(self, lang, route, title, description, body, jsonld, main_class):
         full_title = title if title.endswith(SITE_SUFFIX[lang]) else f"{title} | {SITE_SUFFIX[lang]}"
+        description = self.meta_description(lang, route, description)
         head = fill(
             self.head,
             {

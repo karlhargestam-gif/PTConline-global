@@ -1,0 +1,68 @@
+{
+  "_note": "Search-engine meta descriptions (meta name=description, og:description, twitter:description), 120-160 characters. Optional per route and language; when missing, the page description is used. Visible page text always comes from the page or course file.",
+  "routes": {
+    "about": {
+      "en": "What the Pentecostal Theological Consortium is, who the education partners are (Mission One Eleven and Messenger College), and what this website does.",
+      "es": "Qué es el Consorcio Teológico Pentecostal, quiénes son los socios educativos (Mission One Eleven y Messenger College) y qué hace este sitio.",
+      "pt": "O que é o Consórcio Teológico Pentecostal, quem são os parceiros educacionais (Mission One Eleven e Messenger College) e o que este site faz."
+    },
+    "about/karl-hargestam": {
+      "en": "Karl Hargestam is Global Missions Director of the Pentecostal Church of God (PCG), overseeing PCG Global Missions and the Pentecostal Theological Consortium.",
+      "es": "Karl Hargestam es director de Misiones Globales de la Pentecostal Church of God (PCG), supervisando PCG Global Missions y el Consorcio Teológico Pentecostal.",
+      "pt": "Karl Hargestam é diretor de Missões Globais da Pentecostal Church of God (PCG), supervisionando o PCG Global Missions e o Consórcio Teológico Pentecostal."
+    },
+    "contact": {
+      "en": "How to reach Global Education, Mission One Eleven and Messenger College. PTC is connected with the Global Education department at PCG Global Missions.",
+      "es": "Cómo contactar a Educación Global, Mission One Eleven y Messenger College. PTC está conectado con el departamento de Educación Global de PCG Global Missions.",
+      "pt": "Como falar com Educação Global, Mission One Eleven e Messenger College. O PTC está ligado ao departamento de Educação Global do PCG Global Missions."
+    },
+    "enroll": {
+      "en": "How to study an open course, request a Mission One Eleven certificate, or apply to Messenger College. You do not create an account on ptconline.global.",
+      "es": "Cómo estudiar un curso abierto, pedir un certificado de Mission One Eleven o solicitar admisión en Messenger College. No se crea una cuenta en ptconline.global.",
+      "pt": "Como estudar um curso aberto, pedir um certificado da Mission One Eleven ou candidatar-se ao Messenger College. Você não cria uma conta em ptconline.global."
+    },
+    "privacy": {
+      "en": "How ptconline.global handles visits, videos and links. It has no student account and no form that stores what you type. This notice is not legal advice.",
+      "es": "Cómo ptconline.global trata las visitas, los videos y los enlaces. No tiene cuenta de estudiante ni formulario que guarde lo que escribe. No es asesoría legal.",
+      "pt": "Como o ptconline.global trata visitas, vídeos e links. Não tem conta de aluno nem formulário que guarde o que você digita. Não é aconselhamento jurídico."
+    },
+    "terms": {
+      "en": "Terms for using the ptconline.global catalog and open courseware. Certificates come from Mission One Eleven; credit and degrees from Messenger College.",
+      "es": "Términos de uso del catálogo y material abierto de ptconline.global. Los certificados los da Mission One Eleven; el crédito y los títulos, Messenger College.",
+      "pt": "Termos de uso do catálogo e do material aberto de ptconline.global. Os certificados vêm da Mission One Eleven; o crédito e os diplomas, do Messenger College."
+    },
+    "copyright": {
+      "en": "Who owns the catalog text, the Mission One Eleven logo, and the course files hosted on ptconline.global. Copyright stays with the authors and partners.",
+      "pt": "De quem é o texto do catálogo, o logotipo da Mission One Eleven e os arquivos dos cursos hospedados em ptconline.global."
+    },
+    "courses/acts": {
+      "en": "Book of Acts: weekly video classes with readings and chapter tests. A textbook journey through Acts. Open courseware from Mission One Eleven, 6 weeks.",
+      "es": "Libro de los Hechos: clases semanales en video con lecturas y exámenes por capítulo. Un recorrido por Hechos con libro de texto. Curso abierto, 6 semanas.",
+      "pt": "Livro de Atos: aulas semanais em vídeo com leituras e provas por capítulo. Uma jornada por Atos com livro-texto. Curso aberto da Mission One Eleven, 6 semanas."
+    },
+    "courses/ethics": {
+      "en": "A Christian ethics course for church leaders: ethical reasoning, five core principles, Old and New Testament ethics, and case-study analysis.",
+      "es": "Un curso de ética cristiana para líderes: razonamiento ético, cinco principios fundamentales, ética del Antiguo y Nuevo Testamento y estudios de caso.",
+      "pt": "Um curso de ética cristã para líderes eclesiásticos: raciocínio ético, cinco princípios fundamentais, ética do Antigo e do Novo Testamento e estudos de caso."
+    },
+    "courses/formation": {
+      "en": "Spiritual Formation in a Missional Context: weekly classes and discussions including Counting the Cost. Textbook: Following Jesus. World religions overview."
+    },
+    "courses/level2": {
+      "en": "Leadership development sessions with Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman and Marie Vanderwal: discipleship and multiplication.",
+      "es": "Sesiones de liderazgo con Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal. Discipulado, multiplicación y el círculo de iglesias.",
+      "pt": "Sessões de liderança com Karl Hargestam, Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Discipulado, multiplicação e o círculo de igrejas."
+    },
+    "courses/mentoring": {
+      "en": "Mentoring in Missions: an 11-week guided journey. Open courseware from Mission One Eleven on the Pentecostal Theological Consortium (PTC), taught in English.",
+      "es": "Mentoring in Missions: un recorrido guiado de 11 semanas. Curso abierto de Mission One Eleven en el Consorcio Teológico Pentecostal (PTC), enseñado en inglés.",
+      "pt": "Mentoring in Missions: uma jornada guiada de 11 semanas. Curso aberto da Mission One Eleven no Consórcio Teológico Pentecostal (PTC), ensinado em inglês."
+    },
+    "courses/orality": {
+      "en": "Methods of Orality: weekly video classes. Textbooks: Building on Firm Foundations, The Core. Gospel stories and personality assessments."
+    },
+    "courses/practicum": {
+      "es": "Práctica en el extranjero: preparación previa al viaje (documentos, vacunas, primeros auxilios, capacitación cultural), evaluación posterior y trabajo final."
+    }
+  }
+}
