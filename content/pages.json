@@ -174,13 +174,16 @@
         "heading": { "en": "1. Study an open course", "es": "1. Estudiar un curso abierto", "pt": "1. Estudar um curso aberto" },
         "paragraphs": {
           "en": [
-            "Open the course and use the videos, readings and week outline. You do not create an account on ptconline.global. A local mentor can walk through the same page with you. Watching a course here does not by itself give a certificate or academic credit."
+            "Open the course and use the videos, readings and week outline. You do not create an account on ptconline.global. A local mentor can walk through the same page with you. Watching a course here does not by itself give a certificate or academic credit.",
+            "On each open course, “Start the course, self-paced, free, no login” opens Week 1 on this website. This website is for self-paced, open learning. Links on the page move you from week to week. You do not need a Canvas account to watch and read."
           ],
           "es": [
-            "Abra el curso y use los videos, las lecturas y el esquema semanal. No se crea una cuenta en ptconline.global. Un mentor local puede recorrer la misma página con usted. Ver un curso aquí no otorga por sí solo un certificado ni crédito académico."
+            "Abra el curso y use los videos, las lecturas y el esquema semanal. No se crea una cuenta en ptconline.global. Un mentor local puede recorrer la misma página con usted. Ver un curso aquí no otorga por sí solo un certificado ni crédito académico.",
+            "En cada curso abierto, «Empiece el curso, a su ritmo, gratis, sin iniciar sesión» abre la semana 1 en este sitio. Este sitio es para el estudio abierto, a su ritmo. Los enlaces de la página permiten pasar de una semana a otra. No hace falta una cuenta de Canvas para ver y leer."
           ],
           "pt": [
-            "Abra o curso e use os vídeos, as leituras e o roteiro semanal. Você não cria uma conta em ptconline.global. Um mentor local pode percorrer a mesma página com você. Assistir a um curso aqui não concede, por si só, um certificado nem crédito acadêmico."
+            "Abra o curso e use os vídeos, as leituras e o roteiro semanal. Você não cria uma conta em ptconline.global. Um mentor local pode percorrer a mesma página com você. Assistir a um curso aqui não concede, por si só, um certificado nem crédito acadêmico.",
+            "Em cada curso aberto, «Comece o curso, no seu ritmo, grátis, sem login» abre a semana 1 neste site. Este site é para o estudo aberto, no seu ritmo. Os links da página permitem passar de uma semana à outra. Não é preciso uma conta no Canvas para assistir e ler."
           ]
         },
         "links": [
@@ -191,17 +194,27 @@
         "heading": { "en": "2. Certificate or cohort with Mission One Eleven", "es": "2. Certificado o grupo con Mission One Eleven", "pt": "2. Certificado ou turma com a Mission One Eleven" },
         "paragraphs": {
           "en": [
-            "Mission One Eleven handles enrollment and certificates for its training. Use their sign-up. Canvas, linked from each open course, is where class assignments are turned in when a cohort is running."
+            "Mission One Eleven handles enrollment and certificates for its training. Use their sign-up. Canvas, linked from each open course, is where class assignments are turned in when a cohort is running.",
+            "Canvas Lite is for a live, teacher-led class that meets on Zoom or online with a teacher. The website is for self-paced, open learning. Use Canvas when you want that live class: Zoom or online classes, discussion, assignments and a certificate.",
+            "To join a live class, create a free Canvas Lite account, choose Student, and enter the join code from Mission One Eleven. Each open course links here for those steps. Until a join code is added on that course, the cohort button opens the current Canvas course page, which asks you to log in.",
+            "Live cohorts open once at least 10 students sign up. Join the interest list with the sign-up on this page and we'll let you know when yours starts."
           ],
           "es": [
-            "Mission One Eleven gestiona la inscripción y los certificados de su formación. Use su formulario de inscripción. Canvas, enlazado desde cada curso abierto, es donde se entregan las tareas cuando hay un grupo en marcha."
+            "Mission One Eleven gestiona la inscripción y los certificados de su formación. Use su formulario de inscripción. Canvas, enlazado desde cada curso abierto, es donde se entregan las tareas cuando hay un grupo en marcha.",
+            "Canvas Lite es para una clase en vivo con un profesor, por Zoom o en línea. El sitio web es para el estudio abierto, a su ritmo. Use Canvas cuando quiera esa clase en vivo: clases por Zoom o en línea, discusión, tareas y un certificado.",
+            "Para unirse a una clase en vivo, cree una cuenta gratuita de Canvas Lite, elija Estudiante (Student) e introduzca el código de unión de Mission One Eleven. Cada curso abierto enlaza aquí para esos pasos. Hasta que se añada un código de unión en ese curso, el botón del grupo abre la página actual del curso en Canvas, que pide iniciar sesión.",
+            "Los grupos en vivo empiezan cuando se inscriben al menos 10 estudiantes. Únase a la lista de interés con la inscripción de esta página y le avisaremos cuando empiece el suyo."
           ],
           "pt": [
-            "A Mission One Eleven cuida da inscrição e dos certificados da sua formação. Use a inscrição deles. O Canvas, ligado a partir de cada curso aberto, é onde as tarefas são entregues quando uma turma está em andamento."
+            "A Mission One Eleven cuida da inscrição e dos certificados da sua formação. Use a inscrição deles. O Canvas, ligado a partir de cada curso aberto, é onde as tarefas são entregues quando uma turma está em andamento.",
+            "O Canvas Lite é para uma aula ao vivo com professor, no Zoom ou online. O site é para o estudo aberto, no seu ritmo. Use o Canvas quando quiser essa aula ao vivo: aulas no Zoom ou online, discussão, tarefas e um certificado.",
+            "Para entrar numa aula ao vivo, crie uma conta gratuita no Canvas Lite, escolha Estudante (Student) e informe o código de acesso da Mission One Eleven. Cada curso aberto liga para cá para esses passos. Até que um código de acesso seja acrescentado nesse curso, o botão da turma abre a página atual do curso no Canvas, que pede login.",
+            "As turmas ao vivo abrem quando pelo menos 10 alunos se inscrevem. Entre na lista de interesse com a inscrição desta página e avisaremos quando a sua começar."
           ]
         },
         "links": [
-          { "href": "https://www.missiononeeleven.se/home/sign-up/", "label": { "en": "Apply for certificate or enrollment", "es": "Solicitar certificado o inscripción", "pt": "Solicitar certificado ou inscrição" } }
+          { "href": "https://www.missiononeeleven.se/home/sign-up/", "label": { "en": "Apply for certificate or enrollment", "es": "Solicitar certificado o inscripción", "pt": "Solicitar certificado ou inscrição" } },
+          { "href": "https://canvaslite.instructure.com/login/canvas", "label": { "en": "Create a free Canvas Lite account", "es": "Crear una cuenta gratuita de Canvas Lite", "pt": "Criar uma conta gratuita no Canvas Lite" } }
         ]
       },
       {
