@@ -221,5 +221,138 @@
       "attachment": { "en": "Attachment", "es": "Archivo", "pt": "Arquivo" },
       "note": { "en": "Note", "es": "Nota", "pt": "Nota" }
     }
+  },
+  "messengerPage": {
+    "sections": [
+      {
+        "heading": {
+          "en": "What this catalog is",
+          "es": "Qué es este catálogo",
+          "pt": "O que é este catálogo"
+        },
+        "paragraphs": {
+          "en": [
+            "This page lists Messenger College credit courses on ptconline.global. Credit courses stay with Messenger College. Each card is an overview. Full materials are not published here.",
+            "Messenger College is the academic pathway partner. The home page names it the initial academic pathway partner and describes it as a Christian college serving that pathway, helping anchor the Consortium’s vision in trusted higher education while opening doors for learning across the global mission family.",
+            "The Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God, connected with its Global Education department and an academic pathway through Messenger College."
+          ],
+          "es": [
+            "Esta página lista los cursos con crédito de Messenger College en ptconline.global. Los cursos con crédito permanecen en Messenger College. Cada ficha es un resumen. Los materiales completos no se publican aquí.",
+            "Messenger College es el socio de la vía académica. La página de inicio lo nombra socio inicial de la vía académica y lo describe como una universidad cristiana que sirve en esa vía, ayudando a afianzar la visión del Consorcio en educación superior confiable mientras abre puertas al aprendizaje en toda la familia misionera global.",
+            "El Consorcio Teológico Pentecostal (PTC) es una iniciativa de PCG Global Missions, Pentecostal Church of God, en conexión con su departamento de Educación Global y una vía académica a través de Messenger College."
+          ],
+          "pt": [
+            "Esta página lista os cursos com crédito do Messenger College em ptconline.global. Os cursos com crédito permanecem no Messenger College. Cada ficha é um resumo. Os materiais completos não são publicados aqui.",
+            "O Messenger College é o parceiro da via acadêmica. A página inicial o nomeia como parceiro inicial da via acadêmica e o descreve como uma faculdade cristã que atua nessa via, ajudando a ancorar a visão do Consórcio em educação superior confiável enquanto abre portas para o aprendizado em toda a família missionária global.",
+            "O Consórcio Teológico Pentecostal (PTC) é uma iniciativa do PCG Global Missions, Pentecostal Church of God, em conexão com seu departamento de Educação Global e uma via acadêmica por meio do Messenger College."
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "The course listed here",
+          "es": "El curso que aparece aquí",
+          "pt": "O curso listado aqui"
+        },
+        "paragraphs": {
+          "en": [
+            "One course is listed: Church and Contemporary Moral Issues. The teachers named on it are Doug Petersen and Jennifer Hargestam. The teaching language is English. The level is college credit.",
+            "The course is described as ethical reasoning frameworks, five core principles, Old and New Testament ethics, and case-study analysis, with weekly class recordings, teaching notes, readings, and guided case work. The five principles are not named on this site.",
+            "The card carries a lock badge. The course is locked regionally pending an articulation or partnership agreement."
+          ],
+          "es": [
+            "Hay un curso en la lista: La iglesia y los dilemas morales contemporáneos. Los profesores nombrados son Doug Petersen y Jennifer Hargestam. El idioma de enseñanza es el inglés. El nivel es crédito universitario.",
+            "El curso se describe como marcos de razonamiento ético, cinco principios fundamentales, ética del Antiguo y del Nuevo Testamento, y análisis de estudios de caso, con grabaciones semanales de clases, notas de enseñanza, lecturas y trabajo guiado de casos. Los cinco principios no se nombran en este sitio.",
+            "La ficha lleva una marca de bloqueo. El curso está bloqueado regionalmente hasta un acuerdo de articulación o de colaboración."
+          ],
+          "pt": [
+            "Há um curso na lista: A igreja e as questões morais contemporâneas. Os professores nomeados são Doug Petersen e Jennifer Hargestam. O idioma de ensino é o inglês. O nível é crédito universitário.",
+            "O curso é descrito como estruturas de raciocínio ético, cinco princípios fundamentais, ética do Antigo e do Novo Testamento e análise de estudos de caso, com gravações semanais de aulas, notas de ensino, leituras e trabalho guiado de casos. Os cinco princípios não são nomeados neste site.",
+            "A ficha traz um selo de bloqueio. O curso está bloqueado regionalmente até um acordo de articulação ou parceria."
+          ]
+        },
+        "links": [
+          {
+            "internal": true,
+            "href": "/courses/ethics",
+            "label": {
+              "en": "Church and Contemporary Moral Issues",
+              "es": "La iglesia y los dilemas morales contemporáneos",
+              "pt": "A igreja e as questões morais contemporâneas"
+            }
+          }
+        ]
+      },
+      {
+        "heading": {
+          "en": "What a locked overview means",
+          "es": "Qué significa un resumen bloqueado",
+          "pt": "O que significa um resumo bloqueado"
+        },
+        "paragraphs": {
+          "en": [
+            "The course page shows the overview and the lock notice. It does not publish the lectures, the notes, or the assignments. Messenger College keeps the full materials and the admission decision. A rights review of any Messenger College material is still open.",
+            "Apply at the college. Admission and credit are the college’s decision. Reading an overview does not make you a student of Messenger College, and it does not earn a PTC certificate. Do not present a page on this site as a grade, a transcript, or a diploma."
+          ],
+          "es": [
+            "La página del curso muestra el resumen y el aviso de bloqueo. No publica las clases, las notas ni las tareas. Messenger College conserva los materiales completos y la decisión de admisión. Sigue abierta una revisión de derechos de cualquier material de Messenger College.",
+            "Solicite en la universidad. La admisión y el crédito los decide la universidad. Leer un resumen no lo hace estudiante de Messenger College ni le otorga un certificado de PTC. No presente una página de este sitio como una calificación, un expediente o un diploma."
+          ],
+          "pt": [
+            "A página do curso mostra o resumo e o aviso de bloqueio. Não publica as aulas, as notas nem as tarefas. O Messenger College guarda os materiais completos e a decisão de admissão. Ainda está aberta uma revisão de direitos de qualquer material do Messenger College.",
+            "Candidate-se na faculdade. A admissão e o crédito são decisão da faculdade. Ler um resumo não faz de você aluno do Messenger College nem lhe dá um certificado do PTC. Não apresente uma página deste site como uma nota, um histórico ou um diploma."
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "How this differs from the open courses",
+          "es": "En qué se diferencia de los cursos abiertos",
+          "pt": "Como isto difere dos cursos abertos"
+        },
+        "paragraphs": {
+          "en": [
+            "Mission One Eleven prepares pioneer missionaries. Its seven courses on this site are open courseware: watch, read, and study without an account on ptconline.global. Those courses run from missiology through the practicum and the Level 2 track. Messenger College courses are listed as overviews until an agreement is in place.",
+            "This site is the catalog in English, Spanish, and Portuguese. It is not the system that enrolls a student, records progress, or issues a certificate. There is no separate PTC email address on this site yet. Questions about a locked college course go to the college."
+          ],
+          "es": [
+            "Mission One Eleven prepara misioneros pioneros. Sus siete cursos en este sitio son material abierto: se pueden ver, leer y estudiar sin una cuenta en ptconline.global. Esos cursos van de la misiología a la práctica y a la vía de nivel 2. Los cursos de Messenger College aparecen como resúmenes hasta que haya un acuerdo.",
+            "Este sitio es el catálogo en inglés, español y portugués. No es el sistema que inscribe a un estudiante, registra el avance ni emite un certificado. Este sitio todavía no publica un correo propio de PTC. Las preguntas sobre un curso universitario bloqueado van a la universidad."
+          ],
+          "pt": [
+            "A Mission One Eleven prepara missionários pioneiros. Seus sete cursos neste site são material aberto: podem ser assistidos, lidos e estudados sem uma conta em ptconline.global. Esses cursos vão da missiologia ao estágio e à trilha de nível 2. Os cursos do Messenger College aparecem como resumos até que haja um acordo.",
+            "Este site é o catálogo em inglês, espanhol e português. Não é o sistema que inscreve um aluno, registra o progresso ou emite um certificado. Este site ainda não publica um e-mail próprio do PTC. Perguntas sobre um curso universitário bloqueado vão para a faculdade."
+          ]
+        },
+        "links": [
+          {
+            "internal": true,
+            "href": "/courses",
+            "label": { "en": "Courses", "es": "Cursos", "pt": "Cursos" }
+          },
+          {
+            "internal": true,
+            "href": "/enroll",
+            "label": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" }
+          },
+          {
+            "href": "https://www.messengercollege.edu",
+            "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" }
+          },
+          {
+            "href": "https://www.messengercollege.edu/apply",
+            "label": {
+              "en": "Apply at Messenger College",
+              "es": "Solicitar en Messenger College",
+              "pt": "Candidatar-se no Messenger College"
+            }
+          },
+          {
+            "href": "https://pcgmission.org/#global-education",
+            "label": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" }
+          }
+        ]
+      }
+    ]
   }
 }

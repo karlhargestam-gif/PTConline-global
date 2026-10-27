@@ -64,11 +64,17 @@ def prefix(lang):
 
 
 def href_for(lang, route):
-    """Public link with a trailing slash. route has no leading or trailing slash."""
+    """Public link with no trailing slash, except the English home page.
+
+    route has no leading or trailing slash. English home is ``/``.
+    Spanish and Portuguese home are ``/es`` and ``/pt``. Every other
+    route matches canonical_for and the sitemap (``/courses``, not
+    ``/courses/``).
+    """
     base = prefix(lang)
     if not route:
-        return base + "/" if base else "/"
-    return f"{base}/{route}/"
+        return "/" if not base else base
+    return f"{base}/{route}"
 
 
 def canonical_for(site, lang, route):
@@ -199,13 +205,71 @@ class Site:
         )
         return "\n".join(lines)
 
-    def jsonld(self, kind, lang, route, title, description, extra=None):
+    def organization_node(self):
+        """EducationalOrganization for PTC. Same @id as the home page."""
+        host = self.site["host"]
+        return {
+            "@type": "EducationalOrganization",
+            "@id": host + "/#organization",
+            "name": "Pentecostal Theological Consortium",
+            "alternateName": "PTC",
+            "url": host + "/",
+            "logo": host + "/assets/pcg-flame.png",
+            "sameAs": ["https://www.pcgmission.org/global-education/"],
+            "parentOrganization": {
+                "@type": "Organization",
+                "@id": "https://www.pcgmission.org/#organization",
+                "name": "Pentecostal Church of God Global Missions",
+                "url": "https://www.pcgmission.org/",
+            },
+        }
+
+    def course_node(self, course, lang):
+        route = f"courses/{course['id']}"
+        url = canonical_for(self.site, lang, route)
+        if course["provider"] == "moe":
+            provider = "Mission One Eleven"
+            provider_url = self.site["moeUrl"]
+        else:
+            provider = "Messenger College"
+            provider_url = self.site["messengerUrl"]
+        return {
+            "@type": "Course",
+            "@id": url + "#course",
+            "url": url,
+            "name": course["title"][lang],
+            "description": course["description"][lang],
+            "inLanguage": "en",
+            "provider": {"@type": "Organization", "name": provider, "url": provider_url},
+            "isAccessibleForFree": not course.get("locked", False),
+            "publisher": {"@id": self.site["host"] + "/#organization"},
+        }
+
+    def course_list_node(self, courses, lang):
+        return {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": index,
+                    "item": self.course_node(course, lang),
+                }
+                for index, course in enumerate(courses, 1)
+            ],
+        }
+
+    def graph(self, *nodes):
+        return {
+            "@context": "https://schema.org",
+            "@graph": [self.organization_node(), *nodes],
+        }
+
+    def jsonld(self, kind, lang, route, title, description, extra=None, nodes=None):
         url = canonical_for(self.site, lang, route)
         if kind == "course":
             data = extra
         else:
-            data = {
-                "@context": "https://schema.org",
+            page = {
                 "@type": "WebPage",
                 "@id": url + "#webpage",
                 "url": url,
@@ -215,6 +279,7 @@ class Site:
                 "isPartOf": {"@id": self.site["host"] + "/#website"},
                 "publisher": {"@id": self.site["host"] + "/#organization"},
             }
+            data = self.graph(page, *(nodes or []))
         out = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
         crumbs = self.breadcrumbs(lang, route, title)
         if crumbs:
@@ -247,6 +312,8 @@ class Site:
 
     def document(self, lang, route, title, description, body, jsonld, main_class):
         full_title = title if title.endswith(SITE_SUFFIX[lang]) else f"{title} | {SITE_SUFFIX[lang]}"
+        if len(full_title) > 65:
+            raise SystemExit(f"title tag is {len(full_title)} characters (max 65): {full_title}")
         description = self.meta_description(lang, route, description)
         head = fill(
             self.head,
@@ -634,21 +701,7 @@ class Site:
         )
 
     def course_schema(self, course, lang, route):
-        url = canonical_for(self.site, lang, route)
-        provider = "Mission One Eleven" if course["provider"] == "moe" else "Messenger College"
-        provider_url = self.site["moeUrl"] if course["provider"] == "moe" else self.site["messengerUrl"]
-        data = {
-            "@context": "https://schema.org",
-            "@type": "Course",
-            "@id": url + "#course",
-            "url": url,
-            "name": course["title"][lang],
-            "description": course["description"][lang],
-            "inLanguage": "en",
-            "provider": {"@type": "Organization", "name": provider, "url": provider_url},
-            "isAccessibleForFree": not course.get("locked", False),
-            "publisher": {"@id": self.site["host"] + "/#organization"},
-        }
+        data = self.graph(self.course_node(course, lang))
         return self.jsonld("course", lang, route, course["title"][lang], course["description"][lang], data)
 
     def length_text(self, course, lang):
@@ -658,9 +711,30 @@ class Site:
             return f'{course["weeks"]} {self.ui["weeks"][lang]}'
         return course["level"][lang]
 
+    def render_sections(self, sections, lang):
+        if not sections:
+            return ""
+        parts = []
+        for section in sections:
+            paras = "".join(f"<p>{esc(paragraph)}</p>" for paragraph in section["paragraphs"][lang])
+            links = ""
+            if section.get("links"):
+                rendered = []
+                for link in section["links"]:
+                    href = link["href"]
+                    if link.get("internal"):
+                        href = href_for(lang, href.strip("/"))
+                    rendered.append(
+                        f'<li><a href="{esc(href)}"{anchor_attrs(href)}>{esc(link["label"][lang])}</a></li>'
+                    )
+                links = "<ul>" + "".join(rendered) + "</ul>"
+            parts.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{links}")
+        return '<article class="prose catalog">\n' + "".join(parts) + "\n</article>"
+
     def render_course(self, course, lang):
         route = f"courses/{course['id']}"
         title = course["title"][lang]
+        seo_title = (course.get("seoTitle") or {}).get(lang) or title
         description = course["description"][lang]
         if course.get("locked"):
             body = f'''<header class="masthead">
@@ -677,7 +751,8 @@ class Site:
   <div class="actions">
     <a class="button" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
   </div>
-</header>'''
+</header>
+{self.render_sections(course.get("pageSections") or [], lang)}'''
         else:
             banner = ""
             if course["provider"] == "moe":
@@ -711,7 +786,7 @@ class Site:
         page = self.document(
             lang,
             route,
-            title,
+            seo_title,
             description,
             body,
             self.course_schema(course, lang, route),
@@ -776,9 +851,13 @@ class Site:
 </div>'''
         title = self.ui["catalogTitle"][lang]
         description = self.ui["catalogLead"][lang]
+        listed = moe + messenger
         page = self.document(
             lang, "courses", title, description, body,
-            self.jsonld("page", lang, "courses", title, description),
+            self.jsonld(
+                "page", lang, "courses", title, description,
+                nodes=[self.course_list_node(listed, lang)],
+            ),
             "catalog-page",
         )
         self.emit(self.out_path(lang, "courses"), page)
@@ -788,6 +867,7 @@ class Site:
         cards = "\n".join(self.card(course, lang, level=2) for course in messenger)
         title = self.ui["messengerCatalogTitle"][lang]
         description = self.ui["messengerCatalogLead"][lang]
+        sections = self.render_sections(self.site.get("messengerPage", {}).get("sections") or [], lang)
         body = f'''<header class="masthead">
   <p class="kicker">{esc(self.ui["locked"][lang])}</p>
   <h1>{esc(title)}</h1>
@@ -797,6 +877,7 @@ class Site:
     <a class="button" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
   </div>
 </header>
+{sections}
 <div class="catalog">
   <div class="catalog-grid">
     {cards}
@@ -804,7 +885,10 @@ class Site:
 </div>'''
         page = self.document(
             lang, "courses/messenger", title, description, body,
-            self.jsonld("page", lang, "courses/messenger", title, description),
+            self.jsonld(
+                "page", lang, "courses/messenger", title, description,
+                nodes=[self.course_list_node(messenger, lang)],
+            ),
             "catalog-page",
         )
         self.emit(self.out_path(lang, "courses/messenger"), page)
@@ -823,12 +907,7 @@ class Site:
                 "alternateName": "PCG",
                 "url": "https://www.pcg.org/",
             },
-            "affiliation": {
-                "@type": "EducationalOrganization",
-                "name": "Pentecostal Theological Consortium",
-                "alternateName": "PTC",
-                "url": host + "/",
-            },
+            "affiliation": {"@id": host + "/#organization"},
             "url": canonical_for(self.site, "en", "about/karl-hargestam"),
             "sameAs": [
                 "https://pcgmission.org",
@@ -851,11 +930,7 @@ class Site:
                 for link in section["links"]:
                     href = link["href"]
                     if link.get("internal"):
-                        route = href.strip("/")
-                        if lang != "en":
-                            href = f"/{lang}/{route}/"
-                        else:
-                            href = f"/{route}/"
+                        href = href_for(lang, href.strip("/"))
                     rendered.append(
                         f'<li><a href="{esc(href)}"{anchor_attrs(href)}>{esc(link["label"][lang])}</a></li>'
                     )
@@ -875,6 +950,7 @@ class Site:
             data = {
                 "@context": "https://schema.org",
                 "@graph": [
+                    self.organization_node(),
                     person,
                     {
                         "@type": "ProfilePage",
@@ -884,6 +960,7 @@ class Site:
                         "description": description,
                         "inLanguage": lang,
                         "isPartOf": {"@id": self.site["host"] + "/#website"},
+                        "publisher": {"@id": self.site["host"] + "/#organization"},
                         "mainEntity": {"@id": person["@id"]},
                     },
                 ],
@@ -994,7 +1071,57 @@ class Site:
             count=1,
             flags=re.S,
         )
+        text = self.strip_internal_slashes(text)
+        text = self.patch_home_head(text, lang)
         self.emit(rel, text)
+
+    def strip_internal_slashes(self, text):
+        """Drop trailing slashes on internal links. Root ``/`` stays."""
+        def repl(match):
+            path = match.group(1)
+            if path != "/" and path.endswith("/"):
+                path = path.rstrip("/")
+            return f'href="{path}"'
+
+        return re.sub(r'href="(/[^"]*)"', repl, text)
+
+    def patch_home_head(self, text, lang):
+        """English home canonical is https://ptconline.global/. Add Course JSON-LD."""
+        home = canonical_for(self.site, lang, "")
+        if lang == "en":
+            text = re.sub(
+                r'https://ptconline\.global"',
+                'https://ptconline.global/"',
+                text,
+            )
+        match = re.search(
+            r'(<script type="application/ld\+json">)(.*?)(</script>)',
+            text,
+            flags=re.S,
+        )
+        if not match:
+            raise SystemExit("home page missing JSON-LD")
+        data = json.loads(match.group(2))
+        graph = data.get("@graph")
+        if not isinstance(graph, list):
+            raise SystemExit("home page JSON-LD has no @graph")
+        if not any(node.get("@type") == "EducationalOrganization" for node in graph):
+            graph.insert(0, self.organization_node())
+        for node in graph:
+            if node.get("@type") == "WebPage":
+                node["url"] = home
+                node["publisher"] = {"@id": self.site["host"] + "/#organization"}
+        if not any(node.get("@type") == "ItemList" for node in graph):
+            ordered = sorted(
+                self.courses,
+                key=lambda course: (0 if course["provider"] == "moe" else 1, course["order"]),
+            )
+            listing = self.course_list_node(ordered, lang)
+            listing["@id"] = home + "#courses"
+            graph.append(listing)
+        data["@graph"] = graph
+        script = match.group(1) + json.dumps(data, ensure_ascii=False) + match.group(3)
+        return text[: match.start()] + script + text[match.end() :]
 
     def build(self):
         for course in self.courses:

@@ -109,6 +109,27 @@ def exists_as_page(target):
     return os.path.isfile(target.rstrip("/") + ".html")  # cleanUrls
 
 
+def collect_types(value, found):
+    if isinstance(value, dict):
+        kind = value.get("@type")
+        if isinstance(kind, str):
+            found.add(kind)
+        elif isinstance(kind, list):
+            found.update(item for item in kind if isinstance(item, str))
+        for item in value.values():
+            collect_types(item, found)
+    elif isinstance(value, list):
+        for item in value:
+            collect_types(item, found)
+
+
+def same_host(hostname, host):
+    if not hostname:
+        return False
+    bare = host.removeprefix("www.")
+    return hostname in (host, bare, "www." + bare)
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
@@ -139,6 +160,12 @@ def check(root, host, max_page_kb):
             cp = urlsplit(c)
             if cp.scheme != "https" or cp.hostname != host:
                 errors.append(f"{rel}: canonical {c!r} must be an absolute https URL on {host}")
+            elif (cp.path or "/") != "/" and (cp.path or "").endswith("/"):
+                errors.append(f"{rel}: canonical {c!r} must not have a trailing slash")
+        if rel.replace("\\", "/") == "index.html":
+            home = f"https://{host}/"
+            if home not in p.canonicals:
+                errors.append(f"{rel}: homepage canonical must be {home}")
 
         for key in ("og:title", "og:description", "og:image", "twitter:card"):
             if not p.meta.get(key):
@@ -150,14 +177,40 @@ def check(root, host, max_page_kb):
         if "hreflang=\"x-default\"" not in html and "hreflang='x-default'" not in html:
             errors.append(f"{rel}: missing hreflang x-default")
 
+        types = set()
         for block in p.jsonld:
             try:
-                json.loads(block)
+                parsed = json.loads(block)
             except json.JSONDecodeError as exc:
                 errors.append(f"{rel}: invalid JSON-LD ({exc.msg} at line {exc.lineno})")
+            else:
+                collect_types(parsed, types)
+        rel_posix = rel.replace("\\", "/")
+        is_home = rel_posix in {"index.html", "es/index.html", "pt/index.html"}
+        is_course_surface = rel_posix.startswith("courses/") or "/courses/" in rel_posix
+        if is_home or is_course_surface:
+            if "EducationalOrganization" not in types:
+                errors.append(f"{rel}: missing EducationalOrganization JSON-LD")
+            if "Course" not in types:
+                errors.append(f"{rel}: missing Course JSON-LD")
+        elif "EducationalOrganization" not in types:
+            errors.append(f"{rel}: missing EducationalOrganization JSON-LD")
+        title_match = re.search(r"<title>(.*?)</title>", html, flags=re.S)
+        if title_match and len(title_match.group(1)) > 65:
+            errors.append(f"{rel}: title tag is {len(title_match.group(1))} characters (max 65)")
 
         seen = set()
         for attr, url in p.refs:
+            parts = urlsplit(url)
+            if attr == "href":
+                if parts.scheme in ("http", "https"):
+                    link_path = parts.path if same_host(parts.hostname, host) else ""
+                elif not parts.scheme and not parts.netloc:
+                    link_path = parts.path
+                else:
+                    link_path = ""
+                if link_path.endswith("/") and link_path != "/":
+                    errors.append(f"{rel}: internal link {url!r} must not have a trailing slash")
             target = resolve(root, page, url, host)
             if target is None or target in seen:
                 continue
@@ -189,9 +242,13 @@ def check(root, host, max_page_kb):
             if not locs:
                 errors.append("sitemap.xml lists no URLs")
             for loc in locs:
-                if urlsplit(loc).hostname != host:
+                loc_parts = urlsplit(loc)
+                if loc_parts.hostname != host:
                     errors.append(f"sitemap.xml URL {loc!r} is not on {host}")
                     continue
+                loc_path = loc_parts.path or "/"
+                if loc_path != "/" and loc_path.endswith("/"):
+                    errors.append(f"sitemap.xml URL {loc!r} must not have a trailing slash")
                 target = resolve(root, os.path.join(root, "index.html"), loc, host)
                 if target and not exists_as_page(target):
                     errors.append(f"sitemap.xml URL {loc!r} has no matching page")

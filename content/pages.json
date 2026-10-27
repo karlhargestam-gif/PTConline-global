@@ -82,7 +82,7 @@
         "links": [
           {
             "internal": true,
-            "href": "/about/karl-hargestam/",
+            "href": "/about/karl-hargestam",
             "label": { "en": "Karl Hargestam", "es": "Karl Hargestam", "pt": "Karl Hargestam" }
           }
         ]
@@ -112,6 +112,145 @@
             "Karl Hargestam é diretor de Missões Globais da Pentecostal Church of God (PCG), supervisionando o PCG Global Missions, incluindo o Consórcio Teológico Pentecostal (PTC)."
           ]
         }
+      },
+      {
+        "heading": {
+          "en": "The work this catalog describes",
+          "es": "La labor que describe este catálogo",
+          "pt": "O trabalho que este catálogo descreve"
+        },
+        "paragraphs": {
+          "en": [
+            "The pages of this site describe that role as oversight of PCG Global Missions, including PTC. PTC is an initiative of PCG Global Missions, Pentecostal Church of God, connected with its Global Education department and an academic pathway through Messenger College.",
+            "The catalog answers what PTC is, which courses exist, who provides them, and how long they are. Pages are published in English, Spanish, and Portuguese. The teaching videos are in English. Portuguese captions are on the videos that have a caption file.",
+            "ptconline.global is the multilingual front door and catalog. It is not the system that enrolls a student, records progress, or issues a certificate. Those steps happen with the partner that owns the course. There is no student account on this site, and reading a page does not create a PTC profile."
+          ],
+          "es": [
+            "Las páginas de este sitio describen esa función como la supervisión de PCG Global Missions, incluido PTC. El PTC es una iniciativa de PCG Global Missions, Pentecostal Church of God, en conexión con su departamento de Educación Global y una vía académica a través de Messenger College.",
+            "El catálogo responde qué es PTC, qué cursos existen, quién los ofrece y cuánto duran. Las páginas están en inglés, español y portugués. Los videos de enseñanza están en inglés. Hay subtítulos en portugués en los videos que tienen un archivo de subtítulos.",
+            "ptconline.global es la puerta y el catálogo en varios idiomas. No es el sistema que inscribe a un estudiante, registra el avance ni emite un certificado. Esos pasos ocurren con el socio dueño del curso. No hay cuenta de estudiante en este sitio, y leer una página no crea un perfil de PTC."
+          ],
+          "pt": [
+            "As páginas deste site descrevem essa função como a supervisão do PCG Global Missions, incluindo o PTC. O PTC é uma iniciativa do PCG Global Missions, Pentecostal Church of God, em conexão com seu departamento de Educação Global e uma via acadêmica por meio do Messenger College.",
+            "O catálogo responde o que é o PTC, quais cursos existem, quem os oferece e quanto duram. As páginas estão em inglês, espanhol e português. Os vídeos de ensino estão em inglês. Há legendas em português nos vídeos que têm um arquivo de legenda.",
+            "ptconline.global é a porta de entrada e o catálogo em vários idiomas. Não é o sistema que inscreve um aluno, registra o progresso ou emite um certificado. Esses passos acontecem com o parceiro dono do curso. Não há conta de aluno neste site, e ler uma página não cria um perfil do PTC."
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Education partners on the catalog",
+          "es": "Socios educativos en el catálogo",
+          "pt": "Parceiros educacionais no catálogo"
+        },
+        "paragraphs": {
+          "en": [
+            "Mission One Eleven prepares pioneer missionaries. Its seven courses on this site are open courseware: watch, read, and study without an account on ptconline.global. A local mentor can walk through the same page with a student. Watching a course here does not by itself give a certificate or academic credit.",
+            "Certificates for that training come from Mission One Eleven. Canvas, linked from each open course, is where class assignments are turned in when a cohort is running. Live cohorts open once at least 10 students sign up.",
+            "Messenger College is the academic pathway partner. Its credit courses are listed as overviews until an agreement is in place. The college keeps the full materials and the admission decision. Credit and degrees come from Messenger College, after the college admits you."
+          ],
+          "es": [
+            "Mission One Eleven prepara misioneros pioneros. Sus siete cursos en este sitio son material abierto: se pueden ver, leer y estudiar sin una cuenta en ptconline.global. Un mentor local puede recorrer la misma página con un estudiante. Ver un curso aquí no otorga por sí solo un certificado ni crédito académico.",
+            "Los certificados de esa formación los da Mission One Eleven. Canvas, enlazado desde cada curso abierto, es donde se entregan las tareas cuando hay un grupo en marcha. Los grupos en vivo empiezan cuando se inscriben al menos 10 estudiantes.",
+            "Messenger College es el socio de la vía académica. Sus cursos con crédito aparecen como resúmenes hasta que haya un acuerdo. La universidad conserva los materiales completos y la decisión de admisión. El crédito y los títulos los da Messenger College, después de admitirle."
+          ],
+          "pt": [
+            "A Mission One Eleven prepara missionários pioneiros. Seus sete cursos neste site são material aberto: podem ser assistidos, lidos e estudados sem uma conta em ptconline.global. Um mentor local pode percorrer a mesma página com um aluno. Assistir a um curso aqui não concede, por si só, um certificado nem crédito acadêmico.",
+            "Os certificados dessa formação vêm da Mission One Eleven. O Canvas, ligado a partir de cada curso aberto, é onde as tarefas são entregues quando uma turma está em andamento. As turmas ao vivo abrem quando pelo menos 10 alunos se inscrevem.",
+            "O Messenger College é o parceiro da via acadêmica. Seus cursos com crédito aparecem como resumos até que haja um acordo. A faculdade guarda os materiais completos e a decisão de admissão. O crédito e os diplomas vêm do Messenger College, depois que a faculdade admite você."
+          ]
+        },
+        "links": [
+          {
+            "internal": true,
+            "href": "/courses",
+            "label": { "en": "Courses", "es": "Cursos", "pt": "Cursos" }
+          },
+          {
+            "internal": true,
+            "href": "/courses/level2",
+            "label": { "en": "Level 2 Track", "es": "Nivel 2", "pt": "Nível 2" }
+          },
+          {
+            "internal": true,
+            "href": "/enroll",
+            "label": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" }
+          },
+          {
+            "internal": true,
+            "href": "/about",
+            "label": { "en": "About", "es": "Acerca de", "pt": "Sobre" }
+          }
+        ]
+      },
+      {
+        "heading": {
+          "en": "Named on the Level 2 track",
+          "es": "Nombrado en la vía de nivel 2",
+          "pt": "Nomeado na trilha de nível 2"
+        },
+        "paragraphs": {
+          "en": [
+            "The Level 2 Track is open courseware from Mission One Eleven. The course description names Karl Hargestam with Tamara Gutel, Eman Hernandez, Mikael Boman, and Marie Vanderwal. The topics named with those sessions are discipleship, multiplication, and the church circle tool.",
+            "Two items on that course carry his name. The attachment “Unreached Presentation” is not posted on this site. The discussion “Remaining Faithful to What God Has Called Us To” is listed for the live, teacher-led class."
+          ],
+          "es": [
+            "La vía de nivel 2 es material abierto de Mission One Eleven. La descripción del curso nombra a Karl Hargestam junto con Tamara Gutel, Eman Hernandez, Mikael Boman y Marie Vanderwal. Los temas nombrados con esas sesiones son el discipulado, la multiplicación y la herramienta del círculo de iglesias.",
+            "Dos elementos de ese curso llevan su nombre. El archivo «Presentación sobre no alcanzados» no está publicado en este sitio. La discusión «Permaneciendo fieles a lo que Dios nos ha llamado» figura para la clase en vivo con un profesor."
+          ],
+          "pt": [
+            "A trilha de nível 2 é material aberto da Mission One Eleven. A descrição do curso nomeia Karl Hargestam junto com Tamara Gutel, Eman Hernandez, Mikael Boman e Marie Vanderwal. Os temas nomeados com essas sessões são o discipulado, a multiplicação e a ferramenta do círculo de igrejas.",
+            "Dois itens desse curso levam o nome dele. O arquivo «Apresentação sobre não alcançados» não está publicado neste site. A discussão «Permanecendo fiéis àquilo para que Deus nos chamou» está indicada para a aula ao vivo com professor."
+          ]
+        }
+      },
+      {
+        "heading": { "en": "Contact", "es": "Contacto", "pt": "Contato" },
+        "paragraphs": {
+          "en": [
+            "This site does not yet publish a separate PTC email address. The contact page says to start with the Global Education department at PCG Global Missions, or with the partner that runs the course you need.",
+            "The structured data for this page already records these profiles: PCG Global Missions, the Pentecostal Church of God leadership page, about.me/hargestam, and karlhargestam.com."
+          ],
+          "es": [
+            "Este sitio todavía no publica un correo propio de PTC. La página de contacto dice que empiece por el departamento de Educación Global de PCG Global Missions, o por el socio que dirige el curso que necesita.",
+            "Los datos estructurados de esta página ya registran estos perfiles: PCG Global Missions, la página de liderazgo de la Pentecostal Church of God, about.me/hargestam y karlhargestam.com."
+          ],
+          "pt": [
+            "Este site ainda não publica um e-mail próprio do PTC. A página de contato diz para começar pelo departamento de Educação Global do PCG Global Missions, ou pelo parceiro que conduz o curso de que você precisa.",
+            "Os dados estruturados desta página já registram estes perfis: PCG Global Missions, a página de liderança da Pentecostal Church of God, about.me/hargestam e karlhargestam.com."
+          ]
+        },
+        "links": [
+          {
+            "internal": true,
+            "href": "/contact",
+            "label": { "en": "Contact", "es": "Contacto", "pt": "Contato" }
+          },
+          {
+            "href": "https://pcgmission.org/#global-education",
+            "label": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" }
+          },
+          {
+            "href": "https://www.pcgmission.org",
+            "label": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" }
+          },
+          {
+            "href": "https://www.pcg.org/about/leadership",
+            "label": {
+              "en": "Pentecostal Church of God leadership",
+              "es": "Liderazgo de la Pentecostal Church of God",
+              "pt": "Liderança da Pentecostal Church of God"
+            }
+          },
+          {
+            "href": "https://about.me/hargestam",
+            "label": { "en": "about.me/hargestam", "es": "about.me/hargestam", "pt": "about.me/hargestam" }
+          },
+          {
+            "href": "https://karlhargestam.com",
+            "label": { "en": "karlhargestam.com", "es": "karlhargestam.com", "pt": "karlhargestam.com" }
+          }
+        ]
       }
     ]
   },
@@ -187,7 +326,7 @@
           ]
         },
         "links": [
-          { "href": "/courses/", "label": { "en": "Browse courses", "es": "Ver los cursos", "pt": "Ver os cursos" }, "internal": true }
+          { "href": "/courses", "label": { "en": "Browse courses", "es": "Ver los cursos", "pt": "Ver os cursos" }, "internal": true }
         ]
       },
       {
@@ -231,7 +370,7 @@
           ]
         },
         "links": [
-          { "href": "/courses/messenger/", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
+          { "href": "/courses/messenger", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
           { "href": "https://www.messengercollege.edu/apply", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
         ]
       }
