@@ -23,7 +23,8 @@
 .prose h2,
 .catalog h1,
 .catalog h2,
-.catalog-card h3 {
+.catalog-card h3,
+.catalog-card h2 {
   font-family: Lato, "Franklin Gothic Medium", "Libre Franklin", Arial, sans-serif;
   color: #332D26;
   font-weight: 700;
@@ -199,7 +200,7 @@ video {
   text-decoration: none;
 }
 
-.catalog-card h3 { margin: 0; font-size: 1.35rem; }
+.catalog-card h3, .catalog-card h2 { margin: 0; font-size: 1.35rem; }
 .catalog-card p { margin: 10px 0 0; color: #332D26; }
 .card-meta {
   display: flex;

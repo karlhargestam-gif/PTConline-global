@@ -151,8 +151,8 @@ class Site:
 
     def flame_src(self, lang, home):
         if home and lang == "en":
-            return "assets/pcg-flame.png"
-        return "/assets/pcg-flame.png"
+            return "assets/pcg-flame-96.webp"
+        return "/assets/pcg-flame-96.webp"
 
     def banner(self, lang, route, home=False):
         mapping = {
@@ -214,7 +214,31 @@ class Site:
                 "isPartOf": {"@id": self.site["host"] + "/#website"},
                 "publisher": {"@id": self.site["host"] + "/#organization"},
             }
-        return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+        out = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+        crumbs = self.breadcrumbs(lang, route, title)
+        if crumbs:
+            out += '\n<script type="application/ld+json">' + json.dumps(crumbs, ensure_ascii=False) + "</script>"
+        return out
+
+    def breadcrumbs(self, lang, route, title):
+        """BreadcrumbList for every page below the home page."""
+        if not route:
+            return None
+        trail = [(self.ui["home"][lang], canonical_for(self.site, lang, ""))]
+        parts = route.split("/")
+        for i in range(1, len(parts)):
+            parent = "/".join(parts[:i])
+            label = self.ui["courses"][lang] if parent == "courses" else self.ui["about"][lang] if parent == "about" else parent
+            trail.append((label, canonical_for(self.site, lang, parent)))
+        trail.append((title, canonical_for(self.site, lang, route)))
+        return {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": i, "name": name, "item": url}
+                for i, (name, url) in enumerate(trail, 1)
+            ],
+        }
 
     def meta_description(self, lang, route, description):
         """Search snippet for the head tags. Visible text keeps the full description."""
@@ -409,12 +433,12 @@ class Site:
         )
         self.emit(self.out_path(lang, route), page)
 
-    def card(self, course, lang):
+    def card(self, course, lang, level=3):
         route = f"courses/{course['id']}"
         bits = []
         if course.get("locked"):
             bits.append(f'<span class="lock-badge">{esc(self.ui["locked"][lang])}</span>')
-        bits.append(f'<h3>{esc(course["title"][lang])}</h3>')
+        bits.append(f'<h{level}>{esc(course["title"][lang])}</h{level}>')
         if course.get("teachers"):
             bits.append(f'<p class="teachers">{esc(course["teachers"])}</p>')
         bits.append(f'<p>{esc(course["description"][lang])}</p>')
@@ -473,7 +497,7 @@ class Site:
 
     def render_messenger(self, lang):
         messenger = [course for course in self.courses if course["provider"] == "messenger"]
-        cards = "\n".join(self.card(course, lang) for course in messenger)
+        cards = "\n".join(self.card(course, lang, level=2) for course in messenger)
         title = self.ui["messengerCatalogTitle"][lang]
         description = self.ui["messengerCatalogLead"][lang]
         body = f'''<header class="masthead">
@@ -577,6 +601,9 @@ class Site:
                 ],
             }
             linked_data = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+            crumbs = self.breadcrumbs(lang, page_id, title)
+            if crumbs:
+                linked_data += '\n<script type="application/ld+json">' + json.dumps(crumbs, ensure_ascii=False) + "</script>"
         else:
             linked_data = self.jsonld("page", lang, page_id, title, description)
         html_page = self.document(
@@ -615,7 +642,7 @@ class Site:
                 )
                 alternates += f'<xhtml:link rel="alternate" hreflang="x-default" href="{canonical_for(self.site, "en", route)}"/>'
                 urls.append(
-                    f"  <url><loc>{loc}</loc><lastmod>2026-10-13</lastmod>{alternates}</url>"
+                    f"  <url><loc>{loc}</loc><lastmod>{LASTMOD}</lastmod>{alternates}</url>"
                 )
         xml = (
             '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -699,6 +726,9 @@ class Site:
             raise SystemExit(1)
         if not self.check:
             print(f"Built {len(self.courses)} courses × {len(LANGS)} languages, plus catalog, messenger, prose and home pages.")
+
+
+LASTMOD = "2026-10-26"  # bump when generated pages change
 
 
 def main():
