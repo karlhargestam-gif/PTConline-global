@@ -42,7 +42,7 @@ The lock sentence is `lockNotice` in `content/site.json`. Change it there and re
 
 `provider` is `moe` or `messenger`. A Messenger course sets `"locked": true` and leaves `blocks` empty. The build will not print readings, videos or files for a locked course.
 
-The course page is the open course. Its primary button, “Start the course, free, no login”, opens Week 1 on this site (or the first section when the course has no weeks). Canvas is an optional cohort for discussion, assignments and a certificate. The existing `canvas` URL stays on the page.
+The course page is the self-paced course. Its primary button, “Start the course, self-paced, free, no login”, opens Week 1 on this site (or the first section when the course has no weeks). Canvas is an optional live, teacher-led cohort: Zoom or online classes with a teacher, plus discussion, assignments and a certificate. The existing `canvas` URL stays on the page.
 
 Optional `canvasJoin` points the cohort button at a join link. Use a full URL, a bare join code, or both:
 
@@ -60,7 +60,7 @@ Optional `canvasJoin` points the cohort button at a join link. Use a full URL, a
 
 A bare code becomes `https://<canvas host>/enroll/<code>` from that course’s `canvas` URL, and the code is printed next to the how-to-join note. Until `canvasJoin` is set, the cohort button uses `canvas`. “Open this course in Canvas” keeps linking to `canvas` either way.
 
-An assignment, discussion or quiz with no file of its own explains that the reading or class on this page stays open, and that submission or discussion happens in the Canvas cohort. The build links readings and quizzes to textbooks posted on the course, workbook tasks to the workbook, story tasks to the gospel files, and discussions to a video in the same week. Set `onSite` when a week should point at a specific file instead:
+An assignment, discussion or quiz with no file of its own explains that the reading or class on this page stays open for self-paced study, and that submission or discussion happens in the live Canvas class. The build links readings and quizzes to textbooks posted on the course, workbook tasks to the workbook, story tasks to the gospel files, and discussions to a video in the same week. Set `onSite` when a week should point at a specific file instead:
 
 ```json
 { "kind": "assignment", "title": { "en": "Readings: Week 1", "es": "", "pt": "" }, "onSite": ["/assets/resources/the-core.pdf"] }
