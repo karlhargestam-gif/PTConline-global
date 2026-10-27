@@ -92,6 +92,21 @@
       "pt": "Opcional. O Canvas é para uma aula ao vivo com professor, no Zoom ou online. Este site é o curso no seu ritmo. Crie uma conta gratuita no Canvas Lite, escolha Estudante (Student) e informe o código de acesso da "
     },
     "cohortHowAfter": { "en": ".", "es": ".", "pt": "." },
+    "cohortMinimumBefore": {
+      "en": "Live cohorts open once at least 10 students sign up. ",
+      "es": "Los grupos en vivo empiezan cuando se inscriben al menos 10 estudiantes. ",
+      "pt": "As turmas ao vivo abrem quando pelo menos 10 alunos se inscrevem. "
+    },
+    "interestList": {
+      "en": "Join the interest list",
+      "es": "Únase a la lista de interés",
+      "pt": "Entre na lista de interesse"
+    },
+    "cohortMinimumAfter": {
+      "en": " and we'll let you know when yours starts.",
+      "es": " y le avisaremos cuando empiece el suyo.",
+      "pt": " e avisaremos quando a sua começar."
+    },
     "joinCode": { "en": "Join code", "es": "Código de unión", "pt": "Código de acesso" },
     "cardOpen": {
       "en": "Open the course, self-paced, free, no login",

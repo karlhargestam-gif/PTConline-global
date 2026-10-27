@@ -620,11 +620,17 @@ class Site:
             how += (
                 f' <a href="{esc(course_href)}" target="_blank" rel="noopener noreferrer">{esc(self.ui["openCanvas"][lang])}</a>'
             )
+        minimum = (
+            f'{esc(self.ui["cohortMinimumBefore"][lang])}'
+            f'<a href="{href_for(lang, "enroll")}">{esc(self.ui["interestList"][lang])}</a>'
+            f'{esc(self.ui["cohortMinimumAfter"][lang])}'
+        )
         return (
             '<div class="actions">\n    '
             + "\n    ".join(parts)
             + "\n  </div>\n"
-            + f'  <p class="hint cohort-how">{how}</p>'
+            + f'  <p class="hint cohort-how">{how}</p>\n'
+            + f'  <p class="hint cohort-minimum">{minimum}</p>'
         )
 
     def course_schema(self, course, lang, route):

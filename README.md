@@ -42,7 +42,7 @@ The lock sentence is `lockNotice` in `content/site.json`. Change it there and re
 
 `provider` is `moe` or `messenger`. A Messenger course sets `"locked": true` and leaves `blocks` empty. The build will not print readings, videos or files for a locked course.
 
-The course page is the self-paced course. Its primary button, “Start the course, self-paced, free, no login”, opens Week 1 on this site (or the first section when the course has no weeks). Canvas is an optional live, teacher-led cohort: Zoom or online classes with a teacher, plus discussion, assignments and a certificate. The existing `canvas` URL stays on the page.
+The course page is the self-paced course. Its primary button, “Start the course, self-paced, free, no login”, opens Week 1 on this site (or the first section when the course has no weeks). Canvas is an optional live, teacher-led cohort: Zoom or online classes with a teacher, plus discussion, assignments and a certificate. A live cohort opens once at least 10 students sign up; the course page points them to the enrollment page. The existing `canvas` URL stays on the page.
 
 Optional `canvasJoin` points the cohort button at a join link. Use a full URL, a bare join code, or both:
 
