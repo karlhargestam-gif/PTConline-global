@@ -71,6 +71,76 @@
       "es": "Abrir este curso en Canvas",
       "pt": "Abrir este curso no Canvas"
     },
+    "startCourse": {
+      "en": "Start the course, self-paced, free, no login",
+      "es": "Empiece el curso, a su ritmo, gratis, sin iniciar sesión",
+      "pt": "Comece o curso, no seu ritmo, grátis, sem login"
+    },
+    "joinCohort": {
+      "en": "Join a live, teacher-led cohort in Canvas (Zoom or online classes, discussion, assignments, certificate)",
+      "es": "Unirse a un grupo en vivo con un profesor en Canvas (clases por Zoom o en línea, discusión, tareas, certificado)",
+      "pt": "Entrar numa turma ao vivo com professor no Canvas (aulas no Zoom ou online, discussão, tarefas, certificado)"
+    },
+    "openCourseLead": {
+      "en": "This page is the self-paced course. Watch and read here, free, with no login.",
+      "es": "Esta página es el curso a su ritmo. Vea y lea aquí, gratis y sin iniciar sesión.",
+      "pt": "Esta página é o curso no seu ritmo. Assista e leia aqui, grátis e sem login."
+    },
+    "cohortHowBefore": {
+      "en": "Optional. Canvas is for a live, teacher-led class on Zoom or online. This website is the self-paced course. Create a free Canvas Lite account, choose Student, and enter the join code from ",
+      "es": "Opcional. Canvas es para una clase en vivo con un profesor, por Zoom o en línea. Este sitio es el curso a su ritmo. Cree una cuenta gratuita de Canvas Lite, elija Estudiante (Student) e introduzca el código de unión de ",
+      "pt": "Opcional. O Canvas é para uma aula ao vivo com professor, no Zoom ou online. Este site é o curso no seu ritmo. Crie uma conta gratuita no Canvas Lite, escolha Estudante (Student) e informe o código de acesso da "
+    },
+    "cohortHowAfter": { "en": ".", "es": ".", "pt": "." },
+    "cohortMinimumBefore": {
+      "en": "Live cohorts open once at least 10 students sign up. ",
+      "es": "Los grupos en vivo empiezan cuando se inscriben al menos 10 estudiantes. ",
+      "pt": "As turmas ao vivo abrem quando pelo menos 10 alunos se inscrevem. "
+    },
+    "interestList": {
+      "en": "Join the interest list",
+      "es": "Únase a la lista de interés",
+      "pt": "Entre na lista de interesse"
+    },
+    "cohortMinimumAfter": {
+      "en": " and we'll let you know when yours starts.",
+      "es": " y le avisaremos cuando empiece el suyo.",
+      "pt": " e avisaremos quando a sua começar."
+    },
+    "joinCode": { "en": "Join code", "es": "Código de unión", "pt": "Código de acesso" },
+    "cardOpen": {
+      "en": "Open the course, self-paced, free, no login",
+      "es": "Abrir el curso, a su ritmo, gratis, sin iniciar sesión",
+      "pt": "Abrir o curso, no seu ritmo, grátis, sem login"
+    },
+    "weekNav": {
+      "en": "Move through the course",
+      "es": "Recorrer el curso",
+      "pt": "Percorrer o curso"
+    },
+    "weekJump": {
+      "en": "Previous and next",
+      "es": "Anterior y siguiente",
+      "pt": "Anterior e próxima"
+    },
+    "previous": { "en": "Previous", "es": "Anterior", "pt": "Anterior" },
+    "next": { "en": "Next", "es": "Siguiente", "pt": "Próxima" },
+    "onThisPage": { "en": "On this page", "es": "En esta página", "pt": "Nesta página" },
+    "submitWithCohort": {
+      "en": "submit this in the live, teacher-led class.",
+      "es": "entregue esto en la clase en vivo con un profesor.",
+      "pt": "entregue isto na aula ao vivo com professor."
+    },
+    "discussWithCohort": {
+      "en": "discuss this in the live, teacher-led class.",
+      "es": "converse sobre esto en la clase en vivo con un profesor.",
+      "pt": "converse sobre isto na aula ao vivo com professor."
+    },
+    "notOnThisPage": {
+      "en": "This item is not posted as a file on this page.",
+      "es": "Este elemento no está publicado como archivo en esta página.",
+      "pt": "Este item não está publicado como arquivo nesta página."
+    },
     "howEnroll": {
       "en": "How enrollment works",
       "es": "Cómo funciona la inscripción",
@@ -119,9 +189,9 @@
       "pt": "Sete cursos abertos, da missiologia ao estágio e à trilha de nível 2."
     },
     "moePanel": {
-      "en": "These courses are open courseware. Mission One Eleven handles its certificate and enrollment pathway separately.",
-      "es": "Estos cursos son material abierto. Mission One Eleven gestiona por separado el certificado y la inscripción.",
-      "pt": "Estes cursos são material aberto. A Mission One Eleven trata à parte o certificado e a inscrição."
+      "en": "These courses are open courseware. Mission One Eleven handles its certificate and enrollment pathway separately. Start each course on this site, self-paced, free, with no login. Canvas is an optional live, teacher-led class on Zoom or online, with discussion, assignments and a certificate.",
+      "es": "Estos cursos son material abierto. Mission One Eleven gestiona por separado el certificado y la inscripción. Empiece cada curso en este sitio, a su ritmo, gratis y sin iniciar sesión. Canvas es una clase opcional en vivo con un profesor, por Zoom o en línea, con discusión, tareas y un certificado.",
+      "pt": "Estes cursos são material aberto. A Mission One Eleven trata à parte o certificado e a inscrição. Comece cada curso neste site, no seu ritmo, grátis e sem login. O Canvas é uma aula opcional ao vivo com professor, no Zoom ou online, com discussão, tarefas e um certificado."
     },
     "messengerLead": {
       "en": "College courses are listed here with a lock badge. This site publishes the overview only.",

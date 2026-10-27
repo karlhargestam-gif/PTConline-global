@@ -8,7 +8,7 @@ The site is the front door. It answers, in English, Spanish and Portuguese:
 
 - what PTC is
 - which courses exist, who provides them, and how long they are
-- what an open course contains this week
+- what an open course contains this week. The course page is the self-paced course: start at Week 1 on this site, free, with no login. Canvas Lite is an optional live, teacher-led class on Zoom or online, for discussion, submitted work and a certificate. A course may set `canvasJoin` to a join link or code; until then the cohort button still opens the existing Canvas course URL
 - how to study, how to ask Mission One Eleven for a certificate, and how to apply to Messenger College
 - the privacy, terms and copyright notices
 
@@ -31,7 +31,7 @@ A file host cannot enroll a person, remember where they stopped, give a quiz, or
 | Messenger College (Populi) | Credit courses and admission |
 | PTC | Links out. It does not copy the grade book |
 
-Keep the open readings and week outlines on the static site so a student on a poor connection can still see the path. Put the cohort — the people, the due dates, the submitted work — in the LMS.
+Keep the open readings and week outlines on the static site so a student on a poor connection can still see the path. Put the live class — the teacher, the Zoom or online meeting, the due dates, the submitted work — in the LMS. Canvas Lite is the live, teacher-led cohort linked from each open course today. The Moodle or LearnWorlds choice below is still open.
 
 **Moodle** fits if cost, offline use and language coverage matter more than a short setup. It is open source, it has a mobile app that can work offline, and the interface can be translated. Someone has to host it and administer it.
 

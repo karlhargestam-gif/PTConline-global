@@ -13,6 +13,7 @@ import html
 import json
 import re
 from pathlib import Path
+from urllib.parse import quote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 PARTIALS = ROOT / "src" / "partials"
@@ -106,6 +107,7 @@ class Site:
         self.errors = []
         self.site = load_json(CONTENT / "site.json")
         self.pages = load_json(CONTENT / "pages.json")
+        self.meta = load_json(CONTENT / "meta.json")["routes"]
         self.courses = []
         for path in sorted((CONTENT / "courses").glob("*.json")):
             self.courses.append(load_json(path))
@@ -150,8 +152,8 @@ class Site:
 
     def flame_src(self, lang, home):
         if home and lang == "en":
-            return "assets/pcg-flame.png"
-        return "/assets/pcg-flame.png"
+            return "assets/pcg-flame-96.webp"
+        return "/assets/pcg-flame-96.webp"
 
     def banner(self, lang, route, home=False):
         mapping = {
@@ -213,10 +215,39 @@ class Site:
                 "isPartOf": {"@id": self.site["host"] + "/#website"},
                 "publisher": {"@id": self.site["host"] + "/#organization"},
             }
-        return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+        out = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+        crumbs = self.breadcrumbs(lang, route, title)
+        if crumbs:
+            out += '\n<script type="application/ld+json">' + json.dumps(crumbs, ensure_ascii=False) + "</script>"
+        return out
+
+    def breadcrumbs(self, lang, route, title):
+        """BreadcrumbList for every page below the home page."""
+        if not route:
+            return None
+        trail = [(self.ui["home"][lang], canonical_for(self.site, lang, ""))]
+        parts = route.split("/")
+        for i in range(1, len(parts)):
+            parent = "/".join(parts[:i])
+            label = self.ui["courses"][lang] if parent == "courses" else self.ui["about"][lang] if parent == "about" else parent
+            trail.append((label, canonical_for(self.site, lang, parent)))
+        trail.append((title, canonical_for(self.site, lang, route)))
+        return {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": i, "name": name, "item": url}
+                for i, (name, url) in enumerate(trail, 1)
+            ],
+        }
+
+    def meta_description(self, lang, route, description):
+        """Search snippet for the head tags. Visible text keeps the full description."""
+        return self.meta.get(route, {}).get(lang) or description
 
     def document(self, lang, route, title, description, body, jsonld, main_class):
         full_title = title if title.endswith(SITE_SUFFIX[lang]) else f"{title} | {SITE_SUFFIX[lang]}"
+        description = self.meta_description(lang, route, description)
         head = fill(
             self.head,
             {
@@ -257,7 +288,179 @@ class Site:
             return f"{name} ({', '.join(extra)})"
         return name
 
-    def render_item(self, item, lang):
+    def block_anchor(self, block, index):
+        if block["kind"] == "week":
+            return f"week-{block['n']}"
+        return f"section-{index}"
+
+    def block_short(self, block, lang):
+        if block["kind"] == "week":
+            return f'{self.ui["week"][lang]} {block["n"]}'
+        return block["title"][lang]
+
+    def start_anchor(self, course):
+        """Week 1 when the course has one; otherwise the first block."""
+        for index, block in enumerate(course["blocks"]):
+            if block["kind"] == "week" and block.get("n") == 1:
+                return self.block_anchor(block, index)
+        for index, block in enumerate(course["blocks"]):
+            if block["kind"] == "week":
+                return self.block_anchor(block, index)
+        if course["blocks"]:
+            return self.block_anchor(course["blocks"][0], 0)
+        return ""
+
+    def index_targets(self, course):
+        targets = []
+        for index, block in enumerate(course["blocks"]):
+            anchor = self.block_anchor(block, index)
+            for n, item in enumerate(block["items"]):
+                targets.append({
+                    "id": f"{anchor}-item-{n}",
+                    "item": item,
+                    "block_index": index,
+                    "href": item.get("href") or "",
+                    "src": item.get("src") or "",
+                    "anchor": anchor,
+                })
+        return targets
+
+    def item_role(self, item):
+        en = (item.get("title") or {}).get("en", "").lower()
+        if item["kind"] == "discussion" or en.startswith("discussion"):
+            return "discussion"
+        if "workbook" in en:
+            return "workbook"
+        if any(word in en for word in ("stories", "story", "gospel")):
+            return "stories"
+        if "reading" in en:
+            return "reading"
+        if item["kind"] == "quiz":
+            return "quiz"
+        return "task"
+
+    def is_textbook(self, target):
+        href = target["href"]
+        if not href.startswith("/assets/") or target["item"]["kind"] != "reading":
+            return False
+        en = target["item"]["title"]["en"].lower()
+        if "textbook" in en:
+            return True
+        return href.endswith((
+            "acts-of-the-holy-spirit.pdf",
+            "following-jesus.pdf",
+            "the-core.pdf",
+            "the-assignment.pdf",
+            "building-on-firm-foundations.pdf",
+        ))
+
+    def is_story(self, target):
+        href = target["href"]
+        return href.startswith("/assets/") and ("gospel" in href or "shorthand" in href)
+
+    def is_watchable(self, target):
+        return target["item"]["kind"] == "video" and bool(target["src"] or target["href"])
+
+    def resolve_on_site(self, ref, targets):
+        ref = str(ref).strip()
+        if ref.startswith("#"):
+            key = ref[1:]
+            for target in targets:
+                if target["id"] == key:
+                    return target
+            return {
+                "id": key,
+                "href": "",
+                "src": "",
+                "item": {"title": {"en": key, "es": key, "pt": key}, "kind": "note"},
+                "block_index": -1,
+            }
+        for target in targets:
+            if target["href"] == ref or target["src"] == ref:
+                return target
+        name = ref.rsplit("/", 1)[-1] or ref
+        return {
+            "id": "",
+            "href": ref,
+            "src": "",
+            "item": {"title": {"en": name, "es": name, "pt": name}, "kind": "reading"},
+            "block_index": -1,
+        }
+
+    def links_for(self, item, block_index, targets):
+        """On-site readings or videos that belong with a Canvas cohort item.
+
+        An item may set onSite (or siteHref) to a list of hrefs or #anchors.
+        Otherwise readings and quizzes point at posted textbooks, workbook
+        tasks at the workbook, story tasks at the gospel files, discussions
+        at videos in the same week, and other tasks at a class recording in
+        the same week.
+        """
+        explicit = item.get("onSite") or item.get("siteHref") or []
+        if isinstance(explicit, str):
+            explicit = [explicit]
+        if explicit:
+            return [self.resolve_on_site(ref, targets) for ref in explicit if str(ref).strip()]
+        role = self.item_role(item)
+        if role == "workbook":
+            return [
+                target for target in targets
+                if target["item"]["kind"] == "workbook" and target["href"].startswith("/assets/")
+            ]
+        if role == "stories":
+            return [target for target in targets if self.is_story(target)]
+        if role in ("reading", "quiz"):
+            books = [target for target in targets if self.is_textbook(target)]
+            if books:
+                return books
+        if role == "discussion":
+            videos = [
+                target for target in targets
+                if target["block_index"] == block_index
+                and target["item"] is not item
+                and self.is_watchable(target)
+            ]
+            if videos:
+                return videos
+        same = []
+        for target in targets:
+            if target["block_index"] != block_index or target["item"] is item:
+                continue
+            if self.is_watchable(target):
+                same.append(target)
+            elif role != "task" and target["href"].startswith("/assets/") and target["item"]["kind"] in ("reading", "workbook"):
+                same.append(target)
+        if role == "task":
+            return [target for target in same if self.is_watchable(target)]
+        return same
+
+    def cohort_item_note(self, item, lang, links):
+        label = self.ui["inCanvas"][lang]
+        if self.item_role(item) == "discussion":
+            action = f'{label}: {self.ui["discussWithCohort"][lang]}'
+        else:
+            action = f'{label}: {self.ui["submitWithCohort"][lang]}'
+        anchors = []
+        for target in links:
+            titles = target["item"]["title"]
+            title = titles.get(lang) or titles.get("en") or target.get("href") or ""
+            if target.get("id"):
+                href = f'#{target["id"]}'
+                attrs = ""
+            else:
+                href = target.get("href") or target.get("src") or ""
+                attrs = anchor_attrs(href) if href else ""
+            if not href or not title:
+                continue
+            anchors.append(f'<a href="{esc(href)}"{attrs}>{esc(title)}</a>')
+        if anchors:
+            joined = ", ".join(anchors)
+            return f'<p class="cohort-note">{esc(self.ui["onThisPage"][lang])}: {joined}. {esc(action)}</p>'
+        if self.item_role(item) == "discussion":
+            return f'<p class="cohort-note">{esc(action)}</p>'
+        return f'<p class="cohort-note">{esc(action)} {esc(self.ui["notOnThisPage"][lang])}</p>'
+
+    def render_item(self, item, lang, item_id, block_index, targets):
         title = item["title"][lang]
         href = item.get("href") or ""
         src = item.get("src") or ""
@@ -291,35 +494,147 @@ class Site:
             body = f"<p>{''.join(bits)}</p>"
         else:
             bits.append(esc(title))
+            note = ""
             if item["kind"] in ("assignment", "discussion", "quiz"):
-                bits.append(f' <span class="where">{esc(self.ui["inCanvas"][lang])}</span>')
+                note = "\n" + self.cohort_item_note(
+                    item, lang, self.links_for(item, block_index, targets)
+                )
             elif item["kind"] != "note":
                 bits.append(f' <span class="where">{esc(self.ui["notPosted"][lang])}</span>')
-            body = f"<p>{''.join(bits)}</p>"
+            body = f"<p>{''.join(bits)}</p>{note}"
         text = (item.get("text") or {}).get(lang)
         if text:
             body += f'\n<p class="note-text">{esc(text)}</p>'
-        return f"<li>\n{body}\n</li>"
+        return f'<li id="{esc(item_id)}">\n{body}\n</li>'
 
-    def render_block(self, block, lang, index):
+    def content_nav(self, course, lang):
+        links = []
+        for index, block in enumerate(course["blocks"]):
+            anchor = self.block_anchor(block, index)
+            links.append(f'<a href="#{anchor}">{esc(self.block_short(block, lang))}</a>')
+        return (
+            f'<nav class="week-nav" aria-label="{esc(self.ui["weekNav"][lang])}">'
+            + "".join(links)
+            + "</nav>"
+        )
+
+    def week_jump(self, course, lang, index):
+        blocks = course["blocks"]
+        parts = []
+        if index > 0:
+            anchor = self.block_anchor(blocks[index - 1], index - 1)
+            short = self.block_short(blocks[index - 1], lang)
+            parts.append(
+                f'<a href="#{anchor}">{esc(self.ui["previous"][lang])}: {esc(short)}</a>'
+            )
+        if index + 1 < len(blocks):
+            anchor = self.block_anchor(blocks[index + 1], index + 1)
+            short = self.block_short(blocks[index + 1], lang)
+            parts.append(
+                f'<a href="#{anchor}">{esc(self.ui["next"][lang])}: {esc(short)}</a>'
+            )
+        if not parts:
+            return ""
+        return (
+            f'<nav class="week-jump" aria-label="{esc(self.ui["weekJump"][lang])}">'
+            + "".join(parts)
+            + "</nav>"
+        )
+
+    def render_block(self, block, lang, index, course, targets):
+        anchor = self.block_anchor(block, index)
         if block["kind"] == "week":
             word = self.ui["week"][lang]
             title = block["title"][lang]
             heading = f"{word} {block['n']}: {title}" if title else f"{word} {block['n']}"
             kicker = f'<p class="kicker">{esc(word)} {block["n"]}</p>'
-            anchor = f"week-{block['n']}"
         else:
             heading = block["title"][lang]
             kicker = ""
-            anchor = f"section-{index}"
+        jump = self.week_jump(course, lang, index)
         if block["items"]:
-            items = "\n".join(self.render_item(item, lang) for item in block["items"])
+            items = "\n".join(
+                self.render_item(
+                    item,
+                    lang,
+                    f"{anchor}-item-{n}",
+                    index,
+                    targets,
+                )
+                for n, item in enumerate(block["items"])
+            )
             body = f'<ul class="resources">\n{items}\n</ul>'
         else:
             body = f'<p class="hint">{esc(self.ui["emptySection"][lang])}</p>'
+        if jump:
+            body += "\n" + jump
         return fill(
             self.week_t,
             {"anchor": anchor, "kicker": kicker, "heading": esc(heading), "body": body},
+        )
+
+    def canvas_target(self, course):
+        """Cohort button URL, visible join code, and the existing Canvas course URL.
+
+        canvasJoin may be a URL, a bare join code, or {"href", "code"}.
+        A bare code becomes https://<canvas host>/enroll/<code>.
+        When canvasJoin is empty, the button uses the course canvas URL.
+        """
+        course_href = (course.get("canvas") or "").strip()
+        raw = course.get("canvasJoin")
+        href = ""
+        code = ""
+        if isinstance(raw, dict):
+            href = str(raw.get("href") or "").strip()
+            code = str(raw.get("code") or "").strip()
+        elif isinstance(raw, str):
+            raw = raw.strip()
+            if raw.startswith("http://") or raw.startswith("https://"):
+                href = raw
+            elif raw:
+                code = raw
+        if code and not href and course_href:
+            parts = urlsplit(course_href)
+            if parts.scheme and parts.netloc:
+                href = f"{parts.scheme}://{parts.netloc}/enroll/{quote(code, safe='')}"
+        return href or course_href, code, course_href
+
+    def course_actions(self, course, lang):
+        button, code, course_href = self.canvas_target(course)
+        start = self.start_anchor(course)
+        start_href = f"#{start}" if start else href_for(lang, "enroll")
+        parts = [
+            f'<a class="button" href="{esc(start_href)}">{esc(self.ui["startCourse"][lang])}</a>'
+        ]
+        if button:
+            parts.append(
+                f'<a class="button secondary" href="{esc(button)}" target="_blank" rel="noopener noreferrer">{esc(self.ui["joinCohort"][lang])}</a>'
+            )
+        parts.append(
+            f'<a class="button secondary" href="{href_for(lang, "enroll")}">{esc(self.ui["howEnroll"][lang])}</a>'
+        )
+        how = (
+            f'{esc(self.ui["cohortHowBefore"][lang])}'
+            f'<a href="{href_for(lang, "enroll")}">{esc(self.ui["moeName"][lang])}</a>'
+            f'{esc(self.ui["cohortHowAfter"][lang])}'
+        )
+        if code:
+            how += f' <span class="join-code">{esc(self.ui["joinCode"][lang])}: {esc(code)}</span>'
+        if course_href:
+            how += (
+                f' <a href="{esc(course_href)}" target="_blank" rel="noopener noreferrer">{esc(self.ui["openCanvas"][lang])}</a>'
+            )
+        minimum = (
+            f'{esc(self.ui["cohortMinimumBefore"][lang])}'
+            f'<a href="{href_for(lang, "enroll")}">{esc(self.ui["interestList"][lang])}</a>'
+            f'{esc(self.ui["cohortMinimumAfter"][lang])}'
+        )
+        return (
+            '<div class="actions">\n    '
+            + "\n    ".join(parts)
+            + "\n  </div>\n"
+            + f'  <p class="hint cohort-how">{how}</p>\n'
+            + f'  <p class="hint cohort-minimum">{minimum}</p>'
         )
 
     def course_schema(self, course, lang, route):
@@ -373,10 +688,12 @@ class Site:
                 banner = '''<div class="banner">
   <img src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">
 </div>'''
-            blocks = "\n".join(self.render_block(block, lang, index) for index, block in enumerate(course["blocks"]))
-            canvas = ""
-            if course.get("canvas"):
-                canvas = f'<a class="button" href="{esc(course["canvas"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["openCanvas"][lang])}</a>'
+            targets = self.index_targets(course)
+            blocks = "\n".join(
+                self.render_block(block, lang, index, course, targets)
+                for index, block in enumerate(course["blocks"])
+            )
+            nav = self.content_nav(course, lang) if course["blocks"] else ""
             body = f'''{banner}
 <header class="masthead">
   <p class="kicker">{esc(self.provider_name(course["provider"], lang))}</p>
@@ -388,12 +705,11 @@ class Site:
     <div><dt>{esc(self.ui["language"][lang])}</dt><dd>{esc(course["teachingLanguage"][lang])}</dd></div>
     <div><dt>{esc(self.ui["level"][lang])}</dt><dd>{esc(course["level"][lang])}</dd></div>
   </dl>
-  <div class="actions">
-    {canvas}
-    <a class="button secondary" href="{href_for(lang, "enroll")}">{esc(self.ui["howEnroll"][lang])}</a>
-  </div>
+  <p class="open-course-lead">{esc(self.ui["openCourseLead"][lang])}</p>
+  {self.course_actions(course, lang)}
 </header>
 <div class="course">
+{nav}
 {blocks}
 </div>'''
         page = self.document(
@@ -407,12 +723,12 @@ class Site:
         )
         self.emit(self.out_path(lang, route), page)
 
-    def card(self, course, lang):
+    def card(self, course, lang, level=3):
         route = f"courses/{course['id']}"
         bits = []
         if course.get("locked"):
             bits.append(f'<span class="lock-badge">{esc(self.ui["locked"][lang])}</span>')
-        bits.append(f'<h3>{esc(course["title"][lang])}</h3>')
+        bits.append(f'<h{level}>{esc(course["title"][lang])}</h{level}>')
         if course.get("teachers"):
             bits.append(f'<p class="teachers">{esc(course["teachers"])}</p>')
         bits.append(f'<p>{esc(course["description"][lang])}</p>')
@@ -423,6 +739,8 @@ class Site:
             course["level"][lang],
         ]
         bits.append("<ul class=\"card-meta\">" + "".join(f"<li>{esc(item)}</li>" for item in meta) + "</ul>")
+        if not course.get("locked"):
+            bits.append(f'<p class="card-open">{esc(self.ui["cardOpen"][lang])}</p>')
         return f'<a class="catalog-card" href="{href_for(lang, route)}">\n' + "\n".join(bits) + "\n</a>"
 
     def render_catalog(self, lang):
@@ -471,7 +789,7 @@ class Site:
 
     def render_messenger(self, lang):
         messenger = [course for course in self.courses if course["provider"] == "messenger"]
-        cards = "\n".join(self.card(course, lang) for course in messenger)
+        cards = "\n".join(self.card(course, lang, level=2) for course in messenger)
         title = self.ui["messengerCatalogTitle"][lang]
         description = self.ui["messengerCatalogLead"][lang]
         body = f'''<header class="masthead">
@@ -575,6 +893,9 @@ class Site:
                 ],
             }
             linked_data = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+            crumbs = self.breadcrumbs(lang, page_id, title)
+            if crumbs:
+                linked_data += '\n<script type="application/ld+json">' + json.dumps(crumbs, ensure_ascii=False) + "</script>"
         else:
             linked_data = self.jsonld("page", lang, page_id, title, description)
         html_page = self.document(
@@ -613,7 +934,7 @@ class Site:
                 )
                 alternates += f'<xhtml:link rel="alternate" hreflang="x-default" href="{canonical_for(self.site, "en", route)}"/>'
                 urls.append(
-                    f"  <url><loc>{loc}</loc><lastmod>2026-10-13</lastmod>{alternates}</url>"
+                    f"  <url><loc>{loc}</loc><lastmod>{LASTMOD}</lastmod>{alternates}</url>"
                 )
         xml = (
             '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -697,6 +1018,9 @@ class Site:
             raise SystemExit(1)
         if not self.check:
             print(f"Built {len(self.courses)} courses × {len(LANGS)} languages, plus catalog, messenger, prose and home pages.")
+
+
+LASTMOD = "2026-10-27"  # bump when generated pages change
 
 
 def main():
