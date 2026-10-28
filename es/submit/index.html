@@ -81,7 +81,9 @@
 <div class="format-row"><label><input type="checkbox" name="formats" value="video"> Video</label><label><input type="checkbox" name="formats" value="text"> Texto</label><label><input type="checkbox" name="formats" value="slides"> Diapositivas</label><label><input type="checkbox" name="formats" value="other"> Otro</label></div>
 <label for="offer-link">Enlace al material</label>
 <input id="offer-link" name="materialUrl" type="url" maxlength="500" placeholder="https://">
-<p class="hint">Pegue un enlace https (Drive, YouTube u otro sitio). No suba archivos grandes aquí.</p>
+<p class="hint">Pegue un enlace https (Drive, YouTube u otro sitio). Un video largo va allí. Un PDF, subtítulos, texto o imagen pequeños pueden adjuntarse abajo, y se guardan solo cuando se apruebe el almacenamiento privado.</p>
+<label for="offer-file">Archivo pequeño, opcional</label>
+<input id="offer-file" name="files" type="file" multiple accept=".pdf,.vtt,.txt,.md,.png,.jpg,.jpeg,.webp">
 <label for="offer-ownership">Declaración de titularidad</label>
 <textarea id="offer-ownership" name="ownership" maxlength="1000"></textarea>
 <p class="hint">Diga cómo tiene los derechos: usted lo escribió, su iglesia lo tiene, o una editorial dio permiso.</p>

@@ -138,7 +138,12 @@ class Site:
         return node
 
     def provider_name(self, provider, lang):
-        key = "moeName" if provider == "moe" else "messengerName"
+        if provider == "moe":
+            key = "moeName"
+        elif provider == "ptc":
+            key = "ptcName"
+        else:
+            key = "messengerName"
         return self.ui[key][lang]
 
     def lang_links(self, lang, route):
@@ -643,8 +648,15 @@ class Site:
 
     def course_schema(self, course, lang, route):
         url = canonical_for(self.site, lang, route)
-        provider = "Mission One Eleven" if course["provider"] == "moe" else "Messenger College"
-        provider_url = self.site["moeUrl"] if course["provider"] == "moe" else self.site["messengerUrl"]
+        if course["provider"] == "moe":
+            provider = "Mission One Eleven"
+            provider_url = self.site["moeUrl"]
+        elif course["provider"] == "ptc":
+            provider = "Pentecostal Theological Consortium"
+            provider_url = self.site["host"] + "/"
+        else:
+            provider = "Messenger College"
+            provider_url = self.site["messengerUrl"]
         data = {
             "@context": "https://schema.org",
             "@type": "Course",

@@ -55,33 +55,41 @@
       form.reset();
       return;
     }
-    var data = {
-      lang: lang,
-      name: fields.name.value,
-      email: fields.email.value,
-      organization: fields.organization.value,
-      country: fields.country.value,
-      languages: fields.languages.value,
-      title: fields.title.value,
-      level: fields.level.value,
-      description: fields.description.value,
-      audience: fields.audience.value,
-      formats: Array.prototype.map.call(form.querySelectorAll("[name=formats]:checked"), function (box) { return box.value; }),
-      materialUrl: fields.materialUrl.value,
-      ownership: fields.ownership.value,
-      licence: (form.querySelector("[name=licence]:checked") || {}).value || "",
-      rights: fields.rights.checked,
-      publish: fields.publish.checked,
-      privacy: fields.privacy.checked,
-      website: fields.website.value
-    };
     var button = form.querySelector("button");
     button.disabled = true;
-    fetch("/api/submit-course", {
-      method: "POST",
-      headers: { "content-type": "application/json", accept: "application/json" },
-      body: JSON.stringify(data)
-    }).then(function (response) {
+    var fileInput = form.querySelector("[name=files]");
+    var hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+    var request;
+    if (hasFile) {
+      request = fetch("/api/submit-course", { method: "POST", body: new FormData(form), headers: { accept: "application/json" } });
+    } else {
+      var data = {
+        lang: lang,
+        name: fields.name.value,
+        email: fields.email.value,
+        organization: fields.organization.value,
+        country: fields.country.value,
+        languages: fields.languages.value,
+        title: fields.title.value,
+        level: fields.level.value,
+        description: fields.description.value,
+        audience: fields.audience.value,
+        formats: Array.prototype.map.call(form.querySelectorAll("[name=formats]:checked"), function (box) { return box.value; }),
+        materialUrl: fields.materialUrl.value,
+        ownership: fields.ownership.value,
+        licence: (form.querySelector("[name=licence]:checked") || {}).value || "",
+        rights: fields.rights.checked,
+        publish: fields.publish.checked,
+        privacy: fields.privacy.checked,
+        website: fields.website.value
+      };
+      request = fetch("/api/submit-course", {
+        method: "POST",
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify(data)
+      });
+    }
+    request.then(function (response) {
       return response.json().then(function (body) { return { ok: response.ok, body: body }; });
     }).then(function (result) {
       var code = result.body && result.body.code;

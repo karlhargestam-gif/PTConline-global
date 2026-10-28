@@ -178,6 +178,11 @@
     },
     "moeName": { "en": "Mission One Eleven", "es": "Mission One Eleven", "pt": "Mission One Eleven" },
     "messengerName": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" },
+    "ptcName": {
+      "en": "Pentecostal Theological Consortium",
+      "es": "Consorcio Teológico Pentecostal",
+      "pt": "Consórcio Teológico Pentecostal"
+    },
     "catalogTitle": { "en": "Courses", "es": "Cursos", "pt": "Cursos" },
     "catalogLead": {
       "en": "Mission One Eleven courses are open to watch and study. Messenger College courses are listed as overviews until an agreement is in place.",

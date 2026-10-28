@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "description": "Dependencies for the course-intake function. No Blob store is created by installing this package.",
+  "dependencies": {
+    "@vercel/blob": "^2.0.0"
+  }
+}
