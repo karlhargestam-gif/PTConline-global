@@ -61,6 +61,7 @@
     "about": { "en": "About", "es": "Acerca de", "pt": "Sobre" },
     "enroll": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" },
     "contact": { "en": "Contact", "es": "Contacto", "pt": "Contato" },
+    "submit": { "en": "Submit a course", "es": "Enviar un curso", "pt": "Enviar um curso" },
     "privacy": { "en": "Privacy", "es": "Privacidad", "pt": "Privacidade" },
     "terms": { "en": "Terms", "es": "Términos", "pt": "Termos" },
     "copyright": { "en": "Copyright", "es": "Derechos de autor", "pt": "Direitos autorais" },

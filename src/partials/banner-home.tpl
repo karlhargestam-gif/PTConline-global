@@ -5,6 +5,7 @@
           </a>
           <nav class="banner-nav" aria-label="{{nav_label}}">
             <a href="{{courses_href}}">{{courses_label}}</a>
+            <a href="{{submit_href}}">{{submit_label}}</a>
             <a href="{{pcg_url}}" target="_blank" rel="noopener noreferrer">{{pcg_label}}</a>
           </nav>
           <span class="lang-switch" aria-label="Language">{{lang_switch}}</span>
