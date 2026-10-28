@@ -719,7 +719,7 @@ class Site:
     <div><dt>{esc(self.ui["provider"][lang])}</dt><dd>{esc(self.provider_name(course["provider"], lang))}</dd></div>
     <div><dt>{esc(self.ui["length"][lang])}</dt><dd>{esc(self.length_text(course, lang))}</dd></div>
     <div><dt>{esc(self.ui["language"][lang])}</dt><dd>{esc(course["teachingLanguage"][lang])}</dd></div>
-    <div><dt>{esc(self.ui["level"][lang])}</dt><dd>{esc(course["level"][lang])}</dd></div>
+    <div><dt>{esc(self.ui["level"][lang])}</dt><dd>{esc(course["level"][lang])}</dd></div>{self.credit_meta(course, lang)}
   </dl>
   <p class="open-course-lead">{esc(self.ui["openCourseLead"][lang])}</p>
   {self.course_actions(course, lang)}
@@ -738,6 +738,20 @@ class Site:
             "course-page",
         )
         self.emit(self.out_path(lang, route), page)
+
+    def credit_meta(self, course, lang):
+        """Attribution for a course that came through the Submit a course form."""
+        contributor = (course.get("contributor") or "").strip()
+        if not contributor:
+            return ""
+        if course.get("licence") == "cc-by-nc-sa-4.0":
+            licence = '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer license">CC BY-NC-SA 4.0</a>'
+        else:
+            licence = esc(self.ui["licencePtc"][lang])
+        return (
+            f'\n    <div><dt>{esc(self.ui["contributedBy"][lang])}</dt><dd>{esc(contributor)}</dd></div>'
+            f'\n    <div><dt>{esc(self.ui["licence"][lang])}</dt><dd>{licence}</dd></div>'
+        )
 
     def card(self, course, lang, level=3):
         route = f"courses/{course['id']}"
@@ -764,6 +778,18 @@ class Site:
         messenger = [course for course in self.courses if course["provider"] == "messenger"]
         moe_cards = "\n".join(self.card(course, lang) for course in moe)
         messenger_cards = "\n".join(self.card(course, lang) for course in messenger)
+        ptc = [course for course in self.courses if course["provider"] == "ptc"]
+        ptc_block = ""
+        if ptc:
+            ptc_cards = "\n".join(self.card(course, lang) for course in ptc)
+            ptc_block = f'''
+  <section class="provider-block" aria-labelledby="ptc-heading">
+    <h2 id="ptc-heading">{esc(self.ui["ptcCoursesName"][lang])}</h2>
+    <p class="lead">{esc(self.ui["ptcCoursesLead"][lang])}</p>
+    <div class="catalog-grid">
+      {ptc_cards}
+    </div>
+  </section>'''
         body = f'''<header class="masthead">
   <p class="kicker">PTC</p>
   <h1>{esc(self.ui["catalogTitle"][lang])}</h1>
@@ -792,7 +818,7 @@ class Site:
       <a class="button secondary" href="{href_for(lang, "courses/messenger")}">{esc(self.ui["messengerCatalogTitle"][lang])}</a>
       <a class="button" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
     </div>
-  </section>
+  </section>{ptc_block}
 </div>'''
         title = self.ui["catalogTitle"][lang]
         description = self.ui["catalogLead"][lang]

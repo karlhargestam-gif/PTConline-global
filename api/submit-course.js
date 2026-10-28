@@ -21,7 +21,10 @@ const JSON_LIMIT = 24 * 1024;
 const UPLOAD_LIMIT = 4 * 1024 * 1024;
 const FILE_LIMIT = 3 * 1024 * 1024;
 const MAX_FILES = 3;
-const LICENCE_TEXT_VERSION = "2026-10-28";
+const LICENCE_TEXT_VERSION = "2026-10-28.2";
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX = 5;
+const recent = new Map();
 const LICENCES = new Set(["ptc-nonexclusive", "cc-by-nc-sa-4.0"]);
 const FORMATS = new Set(["video", "text", "slides", "other"]);
 const FILE_TYPES = new Set([
@@ -33,6 +36,33 @@ const FILE_TYPES = new Set([
   "image/jpeg",
   "image/webp",
 ]);
+// Each allowed type must also match the first bytes of the file.
+const MAGIC = {
+  "application/pdf": (b) => b.slice(0, 5).toString("latin1") === "%PDF-",
+  "image/png": (b) => b.slice(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])),
+  "image/jpeg": (b) => b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff,
+  "image/webp": (b) => b.slice(0, 4).toString("latin1") === "RIFF" && b.slice(8, 12).toString("latin1") === "WEBP",
+  "text/vtt": (b) => /^(\ufeff)?WEBVTT/.test(b.slice(0, 16).toString("utf8")),
+  "text/plain": isPlainText,
+  "text/markdown": isPlainText,
+};
+const EXTENSIONS = {
+  "application/pdf": [".pdf"],
+  "image/png": [".png"],
+  "image/jpeg": [".jpg", ".jpeg"],
+  "image/webp": [".webp"],
+  "text/vtt": [".vtt"],
+  "text/plain": [".txt"],
+  "text/markdown": [".md"],
+};
+
+function isPlainText(buffer) {
+  const sample = buffer.slice(0, 4096);
+  if (sample.includes(0)) return false;
+  const text = sample.toString("utf8");
+  return !/^\s*<(?:!doctype|html|script|svg)/i.test(text);
+}
+
 const STAGE_LABELS = [
   ["submission", "ededed", "A course offer, not a support ticket"],
   ["submitted", "1d76db", "COS has the new offer and will route it"],
@@ -47,26 +77,35 @@ const STAGE_LABELS = [
 const COPY = {
   en: {
     title: "Submit a course",
-    unconfigured: "Submissions open soon. Email us from the contact page.",
-    thanks: "Thank you. If submissions are open, the offer is on its way for review.",
-    invalid: "Check the required fields, the https link, and the three consent boxes.",
-    failed: "The offer could not be delivered. Email us from the contact page.",
+    unconfigured: "Submissions are paused right now. Please try again later, or reach us through the contact page.",
+    thanks: "Thank you. Your offer is on its way to the PTC team for review.",
+    invalid: "Check the fields marked *, the https link, the licence and the three consent boxes.",
+    failed: "The offer could not be delivered. Please try again later, or reach us through the contact page.",
+    file: "Each file must be a PDF, VTT, TXT, MD, PNG, JPG or WEBP of 3 MB or less, up to 3 files. Put larger material in a link.",
+    material: "Add a link to the material or attach a small file.",
+    busy: "Too many offers from this connection. Please wait a few minutes and try again.",
     contact: "/contact/",
   },
   es: {
     title: "Enviar un curso",
-    unconfigured: "Los envíos se abrirán pronto. Escríbanos desde la página de contacto.",
-    thanks: "Gracias. Si los envíos están abiertos, la oferta va en camino para su revisión.",
-    invalid: "Revise los campos obligatorios, el enlace https y las tres casillas de consentimiento.",
-    failed: "No se pudo entregar la oferta. Escríbanos desde la página de contacto.",
+    unconfigured: "Los envíos están en pausa en este momento. Inténtelo más tarde o contáctenos desde la página de contacto.",
+    thanks: "Gracias. Su oferta va en camino al equipo de PTC para su revisión.",
+    invalid: "Revise los campos marcados con *, el enlace https, la licencia y las tres casillas de consentimiento.",
+    failed: "No se pudo entregar la oferta. Inténtelo más tarde o contáctenos desde la página de contacto.",
+    file: "Cada archivo debe ser PDF, VTT, TXT, MD, PNG, JPG o WEBP de 3 MB o menos, hasta 3 archivos. Ponga el material más grande en un enlace.",
+    material: "Agregue un enlace al material o adjunte un archivo pequeño.",
+    busy: "Demasiadas ofertas desde esta conexión. Espere unos minutos e inténtelo de nuevo.",
     contact: "/es/contact/",
   },
   pt: {
     title: "Enviar um curso",
-    unconfigured: "Os envios abrem em breve. Escreva para nós pela página de contato.",
-    thanks: "Obrigado. Se os envios estiverem abertos, a oferta segue para revisão.",
-    invalid: "Confira os campos obrigatórios, o link https e as três caixas de consentimento.",
-    failed: "Não foi possível entregar a oferta. Escreva para nós pela página de contato.",
+    unconfigured: "Os envios estão pausados no momento. Tente mais tarde ou fale conosco pela página de contato.",
+    thanks: "Obrigado. Sua oferta segue para a equipe do PTC para revisão.",
+    invalid: "Confira os campos marcados com *, o link https, a licença e as três caixas de consentimento.",
+    failed: "Não foi possível entregar a oferta. Tente mais tarde ou fale conosco pela página de contato.",
+    file: "Cada arquivo deve ser PDF, VTT, TXT, MD, PNG, JPG ou WEBP de até 3 MB, no máximo 3 arquivos. Coloque material maior em um link.",
+    material: "Adicione um link para o material ou anexe um arquivo pequeno.",
+    busy: "Muitas ofertas desta conexão. Aguarde alguns minutos e tente de novo.",
     contact: "/pt/contact/",
   },
 };
@@ -76,8 +115,31 @@ function clean(value, max) {
   return value.replace(/\s+/g, " ").trim().slice(0, max);
 }
 
+// Keeps line breaks for long text. It is shown inside a code block in the issue.
+function cleanLong(value, max) {
+  if (typeof value !== "string") return "";
+  return value
+    .replace(/\r\n?/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/[ \t\f\v]+/g, " ").trimEnd())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+    .slice(0, max);
+}
+
 function asBool(value) {
   return value === true || value === "yes" || value === "on";
+}
+
+function validUrl(value) {
+  if (!/^https:\/\/\S+$/i.test(value)) return false;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.hostname.includes(".") && !url.username && !url.password;
+  } catch (err) {
+    return false;
+  }
 }
 
 function formatsOf(value) {
@@ -92,14 +154,14 @@ function validate(data) {
   const email = clean(data.email, 200);
   const country = clean(data.country, 80);
   const title = clean(data.title, 200);
-  const description = clean(data.description, 4000);
+  const description = cleanLong(data.description, 4000);
   const materialUrl = clean(data.materialUrl, 500);
   const licence = clean(data.licence, 40);
   if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "invalid" };
   if (!/^[A-Z]{2}$/.test(country) || !title || !description) return { error: "invalid" };
   if (!asBool(data.rights) || !asBool(data.publish) || !asBool(data.privacy)) return { error: "invalid" };
   if (!LICENCES.has(licence)) return { error: "invalid" };
-  if (materialUrl && !/^https:\/\/\S+$/i.test(materialUrl)) return { error: "invalid" };
+  if (materialUrl && !validUrl(materialUrl)) return { error: "invalid" };
   return {
     payload: {
       name,
@@ -113,11 +175,11 @@ function validate(data) {
       audience: clean(data.audience, 500),
       formats: formatsOf(data.formats),
       materialUrl,
-      ownership: clean(data.ownership, 1000),
+      ownership: cleanLong(data.ownership, 1000),
       licence,
       licenceVersion: licence === "cc-by-nc-sa-4.0"
         ? "cc-by-nc-sa-4.0"
-        : `ptc-nonexclusive-draft-${LICENCE_TEXT_VERSION}`,
+        : `ptc-nonexclusive-${LICENCE_TEXT_VERSION}`,
       rights: true,
       publish: true,
       privacy: true,
@@ -143,20 +205,24 @@ function langOf(data) {
   return COPY[lang] ? lang : "en";
 }
 
-function htmlPage(copy, message) {
+function htmlPage(copy, message, lang) {
   const text = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><title>${copy.title}</title><p>${text}</p><p><a href="${copy.contact}">${copy.contact}</a></p>`;
+  return `<!doctype html><html lang="${lang}"><meta charset="utf-8"><title>${copy.title}</title><p>${text}</p><p><a href="${copy.contact}">${copy.contact}</a></p>`;
 }
 
 function send(req, res, status, code, data) {
-  const copy = COPY[langOf(data)];
-  const key = { accepted: "thanks", spam: "thanks" }[code] || code;
+  const lang = langOf(data);
+  const copy = COPY[lang];
+  // A filled honeypot gets the same answer as a real offer, so a bot learns nothing.
+  if (code === "spam") code = "accepted";
+  const key = { accepted: "thanks" }[code] || code;
   const message = copy[key] || copy.invalid;
-  const type = String((req.headers && req.headers["content-type"]) || "");
+  const accept = String((req.headers && req.headers.accept) || "");
   res.setHeader("cache-control", "no-store");
-  if (type.includes("application/x-www-form-urlencoded")) {
+  // A plain HTML form post (no JavaScript) gets a short HTML page back.
+  if (!accept.includes("application/json") && accept.includes("text/html")) {
     res.status(status).setHeader("content-type", "text/html; charset=utf-8");
-    res.send(htmlPage(copy, message));
+    res.send(htmlPage(copy, message, lang));
     return;
   }
   res.status(status).json({ ok: status >= 200 && status < 300, code });
@@ -257,13 +323,50 @@ async function ensureLabels() {
   }
 }
 
-async function storeFiles(files) {
-  if (!files.length) return [];
+function filesOk(files) {
+  if (files.length > MAX_FILES) return false;
+  return files.every((file) => {
+    const name = file.filename.toLowerCase();
+    return FILE_TYPES.has(file.type) &&
+      file.bytes.length > 0 &&
+      file.bytes.length <= FILE_LIMIT &&
+      (EXTENSIONS[file.type] || []).some((ext) => name.endsWith(ext)) &&
+      MAGIC[file.type](file.bytes);
+  });
+}
+
+async function removeFiles(stored) {
+  if (!stored.length) return;
+  try {
+    const { del } = require("@vercel/blob");
+    await del(stored.map((file) => file.url), { token: process.env.BLOB_READ_WRITE_TOKEN });
+  } catch (err) {
+    log("blob-cleanup", err);
+  }
+}
+
+function log(stage, err, extra) {
+  // No names, emails or IPs in logs. Stage and error message only.
+  console.error(JSON.stringify({ fn: "submit-course", stage, error: String((err && err.message) || err).slice(0, 300), ...(extra || {}) }));
+}
+
+function rateLimited(hash) {
+  // Best effort: each warm function instance keeps its own window.
+  const now = Date.now();
+  for (const [key, times] of recent) {
+    if (times.every((time) => now - time > RATE_WINDOW_MS)) recent.delete(key);
+  }
+  const times = (recent.get(hash) || []).filter((time) => now - time <= RATE_WINDOW_MS);
+  times.push(now);
+  recent.set(hash, times);
+  return times.length > RATE_MAX;
+}
+
+async function storeFiles(files, stored) {
+  if (!files.length) return stored;
   const { put } = require("@vercel/blob");
-  const stored = [];
   for (const file of files) {
-    if (!FILE_TYPES.has(file.type)) throw new Error("file type");
-    if (file.bytes.length > FILE_LIMIT) throw new Error("file size");
+    if (!filesOk([file])) throw new Error("file check");
     const pathname = `curriculum/${Date.now()}-${file.filename}`;
     const blob = await put(pathname, file.bytes, {
       access: "private",
@@ -276,34 +379,51 @@ async function storeFiles(files) {
   return stored;
 }
 
+// Text from the public form is shown as code in the issue. That stops headings,
+// links, images, HTML, @-mentions and #-references from rendering or notifying.
+function inline(value) {
+  const text = String(value || "").replace(/[`\r\n]/g, "'").trim();
+  return text ? `\`${text}\`` : "(none)";
+}
+
+function block(value) {
+  const text = String(value || "").replace(/~{3,}/g, "~~");
+  return ["~~~text", text, "~~~"].join("\n");
+}
+
 function issueBody(payload, files, hash) {
   const lines = [
     "## Course offer",
     "",
-    `- Title: ${payload.title}`,
-    `- Level or topic: ${payload.level || "(none)"}`,
+    `- Title: ${inline(payload.title)}`,
+    `- Level or topic: ${inline(payload.level)}`,
     `- Country: ${payload.country}`,
-    `- Languages: ${payload.languages || "(none)"}`,
-    `- Audience: ${payload.audience || "(none)"}`,
+    `- Languages: ${inline(payload.languages)}`,
+    `- Audience: ${inline(payload.audience)}`,
     `- Formats: ${payload.formats.join(", ") || "(none)"}`,
-    `- Organization or church: ${payload.organization || "(none)"}`,
+    `- Organization or church: ${inline(payload.organization)}`,
     "",
-    payload.description,
+    "Description:",
+    "",
+    block(payload.description),
     "",
     "## Contact",
     "",
-    `- Name: ${payload.name}`,
-    `- Email: ${payload.email}`,
-    `- Notify: ${process.env.CURRICULUM_NOTIFY_EMAIL}`,
+    `- Name: ${inline(payload.name)}`,
+    `- Email: ${inline(payload.email)}`,
+    `- COS contact: ${process.env.CURRICULUM_NOTIFY_EMAIL}`,
     "",
     "## Material",
     "",
-    payload.materialUrl ? `- Link: ${payload.materialUrl}` : "- Link: (none)",
-    payload.ownership ? `- Ownership: ${payload.ownership}` : "- Ownership: (none)",
+    `- Link (open with care, not checked): ${inline(payload.materialUrl)}`,
+    "",
+    "Ownership statement:",
+    "",
+    block(payload.ownership || "(none)"),
   ];
   if (files.length) {
     lines.push("", "Private Blob files (not public):");
-    for (const file of files) lines.push(`- ${file.filename}: \`${file.pathname}\``);
+    for (const file of files) lines.push(`- ${inline(file.filename)}: \`${file.pathname}\``);
   } else {
     lines.push("", "No file was uploaded. The link above is the material.");
   }
@@ -320,7 +440,7 @@ function issueBody(payload, files, hash) {
     "- Privacy checkbox: yes",
     `- IP hash (salted SHA-256, not the raw address): ${hash}`,
     "",
-    "Draft for legal review. Do not treat this consent as a finished licence until Karl approves the wording.",
+    "The licence text for this version is in docs/curriculum-pipeline.md (PTConline-global).",
     "",
     "Stage: submitted. COS monitors and routes. See docs/curriculum-pipeline.md in PTConline-global.",
   );
@@ -334,12 +454,14 @@ async function openIssue(payload, files, hash) {
   const created = await github(`/repos/${repo}/issues`, {
     method: "POST",
     body: JSON.stringify({
-      title: `Course offer: ${payload.title} (${payload.country})`.slice(0, 240),
+      title: `Course offer: ${payload.title.replace(/[@#`<>]/g, "")} (${payload.country})`.slice(0, 240),
       body: issueBody(payload, files, hash),
       labels: ["submission", "submitted"],
     }),
   });
-  if (created.status !== 201) throw new Error("issue");
+  if (created.status !== 201) {
+    throw new Error(`issue ${created.status} ${(created.body && created.body.message) || ""}`.trim());
+  }
   return created.body && created.body.html_url;
 }
 
@@ -363,7 +485,7 @@ async function handler(req, res) {
   const type = String((req.headers && req.headers["content-type"]) || "");
   const limit = type.includes("multipart/form-data") ? UPLOAD_LIMIT : JSON_LIMIT;
   if (length > limit) {
-    send(req, res, 413, "invalid", {});
+    send(req, res, 413, type.includes("multipart/form-data") ? "file" : "invalid", {});
     return;
   }
   let data;
@@ -375,7 +497,6 @@ async function handler(req, res) {
       const parsed = parseMultipart(raw, type);
       data = parsed.fields;
       files = parsed.files;
-      if (files.length > MAX_FILES) throw new Error("too many files");
     } else if (Buffer.isBuffer(raw)) {
       const text = raw.toString("utf8");
       data = type.includes("application/x-www-form-urlencoded")
@@ -387,7 +508,8 @@ async function handler(req, res) {
       data = raw;
     }
   } catch (err) {
-    send(req, res, 400, "invalid", {});
+    const tooLarge = err && err.message === "too-large";
+    send(req, res, tooLarge ? 413 : 400, tooLarge ? "file" : "invalid", {});
     return;
   }
   const result = validate(data);
@@ -400,17 +522,38 @@ async function handler(req, res) {
     return;
   }
   if (!result.payload.materialUrl && files.length === 0) {
-    send(req, res, 400, "invalid", data);
+    send(req, res, 400, "material", data);
+    return;
+  }
+  if (!filesOk(files)) {
+    send(req, res, 400, "file", data);
+    return;
+  }
+  const hash = ipHash(req);
+  if (rateLimited(hash)) {
+    log("rate-limit", "too many offers", { ipHash: hash.slice(0, 12) });
+    send(req, res, 429, "busy", data);
     return;
   }
   result.payload.receivedAt = new Date().toISOString();
+  const stored = [];
   try {
-    const stored = await storeFiles(files);
-    await openIssue(result.payload, stored, ipHash(req));
-    send(req, res, 200, "accepted", data);
+    await storeFiles(files, stored);
   } catch (err) {
+    log("blob", err, { files: files.length });
+    await removeFiles(stored);
     send(req, res, 502, "failed", data);
+    return;
   }
+  try {
+    await openIssue(result.payload, stored, hash);
+  } catch (err) {
+    log("github", err);
+    await removeFiles(stored);
+    send(req, res, 502, "failed", data);
+    return;
+  }
+  send(req, res, 200, "accepted", data);
 }
 
 function readIncoming(req) {
@@ -437,3 +580,5 @@ module.exports.configured = configured;
 module.exports.parseMultipart = parseMultipart;
 module.exports.ipHash = ipHash;
 module.exports.issueBody = issueBody;
+module.exports.filesOk = filesOk;
+module.exports.validUrl = validUrl;

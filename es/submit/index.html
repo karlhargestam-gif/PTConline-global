@@ -6,11 +6,11 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#332D26">
 <title>Enviar un curso | Consorcio Teológico Pentecostal</title>
-<meta name="description" content="Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. La revisión y la publicación gratuita aún necesitan aprobación.">
+<meta name="description" content="Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. Cada oferta se revisa antes de su publicación gratuita.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ptconline.global/es/submit">
 <meta property="og:title" content="Enviar un curso | Consorcio Teológico Pentecostal">
-<meta property="og:description" content="Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. La revisión y la publicación gratuita aún necesitan aprobación.">
+<meta property="og:description" content="Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. Cada oferta se revisa antes de su publicación gratuita.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ptconline.global/es/submit">
 <meta property="og:image" content="https://ptconline.global/assets/og-image.jpg">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Enviar un curso | Consorcio Teológico Pentecostal">
-<meta name="twitter:description" content="Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. La revisión y la publicación gratuita aún necesitan aprobación.">
+<meta name="twitter:description" content="Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. Cada oferta se revisa antes de su publicación gratuita.">
 <meta name="twitter:image" content="https://ptconline.global/assets/og-image.jpg">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/assets/pcg-flame.png">
@@ -30,7 +30,7 @@
 <link rel="alternate" hreflang="es" href="https://ptconline.global/es/submit">
 <link rel="alternate" hreflang="pt" href="https://ptconline.global/pt/submit">
 <link rel="alternate" hreflang="x-default" href="https://ptconline.global/submit">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://ptconline.global/es/submit#webpage", "url": "https://ptconline.global/es/submit", "name": "Enviar un curso", "description": "Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. La revisión y la publicación gratuita aún necesitan aprobación.", "inLanguage": "es", "isPartOf": {"@id": "https://ptconline.global/#website"}, "publisher": {"@id": "https://ptconline.global/#organization"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://ptconline.global/es/submit#webpage", "url": "https://ptconline.global/es/submit", "name": "Enviar un curso", "description": "Ofrezca un curso o un currículo al Consorcio Teológico Pentecostal desde cualquier país. Cada oferta se revisa antes de su publicación gratuita.", "inLanguage": "es", "isPartOf": {"@id": "https://ptconline.global/#website"}, "publisher": {"@id": "https://ptconline.global/#organization"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ptconline.global/es"}, {"@type": "ListItem", "position": 2, "name": "Enviar un curso", "item": "https://ptconline.global/es/submit"}]}</script>
 </head>
 <body>
@@ -52,52 +52,60 @@
 <article class="prose catalog">
 <h2>Cómo funciona</h2>
 <ol class="how-list"><li>Enviar. Describa el curso y pegue un enlace al material.</li><li>Revisar. El equipo académico de PTC lee la oferta.</li><li>Editar y traducir. Lo que se acepte puede editarse y traducirse.</li><li>Publicar, de lo local a lo global. Los cursos aceptados pueden publicarse gratis en ptconline.global, con atribución.</li></ol>
-<p class="draft-note">Borrador para la revisión legal de Karl. Esto no es asesoría legal ni una licencia terminada. No trate ninguna opción como definitiva hasta que se apruebe.</p>
-<form id="course-offer" class="submit-form" action="/api/submit-course" method="post" data-unconfigured="Los envíos se abrirán pronto. Escríbanos desde la página de contacto." data-thanks="Gracias. Si los envíos están abiertos, la oferta va en camino para su revisión." data-invalid="Revise los campos obligatorios, el enlace https y las tres casillas de consentimiento." data-failed="No se pudo entregar la oferta. Escríbanos desde la página de contacto." data-contact="/es/contact/" data-contact-label="Contacto">
+<p class="terms-note">Su oferta, en resumen: usted sigue siendo dueño de su obra y elige una de las dos licencias de abajo. PTC revisa cada oferta y puede rechazarla o publicar solo una parte. Los cursos publicados son gratuitos y le dan crédito como autor. El aviso de privacidad de este formulario está justo encima de las casillas que debe marcar.</p>
+<form id="course-offer" class="submit-form" action="/api/submit-course" method="post" enctype="multipart/form-data" data-unconfigured="Los envíos están en pausa en este momento. Inténtelo más tarde o contáctenos desde la página de contacto." data-thanks="Gracias. Su oferta va en camino al equipo de PTC para su revisión." data-invalid="Revise los campos marcados con *, el enlace https, la licencia y las tres casillas de consentimiento." data-failed="No se pudo entregar la oferta. Inténtelo más tarde o contáctenos desde la página de contacto." data-file="Cada archivo debe ser PDF, VTT, TXT, MD, PNG, JPG o WEBP de 3 MB o menos, hasta 3 archivos. Ponga el material más grande en un enlace." data-material="Agregue un enlace al material o adjunte un archivo pequeño." data-busy="Demasiadas ofertas desde esta conexión. Espere unos minutos e inténtelo de nuevo." data-contact="/es/contact/" data-contact-label="Contacto">
 <input type="hidden" name="lang" value="es">
-<p class="hp"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" value=""></label></p>
-<label for="offer-name">Su nombre</label>
+<p class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" value=""></label></p>
+<p class="hint req-note">Los campos marcados con * son obligatorios. Agregue un enlace al material, un archivo pequeño, o ambos.</p>
+<label for="offer-name">Su nombre <span class="req" aria-hidden="true">*</span></label>
 <input id="offer-name" name="name" type="text" required maxlength="120" autocomplete="name">
-<label for="offer-email">Correo electrónico</label>
+<label for="offer-email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
 <input id="offer-email" name="email" type="email" required maxlength="200" autocomplete="email">
 <label for="offer-org">Organización o iglesia</label>
 <input id="offer-org" name="organization" type="text" maxlength="200" autocomplete="organization">
-<label for="offer-country">País</label>
+<label for="offer-country">País <span class="req" aria-hidden="true">*</span></label>
 <select id="offer-country" name="country" required>
 <option value="" selected>Seleccione un país</option>
 </select>
 <label for="offer-languages">Idiomas del material</label>
 <input id="offer-languages" name="languages" type="text" maxlength="200">
 <p class="hint">Por ejemplo: inglés, español, portugués u otro idioma.</p>
-<label for="offer-title">Título del curso</label>
+<label for="offer-title">Título del curso <span class="req" aria-hidden="true">*</span></label>
 <input id="offer-title" name="title" type="text" required maxlength="200">
 <label for="offer-level">Nivel o tema</label>
 <input id="offer-level" name="level" type="text" maxlength="200">
-<label for="offer-description">Descripción</label>
+<label for="offer-description">Descripción <span class="req" aria-hidden="true">*</span></label>
 <textarea id="offer-description" name="description" required maxlength="4000"></textarea>
 <label for="offer-audience">Público previsto</label>
 <input id="offer-audience" name="audience" type="text" maxlength="500">
-<p class="field-label">Formato</p>
+<fieldset class="format-group"><legend class="field-label">Formato</legend>
 <div class="format-row"><label><input type="checkbox" name="formats" value="video"> Video</label><label><input type="checkbox" name="formats" value="text"> Texto</label><label><input type="checkbox" name="formats" value="slides"> Diapositivas</label><label><input type="checkbox" name="formats" value="other"> Otro</label></div>
+</fieldset>
 <label for="offer-link">Enlace al material</label>
 <input id="offer-link" name="materialUrl" type="url" maxlength="500" placeholder="https://">
-<p class="hint">Pegue un enlace https (Drive, YouTube u otro sitio). Un video largo va allí. Un PDF, subtítulos, texto o imagen pequeños pueden adjuntarse abajo, y se guardan solo cuando se apruebe el almacenamiento privado.</p>
+<p class="hint">Pegue un enlace https (Drive, YouTube u otro sitio). Un video largo va allí.</p>
 <label for="offer-file">Archivo pequeño, opcional</label>
-<input id="offer-file" name="files" type="file" multiple accept=".pdf,.vtt,.txt,.md,.png,.jpg,.jpeg,.webp">
+<input id="offer-file" name="files" type="file" multiple accept=".pdf,.vtt,.txt,.md,.png,.jpg,.jpeg,.webp" aria-describedby="offer-file-hint">
+<p class="hint" id="offer-file-hint">PDF, VTT, TXT, MD, PNG, JPG o WEBP. Hasta 3 archivos de 3 MB cada uno. Los archivos se guardan en privado y solo el equipo de revisión de PTC puede verlos.</p>
 <label for="offer-ownership">Declaración de titularidad</label>
 <textarea id="offer-ownership" name="ownership" maxlength="1000"></textarea>
 <p class="hint">Diga cómo tiene los derechos: usted lo escribió, su iglesia lo tiene, o una editorial dio permiso.</p>
+<p class="hint">Citas bíblicas: indique la traducción que cita. Los cursos de PTC en español y portugués usan la NVI, cuyos derechos pertenecen a Biblica: no cite más de 500 versículos en total, nunca un libro completo de la Biblia, y mantenga las Escrituras por debajo del 25 % del curso.</p>
 <fieldset>
 <legend>Licencia</legend>
 <ul class="checks">
-<li><label><input type="radio" name="licence" value="ptc-nonexclusive" required> Licencia no exclusiva de PTC (borrador). Concedo al Consorcio Teológico Pentecostal una licencia no exclusiva para revisar, editar, traducir y publicar este material gratis en ptconline.global y en plataformas asociadas, con atribución.</label></li>
-<li><label><input type="radio" name="licence" value="cc-by-nc-sa-4.0" required> CC BY-NC-SA 4.0 (opción en borrador). Ofrezco este material bajo Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional. PTC puede revisarlo, editarlo, traducirlo y publicarlo en esos términos, con atribución.</label></li>
+<li><label><input type="radio" name="licence" value="ptc-nonexclusive" required> Licencia de PTC. Conservo los derechos de autor. Concedo al Consorcio Teológico Pentecostal (PTC) una licencia gratuita, mundial y no exclusiva para revisar, editar, adaptar, traducir, subtitular y publicar este material, y para compartirlo gratis con iglesias, escuelas y plataformas asociadas para la enseñanza. PTC me dará crédito como autor (y a mi iglesia u organización si la indico), no venderá el material e indicará cuando las ediciones y traducciones sean adaptaciones. Puedo pedir a PTC que deje de usarlo: PTC lo retirará de ptconline.global en un plazo de 30 días, aunque las copias ya compartidas o descargadas pueden seguir existiendo.</label></li>
+<li><label><input type="radio" name="licence" value="cc-by-nc-sa-4.0" required> Creative Commons BY-NC-SA 4.0. Conservo los derechos de autor y licencio este material a todos bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer">Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional</a>. Cualquiera, incluidos PTC y sus socios, puede copiarlo, adaptarlo y traducirlo para uso no comercial si me da crédito, enlaza la licencia, indica qué cambió y comparte las adaptaciones bajo la misma licencia. Una licencia Creative Commons no se puede retirar para las copias ya compartidas.</label></li>
 </ul>
 </fieldset>
+<section class="privacy-note" aria-labelledby="privacy-note-heading">
+<h3 id="privacy-note-heading">Aviso de privacidad de este formulario</h3>
+<p><strong>Qué recogemos:</strong> su nombre, correo, país, organización si la indica, los datos y archivos del curso, la licencia que eligió, la hora en que aceptó y una forma cifrada (hash con sal) de su dirección de internet para evitar abusos. No guardamos su dirección de internet real.</p><p><strong>Para qué:</strong> para revisar su oferta, contactarle sobre ella, darle crédito si se publica y conservar un registro del permiso que dio. Nos basamos en su consentimiento y en nuestra necesidad de conservar ese registro.</p><p><strong>Dónde:</strong> en un repositorio privado de GitHub y en un almacenamiento privado de archivos de Vercel. Ambas son empresas de EE. UU., así que sus datos pueden guardarse fuera de su país. Solo el equipo de revisión de PTC puede verlos. No vendemos sus datos ni los usamos para publicidad.</p><p><strong>Por cuánto tiempo:</strong> si su curso no se publica, borramos sus datos y archivos en un plazo de 2 años. Si se publica, conservamos su nombre para el crédito, y el registro del permiso mientras el curso esté en línea y 2 años después.</p><p><strong>Sus derechos:</strong> puede pedir ver, corregir o borrar sus datos, o retirar su consentimiento, desde la página de <a href="/es/contact/">contacto</a>. Si tiene menos de 18 años, pida a un padre, maestro o pastor que haga el envío por usted.</p>
+</section>
 <ul class="checks">
-<li><label><input type="checkbox" name="rights" value="yes" required> Soy dueño de este material, o tengo los derechos para ofrecerlo.</label></li>
-<li><label><input type="checkbox" name="publish" value="yes" required> Doy permiso para publicar: una concesión no exclusiva para que el Consorcio Teológico Pentecostal revise, edite, traduzca y publique este material gratis en ptconline.global y en plataformas asociadas, con atribución, según la licencia que elegí. Esta concesión es un borrador para revisión legal.</label></li>
-<li><label><input type="checkbox" name="privacy" value="yes" required> Acepto que mi nombre, mi correo y mi organización puedan guardarse para que alguien responda. Hasta que haya un almacén de envíos, este formulario no guarda lo que escribo.</label></li>
+<li><label><input type="checkbox" name="rights" value="yes" required> Tengo 18 años o más. Escribí este material, o su dueño me permitió ofrecerlo en estos términos. En la declaración de titularidad indiqué todo lo que pertenece a otra persona (textos, imágenes, música o video) y cómo tengo permiso para usarlo. Publicarlo no infringirá los derechos de autor, la privacidad ni otros derechos de nadie.</label></li>
+<li><label><input type="checkbox" name="publish" value="yes" required> Doy permiso a PTC para publicar este material bajo la licencia que elegí arriba. PTC decide si lo publica y cuándo.</label></li>
+<li><label><input type="checkbox" name="privacy" value="yes" required> Leí el aviso de privacidad de este formulario y acepto que PTC guarde mis datos y mi oferta como allí se describe.</label></li>
 </ul>
 <button type="submit">Enviar un curso</button>
 <p id="submit-status" role="status" hidden></p>

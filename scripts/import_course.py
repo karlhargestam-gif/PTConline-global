@@ -99,6 +99,11 @@ def build(folder: Path, data: dict) -> tuple[dict, list[tuple[Path, Path]]]:
         fail("bible.es and bible.pt must be NVI")
     if not data.get("licence") or not data.get("licenceVersion"):
         fail("licence and licenceVersion are required")
+    if data["licence"] not in ("ptc-nonexclusive", "cc-by-nc-sa-4.0"):
+        fail("licence must be ptc-nonexclusive or cc-by-nc-sa-4.0, as agreed on the form")
+    contributor = str(data.get("contributor") or "").strip()
+    if not contributor:
+        fail("contributor is required: the credit line the author asked for")
     course = {
         "id": course_id,
         "provider": "ptc",
@@ -110,6 +115,7 @@ def build(folder: Path, data: dict) -> tuple[dict, list[tuple[Path, Path]]]:
         "level": text_block(data.get("level"), "level"),
         "licence": data["licence"],
         "licenceVersion": data["licenceVersion"],
+        "contributor": contributor,
         "blocks": [],
     }
     copies = []
@@ -165,14 +171,21 @@ def build(folder: Path, data: dict) -> tuple[dict, list[tuple[Path, Path]]]:
     return course, copies
 
 
-def open_pr(course_id: str, course_path: Path, copies: list[tuple[Path, Path]]) -> None:
+def open_pr(course_id: str, course_path: Path, rendered: str, copies: list[tuple[Path, Path]]) -> None:
     branch = f"curriculum/{course_id}"
+    if subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout.strip():
+        fail("the working tree has changes; commit or stash them first")
+    subprocess.run(["git", "fetch", "origin", "main"], cwd=ROOT, check=True)
     subprocess.run(["git", "checkout", "-b", branch, "origin/main"], cwd=ROOT, check=True)
     course_path.parent.mkdir(parents=True, exist_ok=True)
+    course_path.write_text(rendered, encoding="utf-8")
     for source, dest in copies:
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, dest)
-    subprocess.run(["git", "add", str(course_path.relative_to(ROOT))] + [str(dest.relative_to(ROOT)) for _, dest in copies], cwd=ROOT, check=True)
+    # The site is static: the generated pages must be in the same pull request.
+    subprocess.run([sys.executable, "scripts/build.py"], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, "scripts/build.py", "--check"], cwd=ROOT, check=True)
+    subprocess.run(["git", "add", "-A", "content", "assets/subtitles", "courses", "es", "pt", "sitemap.xml"], cwd=ROOT, check=True)
     subprocess.run(["git", "commit", "-m", f"Add the {course_id} course from an approved submission."], cwd=ROOT, check=True)
     subprocess.run(["git", "push", "-u", "origin", branch], cwd=ROOT, check=True)
     subprocess.run([
@@ -201,8 +214,7 @@ def main() -> None:
         if data.get("example") and not args.dry_run:
             fail("the example template cannot be published")
         return
-    course_path.write_text(rendered, encoding="utf-8")
-    open_pr(course["id"], course_path, copies)
+    open_pr(course["id"], course_path, rendered, copies)
 
 
 if __name__ == "__main__":

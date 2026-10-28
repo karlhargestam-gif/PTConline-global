@@ -24,7 +24,8 @@ level:
   es: Curso abierto
   pt: Curso aberto
 licence: ptc-nonexclusive
-licenceVersion: ptc-nonexclusive-draft-2026-10-28
+licenceVersion: ptc-nonexclusive-2026-10-28.2
+contributor: Example Church, Example City
 blocks:
   - kind: week
     n: 1
