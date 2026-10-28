@@ -38,4 +38,4 @@ No crusade imagery. Do not use a field-crusade photograph, a rally crowd, or a f
 
 ## Licence line
 
-Keep the consent that arrived with the offer. The JSON records `licence` and `licenceVersion`. The wording on the form is still a draft for Karl’s legal review. Do not describe it as a finished licence in the course page.
+Keep the consent that arrived with the offer. Copy `licence` and `licenceVersion` from the issue, and set `contributor` to the credit the author asked for (name, and church or organization if given). The course page shows “Contributed by” and the licence. For CC BY-NC-SA material, mark edits and translations as adapted and keep them under the same licence.

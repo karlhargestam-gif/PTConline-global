@@ -339,3 +339,17 @@ video {
   .actions { flex-direction: column; }
   .actions .button { width: 100%; }
 }
+
+.terms-note {
+  margin: 18px 0;
+  padding: 12px 14px;
+  border-left: 4px solid #B2242E;
+  background: #f7f4ee;
+}
+.submit-form .req { color: #94171d; }
+.submit-form fieldset { margin: 18px 0 0; padding: 0; border: 0; }
+.submit-form legend { padding: 0; }
+.submit-form input[type="file"] { max-width: 100%; }
+.privacy-note { margin: 18px 0 0; padding: 12px 14px; background: #f7f4ee; font-size: 0.95rem; }
+.privacy-note h3 { margin: 0 0 8px; font-size: 1rem; }
+.privacy-note p { margin: 6px 0; }

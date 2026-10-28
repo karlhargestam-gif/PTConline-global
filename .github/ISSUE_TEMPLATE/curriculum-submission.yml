@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Real offers should go to the private repo named in docs/curriculum-pipeline.md, because this issue stores a name and an email. The public form at /submit/ opens that issue only after Karl approves the environment variables.
+        Real offers should go to the private repo named in docs/curriculum-pipeline.md, because this issue stores a name and an email. The public form at /submit/ opens that issue. Do not put a name or email in an issue on this public repo.
   - type: input
     id: offer-title
     attributes:
@@ -34,7 +34,7 @@ body:
     attributes:
       label: Licence agreed
       options:
-        - ptc-nonexclusive-draft-2026-10-28
+        - ptc-nonexclusive-2026-10-28.2
         - cc-by-nc-sa-4.0
     validations:
       required: true
@@ -45,7 +45,7 @@ body:
       options:
         - label: I own this material, or I have the rights to offer it.
           required: true
-        - label: I give permission to publish under the licence selected above. The wording is a draft for legal review.
+        - label: I give permission to publish under the licence selected above.
           required: true
         - label: PTC may store my name and email so someone can reply.
           required: true
