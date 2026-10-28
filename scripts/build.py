@@ -138,7 +138,12 @@ class Site:
         return node
 
     def provider_name(self, provider, lang):
-        key = "moeName" if provider == "moe" else "messengerName"
+        if provider == "moe":
+            key = "moeName"
+        elif provider == "ptc":
+            key = "ptcName"
+        else:
+            key = "messengerName"
         return self.ui[key][lang]
 
     def lang_links(self, lang, route):
@@ -164,6 +169,8 @@ class Site:
             "nav_label": esc(self.ui["navLabel"][lang]),
             "courses_href": href_for(lang, "courses"),
             "courses_label": esc(self.ui["courses"][lang]),
+            "submit_href": href_for(lang, "submit"),
+            "submit_label": esc(self.ui["submit"][lang]),
             "home_label": esc(self.ui["home"][lang]),
             "pcg_url": esc(self.site["pcgUrl"]),
             "pcg_label": esc(self.ui["pcg"][lang]),
@@ -185,6 +192,8 @@ class Site:
                 "global_education": esc(self.ui["globalEducation"][lang]),
                 "pcg_url": esc(self.site["pcgUrl"]),
                 "pcg": esc(self.ui["pcg"][lang]),
+                "submit_href": href_for(lang, "submit"),
+                "submit_label": esc(self.ui["submit"][lang]),
             },
         ).rstrip("\n")
 
@@ -639,8 +648,15 @@ class Site:
 
     def course_schema(self, course, lang, route):
         url = canonical_for(self.site, lang, route)
-        provider = "Mission One Eleven" if course["provider"] == "moe" else "Messenger College"
-        provider_url = self.site["moeUrl"] if course["provider"] == "moe" else self.site["messengerUrl"]
+        if course["provider"] == "moe":
+            provider = "Mission One Eleven"
+            provider_url = self.site["moeUrl"]
+        elif course["provider"] == "ptc":
+            provider = "Pentecostal Theological Consortium"
+            provider_url = self.site["host"] + "/"
+        else:
+            provider = "Messenger College"
+            provider_url = self.site["messengerUrl"]
         data = {
             "@context": "https://schema.org",
             "@type": "Course",
@@ -922,7 +938,7 @@ class Site:
         return f'<ul class="file-list">{items}</ul>'
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright", "submit"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
         urls = []
         for route in routes:
@@ -1020,7 +1036,7 @@ class Site:
             print(f"Built {len(self.courses)} courses × {len(LANGS)} languages, plus catalog, messenger, prose and home pages.")
 
 
-LASTMOD = "2026-10-27"  # bump when generated pages change
+LASTMOD = "2026-10-28"  # bump when generated pages change
 
 
 def main():

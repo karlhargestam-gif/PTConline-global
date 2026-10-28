@@ -276,6 +276,64 @@ video {
 .prose .file-list { padding-left: 1.1rem; }
 .prose .file-list li { margin: 4px 0; }
 
+.submit-form { max-width: 42rem; }
+.submit-form label,
+.field-label {
+  display: block;
+  margin: 18px 0 6px;
+  font-weight: 700;
+}
+.submit-form input[type="text"],
+.submit-form input[type="email"],
+.submit-form input[type="url"],
+.submit-form select,
+.submit-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d9d3c8;
+  border-radius: 2px;
+  background: #fff;
+  color: #1c1917;
+  font: inherit;
+}
+.submit-form textarea { min-height: 140px; resize: vertical; }
+.hint { margin: 6px 0 0; color: #59554F; font-size: 0.92rem; }
+.checks { margin: 8px 0 0; padding: 0; list-style: none; }
+.checks li { margin: 12px 0; }
+.checks label { display: flex; gap: 10px; align-items: flex-start; margin: 0; font-weight: 400; }
+.checks input { margin-top: 4px; }
+.format-row { display: flex; flex-wrap: wrap; gap: 12px 18px; margin: 8px 0 0; }
+.format-row label { display: flex; gap: 8px; align-items: center; margin: 0; font-weight: 400; }
+.draft-note {
+  margin: 18px 0;
+  padding: 12px 14px;
+  border-left: 4px solid #B2242E;
+  background: #f7f4ee;
+}
+.how-list { padding-left: 1.2rem; }
+.how-list li { margin: 6px 0; }
+.submit-form button {
+  margin-top: 18px;
+  min-height: 46px;
+  padding: 12px 18px;
+  border: 0;
+  background: #94171d;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.submit-form button:focus-visible { outline: 2px solid #B2242E; outline-offset: 3px; }
+#submit-status { margin-top: 16px; font-weight: 700; }
+#submit-status a { color: #B2242E; }
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 @media (max-width: 720px) {
   .catalog-grid { grid-template-columns: 1fr; }
   .actions { flex-direction: column; }

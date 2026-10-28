@@ -115,7 +115,7 @@ body {
   text-transform: uppercase;
 }
 
-.banner-nav { display: flex; align-items: center; gap: 22px; }
+.banner-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; }
 
 .banner-nav a {
   color: #111827;

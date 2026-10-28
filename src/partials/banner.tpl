@@ -6,6 +6,7 @@
       <nav class="banner-nav" aria-label="{{nav_label}}">
         <a href="{{home_href}}">{{home_label}}</a>
         <a href="{{courses_href}}">{{courses_label}}</a>
+        <a href="{{submit_href}}">{{submit_label}}</a>
       </nav>
       <span class="lang-switch" aria-label="Language">{{lang_switch}}</span>
     </header>

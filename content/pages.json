@@ -250,16 +250,19 @@
         "paragraphs": {
           "en": [
             "ptconline.global is a static catalog. It has no student account, no shopping cart and no form that stores what you type. Reading a page does not create a PTC profile.",
+            "The Submit a course page asks for a course offer. While no submission store is configured, that form does not keep what you type. It says submissions are not open yet and points to the contact page. A store, if one is approved later, would keep the name, email, organization and course details you send so someone can reply.",
             "The site is hosted on Vercel. The host may keep ordinary server logs, such as the address of the page, the time, and a browser identifier, in order to run and protect the service. PTC does not sell personal information.",
             "This page describes how the site works. It is not legal advice. A counsel review is still needed before this notice is treated as final."
           ],
           "es": [
             "ptconline.global es un catálogo estático. No tiene cuenta de estudiante, ni carrito, ni un formulario que guarde lo que usted escribe. Leer una página no crea un perfil de PTC.",
+            "La página Enviar un curso pide una oferta de curso. Mientras no haya un almacén de envíos configurado, ese formulario no guarda lo que usted escribe. Dice que los envíos aún no están abiertos y señala la página de contacto. Un almacén, si se aprueba más adelante, guardaría el nombre, el correo, la organización y los datos del curso que usted envíe para que alguien pueda responder.",
             "El sitio está alojado en Vercel. El alojamiento puede guardar registros ordinarios del servidor, como la dirección de la página, la hora y un identificador del navegador, para operar y proteger el servicio. PTC no vende información personal.",
             "Esta página describe cómo funciona el sitio. No es asesoría legal. Aún hace falta una revisión de un abogado antes de tratar este aviso como definitivo."
           ],
           "pt": [
             "ptconline.global é um catálogo estático. Não tem conta de aluno, nem carrinho, nem um formulário que guarde o que você digita. Ler uma página não cria um perfil do PTC.",
+            "A página Enviar um curso pede uma oferta de curso. Enquanto nenhum depósito de envios estiver configurado, esse formulário não guarda o que você digita. Ele diz que os envios ainda não estão abertos e aponta para a página de contato. Um depósito, se for aprovado depois, guardaria o nome, o e-mail, a organização e os dados do curso que você enviar para que alguém possa responder.",
             "O site está hospedado na Vercel. A hospedagem pode guardar registros comuns do servidor, como o endereço da página, a hora e um identificador do navegador, para operar e proteger o serviço. O PTC não vende informações pessoais.",
             "Esta página descreve como o site funciona. Não é aconselhamento jurídico. Ainda é necessária uma revisão de um advogado antes de tratar este aviso como definitivo."
           ]
