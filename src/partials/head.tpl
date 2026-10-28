@@ -17,7 +17,9 @@
 <meta name="twitter:title" content="{{title}}">
 <meta name="twitter:description" content="{{description}}">
 <meta name="twitter:image" content="{{og_image}}">
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/assets/pcg-flame.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/css/fonts.css">
 <link rel="stylesheet" href="/assets/css/base.css">
 <link rel="stylesheet" href="/assets/css/course.css">
