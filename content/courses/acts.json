@@ -343,7 +343,24 @@
             "pt": "Gravação da videoaula da semana 6"
           },
           "format": "Dropbox, MP4",
-          "src": "https://www.dropbox.com/s/elvdg0z2iq913su/Book%20of%20Acts.Week%206.mp4?raw=1"
+          "src": "https://www.dropbox.com/s/elvdg0z2iq913su/Book%20of%20Acts.Week%206.mp4?raw=1",
+          "tracks": [
+            {
+              "src": "/assets/subtitles/acts_w6_en.vtt",
+              "srclang": "en",
+              "label": "English"
+            },
+            {
+              "src": "/assets/subtitles/acts_w6_es.vtt",
+              "srclang": "es",
+              "label": "Español"
+            },
+            {
+              "src": "/assets/subtitles/acts_w6_pt.vtt",
+              "srclang": "pt",
+              "label": "Português"
+            }
+          ]
         },
         {
           "kind": "quiz",
