@@ -24,7 +24,7 @@ When the variables are set, the function:
 
 ## Licence text currently served, version 2026-10-28.2
 
-Institutional approval of these terms has not been established by the verification. Recording a contributor checkbox does not approve the institutional licence, academic suitability, translation, or publication. Do not mark a course ready or publish until the relevant human authorities record their decisions.
+Karl confirmed in the follow-up to the October 28 audit that contributor licence version `2026-10-28.2` was already institutionally approved. This is recorded as Karl’s confirmation; the original approval record has not yet been identified or inspected. Link that record when supplied, without inventing an approver, date or legal review. Recording a contributor checkbox does not approve the institutional licence, academic suitability, translation, or publication. Do not mark a course ready or publish until the relevant human authorities record their decisions.
 
 The issue records `ptc-nonexclusive-2026-10-28.2` or `cc-by-nc-sa-4.0`. The exact words the contributor agreed to are on `/submit/`, `/es/submit/` and `/pt/submit/` at the commit that set this version. When the wording changes, bump `LICENCE_TEXT_VERSION` in `api/submit-course.js`.
 
@@ -35,11 +35,13 @@ The issue records `ptc-nonexclusive-2026-10-28.2` or `cc-by-nc-sa-4.0`. The exac
 
 ## Privacy and retention
 
+Karl designated **Laiza Santos / the Global Missions office** to own PTC privacy and deletion requests. The contact address is **globalmissions.ea@pcg.org**, corroborated by recent correspondence. The saved Google contact has a conflicting singular spelling and was not used. The EN/ES/PT contact and privacy pages in this draft provide the confirmed mailbox. Mailbox monitoring and response handling are operational responsibilities; this audit did not test delivery or notify Laiza by email. Do not add her to private repositories or broaden credentials without the applicable access authorization.
+
 What is stored, why, where and for how long is on the submit pages and on `/privacy/`. COS keeps to it:
 
 - An offer that is declined or never published: close the issue with `wontfix`, then delete the issue, its recovery receipt and its Blob files within 2 years of the offer.
 - A published course: keep the issue (the permission record) while the course is online and for 2 years after it comes down.
-- A request to see, correct or delete details, or to withdraw consent: the currently published wording promises an answer within 30 days. Institutional acceptance and an accountable mailbox owner still need confirmation. Deleting an issue needs a repo admin; deleting a Blob file needs the Blob token. Withdrawal of the PTC licence means a pull request that takes the course off the site within 30 days.
+- A request to see, correct or delete details, or to withdraw consent: the currently published wording promises an answer within 30 days. Karl has designated Laiza Santos / the Global Missions office as the accountable privacy-request owner at `globalmissions.ea@pcg.org`. Record requests and outcomes privately; this appointment does not grant access to the repository or Blob store. The scope of the original approval record remains to be documented. Deleting an issue needs a repo admin; deleting a Blob file needs the Blob token. Withdrawal of the PTC licence means a pull request that takes the course off the site within 30 days.
 
 ## Stages
 

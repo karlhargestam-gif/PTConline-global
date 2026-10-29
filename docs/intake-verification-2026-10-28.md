@@ -40,9 +40,9 @@ The private audit record contains the issue number, request references and file 
 
 ## Required acceptance and decisions
 
-1. Establish the source of Karl's PR #20 approval, or record that prior approval remains unverified. Do not manufacture retroactive approval.
-2. Global Education/authorized PTC leadership must name a monitored privacy/deletion mailbox and accountable operator. The current site offers a department link, not a dedicated address. Do not invent a mailbox or publish an unconfirmed address.
-3. The institutional authority must accept or revise licence version `2026-10-28.2`, withdrawal/retention promises, rights declarations and cross-border storage notice, with its chosen legal review. Academic reviewers retain theology/curriculum authority. This technical audit does not provide institutional legal approval.
+1. Karl answered “I’m not sure” when asked whether he approved PR #20 before its merge. Prior merge approval therefore remains unverified; this reply is not retroactive approval or evidence of an unauthorized merge.
+2. Resolved by Karl: Laiza Santos / the Global Missions office owns PTC privacy and deletion requests. Recent correspondence corroborates `globalmissions.ea@pcg.org`. The draft adds this address to EN/ES/PT contact and privacy pages. Deployment and mailbox-delivery verification are still outstanding; no external email was sent.
+3. Karl confirms licence version `2026-10-28.2` was already institutionally approved and says he can identify the record. Status: owner-confirmed approval; original evidence reference pending. Record the original authority, date, exact approved version and scope when available; do not infer separate counsel review or broader privacy/retention approval. Academic and explicit course-publication authority remain unchanged. No new licence wording is introduced.
 4. Restore authorized Vercel project visibility; check production-only credential targets, fine-grained token scope/expiry, private store configuration, direct unauthenticated denial, and checksum restore. Remove verified synthetic files referenced in the private audit, then confirm absence. Token expiry is documented as 2027-10-28 but not independently verified.
 5. Review a durable firewall limit scoped to POST `/api/submit-course`. Do not blindly apply a low per-IP limit: shared church/school connections can have legitimate submissions. The existing five-per-ten-minute memory limit resets across instances. Inspect current rules and plan before activating a rule.
 6. Use a distinct approved human GitHub identity for enforceable reviews; configure main's protection/checks and appropriate bypass policy after the institution chooses its approver. A shared Karl credential cannot distinguish human authorization from agent execution.
@@ -53,3 +53,8 @@ The private audit record contains the issue number, request references and file 
 18 Node intake/recovery regressions and 4 Python importer tests pass. Generated-page consistency and all 57 static page checks pass. GitHub site-check and Vercel preview build succeeded for code head `3ddc0eac3d4c31475f4d6fca6c20daae17242f87`; protected-preview access remains blocked through the connected Vercel account. Notification PR #6 separately passed six tests and its two live handoff runs. Anonymous access to the private repository returns 404. None of these observations verifies private Blob restore or deletion.
 
 References: [PR #18](https://github.com/karlhargestam-gif/PTConline-global/pull/18), [PR #20](https://github.com/karlhargestam-gif/PTConline-global/pull/20), [GitHub notification reasons](https://docs.github.com/en/rest/activity/notifications), [GitHub schedule limitations](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule), [Vercel private Blob](https://vercel.com/docs/vercel-blob/private-storage).
+
+
+## Follow-up decisions recorded
+
+Karl’s direct answers: prior PR #20 merge approval uncertain; Laiza / Global Missions office selected as privacy-request owner; licence `2026-10-28.2` reported already approved, original record to be identified. These answers do not authorize merging draft PR #22 or publishing a course. The Vercel project access lookup was retried after the reply and still returned 404.
