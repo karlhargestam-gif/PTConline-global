@@ -20,7 +20,7 @@ Using only a synthetic identity and `example.invalid` email on October 28 evenin
 | Missing material | 400 `material` |
 | HTML bytes presented as PDF | 400 `file`; no intake issue |
 | Honeypot | 200 `accepted`; no intake issue |
-| Valid 73-byte text attachment | 200 `accepted`; private issue and private Blob pathname recorded |
+| Valid 78-byte text attachment | 200 `accepted`; private issue and private Blob pathname recorded |
 | Markdown/HTML description | Stayed inside inert code fence; injected fence shortened |
 | Private queue progression | Synthetic issue moved submitted → screening → review, never ready/published |
 | Multilingual punctuation | Multipart UTF-8 decoded as Latin-1: defect reproduced and fixed in this branch |

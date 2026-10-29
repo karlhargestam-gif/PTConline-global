@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Test private intake validation and failure recovery
-        run: node --test tests/submit-course.test.js
+        run: node --test tests/*.test.js
       - name: Install importer test dependency
         run: python3 -m pip install PyYAML==6.0.3
       - name: Test importer safety
