@@ -14,7 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Test private intake validation and failure recovery
+        run: node --test tests/submit-course.test.js
+      - name: Install importer test dependency
+        run: python3 -m pip install PyYAML==6.0.3
+      - name: Test importer safety
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Check generated pages match the content model
         run: python3 scripts/build.py --check
       - name: Check page size, canonical URLs, structured data, links, robots and sitemap
