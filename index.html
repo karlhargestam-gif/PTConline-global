@@ -312,6 +312,27 @@
           </div>
         </section>
 
+<!-- Email sign-up block. PREVIEW ONLY: not connected to Mailchimp yet. The audience must be confirmed by Karl before the form action is set. -->
+<section class="signup-block" id="sign-up" aria-labelledby="signup-title">
+  <div class="signup-block__inner">
+    <div class="signup-block__copy">
+      <p class="signup-block__eyebrow">Email updates</p>
+      <h2 id="signup-title">Hear about new courses</h2>
+      <p class="signup-block__body">New courses and resources from PTC, sent a few times a month.</p>
+    </div>
+    <form class="signup-block__form" action="#mailchimp-action-pending" method="post" data-preview-only="true">
+      <div class="signup-block__field"><label for="signup-fname">First name</label><input id="signup-fname" type="text" name="FNAME" autocomplete="given-name"></div>
+      <div class="signup-block__field"><label for="signup-email">Email address</label><input id="signup-email" type="email" name="EMAIL" required autocomplete="email" inputmode="email"></div>
+      <div class="signup-block__hp"><input type="text" name="b_pending" tabindex="-1" value="" autocomplete="off" aria-hidden="true"></div>
+      <button type="submit">Sign up</button>
+      <p class="signup-block__note">A few emails a month. Unsubscribe anytime.</p>
+      <p class="signup-block__status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <script>
+    (function(){var f=document.querySelector('.signup-block__form[data-preview-only]');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var s=f.querySelector('.signup-block__status'),em=f.querySelector('#signup-email');if(!em.checkValidity()){s.textContent='Please enter a valid email address.';em.focus();return;}s.textContent='Thanks! (Preview only: this form is not connected yet, so nothing was sent.)';f.reset();});})();
+  </script>
+</section>
         <footer class="footer">
           <p>Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God, connected with its Global Education department and an academic pathway through Messenger College.</p>
           <nav class="footer-links" aria-label="Related links">
