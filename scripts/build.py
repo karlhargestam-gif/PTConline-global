@@ -117,6 +117,8 @@ class Site:
         self.banner_home_t = (PARTIALS / "banner-home.tpl").read_text(encoding="utf-8")
         self.footer_t = (PARTIALS / "footer.tpl").read_text(encoding="utf-8")
         self.footer_home_t = (PARTIALS / "footer-home.tpl").read_text(encoding="utf-8")
+        self.official_bar_t = (PARTIALS / "official-bar.tpl").read_text(encoding="utf-8")
+        self.hero_affiliation_t = (PARTIALS / "hero-affiliation.tpl").read_text(encoding="utf-8")
         self.week_t = (PARTIALS / "week.tpl").read_text(encoding="utf-8")
         self.ui = self.site["ui"]
 
@@ -179,6 +181,65 @@ class Site:
         template = self.banner_home_t if home else self.banner_t
         return fill(template, mapping).rstrip("\n")
 
+    def indented(self, block, indent):
+        return "\n".join(indent + line if line else line for line in block.split("\n"))
+
+    def official_bar(self, lang, indent=""):
+        """Slim bar above the site header. PTC is neither linked site, so neither link is current."""
+        block = fill(
+            self.official_bar_t,
+            {
+                "us_home_url": esc(self.site["usHomeUrl"]),
+                "global_missions_url": esc(self.site["globalMissionsUrl"]),
+                "us_home": esc(self.ui["usHome"][lang]),
+                "global_missions": esc(self.ui["globalMissions"][lang]),
+            },
+        ).rstrip("\n")
+        return self.indented(block, indent) if indent else block
+
+    def hero_affiliation(self, lang):
+        name = "Pentecostal Church of God"
+        sentence = self.ui["schoolOf"][lang]
+        if sentence.count(name) != 1:
+            raise SystemExit(f"schoolOf[{lang}] must contain {name} once")
+        before, after = sentence.split(name, 1)
+        return fill(
+            self.hero_affiliation_t,
+            {
+                "before": esc(before),
+                "after": esc(after),
+                "us_home_url": esc(self.site["usHomeUrl"]),
+            },
+        ).strip()
+
+    def install_official_bar(self, text, lang, anchor_pattern, where):
+        text = re.sub(
+            r"[ \t]*<nav class=\"official-bar\"[^>]*>.*?</nav>\n?",
+            "",
+            text,
+            count=1,
+            flags=re.S,
+        )
+        match = re.search(anchor_pattern, text, flags=re.M)
+        if not match:
+            raise SystemExit(f"{where}: official bar anchor missing")
+        bar = self.official_bar(lang, match.group(1))
+        return text[: match.start()] + bar + "\n" + text[match.start() :]
+
+    def install_hero_affiliation(self, text, lang, where):
+        text = re.sub(
+            r"\n[ \t]*<p class=\"hero-affiliation\">.*?</p>",
+            "",
+            text,
+            count=1,
+            flags=re.S,
+        )
+        match = re.search(r"([ \t]*)<div class=\"hero-actions\">.*?</div>", text, flags=re.S)
+        if not match:
+            raise SystemExit(f"{where}: hero actions missing")
+        line = match.group(1) + self.hero_affiliation(lang)
+        return text[: match.end()] + "\n" + line + text[match.end() :]
+
     def footer(self, lang, home=False):
         note_key = "homeFooterNote" if home else "courseFooterNote"
         label_key = "homeFooterLabel" if home else "courseFooterLabel"
@@ -194,6 +255,11 @@ class Site:
                 "pcg": esc(self.ui["pcg"][lang]),
                 "submit_href": href_for(lang, "submit"),
                 "submit_label": esc(self.ui["submit"][lang]),
+                "official_sites": esc(self.ui["officialSites"][lang]),
+                "us_home_url": esc(self.site["usHomeUrl"]),
+                "us_home": esc(self.ui["usHome"][lang]),
+                "global_missions_url": esc(self.site["globalMissionsUrl"]),
+                "global_missions": esc(self.ui["globalMissions"][lang]),
             },
         ).rstrip("\n")
 
@@ -273,6 +339,7 @@ class Site:
         return (
             f'<!doctype html>\n<html lang="{lang}">\n<head>\n{head}\n</head>\n<body>\n'
             f'<a class="skip-link" href="#main">{esc(self.ui["skip"][lang])}</a>\n'
+            f"{self.official_bar(lang, '    ')}\n"
             f"{self.banner(lang, route)}\n"
             f'<main id="main" class="{main_class}">\n{body}\n</main>\n'
             f"{self.footer(lang)}\n</body>\n</html>\n"
@@ -1040,6 +1107,24 @@ class Site:
             count=1,
             flags=re.S,
         )
+        text = self.install_official_bar(text, lang, r'^([ \t]*)<div class="page">', rel)
+        text = self.install_hero_affiliation(text, lang, rel)
+        self.emit(rel, text)
+
+    def patch_submit(self, lang):
+        """Submit pages are kept by hand, outside head.tpl. Refresh the shared chrome only."""
+        rel = "submit/index.html" if lang == "en" else f"{lang}/submit/index.html"
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        text = self.install_official_bar(text, lang, r'^([ \t]*)<header class="site-banner">', rel)
+        if not re.search(r'<footer class="site-footer">', text):
+            raise SystemExit(f"{rel}: site footer missing")
+        text = re.sub(
+            r"[ \t]*<footer class=\"site-footer\">.*?</footer>",
+            self.footer(lang),
+            text,
+            count=1,
+            flags=re.S,
+        )
         self.emit(rel, text)
 
     def build(self):
@@ -1052,6 +1137,7 @@ class Site:
             for page_id in self.pages:
                 self.render_prose(page_id, lang)
             self.patch_home(lang)
+            self.patch_submit(lang)
         self.sitemap()
         if self.errors:
             print("Generated files differ from the working tree:")
