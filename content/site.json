@@ -21,6 +21,8 @@
   "moeEnrollUrl": "https://www.missiononeeleven.se/home/sign-up/",
   "globalEducationUrl": "https://pcgmission.org/#global-education",
   "pcgUrl": "https://www.pcgmission.org",
+  "usHomeUrl": "https://www.pcg.org/",
+  "globalMissionsUrl": "https://pcgmission.org/",
   "moeUrl": "https://missiononeeleven.com/",
   "messengerUrl": "https://www.messengercollege.edu/",
   "ui": {
@@ -72,6 +74,18 @@
     "copyright": { "en": "Copyright", "es": "Derechos de autor", "pt": "Direitos autorais" },
     "globalEducation": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
     "pcg": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" },
+    "usHome": { "en": "US Home", "es": "Inicio EE. UU.", "pt": "Sede EUA" },
+    "globalMissions": { "en": "Global Missions", "es": "Misiones Globales", "pt": "Missões Globais" },
+    "officialSites": {
+      "en": "Official sites of the Pentecostal Church of God",
+      "es": "Sitios oficiales de la Pentecostal Church of God",
+      "pt": "Sites oficiais da Pentecostal Church of God"
+    },
+    "schoolOf": {
+      "en": "A school of the Pentecostal Church of God",
+      "es": "Una escuela de la Pentecostal Church of God",
+      "pt": "Uma escola da Pentecostal Church of God"
+    },
     "openCanvas": {
       "en": "Open this course in Canvas",
       "es": "Abrir este curso en Canvas",
