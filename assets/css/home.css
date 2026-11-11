@@ -1077,35 +1077,75 @@
 .official-bar {
   display: flex;
   align-items: center;
-  gap: clamp(5px, 1.2vw, 14px);
+  gap: 16px;
   width: 100%;
-  min-height: 36px;
-  padding: 0 clamp(6px, 2vw, 28px);
+  min-height: 43px;
+  padding: 0 16px;
   background: #332D26;
   color: #F6F3EE;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(9px, 2.7vw, 13px);
+  font-size: 13px;
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
 }
 
-.official-bar-name,
+.pcg-lockup,
 .official-bar-links {
   display: inline-flex;
   align-items: center;
   flex: none;
-  gap: clamp(5px, 1.2vw, 14px);
   white-space: nowrap;
 }
 
-.official-bar-links { margin-left: auto; }
+.pcg-lockup {
+  gap: 10px;
+  background: transparent;
+}
 
-.official-bar img {
-  width: clamp(14px, 1.6vw, 16px);
-  height: clamp(14px, 1.6vw, 16px);
+.official-bar-links {
+  gap: 14px;
+  margin-left: auto;
+}
+
+.pcg-lockup .pcg-mark,
+.pcg-lockup .pcg-wordmark {
+  display: block;
   flex: none;
-  object-fit: contain;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  object-fit: fill;
+}
+
+.pcg-lockup .pcg-mark {
+  width: 27px;
+  height: 27px;
+}
+
+.pcg-lockup .pcg-wordmark {
+  width: 59px;
+  height: 21px;
+}
+
+@media (min-width: 768px) {
+  .official-bar {
+    gap: 24px;
+    min-height: 47px;
+    padding: 0 24px;
+  }
+
+  .pcg-lockup { gap: 12px; }
+
+  .pcg-lockup .pcg-mark {
+    width: 31px;
+    height: 31px;
+  }
+
+  .pcg-lockup .pcg-wordmark {
+    width: 71px;
+    height: 25px;
+  }
 }
 
 .official-bar a,

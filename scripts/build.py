@@ -118,6 +118,7 @@ class Site:
         self.footer_t = (PARTIALS / "footer.tpl").read_text(encoding="utf-8")
         self.footer_home_t = (PARTIALS / "footer-home.tpl").read_text(encoding="utf-8")
         self.official_bar_t = (PARTIALS / "official-bar.tpl").read_text(encoding="utf-8")
+        self.lockup_t = (PARTIALS / "pcg-lockup.tpl").read_text(encoding="utf-8").strip()
         self.hero_affiliation_t = (PARTIALS / "hero-affiliation.tpl").read_text(encoding="utf-8")
         self.week_t = (PARTIALS / "week.tpl").read_text(encoding="utf-8")
         self.ui = self.site["ui"]
@@ -189,6 +190,7 @@ class Site:
         block = fill(
             self.official_bar_t,
             {
+                "pcg_lockup": self.lockup_t,
                 "us_home_url": esc(self.site["usHomeUrl"]),
                 "global_missions_url": esc(self.site["globalMissionsUrl"]),
                 "us_home": esc(self.ui["usHome"][lang]),
@@ -768,9 +770,12 @@ class Site:
         else:
             banner = ""
             if course["provider"] == "moe":
-                banner = '''<div class="banner">
-  <img src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">
-</div>'''
+                banner = (
+                    '<div class="banner">\n'
+                    f"  {self.lockup_t}\n"
+                    '  <img class="provider-logo" src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">\n'
+                    "</div>"
+                )
             targets = self.index_targets(course)
             blocks = "\n".join(
                 self.render_block(block, lang, index, course, targets)
@@ -1148,7 +1153,7 @@ class Site:
             print(f"Built {len(self.courses)} courses × {len(LANGS)} languages, plus catalog, messenger, prose and home pages.")
 
 
-LASTMOD = "2026-10-28"  # bump when generated pages change
+LASTMOD = "2026-11-11"  # bump when generated pages change
 
 
 def main():
