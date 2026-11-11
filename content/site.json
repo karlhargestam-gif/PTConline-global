@@ -23,6 +23,7 @@
   "pcgUrl": "https://www.pcgmission.org",
   "usHomeUrl": "https://www.pcg.org/",
   "globalMissionsUrl": "https://pcgmission.org/",
+  "portalSignInUrl": "https://www.pcgmission.org/login",
   "moeUrl": "https://missiononeeleven.com/",
   "messengerUrl": "https://www.messengercollege.edu/",
   "ui": {
@@ -76,6 +77,7 @@
     "pcg": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" },
     "usHome": { "en": "US Home", "es": "Inicio EE. UU.", "pt": "Sede EUA" },
     "globalMissions": { "en": "Global Missions", "es": "Misiones Globales", "pt": "Missões Globais" },
+    "portalSignIn": { "en": "Portal sign-in", "es": "Acceso al portal", "pt": "Acesso ao portal" },
     "officialSites": {
       "en": "Official sites of the Pentecostal Church of God",
       "es": "Sitios oficiales de la Pentecostal Church of God",

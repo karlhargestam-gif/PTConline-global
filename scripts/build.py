@@ -195,6 +195,8 @@ class Site:
                 "global_missions_url": esc(self.site["globalMissionsUrl"]),
                 "us_home": esc(self.ui["usHome"][lang]),
                 "global_missions": esc(self.ui["globalMissions"][lang]),
+                "portal_sign_in_url": esc(self.site["portalSignInUrl"]),
+                "portal_sign_in": esc(self.ui["portalSignIn"][lang]),
             },
         ).rstrip("\n")
         return self.indented(block, indent) if indent else block

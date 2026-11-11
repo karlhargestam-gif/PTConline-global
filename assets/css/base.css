@@ -85,10 +85,12 @@ body {
 .official-bar {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 16px;
+  row-gap: 8px;
   width: 100%;
   min-height: 43px;
-  padding: 0 16px;
+  padding: 8px 16px;
   background: #332D26;
   color: #F6F3EE;
   font-family: var(--body);
@@ -112,8 +114,21 @@ body {
 }
 
 .official-bar-links {
-  gap: 14px;
+  gap: 0;
+  row-gap: 6px;
   margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+
+.official-bar-links a + a { margin-left: 14px; }
+
+@media (max-width: 767px) {
+  .official-bar-links {
+    flex: 1 1 100%;
+    margin-left: 0;
+  }
 }
 
 .pcg-lockup .pcg-mark,
@@ -138,9 +153,17 @@ body {
 
 @media (min-width: 768px) {
   .official-bar {
+    flex-wrap: nowrap;
     gap: 24px;
+    row-gap: 0;
     min-height: 47px;
     padding: 0 24px;
+  }
+
+  .official-bar-links {
+    flex: none;
+    flex-wrap: nowrap;
+    margin-left: auto;
   }
 
   .pcg-lockup { gap: 12px; }
@@ -171,6 +194,40 @@ body {
 .official-bar a:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: -2px;
+}
+
+.official-bar a.official-bar-sign-in,
+.official-bar a.official-bar-sign-in:visited {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 5px;
+  margin-left: 14px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #b81d25;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.official-bar a.official-bar-sign-in:hover {
+  background: #9a181f;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.official-bar a.official-bar-sign-in:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.official-bar-lock {
+  display: block;
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
 }
 
 .site-banner {
