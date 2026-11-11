@@ -1,14 +1,26 @@
 .banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   background: #332D26;
   border-bottom: 4px solid #B2242E;
-  padding: 16px clamp(16px, 4vw, 48px);
+  padding: 16px;
 }
 
-.banner img {
+.banner .provider-logo {
   height: 36px;
   width: auto;
   display: block;
+  flex: none;
   border: 0;
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    gap: 24px;
+    padding: 16px 24px;
+  }
 }
 
 .masthead,
