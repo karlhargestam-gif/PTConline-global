@@ -38,17 +38,19 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
     <nav class="official-bar" aria-label="Official PCG sites">
-      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="27" height="27" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="59" height="21" alt="Pentecostal Church of God"></span>
+      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>
       <span class="official-bar-links">
-        <a href="https://www.pcg.org/">Sede EUA</a>
-        <a href="https://pcgmission.org/">Missões Globais</a>
-        <a class="official-bar-sign-in" href="https://www.pcgmission.org/login"><svg class="official-bar-lock" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 1.25A3.25 3.25 0 0 0 4.75 4.5V6.5h-.5A1.75 1.75 0 0 0 2.5 8.25v5A1.75 1.75 0 0 0 4.25 15h7.5a1.75 1.75 0 0 0 1.75-1.75v-5A1.75 1.75 0 0 0 11.75 6.5h-.5V4.5A3.25 3.25 0 0 0 8 1.25Zm-1.75 3.25a1.75 1.75 0 1 1 3.5 0V6.5h-3.5V4.5Z"/></svg>Acesso ao portal</a>
+        <a href="https://www.pcg.org/"><span class="link-full">PCG US</span><span class="link-short">US</span></a>
+        <span class="official-bar-dot" aria-hidden="true">·</span>
+        <a href="https://pcgmission.org/"><span class="link-full">Global Missions</span><span class="link-short">Missions</span></a>
+        <span class="official-bar-dot" aria-hidden="true">·</span>
+        <a href="/pt/" aria-current="page">PTC</a>
+        <a class="official-bar-sign-in" href="https://www.pcgmission.org/login"><span class="link-full">Portal sign-in</span><span class="link-short">Sign in</span></a>
       </span>
     </nav>
     <header class="site-banner">
       <a class="banner-brand" href="/pt/" aria-label="Consórcio Teológico Pentecostal (PTC)">
-        <img src="/assets/pcg-flame-96.webp" alt="Chama do PCG">
-        <span class="banner-name">Consórcio Teológico Pentecostal (PTC)</span>
+        <span class="banner-name">Theological Consortium</span>
       </a>
       <nav class="banner-nav" aria-label="Principal">
         <a href="/pt/">Início</a>
@@ -56,10 +58,19 @@
         <a href="/pt/submit/">Enviar um curso</a>
       </nav>
       <span class="lang-switch" aria-label="Language"><a href="/courses/level2/" hreflang="en">EN</a><a href="/es/courses/level2/" hreflang="es">ES</a><a href="/pt/courses/level2/" hreflang="pt" aria-current="true">PT</a></span>
+      <script>
+        (function () {
+          var bar = document.currentScript.parentElement;
+          if (!bar || !bar.classList.contains("site-banner")) return;
+          var sync = function () { bar.classList.toggle("is-shrunk", window.scrollY > 8); };
+          sync();
+          window.addEventListener("scroll", sync, { passive: true });
+        })();
+      </script>
     </header>
 <main id="main" class="course-page">
 <div class="banner">
-  <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="27" height="27" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="59" height="21" alt="Pentecostal Church of God"></span>
+  <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>
   <img class="provider-logo" src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">
 </div>
 <header class="masthead">

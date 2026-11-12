@@ -1,7 +1,6 @@
     <header class="site-banner">
       <a class="banner-brand" href="{{home_href}}" aria-label="{{name}}">
-        <img src="{{flame_src}}" alt="{{flame_alt}}">
-        <span class="banner-name">{{name}}</span>
+        <span class="banner-name">Theological Consortium</span>
       </a>
       <nav class="banner-nav" aria-label="{{nav_label}}">
         <a href="{{home_href}}">{{home_label}}</a>
@@ -9,4 +8,13 @@
         <a href="{{submit_href}}">{{submit_label}}</a>
       </nav>
       <span class="lang-switch" aria-label="Language">{{lang_switch}}</span>
+      <script>
+        (function () {
+          var bar = document.currentScript.parentElement;
+          if (!bar || !bar.classList.contains("site-banner")) return;
+          var sync = function () { bar.classList.toggle("is-shrunk", window.scrollY > 8); };
+          sync();
+          window.addEventListener("scroll", sync, { passive: true });
+        })();
+      </script>
     </header>
