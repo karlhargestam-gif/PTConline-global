@@ -38,7 +38,7 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
     <nav class="official-bar" aria-label="Official PCG sites">
-      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>
+      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="31" height="31" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="71" height="25" alt="Pentecostal Church of God"></span>
       <span class="official-bar-links">
         <a href="https://www.pcg.org/"><span class="link-full">PCG US</span><span class="link-short">US</span></a>
         <span class="official-bar-dot" aria-hidden="true">·</span>
@@ -52,12 +52,14 @@
       <a class="banner-brand" href="/" aria-label="Pentecostal Theological Consortium (PTC)">
         <span class="banner-name">Theological Consortium</span>
       </a>
-      <nav class="banner-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="banner-nav">Explore</button>
+      <nav class="banner-nav" id="banner-nav" aria-label="Primary">
         <a href="/">Home</a>
         <a href="/courses/">Courses</a>
         <a href="/submit/">Submit a course</a>
       </nav>
       <span class="lang-switch" aria-label="Language"><a href="/enroll/" hreflang="en" aria-current="true">EN</a><a href="/es/enroll/" hreflang="es">ES</a><a href="/pt/enroll/" hreflang="pt">PT</a></span>
+      <a class="give-button" href="https://www.pcgmission.org/give/" target="_blank" rel="noopener noreferrer">GIVE</a>
       <script>
         (function () {
           var bar = document.currentScript.parentElement;
@@ -65,6 +67,14 @@
           var sync = function () { bar.classList.toggle("is-shrunk", window.scrollY > 8); };
           sync();
           window.addEventListener("scroll", sync, { passive: true });
+          var toggle = bar.querySelector(".nav-toggle");
+          var nav = bar.querySelector(".banner-nav");
+          if (!toggle || !nav) return;
+          toggle.addEventListener("click", function () {
+            var open = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", open ? "false" : "true");
+            nav.classList.toggle("is-open", !open);
+          });
         })();
       </script>
     </header>

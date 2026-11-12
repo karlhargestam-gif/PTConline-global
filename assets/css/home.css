@@ -134,6 +134,59 @@
         text-transform: none;
       }
 
+      .nav-toggle {
+        display: none;
+        align-items: center;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        background: #ffffff;
+        color: #000000;
+        min-height: 34px;
+        padding: 6px 12px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .04em;
+        cursor: pointer;
+      }
+
+      .nav-toggle:hover { border-color: #ee3626; color: #ee3626; }
+      .nav-toggle:focus-visible { outline: 2px solid #ee3626; outline-offset: 2px; }
+
+      .give-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        min-height: 40px;
+        padding: 8px 17px;
+        border: 1px solid #ee3626;
+        border-radius: 8px;
+        background: #ee3626;
+        color: #ffffff;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .05em;
+        text-decoration: none;
+      }
+
+      .give-button:hover { background: #d12e20; border-color: #d12e20; color: #ffffff; text-decoration: none; }
+      .give-button:focus-visible { outline: 2px solid #ee3626; outline-offset: 2px; }
+
+      @media (max-width: 767px) {
+        .nav-toggle { display: inline-flex; }
+        .give-button { min-height: 36px; padding: 8px 14px; font-size: 11px; }
+        .site-banner .banner-nav { display: none; }
+        .site-banner .banner-nav.is-open {
+          display: flex;
+          flex: 1 1 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+      }
+
       .banner-nav {
         display: flex;
         align-items: center;
@@ -1111,7 +1164,7 @@
   min-height: 36px;
   padding: 0 8px;
   border-bottom: 2px solid #ee3626;
-  background: #242424;
+  background: #000000;
   color: #ffffff;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
@@ -1155,13 +1208,13 @@
 }
 
 .pcg-lockup .pcg-mark {
-  width: 22px;
-  height: 22px;
+  width: 31px;
+  height: 31px;
 }
 
 .pcg-lockup .pcg-wordmark {
-  width: 45px;
-  height: 16px;
+  width: 71px;
+  height: 25px;
 }
 
 @media (min-width: 768px) {
@@ -1176,13 +1229,13 @@
   .official-bar-dot { margin: 0 8px; }
 
   .pcg-lockup .pcg-mark {
-    width: 28px;
-    height: 28px;
+    width: 31px;
+    height: 31px;
   }
 
   .pcg-lockup .pcg-wordmark {
-    width: 62px;
-    height: 22px;
+    width: 71px;
+    height: 25px;
   }
 
   .official-bar a.official-bar-sign-in {
