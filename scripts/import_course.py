@@ -58,7 +58,9 @@ def text_block(value, label: str) -> dict:
 
 
 def check_captions(folder: Path, relative: str) -> None:
-    path = folder / relative
+    path = (folder / relative).resolve()
+    if not path.is_relative_to(folder.resolve()):
+        fail("caption path must stay inside the course folder")
     if not path.is_file():
         fail(f"missing caption file {relative}")
     raw = path.read_text(encoding="utf-8")
@@ -143,8 +145,8 @@ def build(folder: Path, data: dict) -> tuple[dict, list[tuple[Path, Path]]]:
                 built["src"] = src
             if item.get("href"):
                 href = str(item["href"])
-                if href.startswith("http") and not href.startswith("https://"):
-                    fail(f"href must be https ({href})")
+                if not (href.startswith("https://") or (href.startswith("/") and not href.startswith("//"))):
+                    fail("href must be an https link or a site-relative path")
                 built["href"] = href
             if "crusade" in json.dumps(built).lower():
                 fail("crusade imagery or wording is not accepted in a course file")
@@ -171,12 +173,16 @@ def build(folder: Path, data: dict) -> tuple[dict, list[tuple[Path, Path]]]:
     return course, copies
 
 
-def open_pr(course_id: str, course_path: Path, rendered: str, copies: list[tuple[Path, Path]]) -> None:
+def open_pr(course_id: str, course_path: Path, rendered: str, copies: list[tuple[Path, Path]], approval_reference: str) -> None:
     branch = f"curriculum/{course_id}"
     if subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout.strip():
         fail("the working tree has changes; commit or stash them first")
     subprocess.run(["git", "fetch", "origin", "main"], cwd=ROOT, check=True)
     subprocess.run(["git", "checkout", "-b", branch, "origin/main"], cwd=ROOT, check=True)
+    if course_path.exists():
+        fail("course already exists on origin/main; refusing to overwrite it")
+    if any(dest.exists() for _, dest in copies):
+        fail("caption destination already exists; refusing to overwrite it")
     course_path.parent.mkdir(parents=True, exist_ok=True)
     course_path.write_text(rendered, encoding="utf-8")
     for source, dest in copies:
@@ -186,14 +192,20 @@ def open_pr(course_id: str, course_path: Path, rendered: str, copies: list[tuple
     subprocess.run([sys.executable, "scripts/build.py"], cwd=ROOT, check=True)
     subprocess.run([sys.executable, "scripts/build.py", "--check"], cwd=ROOT, check=True)
     subprocess.run(["git", "add", "-A", "content", "assets/subtitles", "courses", "es", "pt", "sitemap.xml"], cwd=ROOT, check=True)
-    subprocess.run(["git", "commit", "-m", f"Add the {course_id} course from an approved submission."], cwd=ROOT, check=True)
+    subprocess.run(["git", "commit", "-m", f"Prepare the {course_id} course for publication review."], cwd=ROOT, check=True)
     subprocess.run(["git", "push", "-u", "origin", branch], cwd=ROOT, check=True)
     subprocess.run([
-        "gh", "pr", "create",
+        "gh", "pr", "create", "--draft",
         "--base", "main",
         "--head", branch,
         "--title", f"Publish {course_id}",
-        "--body", "Imported from an approved curriculum folder. Merging this pull request publishes the course.\n",
+        "--body", (
+            f"Review evidence: {approval_reference}\n\n"
+            "DRAFT — merging publishes this course. The reference is not verified by this script. "
+            "A human reviewer must confirm academic approval, contributor rights/licence, "
+            "approved public attribution, language review, and explicit publication authorization "
+            "before marking ready or merging. Do not copy private intake details here.\n"
+        ),
     ], cwd=ROOT, check=True)
 
 
@@ -201,6 +213,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("folder", type=Path)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--approval-reference", help="Private curriculum issue containing the human review evidence")
     args = parser.parse_args()
     folder = args.folder.resolve()
     data = load_course(folder)

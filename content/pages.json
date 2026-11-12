@@ -124,6 +124,34 @@
     },
     "sections": [
       {
+        "heading": {
+          "en": "Privacy and deletion requests",
+          "es": "Solicitudes de privacidad y eliminación",
+          "pt": "Solicitações de privacidade e exclusão"
+        },
+        "paragraphs": {
+          "en": [
+            "Laiza Santos in the PCG Global Missions office is the contact for PTC privacy requests. To request access, correction or deletion of your submission details, or to withdraw consent, email globalmissions.ea@pcg.org."
+          ],
+          "es": [
+            "Laiza Santos, de la oficina de Misiones Globales de PCG, es la persona de contacto para las solicitudes de privacidad de PTC. Para solicitar acceso, corrección o eliminación de los datos de su envío, o retirar su consentimiento, escriba a globalmissions.ea@pcg.org."
+          ],
+          "pt": [
+            "Laiza Santos, do escritório de Missões Globais da PCG, é o contato para solicitações de privacidade do PTC. Para solicitar acesso, correção ou exclusão dos dados do seu envio, ou retirar seu consentimento, envie um e-mail para globalmissions.ea@pcg.org."
+          ]
+        },
+        "links": [
+          {
+            "href": "mailto:globalmissions.ea@pcg.org",
+            "label": {
+              "en": "Email the Global Missions office",
+              "es": "Escribir a la oficina de Misiones Globales",
+              "pt": "Enviar e-mail ao escritório de Missões Globais"
+            }
+          }
+        ]
+      },
+      {
         "heading": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
         "paragraphs": {
           "en": [
@@ -245,6 +273,34 @@
       "pt": "Como o ptconline.global trata as visitas, os vídeos, os links e as ofertas de cursos."
     },
     "sections": [
+      {
+        "heading": {
+          "en": "Privacy and deletion requests",
+          "es": "Solicitudes de privacidad y eliminación",
+          "pt": "Solicitações de privacidade e exclusão"
+        },
+        "paragraphs": {
+          "en": [
+            "Laiza Santos in the PCG Global Missions office is the contact for PTC privacy requests. To request access, correction or deletion of your submission details, or to withdraw consent, email globalmissions.ea@pcg.org."
+          ],
+          "es": [
+            "Laiza Santos, de la oficina de Misiones Globales de PCG, es la persona de contacto para las solicitudes de privacidad de PTC. Para solicitar acceso, corrección o eliminación de los datos de su envío, o retirar su consentimiento, escriba a globalmissions.ea@pcg.org."
+          ],
+          "pt": [
+            "Laiza Santos, do escritório de Missões Globais da PCG, é o contato para solicitações de privacidade do PTC. Para solicitar acesso, correção ou exclusão dos dados do seu envio, ou retirar seu consentimento, envie um e-mail para globalmissions.ea@pcg.org."
+          ]
+        },
+        "links": [
+          {
+            "href": "mailto:globalmissions.ea@pcg.org",
+            "label": {
+              "en": "Email the Global Missions office",
+              "es": "Escribir a la oficina de Misiones Globales",
+              "pt": "Enviar e-mail ao escritório de Missões Globais"
+            }
+          }
+        ]
+      },
       {
         "heading": { "en": "This site", "es": "Este sitio", "pt": "Este site" },
         "paragraphs": {

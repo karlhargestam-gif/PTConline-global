@@ -210,7 +210,7 @@ function htmlPage(copy, message, lang) {
   return `<!doctype html><html lang="${lang}"><meta charset="utf-8"><title>${copy.title}</title><p>${text}</p><p><a href="${copy.contact}">${copy.contact}</a></p>`;
 }
 
-function send(req, res, status, code, data) {
+function send(req, res, status, code, data, receipt) {
   const lang = langOf(data);
   const copy = COPY[lang];
   // A filled honeypot gets the same answer as a real offer, so a bot learns nothing.
@@ -225,7 +225,7 @@ function send(req, res, status, code, data) {
     res.send(htmlPage(copy, message, lang));
     return;
   }
-  res.status(status).json({ ok: status >= 200 && status < 300, code });
+  res.status(status).json({ ok: status >= 200 && status < 300, code, ...(receipt ? { receipt } : {}) });
 }
 
 function ipHash(req) {
@@ -261,11 +261,11 @@ function parseMultipart(buffer, contentType) {
         bytes: Buffer.from(content, "latin1"),
       });
     } else if (fields[name] === undefined) {
-      fields[name] = content;
+      fields[name] = Buffer.from(content, "latin1").toString("utf8");
     } else if (Array.isArray(fields[name])) {
-      fields[name].push(content);
+      fields[name].push(Buffer.from(content, "latin1").toString("utf8"));
     } else {
-      fields[name] = [fields[name], content];
+      fields[name] = [fields[name], Buffer.from(content, "latin1").toString("utf8")];
     }
   }
   return { fields, files };
@@ -315,10 +315,16 @@ async function ensureLabels() {
   for (const [name, color, description] of STAGE_LABELS) {
     const existing = await github(`/repos/${repo}/labels/${encodeURIComponent(name)}`);
     if (existing.status === 404) {
-      await github(`/repos/${repo}/labels`, {
+      const created = await github(`/repos/${repo}/labels`, {
         method: "POST",
         body: JSON.stringify({ name, color, description }),
       });
+      if (created.status !== 201) {
+        const check = await github(`/repos/${repo}/labels/${encodeURIComponent(name)}`);
+        if (check.status !== 200) throw new Error("intake labels unavailable");
+      }
+    } else if (existing.status !== 200) {
+      throw new Error("intake labels unavailable");
     }
   }
 }
@@ -335,19 +341,19 @@ function filesOk(files) {
   });
 }
 
-async function removeFiles(stored) {
+async function removeFiles(stored, receipt) {
   if (!stored.length) return;
   try {
     const { del } = require("@vercel/blob");
     await del(stored.map((file) => file.url), { token: process.env.BLOB_READ_WRITE_TOKEN });
   } catch (err) {
-    log("blob-cleanup", err);
+    log("blob-cleanup", err, { receipt, recoveryRequired: true });
   }
 }
 
 function log(stage, err, extra) {
-  // No names, emails or IPs in logs. Stage and error message only.
-  console.error(JSON.stringify({ fn: "submit-course", stage, error: String((err && err.message) || err).slice(0, 300), ...(extra || {}) }));
+  // Upstream messages can echo submitted text or secret-bearing URLs. Never log them.
+  console.error(JSON.stringify({ fn: "submit-course", stage, ...(extra || {}) }));
 }
 
 function rateLimited(hash) {
@@ -362,21 +368,32 @@ function rateLimited(hash) {
   return times.length > RATE_MAX;
 }
 
-async function storeFiles(files, stored) {
+async function storeFiles(files, stored, receipt) {
   if (!files.length) return stored;
   const { put } = require("@vercel/blob");
   for (const file of files) {
     if (!filesOk([file])) throw new Error("file check");
-    const pathname = `curriculum/${Date.now()}-${file.filename}`;
+    const pathname = `curriculum/${receipt}/${file.filename}`;
     const blob = await put(pathname, file.bytes, {
       access: "private",
       token: process.env.BLOB_READ_WRITE_TOKEN,
       contentType: file.type,
       addRandomSuffix: true,
     });
-    stored.push({ filename: file.filename, pathname: blob.pathname, url: blob.url });
+    stored.push({ filename: file.filename, pathname: blob.pathname, url: blob.url, sha256: crypto.createHash("sha256").update(file.bytes).digest("hex"), size: file.bytes.length });
   }
   return stored;
+}
+
+// A private receipt survives an uncertain GitHub response. No automatic retry can
+// create a duplicate issue; an authorized reviewer reconciles by receipt first.
+async function storeReceipt(payload, files, hash) {
+  const { put } = require("@vercel/blob");
+  const receipt = { schemaVersion: 1, receipt: payload.receipt, payload, files, ipHash: hash };
+  return put(`curriculum/${payload.receipt}/receipt.json`, JSON.stringify(receipt), {
+    access: "private", token: process.env.BLOB_READ_WRITE_TOKEN,
+    contentType: "application/json", addRandomSuffix: false,
+  });
 }
 
 // Text from the public form is shown as code in the issue. That stops headings,
@@ -394,6 +411,7 @@ function block(value) {
 function issueBody(payload, files, hash) {
   const lines = [
     "## Course offer",
+    `Receipt: ${payload.receipt || "legacy"}`,
     "",
     `- Title: ${inline(payload.title)}`,
     `- Level or topic: ${inline(payload.level)}`,
@@ -436,7 +454,9 @@ function issueBody(payload, files, hash) {
     `- Licence version: ${payload.licenceVersion}`,
     `- Licence text version: ${LICENCE_TEXT_VERSION}`,
     "- Rights checkbox: yes",
-    "- Permission to publish: yes",
+    "- Contributor permission checkbox: yes (not academic or publication approval)",
+    "- Academic approval: NOT RECORDED",
+    "- Explicit publication authorization: NOT RECORDED",
     "- Privacy checkbox: yes",
     `- IP hash (salted SHA-256, not the raw address): ${hash}`,
     "",
@@ -448,8 +468,6 @@ function issueBody(payload, files, hash) {
 }
 
 async function openIssue(payload, files, hash) {
-  await assertPrivateRepo();
-  await ensureLabels();
   const repo = process.env.GITHUB_CURRICULUM_REPO;
   const created = await github(`/repos/${repo}/issues`, {
     method: "POST",
@@ -460,7 +478,9 @@ async function openIssue(payload, files, hash) {
     }),
   });
   if (created.status !== 201) {
-    throw new Error(`issue ${created.status} ${(created.body && created.body.message) || ""}`.trim());
+    const error = new Error("issue rejected or uncertain");
+    error.definitive = created.status >= 400 && created.status < 500 && created.status !== 408;
+    throw error;
   }
   return created.body && created.body.html_url;
 }
@@ -492,7 +512,10 @@ async function handler(req, res) {
   let files = [];
   try {
     let raw = readIncoming(req);
-    if (raw == null) raw = await readStream(req);
+    if (raw == null) raw = await readStream(req, limit);
+    const actualSize = Buffer.isBuffer(raw) ? raw.length
+      : Buffer.byteLength(typeof raw === "string" ? raw : JSON.stringify(raw ?? null));
+    if (actualSize > limit) throw new Error("too-large");
     if (type.includes("multipart/form-data")) {
       const parsed = parseMultipart(raw, type);
       data = parsed.fields;
@@ -531,29 +554,49 @@ async function handler(req, res) {
   }
   const hash = ipHash(req);
   if (rateLimited(hash)) {
-    log("rate-limit", "too many offers", { ipHash: hash.slice(0, 12) });
+    log("rate-limit", "too many offers");
     send(req, res, 429, "busy", data);
     return;
   }
   result.payload.receivedAt = new Date().toISOString();
+  result.payload.receipt = crypto.randomUUID();
   const stored = [];
+  // Verify the destination before storing any contributor file.
   try {
-    await storeFiles(files, stored);
+    await assertPrivateRepo();
+    await ensureLabels();
   } catch (err) {
-    log("blob", err, { files: files.length });
-    await removeFiles(stored);
+    log("intake-preflight", err);
     send(req, res, 502, "failed", data);
+    return;
+  }
+  try {
+    await storeFiles(files, stored, result.payload.receipt);
+  } catch (err) {
+    log("blob", err, { files: files.length, receipt: result.payload.receipt, recoveryRequired: true });
+    await removeFiles(stored, result.payload.receipt);
+    send(req, res, 502, "failed", data);
+    return;
+  }
+  let receiptBlob;
+  try {
+    receiptBlob = await storeReceipt(result.payload, stored, hash);
+  } catch (err) {
+    log("receipt-store", err, { receipt: result.payload.receipt, recoveryRequired: true });
+    // A timed-out receipt write can have succeeded. Preserve files for reconciliation.
+    send(req, res, 502, "failed", data, result.payload.receipt);
     return;
   }
   try {
     await openIssue(result.payload, stored, hash);
   } catch (err) {
-    log("github", err);
-    await removeFiles(stored);
-    send(req, res, 502, "failed", data);
+    log("github", err, { receipt: result.payload.receipt, recoveryRequired: !err.definitive });
+    if (err.definitive) await removeFiles([...stored, receiptBlob], result.payload.receipt);
+    // A timeout/5xx can occur after GitHub created the issue: do not destroy its files.
+    send(req, res, 502, "failed", data, result.payload.receipt);
     return;
   }
-  send(req, res, 200, "accepted", data);
+  send(req, res, 200, "accepted", data, result.payload.receipt);
 }
 
 function readIncoming(req) {
@@ -562,12 +605,12 @@ function readIncoming(req) {
   return null;
 }
 
-async function readStream(req) {
+async function readStream(req, limit) {
   const chunks = [];
   let size = 0;
   for await (const chunk of req) {
     size += chunk.length;
-    if (size > UPLOAD_LIMIT) throw new Error("too-large");
+    if (size > limit) throw new Error("too-large");
     chunks.push(Buffer.from(chunk));
   }
   return Buffer.concat(chunks);
