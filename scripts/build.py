@@ -186,17 +186,15 @@ class Site:
         return "\n".join(indent + line if line else line for line in block.split("\n"))
 
     def official_bar(self, lang, indent=""):
-        """Slim bar above the site header. PTC is neither linked site, so neither link is current."""
+        """Shared PCG bar. This site is PTC, so that link is current."""
         block = fill(
             self.official_bar_t,
             {
                 "pcg_lockup": self.lockup_t,
                 "us_home_url": esc(self.site["usHomeUrl"]),
                 "global_missions_url": esc(self.site["globalMissionsUrl"]),
-                "us_home": esc(self.ui["usHome"][lang]),
-                "global_missions": esc(self.ui["globalMissions"][lang]),
+                "ptc_url": href_for(lang, ""),
                 "portal_sign_in_url": esc(self.site["portalSignInUrl"]),
-                "portal_sign_in": esc(self.ui["portalSignIn"][lang]),
             },
         ).rstrip("\n")
         return self.indented(block, indent) if indent else block

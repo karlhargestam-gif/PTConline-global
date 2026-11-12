@@ -1,1 +1,1 @@
-<span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="27" height="27" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="59" height="21" alt="Pentecostal Church of God"></span>
+<span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>

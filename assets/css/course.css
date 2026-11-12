@@ -3,7 +3,7 @@
   align-items: center;
   gap: 16px;
   background: #332D26;
-  border-bottom: 4px solid #B2242E;
+  border-bottom: 4px solid #ee3626;
   padding: 16px;
 }
 
@@ -37,9 +37,9 @@
 .catalog h2,
 .catalog-card h3,
 .catalog-card h2 {
-  font-family: Lato, "Franklin Gothic Medium", "Libre Franklin", Arial, sans-serif;
+  font-family: "Crimson Text", Georgia, "Times New Roman", serif;
   color: #332D26;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -114,7 +114,7 @@
 .cohort-how a,
 .cohort-minimum a,
 .cohort-note a {
-  color: #B2242E;
+  color: #ee3626;
   font-weight: 700;
 }
 
@@ -135,9 +135,11 @@
   padding: 6px 12px;
   background: #ffffff;
   color: #332D26;
-  font-weight: 700;
+  font-weight: 600;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
-  border-bottom: 3px solid #B2242E;
+  border: 1px solid #ee3626;
+  border-radius: 5px;
 }
 
 .week-jump { margin-top: 16px; }
@@ -149,7 +151,7 @@
 .resources a:focus-visible,
 .cohort-how a:focus-visible,
 .cohort-note a:focus-visible {
-  outline: 2px solid #B2242E;
+  outline: 2px solid #ee3626;
   outline-offset: 3px;
 }
 
@@ -157,7 +159,7 @@
 
 .week {
   background: #ffffff;
-  border-top: 4px solid #B2242E;
+  border-top: 4px solid #ee3626;
   padding: clamp(18px, 3vw, 28px);
 }
 
@@ -166,7 +168,7 @@
 .accent {
   width: 56px;
   height: 3px;
-  background: #B2242E;
+  background: #ee3626;
   margin: 10px 0 16px;
 }
 
@@ -189,7 +191,7 @@
 .resources p,
 .note-block p { margin: 0; }
 
-.resources a { color: #B2242E; font-weight: 700; }
+.resources a { color: #ee3626; font-weight: 700; }
 
 .where,
 .unavailable,
@@ -218,8 +220,8 @@ video {
   display: inline-block;
   margin: 0 0 10px;
   padding: 4px 8px;
-  border: 1px solid #B2242E;
-  color: #B2242E;
+  border: 1px solid #ee3626;
+  color: #ee3626;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -229,7 +231,7 @@ video {
 .notice {
   background: #ffffff;
   border: 1px solid #D8D0C4;
-  border-left: 4px solid #B2242E;
+  border-left: 4px solid #ee3626;
   padding: 14px 16px;
   margin: 18px 0;
   max-width: 42rem;
@@ -260,14 +262,14 @@ video {
   min-height: 100%;
   padding: 20px;
   background: #ffffff;
-  border-top: 3px solid #B2242E;
+  border-top: 3px solid #ee3626;
   color: inherit;
   text-decoration: none;
 }
 
 .catalog-card h3, .catalog-card h2 { margin: 0; font-size: 1.35rem; }
 .catalog-card p { margin: 10px 0 0; color: #332D26; }
-.card-open { color: #B2242E; font-weight: 700; }
+.card-open { color: #ee3626; font-weight: 700; }
 .card-meta {
   display: flex;
   flex-wrap: wrap;
@@ -284,7 +286,7 @@ video {
 .prose h2 { font-size: 1.35rem; margin: 28px 0 8px; }
 .prose p { margin: 0 0 12px; }
 .prose ul { margin: 0 0 12px; padding-left: 1.2rem; }
-.prose a { color: #B2242E; }
+.prose a { color: #ee3626; }
 .prose .file-list { padding-left: 1.1rem; }
 .prose .file-list li { margin: 4px 0; }
 
@@ -319,7 +321,7 @@ video {
 .draft-note {
   margin: 18px 0;
   padding: 12px 14px;
-  border-left: 4px solid #B2242E;
+  border-left: 4px solid #ee3626;
   background: #f7f4ee;
 }
 .how-list { padding-left: 1.2rem; }
@@ -329,15 +331,15 @@ video {
   min-height: 46px;
   padding: 12px 18px;
   border: 0;
-  background: #94171d;
+  background: #ee3626;
   color: #fff;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
-.submit-form button:focus-visible { outline: 2px solid #B2242E; outline-offset: 3px; }
+.submit-form button:focus-visible { outline: 2px solid #ee3626; outline-offset: 3px; }
 #submit-status { margin-top: 16px; font-weight: 700; }
-#submit-status a { color: #B2242E; }
+#submit-status a { color: #ee3626; }
 .hp {
   position: absolute;
   left: -10000px;
@@ -355,10 +357,10 @@ video {
 .terms-note {
   margin: 18px 0;
   padding: 12px 14px;
-  border-left: 4px solid #B2242E;
+  border-left: 4px solid #ee3626;
   background: #f7f4ee;
 }
-.submit-form .req { color: #94171d; }
+.submit-form .req { color: #ee3626; }
 .submit-form fieldset { margin: 18px 0 0; padding: 0; border: 0; }
 .submit-form legend { padding: 0; }
 .submit-form input[type="file"] { max-width: 100%; }

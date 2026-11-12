@@ -5,8 +5,8 @@
         --ink: #111827;
         --body: #344454;
         --rule: #d9dde2;
-        --red: #b81d25;
-        --red-deep: #94171d;
+        --red: #ee3626;
+        --red-deep: #ee3626;
         --warm: #f7f4ee;
         --quiet: #eef1f4;
         --deep: #181d23;
@@ -39,7 +39,7 @@
         margin: 0;
         display: grid;
         grid-template-rows: 1fr auto;
-        overflow: hidden;
+        overflow: visible;
         background: var(--surface);
       }
 
@@ -89,8 +89,26 @@
         min-height: 66px;
         padding: 10px clamp(28px, 5vw, 68px);
         background: var(--surface);
-        border-top: 5px solid var(--red);
+        border-top: 0;
         border-bottom: 1px solid var(--rule);
+        transition: min-height 160ms ease, padding 160ms ease;
+      }
+
+      .site-banner.is-shrunk {
+        min-height: 52px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+
+      .site-banner.is-shrunk .banner-brand img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .site-banner.is-shrunk .banner-name { font-size: 1.2rem; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-banner { transition: none; }
       }
 
       .banner-brand {
@@ -108,10 +126,12 @@
       }
 
       .banner-name {
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
+        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+        font-size: 1.45rem;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1;
+        text-transform: none;
       }
 
       .banner-nav {
@@ -172,7 +192,7 @@
         color: var(--hero-ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2.4rem, 4vw, 3.4rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1;
         letter-spacing: 0.04em;
         text-shadow: 0 2px 18px rgba(0, 0, 0, 0.24);
@@ -207,7 +227,7 @@
         color: var(--hero-ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2.75rem, 5.4vw, 4.9rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 0.96;
         letter-spacing: -0.022em;
         text-wrap: balance;
@@ -230,7 +250,7 @@
         color: var(--hero-ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(1.18rem, 2vw, 1.5rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.35;
       }
 
@@ -266,27 +286,31 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 48px;
+        min-height: 44px;
         padding: 12px 18px;
+        border: 1px solid #ffffff;
+        border-radius: 5px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.95rem;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 1.2;
         text-align: center;
         text-decoration: none;
       }
 
       .hero-actions .hero-primary {
-        background: #ffffff;
-        color: #2a1216;
+        background: var(--red);
+        border-color: var(--red);
+        color: #ffffff;
       }
 
       .hero-actions .hero-secondary {
-        border: 2px solid rgba(255, 255, 255, 0.9);
+        border: 1px solid #ffffff;
         background: transparent;
         color: #ffffff;
       }
 
-      .hero-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .hero-actions a:hover { text-decoration: none; opacity: 0.86; }
 
       .hero-actions a:focus-visible {
         outline: 2px solid #ffffff;
@@ -356,7 +380,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2.4rem, 4.5vw, 4.15rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.02;
         letter-spacing: -0.02em;
         text-wrap: balance;
@@ -387,7 +411,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(1.55rem, 2.2vw, 2rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.1;
       }
 
@@ -413,7 +437,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2rem, 3.7vw, 3.35rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.06;
         letter-spacing: -0.018em;
         text-wrap: balance;
@@ -446,7 +470,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2.35rem, 4.4vw, 4rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.02;
         letter-spacing: -0.02em;
         text-wrap: balance;
@@ -511,7 +535,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2rem, 3vw, 2.6rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.05;
       }
 
@@ -566,7 +590,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: 1.55rem;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.15;
       }
 
@@ -627,7 +651,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2rem, 3vw, 2.8rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.05;
       }
 
@@ -698,7 +722,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2rem, 3.5vw, 3rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.05;
       }
 
@@ -747,7 +771,7 @@
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(1.65rem, 2.3vw, 2.2rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.08;
       }
 
@@ -825,15 +849,18 @@
         min-height: 46px;
         padding: 12px 18px;
         color: #ffffff;
-        background: var(--red-deep);
+        background: var(--red);
+        border: 1px solid var(--red);
+        border-radius: 5px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.84rem;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 1.35;
         text-align: center;
         text-decoration: none;
       }
 
-      .application-link:hover { background: var(--red); }
+      .application-link:hover { background: var(--red); text-decoration: none; opacity: 0.86; }
       .application-link:focus-visible {
         outline: 2px solid var(--red);
         outline-offset: 4px;
@@ -857,7 +884,7 @@
         color: #ffffff;
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
         font-size: clamp(2.35rem, 4.5vw, 4.15rem);
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.02;
         letter-spacing: -0.02em;
         text-wrap: balance;
@@ -989,7 +1016,6 @@
       }
 
       @media (max-width: 390px) {
-        .banner-name { font-size: 0.68rem; letter-spacing: 0.07em; }
         .brand span { font-size: 0.7rem; letter-spacing: 0.1em; }
         .content { padding-top: 46px; padding-bottom: 58px; }
         h1 { font-size: clamp(2.5rem, 13vw, 3.25rem); }
@@ -1037,7 +1063,7 @@
   padding: 10px 14px;
   text-decoration: none;
 }
-.skip-link:focus { transform: none; outline: 2px solid #B2242E; outline-offset: 2px; }
+.skip-link:focus { transform: none; outline: 2px solid #ee3626; outline-offset: 2px; }
 .brand {
   display: flex;
   flex-wrap: wrap;
@@ -1075,19 +1101,21 @@
 }
 
 .official-bar {
+  position: static;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  row-gap: 8px;
+  flex-wrap: nowrap;
+  gap: 8px;
   width: 100%;
-  min-height: 43px;
-  padding: 8px 16px;
-  background: #332D26;
-  color: #F6F3EE;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 8px;
+  border-bottom: 2px solid #ee3626;
+  background: #242424;
+  color: #ffffff;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1;
   white-space: nowrap;
 }
@@ -1101,26 +1129,19 @@
 }
 
 .pcg-lockup {
-  gap: 10px;
+  gap: 6px;
   background: transparent;
 }
 
 .official-bar-links {
   gap: 0;
-  row-gap: 6px;
   margin-left: auto;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  max-width: 100%;
+  flex-wrap: nowrap;
 }
 
-.official-bar-links a + a { margin-left: 14px; }
-
-@media (max-width: 767px) {
-  .official-bar-links {
-    flex: 1 1 100%;
-    margin-left: 0;
-  }
+.official-bar-dot {
+  margin: 0 4px;
+  color: #ffffff;
 }
 
 .pcg-lockup .pcg-mark,
@@ -1134,40 +1155,40 @@
 }
 
 .pcg-lockup .pcg-mark {
-  width: 27px;
-  height: 27px;
+  width: 22px;
+  height: 22px;
 }
 
 .pcg-lockup .pcg-wordmark {
-  width: 59px;
-  height: 21px;
+  width: 45px;
+  height: 16px;
 }
 
 @media (min-width: 768px) {
   .official-bar {
-    flex-wrap: nowrap;
-    gap: 24px;
-    row-gap: 0;
-    min-height: 47px;
+    gap: 16px;
     padding: 0 24px;
+    font-size: 12px;
   }
 
-  .official-bar-links {
-    flex: none;
-    flex-wrap: nowrap;
-    margin-left: auto;
-  }
+  .pcg-lockup { gap: 8px; }
 
-  .pcg-lockup { gap: 12px; }
+  .official-bar-dot { margin: 0 8px; }
 
   .pcg-lockup .pcg-mark {
-    width: 31px;
-    height: 31px;
+    width: 28px;
+    height: 28px;
   }
 
   .pcg-lockup .pcg-wordmark {
-    width: 71px;
-    height: 25px;
+    width: 62px;
+    height: 22px;
+  }
+
+  .official-bar a.official-bar-sign-in {
+    margin-left: 14px;
+    padding: 4px 10px;
+    font-size: 12px;
   }
 }
 
@@ -1176,8 +1197,8 @@
   display: inline-flex;
   align-items: center;
   align-self: stretch;
-  color: #F6F3EE;
-  font-weight: 700;
+  color: #ffffff;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -1196,8 +1217,9 @@
   gap: 5px;
   margin-left: 14px;
   padding: 4px 10px;
+  font-size: 12px;
   border-radius: 999px;
-  background: #b81d25;
+  background: #ee3626;
   color: #ffffff;
   font-weight: 700;
   line-height: 1;
@@ -1205,9 +1227,15 @@
 }
 
 .official-bar a.official-bar-sign-in:hover {
-  background: #9a181f;
+  background: #ee3626;
   color: #ffffff;
+  opacity: 0.86;
   text-decoration: none;
+}
+
+.official-bar a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .official-bar a.official-bar-sign-in:focus-visible {
@@ -1215,10 +1243,25 @@
   outline-offset: 2px;
 }
 
-.official-bar-lock {
-  display: block;
-  width: 12px;
-  height: 12px;
-  flex: 0 0 12px;
+.official-bar .link-short { display: none; }
+
+@media (max-width: 767px) {
+  .official-bar .link-full { display: none; }
+  .official-bar .link-short { display: inline; }
+  .official-bar a.official-bar-sign-in,
+  .official-bar a.official-bar-sign-in:visited,
+  .official-bar a.official-bar-sign-in:hover {
+    margin-left: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    font-weight: 600;
+    font-size: inherit;
+  }
+  .official-bar a.official-bar-sign-in::before {
+    content: "·";
+    margin: 0 4px;
+  }
 }
 
