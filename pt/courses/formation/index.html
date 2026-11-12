@@ -38,7 +38,7 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
     <nav class="official-bar" aria-label="Official PCG sites">
-      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>
+      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="31" height="31" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="71" height="25" alt="Pentecostal Church of God"></span>
       <span class="official-bar-links">
         <a href="https://www.pcg.org/"><span class="link-full">PCG US</span><span class="link-short">US</span></a>
         <span class="official-bar-dot" aria-hidden="true">·</span>
@@ -52,12 +52,14 @@
       <a class="banner-brand" href="/pt/" aria-label="Consórcio Teológico Pentecostal (PTC)">
         <span class="banner-name">Theological Consortium</span>
       </a>
-      <nav class="banner-nav" aria-label="Principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="banner-nav">Explore</button>
+      <nav class="banner-nav" id="banner-nav" aria-label="Principal">
         <a href="/pt/">Início</a>
         <a href="/pt/courses/">Cursos</a>
         <a href="/pt/submit/">Enviar um curso</a>
       </nav>
       <span class="lang-switch" aria-label="Language"><a href="/courses/formation/" hreflang="en">EN</a><a href="/es/courses/formation/" hreflang="es">ES</a><a href="/pt/courses/formation/" hreflang="pt" aria-current="true">PT</a></span>
+      <a class="give-button" href="https://www.pcgmission.org/give/" target="_blank" rel="noopener noreferrer">GIVE</a>
       <script>
         (function () {
           var bar = document.currentScript.parentElement;
@@ -65,12 +67,20 @@
           var sync = function () { bar.classList.toggle("is-shrunk", window.scrollY > 8); };
           sync();
           window.addEventListener("scroll", sync, { passive: true });
+          var toggle = bar.querySelector(".nav-toggle");
+          var nav = bar.querySelector(".banner-nav");
+          if (!toggle || !nav) return;
+          toggle.addEventListener("click", function () {
+            var open = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", open ? "false" : "true");
+            nav.classList.toggle("is-open", !open);
+          });
         })();
       </script>
     </header>
 <main id="main" class="course-page">
 <div class="banner">
-  <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>
+  <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="31" height="31" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="71" height="25" alt="Pentecostal Church of God"></span>
   <img class="provider-logo" src="/assets/moe/MOE_logo_white_official.png" alt="Mission One Eleven">
 </div>
 <header class="masthead">

@@ -37,7 +37,7 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
     <nav class="official-bar" aria-label="Official PCG sites">
-      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="22" height="22" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="45" height="16" alt="Pentecostal Church of God"></span>
+      <span class="pcg-lockup"><img class="pcg-mark" src="/assets/brand/pcg-icon-white.png" width="31" height="31" alt=""><img class="pcg-wordmark" src="/assets/brand/pcg-wordmark-white.png" width="71" height="25" alt="Pentecostal Church of God"></span>
       <span class="official-bar-links">
         <a href="https://www.pcg.org/"><span class="link-full">PCG US</span><span class="link-short">US</span></a>
         <span class="official-bar-dot" aria-hidden="true">·</span>
@@ -52,12 +52,28 @@
         <img src="/assets/pcg-flame-96.webp" alt="Chama do PCG">
         <span class="banner-name">Consórcio Teológico Pentecostal (PTC)</span>
       </a>
-      <nav class="banner-nav" aria-label="Principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="banner-nav">Explore</button>
+      <nav class="banner-nav" id="banner-nav" aria-label="Principal">
         <a href="/pt/">Início</a>
         <a href="/pt/courses/">Cursos</a>
         <a href="/pt/submit/" aria-current="page">Enviar um curso</a>
       </nav>
       <span class="lang-switch" aria-label="Language"><a href="/submit/" hreflang="en">EN</a><a href="/es/submit/" hreflang="es">ES</a><a href="/pt/submit/" hreflang="pt" aria-current="true">PT</a></span>
+      <a class="give-button" href="https://www.pcgmission.org/give/" target="_blank" rel="noopener noreferrer">GIVE</a>
+      <script>
+        (function () {
+          var bar = document.currentScript.parentElement;
+          if (!bar || !bar.classList.contains("site-banner")) return;
+          var toggle = bar.querySelector(".nav-toggle");
+          var nav = bar.querySelector(".banner-nav");
+          if (!toggle || !nav) return;
+          toggle.addEventListener("click", function () {
+            var open = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", open ? "false" : "true");
+            nav.classList.toggle("is-open", !open);
+          });
+        })();
+      </script>
     </header>
 <main id="main" class="prose-page">
 <header class="masthead"><p class="kicker">PTC</p><h1>Enviar um curso</h1><p class="lead">Qualquer pessoa, em qualquer lugar — uma igreja local, um professor ou um parceiro em qualquer país — pode oferecer um curso ou um currículo ao Consórcio Teológico Pentecostal.</p></header>
