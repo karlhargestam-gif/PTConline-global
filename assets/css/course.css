@@ -287,6 +287,41 @@ video {
 .prose p { margin: 0 0 12px; }
 .prose ul { margin: 0 0 12px; padding-left: 1.2rem; }
 .prose a { color: #ee3626; }
+/* Article links are red. A .button inside prose must stay white on red. */
+.prose a.button,
+a.button,
+.button {
+  color: #ffffff;
+  background: #ee3626;
+  border-color: #ee3626;
+  text-decoration: none;
+}
+.prose a.button:hover,
+.prose a.button:focus-visible,
+a.button:hover,
+a.button:focus-visible,
+.button:hover,
+.button:focus-visible {
+  color: #ffffff;
+  background: #d12e20;
+  border-color: #d12e20;
+  text-decoration: none;
+  opacity: 1;
+}
+.prose a.button:focus-visible,
+a.button:focus-visible,
+.button:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+}
+.prose a.button.secondary,
+a.button.secondary,
+.button.secondary {
+  color: #ffffff;
+  background: #ee3626;
+  border-color: #ee3626;
+  text-decoration: none;
+}
 .prose .file-list { padding-left: 1.1rem; }
 .prose .file-list li { margin: 4px 0; }
 

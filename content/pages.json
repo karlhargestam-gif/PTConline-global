@@ -260,7 +260,7 @@
         "links": [
           { "href": "/courses/messenger/", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
           { "href": "https://www.messengercollege.edu", "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" } },
-          { "href": "https://www.messengercollege.edu/apply", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
+          { "href": "https://www.messengercollege.edu/apply", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" }, "button": true }
         ]
       },
       {
@@ -275,10 +275,7 @@
           "pt": [
             "Faculdades, países, escolas e estudantes candidatam-se ao PTC. Quem já tem uma conta pode continuar entrando."
           ]
-        },
-        "links": [
-          { "href": "/apply/", "label": { "en": "Apply to PTC", "es": "Postular a PTC", "pt": "Candidatar-se ao PTC" }, "internal": true }
-        ]
+        }
       }
     ]
   },

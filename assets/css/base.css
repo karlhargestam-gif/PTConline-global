@@ -494,7 +494,26 @@ body {
   text-align: center;
 }
 
-.button:hover { text-decoration: none; opacity: 0.86; }
+a.button,
+.button {
+  color: #ffffff;
+  text-decoration: none;
+}
+.button:hover,
+a.button:hover,
+.button:focus-visible,
+a.button:focus-visible {
+  color: #ffffff;
+  background: #d12e20;
+  border-color: #d12e20;
+  text-decoration: none;
+  opacity: 1;
+}
+.button:focus-visible,
+a.button:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+}
 
 .path-start {
   max-width: 42rem;
