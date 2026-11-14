@@ -676,6 +676,10 @@ def layout_problems(root, pages):
             edges = [edge for edge in edges if edge is not None]
             if len(edges) >= 2 and max(edges) - min(edges) > 0.6:
                 problems.append(f"{rel} at {width}px: gutter misaligned {edges}")
+        for phone in (360, 390):
+            phone_banner = _paint("header", {"site-banner"}, [], rules, phone)
+            if (phone_banner.get("flex-wrap") or "").lower() == "wrap":
+                problems.append(f"{rel} at {phone}px: header row wraps")
     return problems
 
 

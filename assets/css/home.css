@@ -1328,6 +1328,28 @@
   .give-button { padding: 8px 12px; font-size: 12px; }
 }
 
+@media (max-width: 599px) {
+  .site-banner { flex-wrap: nowrap; }
+  .banner-brand,
+  .site-banner.is-shrunk .banner-brand { min-height: 44px; }
+  .banner-name,
+  .site-banner.is-shrunk .banner-name { font-size: 1.05rem; }
+  .lang-switch { display: none; }
+  .site-banner:has(.banner-nav.is-open) { flex-wrap: wrap; }
+  .site-banner:has(.banner-nav.is-open) .banner-nav { order: 1; }
+  .site-banner:has(.banner-nav.is-open) .lang-switch { order: 2; }
+  .site-banner:has(.banner-nav.is-open) .lang-switch {
+    display: inline-flex;
+    flex: 1 1 100%;
+    margin-left: 0;
+    gap: 8px;
+  }
+  .site-banner:has(.banner-nav.is-open) .lang-switch a {
+    min-width: 44px;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 1024px) {
   .official-bar {
     height: auto;
