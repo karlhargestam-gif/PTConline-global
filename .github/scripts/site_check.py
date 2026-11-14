@@ -8,6 +8,7 @@ Fails the build when a change would ship:
   - a relative og:image / twitter:image
   - an internal link or asset that does not exist in the repo
   - a robots.txt or sitemap.xml that is missing, invalid, or points off-host
+  - a .button whose text color matches its background, or whose visible text is empty
 
 Usage: python3 site_check.py --host www.example.com [--root .] [--max-page-kb 1024]
 External links are not fetched (keeps CI fast and deterministic).
@@ -109,10 +110,225 @@ def exists_as_page(target):
     return os.path.isfile(target.rstrip("/") + ".html")  # cleanUrls
 
 
+def _strip_css_comments(css):
+    return re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+
+
+def _css_blocks(css):
+    """Yield (selector, body) including rules nested in @media."""
+    css = _strip_css_comments(css)
+    i, n = 0, len(css)
+    while i < n:
+        while i < n and css[i].isspace():
+            i += 1
+        if i >= n:
+            break
+        if css.startswith("@", i):
+            brace = css.find("{", i)
+            if brace < 0:
+                break
+            header = css[i:brace].strip()
+            depth, j = 1, brace + 1
+            while j < n and depth:
+                if css[j] == "{":
+                    depth += 1
+                elif css[j] == "}":
+                    depth -= 1
+                j += 1
+            inner = css[brace + 1:j - 1]
+            if header.lower().startswith("@media"):
+                yield from _css_blocks(inner)
+            i = j
+            continue
+        brace = css.find("{", i)
+        if brace < 0:
+            break
+        selector = css[i:brace].strip()
+        depth, j = 1, brace + 1
+        while j < n and depth:
+            if css[j] == "{":
+                depth += 1
+            elif css[j] == "}":
+                depth -= 1
+            j += 1
+        yield selector, css[brace + 1:j - 1]
+        i = j
+
+
+def _specificity(selector):
+    ids = len(re.findall(r"#[\w-]+", selector))
+    classes = len(re.findall(r"\.[\w-]+", selector)) + len(re.findall(r":(?!:)[\w-]+(?:\([^)]*\))?", selector))
+    cleaned = re.sub(r"#[\w-]+|\.[\w-]+|::?[\w-]+(?:\([^)]*\))?|\[[^\]]*\]", " ", selector)
+    tags = len(re.findall(r"[a-zA-Z*][\w-]*", cleaned))
+    return (ids, classes, tags)
+
+
+def _compound_ok(compound, tag, classes):
+    if re.search(r":(?:hover|focus|active|visited)|::", compound):
+        return False
+    tag_match = re.match(r"^([a-zA-Z*][\w-]*)", compound)
+    if tag_match and tag_match.group(1) != "*" and tag_match.group(1).lower() != tag:
+        return False
+    needed = set(re.findall(r"\.([\w-]+)", compound))
+    if not needed <= classes:
+        return False
+    if re.search(r"#[\w-]+", compound):
+        return False
+    return True
+
+
+def _selector_matches(selector, tag, classes, ancestors):
+    parts = [part for part in re.split(r"\s*>\s*|\s+", selector.strip()) if part]
+    if not parts or not _compound_ok(parts[-1], tag, classes):
+        return False
+    index = len(ancestors) - 1
+    for compound in reversed(parts[:-1]):
+        found = False
+        while index >= 0:
+            parent_tag, parent_classes = ancestors[index]
+            index -= 1
+            if _compound_ok(compound, parent_tag, parent_classes):
+                found = True
+                break
+        if not found:
+            return False
+    return True
+
+
+def _color_token(value, variables, seen=None):
+    if not value:
+        return None
+    seen = seen or set()
+    value = re.sub(r"\s*!important\s*", "", value.strip().lower())
+    var = re.search(r"var\(\s*(--[\w-]+)\s*\)", value)
+    if var:
+        name = var.group(1)
+        if name in seen:
+            return None
+        seen.add(name)
+        return _color_token(variables.get(name, ""), variables, seen)
+    if value in {"transparent", "none", "inherit", "initial", "unset", "currentcolor"}:
+        return None
+    named = {"white": "#ffffff", "black": "#000000"}
+    if value in named:
+        return named[value]
+    match = re.search(r"#([0-9a-f]{3,8})", value)
+    if not match:
+        return None
+    hex_digits = match.group(1)
+    if len(hex_digits) == 3:
+        hex_digits = "".join(ch * 2 for ch in hex_digits)
+    return "#" + hex_digits[:6]
+
+
+def _load_style(root, hrefs):
+    variables = {}
+    rules = []
+    order = 0
+    for href in hrefs:
+        path = href.split("?", 1)[0]
+        if path.startswith("/"):
+            path = path[1:]
+        full = os.path.normpath(os.path.join(root, path))
+        if not full.startswith(root) or not os.path.isfile(full):
+            continue
+        with open(full, encoding="utf-8", errors="replace") as fh:
+            css = fh.read()
+        for selector, body in _css_blocks(css):
+            decls = {}
+            for piece in body.split(";"):
+                if ":" not in piece:
+                    continue
+                prop, raw = piece.split(":", 1)
+                decls[prop.strip().lower()] = raw.strip()
+            if selector.strip() == ":root":
+                for prop, raw in decls.items():
+                    if prop.startswith("--"):
+                        variables[prop] = raw
+                continue
+            for one in selector.split(","):
+                one = one.strip()
+                if not one:
+                    continue
+                rules.append((one, decls, order, _specificity(one)))
+                order += 1
+    return variables, rules
+
+
+def _button_paint(tag, classes, ancestors, variables, rules):
+    color = None
+    background = None
+    ranked = []
+    for selector, decls, order, spec in rules:
+        if _selector_matches(selector, tag, classes, ancestors):
+            ranked.append((spec, order, decls))
+    for _spec, _order, decls in sorted(ranked):
+        if "color" in decls:
+            token = _color_token(decls["color"], variables)
+            if token:
+                color = token
+        if "background-color" in decls:
+            token = _color_token(decls["background-color"], variables)
+            if token:
+                background = token
+        elif "background" in decls:
+            token = _color_token(decls["background"], variables)
+            if token:
+                background = token
+    return color, background
+
+
+def button_problems(html, rel, root, cache):
+    stylesheet_hrefs = re.findall(r'<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"', html)
+    stylesheet_hrefs += re.findall(r'<link[^>]+href="([^"]+)"[^>]+rel="stylesheet"', html)
+    key = tuple(stylesheet_hrefs)
+    if key not in cache:
+        cache[key] = _load_style(root, stylesheet_hrefs)
+    variables, rules = cache[key]
+    problems = []
+    ancestors = []
+    stack = []
+    for match in re.finditer(r"<(/?)([a-zA-Z0-9]+)([^>]*)>|([^<]+)", html):
+        closing, tag, attrs, text = match.groups()
+        if text is not None:
+            if stack:
+                stack[-1][2].append(text)
+            continue
+        tag = tag.lower()
+        if closing:
+            if stack and stack[-1][0] == tag:
+                _tag, _classes, chunks, parents = stack.pop()
+                visible_text = "".join(chunks)
+                if stack:
+                    stack[-1][2].append(visible_text)
+                if "button" in _classes:
+                    visible = re.sub(r"\s+", " ", visible_text).strip()
+                    if not visible:
+                        problems.append(f"{rel}: .button has no visible text")
+                    else:
+                        color, background = _button_paint(_tag, _classes, parents, variables, rules)
+                        if color and background and color == background:
+                            problems.append(
+                                f"{rel}: .button text {visible!r} is {color} on {background}"
+                            )
+                if ancestors:
+                    ancestors.pop()
+            continue
+        classes = set()
+        class_match = re.search(r'class="([^"]*)"', attrs)
+        if class_match:
+            classes = set(class_match.group(1).split())
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}:
+            stack.append([tag, classes, [], list(ancestors)])
+            ancestors.append((tag, classes))
+    return problems
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
     pages = sorted(html_files(root))
+    button_styles = {}
     if not pages:
         errors.append("no .html files found")
 
@@ -132,6 +348,7 @@ def check(root, host, max_page_kb):
 
         p = PageParser()
         p.feed(html)
+        errors.extend(button_problems(html, rel, root, button_styles))
 
         if not p.canonicals:
             errors.append(f"{rel}: missing <link rel=\"canonical\">")

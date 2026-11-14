@@ -978,6 +978,7 @@ class Site:
             links = ""
             if section.get("links"):
                 rendered = []
+                buttons = []
                 for link in section["links"]:
                     href = link["href"]
                     if link.get("internal"):
@@ -986,24 +987,23 @@ class Site:
                             href = f"/{lang}/{route}/"
                         else:
                             href = f"/{route}/"
-                    rendered.append(
-                        f'<li><a href="{esc(href)}"{anchor_attrs(href)}>{esc(link["label"][lang])}</a></li>'
-                    )
-                links = "<ul>" + "".join(rendered) + "</ul>"
+                    anchor = f'<a class="button" href="{esc(href)}"{anchor_attrs(href)}>{esc(link["label"][lang])}</a>' if link.get("button") else f'<li><a href="{esc(href)}"{anchor_attrs(href)}>{esc(link["label"][lang])}</a></li>'
+                    if link.get("button"):
+                        buttons.append(anchor)
+                    else:
+                        rendered.append(anchor)
+                links = ("<ul>" + "".join(rendered) + "</ul>" if rendered else "") + (
+                    '<div class="actions">' + "".join(buttons) + "</div>" if buttons else ""
+                )
             extra = ""
             if page_id == "copyright" and section["heading"]["en"] == "Course files":
                 extra = self.hosted_files(lang)
             gate = ""
-            if section["heading"]["en"] in {
-                "Enrollment",
-                "2. Certificate or cohort with Mission One Eleven",
-                "3. Credit at Messenger College",
-                "4. Apply to PTC",
-            }:
+            if section["heading"]["en"] in {"Enrollment", "4. Apply to PTC"}:
                 gate = self.application_gate(lang)
             sections.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{gate}{links}{extra}")
         lead = "" if page.get("lead") is False else f"<p class=\"lead\">{esc(description)}</p>"
-        opening = self.application_gate(lang) if page_id == "enroll" else ""
+        opening = ""
         body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(title)}</h1>{lead}</header>
 <article class="prose catalog">
 {opening}
