@@ -152,6 +152,24 @@
         ]
       },
       {
+        "heading": { "en": "Enrollment", "es": "Inscripción", "pt": "Inscrição" },
+        "paragraphs": {
+          "en": [
+            "PTC enrollment is on this site. To apply as a missionary with PCG Global Missions, use the missionaries page."
+          ],
+          "es": [
+            "La inscripción en PTC está en este sitio. Para solicitar como misionero en PCG Global Missions, use la página de misioneros."
+          ],
+          "pt": [
+            "A inscrição no PTC está neste site. Para candidatar-se como missionário no PCG Global Missions, use a página de missionários."
+          ]
+        },
+        "links": [
+          { "href": "/enroll/", "label": { "en": "PTC enrollment", "es": "Inscripción en PTC", "pt": "Inscrição no PTC" }, "internal": true },
+          { "href": "https://www.pcgmission.org/missionaries/#missionaries-apply", "label": { "en": "Apply as a missionary", "es": "Solicitar como misionero", "pt": "Candidatar-se como missionário" } }
+        ]
+      },
+      {
         "heading": { "en": "Course partners", "es": "Socios de los cursos", "pt": "Parceiros dos cursos" },
         "paragraphs": {
           "en": [
@@ -244,6 +262,23 @@
           { "href": "/courses/messenger/", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
           { "href": "https://www.messengercollege.edu", "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" } },
           { "href": "https://www.messengercollege.edu/apply", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
+        ]
+      },
+      {
+        "heading": { "en": "4. Missionary application", "es": "4. Solicitud de misionero", "pt": "4. Candidatura missionária" },
+        "paragraphs": {
+          "en": [
+            "This page is PTC enrollment. To apply as a missionary with PCG Global Missions, use the missionaries page."
+          ],
+          "es": [
+            "Esta página es la inscripción en PTC. Para solicitar como misionero en PCG Global Missions, use la página de misioneros."
+          ],
+          "pt": [
+            "Esta página é a inscrição no PTC. Para candidatar-se como missionário no PCG Global Missions, use a página de missionários."
+          ]
+        },
+        "links": [
+          { "href": "https://www.pcgmission.org/missionaries/#missionaries-apply", "label": { "en": "Apply as a missionary", "es": "Solicitar como misionero", "pt": "Candidatar-se como missionário" } }
         ]
       }
     ]
