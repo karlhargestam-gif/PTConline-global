@@ -27,7 +27,9 @@
         min-height: 100svh;
         background: var(--page);
         color: var(--ink);
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: var(--font-body);
+        font-size: var(--size-body);
+        line-height: var(--leading-body);
         -webkit-font-smoothing: antialiased;
       }
 
@@ -251,7 +253,7 @@
         margin: 0 0 8px;
         color: var(--hero-ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.4rem, 4vw, 3.4rem);
+        font-size: var(--size-h1);
         font-weight: 400;
         line-height: 1;
         letter-spacing: 0.04em;
@@ -269,7 +271,7 @@
         gap: 12px;
         margin: 0 0 24px;
         color: #ffffff;
-        font-size: 0.72rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.17em;
         text-transform: uppercase;
@@ -285,10 +287,10 @@
       h1 {
         margin: 0;
         color: var(--hero-ink);
-        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.75rem, 5.4vw, 4.9rem);
+        font-family: var(--font-heading);
+        font-size: var(--size-display);
         font-weight: 400;
-        line-height: 0.96;
+        line-height: var(--leading-heading);
         letter-spacing: -0.022em;
         text-wrap: balance;
         text-shadow: 0 2px 18px rgba(0, 0, 0, 0.22);
@@ -299,9 +301,9 @@
         margin: clamp(28px, 4vw, 40px) 0 0;
         color: var(--hero-body);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(1.35rem, 2.35vw, 1.8rem);
+        font-size: var(--size-lead);
         font-weight: 400;
-        line-height: 1.32;
+        line-height: var(--leading-body);
       }
 
       .message .apply-note {
@@ -309,9 +311,9 @@
         margin: 22px 0 0;
         color: var(--hero-ink);
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 1.05rem;
+        font-size: var(--size-body);
         font-weight: 700;
-        line-height: 1.45;
+        line-height: var(--leading-body);
       }
 
       .message .path-start {
@@ -319,9 +321,9 @@
         margin: 22px 0 0;
         color: var(--hero-ink);
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 1rem;
+        font-size: var(--size-body);
         font-weight: 700;
-        line-height: 1.45;
+        line-height: var(--leading-body);
       }
 
       .application-panel > div { max-width: 650px; }
@@ -336,9 +338,9 @@
         margin: 18px 0 0;
         color: var(--hero-ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(1.18rem, 2vw, 1.5rem);
+        font-size: var(--size-lead);
         font-weight: 400;
-        line-height: 1.35;
+        line-height: var(--leading-body);
       }
 
       .scripture {
@@ -357,7 +359,7 @@
         padding-top: 18px;
         border-top: 1px solid var(--hero-rule);
         color: var(--hero-body);
-        font-size: 0.98rem;
+        font-size: var(--size-body);
         font-weight: 400;
         line-height: 1.65;
       }
@@ -378,7 +380,7 @@
         border: 1px solid #ffffff;
         border-radius: 5px;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 0.95rem;
+        font-size: var(--size-body);
         font-weight: 600;
         line-height: 1.2;
         text-align: center;
@@ -409,7 +411,7 @@
         margin: 14px 0 0;
         color: #ffffff;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 0.95rem;
+        font-size: var(--size-body);
         font-weight: 600;
         line-height: 1.4;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
@@ -431,7 +433,7 @@
       }
 
       .vision-section {
-        padding: clamp(72px, 9vw, 116px) var(--gutter) clamp(76px, 9vw, 122px);
+        padding: var(--space-section) var(--gutter);
         background: var(--surface);
       }
 
@@ -448,7 +450,7 @@
         gap: 12px;
         margin: 10px 0 0;
         color: var(--brand-text);
-        font-size: 0.72rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.16em;
         text-transform: uppercase;
@@ -466,9 +468,9 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.4rem, 4.5vw, 4.15rem);
+        font-size: var(--size-h1);
         font-weight: 400;
-        line-height: 1.02;
+        line-height: var(--leading-heading);
         letter-spacing: -0.02em;
         text-wrap: balance;
       }
@@ -477,7 +479,7 @@
         max-width: 690px;
         margin: 26px 0 0;
         color: var(--body);
-        font-size: clamp(1rem, 1.35vw, 1.1rem);
+        font-size: var(--size-body);
         line-height: 1.78;
       }
 
@@ -497,15 +499,15 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(1.55rem, 2.2vw, 2rem);
+        font-size: var(--size-h3);
         font-weight: 400;
-        line-height: 1.1;
+        line-height: var(--leading-heading);
       }
 
       .pillar p {
         margin: 14px 0 0;
         color: var(--body);
-        font-size: 0.93rem;
+        font-size: var(--size-body);
         line-height: 1.68;
       }
 
@@ -523,9 +525,9 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2rem, 3.7vw, 3.35rem);
+        font-size: var(--size-h1);
         font-weight: 400;
-        line-height: 1.06;
+        line-height: var(--leading-heading);
         letter-spacing: -0.018em;
         text-wrap: balance;
       }
@@ -534,12 +536,12 @@
         max-width: 700px;
         margin: 22px 0 0;
         color: var(--body);
-        font-size: clamp(1rem, 1.3vw, 1.08rem);
+        font-size: var(--size-body);
         line-height: 1.78;
       }
 
       .partners-section {
-        padding: clamp(72px, 9vw, 116px) var(--gutter) clamp(76px, 9vw, 122px);
+        padding: var(--space-section) var(--gutter);
         background: var(--warm);
         border-top: 1px solid var(--rule);
       }
@@ -556,9 +558,9 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.35rem, 4.4vw, 4rem);
+        font-size: var(--size-h1);
         font-weight: 400;
-        line-height: 1.02;
+        line-height: var(--leading-heading);
         letter-spacing: -0.02em;
         text-wrap: balance;
       }
@@ -567,7 +569,7 @@
         max-width: 680px;
         margin: 24px 0 0;
         color: var(--body);
-        font-size: 1rem;
+        font-size: var(--size-body);
         line-height: 1.75;
       }
 
@@ -581,7 +583,7 @@
       .name-points li {
         margin: 0 0 12px;
         color: var(--body);
-        font-size: 1rem;
+        font-size: var(--size-body);
         line-height: 1.7;
       }
 
@@ -595,7 +597,7 @@
         gap: 12px;
         margin: clamp(52px, 7vw, 78px) 0 0;
         color: var(--brand-text);
-        font-size: 0.72rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.16em;
         line-height: 1.4;
@@ -621,16 +623,16 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2rem, 3vw, 2.6rem);
+        font-size: var(--size-h2);
         font-weight: 400;
-        line-height: 1.05;
+        line-height: var(--leading-heading);
       }
 
       .roster-note {
         max-width: 760px;
         margin: 14px 0 0;
         color: var(--body);
-        font-size: 0.98rem;
+        font-size: var(--size-body);
         line-height: 1.7;
       }
 
@@ -665,10 +667,10 @@
       .member-region {
         margin: 0 0 10px;
         color: var(--red-deep);
-        font-size: 0.7rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.08em;
-        line-height: 1.45;
+        line-height: var(--leading-body);
         text-transform: uppercase;
       }
 
@@ -676,7 +678,7 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: 1.55rem;
+        font-size: var(--size-h3);
         font-weight: 400;
         line-height: 1.15;
       }
@@ -684,7 +686,7 @@
       .member-role {
         margin: 12px 0 18px;
         color: var(--body);
-        font-size: 0.95rem;
+        font-size: var(--size-body);
         line-height: 1.6;
       }
 
@@ -726,10 +728,10 @@
       .partner-role {
         margin: 0 0 22px;
         color: var(--red-deep);
-        font-size: 0.7rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.12em;
-        line-height: 1.45;
+        line-height: var(--leading-body);
         text-transform: uppercase;
       }
 
@@ -737,15 +739,15 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-size: var(--size-h2);
         font-weight: 400;
-        line-height: 1.05;
+        line-height: var(--leading-heading);
       }
 
       .partner-card p:not(.partner-role) {
         margin: 20px 0 30px;
         color: var(--body);
-        font-size: 0.97rem;
+        font-size: var(--size-body);
         line-height: 1.72;
       }
 
@@ -768,7 +770,7 @@
       }
 
       .library-section {
-        padding: clamp(72px, 9vw, 116px) var(--gutter) clamp(76px, 9vw, 122px);
+        padding: var(--space-section) var(--gutter);
         background: var(--surface);
         border-top: 1px solid var(--rule);
       }
@@ -797,7 +799,7 @@
       .entity-name {
         margin: 0;
         color: var(--red-deep);
-        font-size: 0.72rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.13em;
         line-height: 1.5;
@@ -808,16 +810,16 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-size: var(--size-h1);
         font-weight: 400;
-        line-height: 1.05;
+        line-height: var(--leading-heading);
       }
 
       .entity-heading p:not(.entity-name) {
         max-width: 680px;
         margin: 14px 0 0;
         color: var(--body);
-        font-size: 0.97rem;
+        font-size: var(--size-body);
         line-height: 1.72;
       }
 
@@ -846,7 +848,7 @@
       .course-number {
         margin: 0 0 18px;
         color: var(--red-deep);
-        font-size: 0.7rem;
+        font-size: var(--size-small);
         font-weight: 700;
         letter-spacing: 0.12em;
         line-height: 1.4;
@@ -857,15 +859,15 @@
         margin: 0;
         color: var(--ink);
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(1.65rem, 2.3vw, 2.2rem);
+        font-size: var(--size-h2);
         font-weight: 400;
-        line-height: 1.08;
+        line-height: var(--leading-heading);
       }
 
       .course-description {
         margin: 17px 0 24px;
         color: var(--body);
-        font-size: 0.94rem;
+        font-size: var(--size-body);
         line-height: 1.68;
       }
 
@@ -879,7 +881,7 @@
         color: var(--body);
         font-size: 0.76rem;
         font-weight: 700;
-        line-height: 1.45;
+        line-height: var(--leading-body);
         list-style: none;
       }
 
@@ -924,7 +926,7 @@
         max-width: 650px;
         margin: 0;
         color: var(--body);
-        font-size: 0.94rem;
+        font-size: var(--size-body);
         line-height: 1.68;
       }
 
@@ -942,7 +944,7 @@
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.84rem;
         font-weight: 600;
-        line-height: 1.35;
+        line-height: var(--leading-body);
         text-align: center;
         text-decoration: none;
       }
@@ -957,7 +959,7 @@
         display: grid;
         grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
         gap: clamp(44px, 8vw, 112px);
-        padding: clamp(72px, 9vw, 116px) var(--gutter) clamp(76px, 9vw, 122px);
+        padding: var(--space-section) var(--gutter);
         color: #ffffff;
         background: var(--deep);
       }
@@ -970,9 +972,9 @@
         margin: 0;
         color: #ffffff;
         font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.35rem, 4.5vw, 4.15rem);
+        font-size: var(--size-h1);
         font-weight: 400;
-        line-height: 1.02;
+        line-height: var(--leading-heading);
         letter-spacing: -0.02em;
         text-wrap: balance;
       }
@@ -981,7 +983,7 @@
         max-width: 700px;
         margin: 25px 0 0;
         color: var(--deep-body);
-        font-size: clamp(1rem, 1.35vw, 1.1rem);
+        font-size: var(--size-body);
         line-height: 1.78;
       }
 
@@ -995,8 +997,8 @@
         background: var(--warm);
         border-top: 1px solid var(--rule);
         color: var(--body);
-        font-size: 0.84rem;
-        line-height: 1.45;
+        font-size: var(--size-small);
+        line-height: var(--leading-body);
       }
 
       .footer p { margin: 0; }
@@ -1031,7 +1033,7 @@
         padding-top: 10px;
         border-top: 1px solid var(--rule);
         font-size: 0.78rem;
-        line-height: 1.45;
+        line-height: var(--leading-body);
       }
 
       .official-sites span { font-weight: 600; }
@@ -1102,9 +1104,9 @@
       }
 
       @media (max-width: 390px) {
-        .brand span { font-size: 0.7rem; letter-spacing: 0.1em; }
+        .brand span { font-size: var(--size-small); letter-spacing: 0.1em; }
         .content { padding-top: 46px; padding-bottom: 58px; }
-        h1 { font-size: clamp(2.5rem, 13vw, 3.25rem); }
+        h1 { font-size: var(--size-display); }
       }
 
       @media (prefers-reduced-motion: no-preference) {
@@ -1165,7 +1167,7 @@
 }
 .home-links a {
   color: #ffffff;
-  font-size: 0.72rem;
+  font-size: var(--size-small);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;

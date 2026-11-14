@@ -25,7 +25,7 @@
 .masthead,
 .catalog,
 .course {
-  padding: clamp(28px, 5vw, 56px) var(--gutter) clamp(40px, 6vw, 72px);
+  padding: var(--space-section) var(--gutter);
 }
 
 .masthead h1,
@@ -46,7 +46,8 @@
 .prose h1,
 .catalog h1 {
   margin: 8px 0 0;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: var(--size-h1);
+  line-height: var(--leading-heading);
   max-width: 40rem;
   text-wrap: balance;
 }
@@ -63,8 +64,10 @@
 
 .lead {
   max-width: 42rem;
-  margin: 16px 0 0;
+  margin: var(--space-block) 0 0;
   color: #332D26;
+  font-size: var(--size-lead);
+  line-height: var(--leading-body);
 }
 
 .teachers {
@@ -162,7 +165,7 @@
   padding: clamp(18px, 3vw, 28px);
 }
 
-.week h2 { margin: 4px 0 0; font-size: clamp(1.35rem, 2.5vw, 1.75rem); }
+.week h2 { margin: 4px 0 0; font-size: var(--size-h2); line-height: var(--leading-heading); }
 
 .accent {
   width: 56px;
@@ -266,7 +269,7 @@ video {
   text-decoration: none;
 }
 
-.catalog-card h3, .catalog-card h2 { margin: 0; font-size: 1.35rem; }
+.catalog-card h3, .catalog-card h2 { margin: 0; font-size: var(--size-h3); line-height: var(--leading-heading); }
 .catalog-card p { margin: 10px 0 0; color: #332D26; }
 .card-open { color: var(--brand-text); font-weight: 700; }
 .card-meta {
@@ -282,8 +285,8 @@ video {
 }
 
 .prose { max-width: 42rem; }
-.prose h2 { font-size: 1.35rem; margin: 28px 0 8px; }
-.prose p { margin: 0 0 12px; }
+.prose h2 { font-size: var(--size-h2); line-height: var(--leading-heading); margin: var(--space-block) 0 8px; }
+.prose p { margin: 0 0 var(--space-block); font-size: var(--size-body); line-height: var(--leading-body); }
 .prose ul { margin: 0 0 12px; padding-left: 1.2rem; }
 .prose a { color: var(--brand-text); }
 .prose a.button,
