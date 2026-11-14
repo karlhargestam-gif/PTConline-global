@@ -8,6 +8,7 @@ Fails the build when a change would ship:
   - a relative og:image / twitter:image
   - an internal link or asset that does not exist in the repo
   - a robots.txt or sitemap.xml that is missing, invalid, or points off-host
+  - a top-bar logo taller than 24.8px, or touching the bar edges, at phone, 820px, and desktop widths
 
 Usage: python3 site_check.py --host www.example.com [--root .] [--max-page-kb 1024]
 External links are not fetched (keeps CI fast and deterministic).
@@ -109,6 +110,217 @@ def exists_as_page(target):
     return os.path.isfile(target.rstrip("/") + ".html")  # cleanUrls
 
 
+LOCKUP_MARK_MAX = 24.8
+LOCKUP_WORD_MAX = 20.0
+LOCKUP_WIDTHS = (390, 820, 1280)
+
+
+def _css_comments(css):
+    return re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+
+
+def _css_rules(css, media=None):
+    css = _css_comments(css)
+    i, n = 0, len(css)
+    while i < n:
+        while i < n and css[i].isspace():
+            i += 1
+        if i >= n:
+            break
+        if css.startswith("@import", i):
+            semi = css.find(";", i)
+            yield ("import", css[i:semi], media)
+            i = semi + 1
+            continue
+        if css.startswith("@", i):
+            brace = css.find("{", i)
+            if brace < 0:
+                break
+            header = css[i:brace].strip()
+            depth, j = 1, brace + 1
+            while j < n and depth:
+                depth += css[j] == "{"
+                depth -= css[j] == "}"
+                j += 1
+            if header.lower().startswith("@media"):
+                yield from _css_rules(css[brace + 1:j - 1], header)
+            i = j
+            continue
+        brace = css.find("{", i)
+        if brace < 0:
+            break
+        selector = css[i:brace].strip()
+        depth, j = 1, brace + 1
+        while j < n and depth:
+            depth += css[j] == "{"
+            depth -= css[j] == "}"
+            j += 1
+        yield (selector, css[brace + 1:j - 1], media)
+        i = j
+
+
+def _decls(body):
+    found = {}
+    for piece in body.split(";"):
+        if ":" not in piece:
+            continue
+        prop, raw = piece.split(":", 1)
+        found[prop.strip().lower()] = raw.strip()
+    return found
+
+
+def _specificity(selector):
+    ids = len(re.findall(r"#[\w-]+", selector))
+    classes = len(re.findall(r"\.[\w-]+", selector))
+    cleaned = re.sub(r"#[\w-]+|\.[\w-]+|::?[\w-]+(?:\([^)]*\))?|\[[^\]]*\]", " ", selector)
+    tags = len(re.findall(r"[a-zA-Z*][\w-]*", cleaned))
+    if "*" in cleaned.split():
+        tags -= cleaned.split().count("*")
+    return (ids, classes, tags)
+
+
+def _compound_ok(compound, tag, classes):
+    if re.search(r":(?:hover|focus|active|visited)|::", compound):
+        return False
+    tag_match = re.match(r"^([a-zA-Z*][\w-]*)", compound)
+    if tag_match and tag_match.group(1) != "*" and tag_match.group(1).lower() != tag:
+        return False
+    needed = set(re.findall(r"\.([\w-]+)", compound))
+    return needed <= classes and not re.search(r"#[\w-]+", compound)
+
+
+def _selector_matches(selector, tag, classes, ancestors):
+    parts = [part for part in re.split(r"\s*>\s*|\s+", selector.strip()) if part]
+    if not parts or not _compound_ok(parts[-1], tag, classes):
+        return False
+    index = len(ancestors) - 1
+    for compound in reversed(parts[:-1]):
+        found = False
+        while index >= 0:
+            parent_tag, parent_classes = ancestors[index]
+            index -= 1
+            if _compound_ok(compound, parent_tag, parent_classes):
+                found = True
+                break
+        if not found:
+            return False
+    return True
+
+
+def _px(value):
+    if not value:
+        return None
+    match = re.search(r"(-?\d+(?:\.\d+)?)px", value)
+    return float(match.group(1)) if match else None
+
+
+def _media_matches(query, width):
+    if not query:
+        return True
+    mins = [int(item) for item in re.findall(r"min-width:\s*(\d+)px", query)]
+    maxs = [int(item) for item in re.findall(r"max-width:\s*(\d+)px", query)]
+    return all(width >= item for item in mins) and all(width <= item for item in maxs)
+
+
+def _read_sheet(root, href, seen):
+    path = href.strip("\"' ").split("?", 1)[0]
+    path = re.sub(r"^url\((.*)\)$", r"\1", path).strip("\"' ")
+    if path.startswith("/"):
+        path = path[1:]
+    full = os.path.normpath(os.path.join(root, path))
+    if full in seen or not full.startswith(root) or not os.path.isfile(full):
+        return []
+    seen.add(full)
+    with open(full, encoding="utf-8", errors="replace") as fh:
+        css = fh.read()
+    rules = []
+    for kind, payload, media in _css_rules(css):
+        if kind == "import":
+            match = re.search(r"""['"]([^'"]+)['"]""", payload)
+            if match:
+                rules.extend(_read_sheet(root, match.group(1), seen))
+            continue
+        rules.append((kind, _decls(payload), media))
+    return rules
+
+
+def _paint(tag, classes, ancestors, rules, width):
+    chosen = {}
+    ranked = []
+    order = 0
+    for selector, decls, media in rules:
+        if not _media_matches(media, width):
+            continue
+        for one in selector.split(","):
+            one = one.strip()
+            if one and _selector_matches(one, tag, classes, ancestors):
+                ranked.append((_specificity(one), order, decls))
+            order += 1
+    for _spec, _order, decls in sorted(ranked):
+        chosen.update(decls)
+    return chosen
+
+
+def _box_height(decls):
+    height = _px(decls.get("height")) or _px(decls.get("min-height"))
+    if height is None:
+        return None
+    border = _px(decls.get("border-bottom-width"))
+    if border is None:
+        border = _px(decls.get("border-bottom")) or 0
+    padding = (_px(decls.get("padding-top")) or 0) + (_px(decls.get("padding-bottom")) or 0)
+    box = (decls.get("box-sizing") or "border-box").lower()
+    if box == "border-box":
+        return height - border - padding
+    return height
+
+
+def lockup_problems(root, pages):
+    problems = []
+    cache = {}
+    bar_ancestors = []
+    mark_ancestors = [("nav", {"official-bar"}), ("span", {"pcg-lockup"})]
+    for page in pages:
+        rel = os.path.relpath(page, root)
+        with open(page, encoding="utf-8", errors="replace") as fh:
+            html = fh.read()
+        if 'class="official-bar"' not in html and "class='official-bar'" not in html:
+            continue
+        hrefs = re.findall(r'<link[^>]+href="([^"]+\.css)"', html)
+        key = tuple(hrefs)
+        if key not in cache:
+            rules = []
+            seen = set()
+            for href in hrefs:
+                rules.extend(_read_sheet(root, href, seen))
+            cache[key] = rules
+        rules = cache[key]
+        if not rules:
+            problems.append(f"{rel}: top-bar logo stylesheet is missing")
+            continue
+        for width in LOCKUP_WIDTHS:
+            star = _paint("*", set(), [], rules, width)
+            bar = _paint("nav", {"official-bar"}, bar_ancestors, rules, width)
+            bar = {**star, **bar}
+            mark = _paint("img", {"pcg-mark"}, mark_ancestors, rules, width)
+            word = _paint("img", {"pcg-wordmark"}, mark_ancestors, rules, width)
+            mark_h = _px(mark.get("height"))
+            word_h = _px(word.get("height"))
+            inner = _box_height(bar)
+            where = f"{rel} at {width}px"
+            if mark_h is None or word_h is None or inner is None:
+                problems.append(f"{where}: top-bar logo size is not set in the shared stylesheet")
+                continue
+            if mark_h > LOCKUP_MARK_MAX + 0.05:
+                problems.append(f"{where}: logo mark is {mark_h}px, above {LOCKUP_MARK_MAX}px")
+            if word_h > LOCKUP_WORD_MAX + 0.05:
+                problems.append(f"{where}: logo wordmark is {word_h}px tall, above {LOCKUP_WORD_MAX}px")
+            gap = (inner - max(mark_h, word_h)) / 2
+            if gap <= 0:
+                problems.append(f"{where}: logo touches the bar edge (gap {gap:.1f}px)")
+    return problems
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
@@ -198,6 +410,7 @@ def check(root, host, max_page_kb):
         except ET.ParseError as exc:
             errors.append(f"sitemap.xml is not valid XML ({exc})")
 
+    errors.extend(lockup_problems(root, pages))
     return pages, errors, warnings
 
 

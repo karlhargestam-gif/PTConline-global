@@ -1,0 +1,11 @@
+/* Shared top-bar logo. This is the only place its size is set.
+   80% of the live 31×31 mark and 71×25 wordmark. */
+.official-bar .pcg-lockup .pcg-mark {
+  width: 24.8px;
+  height: 24.8px;
+}
+
+.official-bar .pcg-lockup .pcg-wordmark {
+  width: 56.8px;
+  height: 20px;
+}
