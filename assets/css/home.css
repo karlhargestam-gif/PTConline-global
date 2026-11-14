@@ -297,6 +297,16 @@
         line-height: 1.32;
       }
 
+      .message .apply-note {
+        max-width: 600px;
+        margin: 22px 0 0;
+        color: var(--hero-ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.45;
+      }
+
       .message .path-start {
         max-width: 600px;
         margin: 22px 0 0;
