@@ -154,18 +154,18 @@
         "heading": { "en": "Enrollment", "es": "Inscripción", "pt": "Inscrição" },
         "paragraphs": {
           "en": [
-            "Anyone new, at any age, starts with the PCG missionary application. PCG then directs people to Mission One Eleven or PTC."
+            "Apply to PTC as a college, a country, a school, or a student. Training on this site is open worldwide."
           ],
           "es": [
-            "Quien es nuevo, a cualquier edad, empieza con la solicitud de misionero de PCG. Después, PCG orienta a las personas hacia Mission One Eleven o hacia PTC."
+            "Postule a PTC como universidad, país, escuela o estudiante. La formación en este sitio está abierta en todo el mundo."
           ],
           "pt": [
-            "Quem é novo, em qualquer idade, começa pela candidatura missionária da PCG. Depois, a PCG encaminha as pessoas para a Mission One Eleven ou para o PTC."
+            "Candidate-se ao PTC como faculdade, país, escola ou estudante. A formação neste site está aberta no mundo todo."
           ]
         },
         "links": [
-          { "href": "/enroll/", "label": { "en": "PTC enrollment", "es": "Inscripción en PTC", "pt": "Inscrição no PTC" }, "internal": true },
-          { "href": "https://www.pcgmission.org/missionaries/#missionaries-apply", "label": { "en": "Start your application", "es": "Comience su solicitud", "pt": "Comece sua candidatura" } }
+          { "href": "/apply/", "label": { "en": "Apply to PTC", "es": "Postular a PTC", "pt": "Candidatar-se ao PTC" }, "internal": true },
+          { "href": "/enroll/", "label": { "en": "How to enroll", "es": "Cómo inscribirse", "pt": "Como se inscrever" }, "internal": true }
         ]
       },
       {
@@ -264,20 +264,20 @@
         ]
       },
       {
-        "heading": { "en": "4. Missionary application", "es": "4. Solicitud de misionero", "pt": "4. Candidatura missionária" },
+        "heading": { "en": "4. Apply to PTC", "es": "4. Postular a PTC", "pt": "4. Candidatar-se ao PTC" },
         "paragraphs": {
           "en": [
-            "Anyone new, at any age, starts with the PCG missionary application. PCG then directs people to Mission One Eleven or PTC. People who already have an account can still sign in."
+            "Colleges, countries, schools, and students apply to PTC. People who already have an account can still sign in."
           ],
           "es": [
-            "Quien es nuevo, a cualquier edad, empieza con la solicitud de misionero de PCG. Después, PCG orienta a las personas hacia Mission One Eleven o hacia PTC. Quien ya tiene una cuenta puede seguir entrando."
+            "Universidades, países, escuelas y estudiantes postulan a PTC. Quien ya tiene una cuenta puede seguir entrando."
           ],
           "pt": [
-            "Quem é novo, em qualquer idade, começa pela candidatura missionária da PCG. Depois, a PCG encaminha as pessoas para a Mission One Eleven ou para o PTC. Quem já tem uma conta pode continuar entrando."
+            "Faculdades, países, escolas e estudantes candidatam-se ao PTC. Quem já tem uma conta pode continuar entrando."
           ]
         },
         "links": [
-          { "href": "https://www.pcgmission.org/missionaries/#missionaries-apply", "label": { "en": "Start your application", "es": "Comience su solicitud", "pt": "Comece sua candidatura" } }
+          { "href": "/apply/", "label": { "en": "Apply to PTC", "es": "Postular a PTC", "pt": "Candidatar-se ao PTC" }, "internal": true }
         ]
       }
     ]

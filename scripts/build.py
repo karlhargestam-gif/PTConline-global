@@ -265,12 +265,10 @@ class Site:
         ).rstrip("\n")
 
     def application_gate(self, lang):
-        """First step for anyone new. Existing learners still use sign-in and partner tools."""
-        url = self.site["missionaryApplyUrl"]
+        """PTC's own application. Not a missionary application."""
         return (
-            f'<p class="path-start">{esc(self.ui["pathStart"][lang])}</p>\n'
             f'<div class="actions">\n'
-            f'  <a class="button" href="{esc(url)}" target="_blank" rel="noopener noreferrer">{esc(self.ui["startApplication"][lang])}</a>\n'
+            f'  <a class="button" href="{href_for(lang, "apply")}">{esc(self.ui["applyToPtc"][lang])}</a>\n'
             f'</div>'
         )
 
@@ -1000,7 +998,7 @@ class Site:
                 "Enrollment",
                 "2. Certificate or cohort with Mission One Eleven",
                 "3. Credit at Messenger College",
-                "4. Missionary application",
+                "4. Apply to PTC",
             }:
                 gate = self.application_gate(lang)
             sections.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{gate}{links}{extra}")
@@ -1059,8 +1057,193 @@ class Site:
         )
         return f'<ul class="file-list">{items}</ul>'
 
+    def render_apply(self, lang):
+        copy = {
+            "en": {
+                "title": "Apply to PTC",
+                "lead": "PTC is a global training portal for pastors, countries, and schools. Apply as a college, a country, a school, or a student.",
+                "type": "I am applying as",
+                "college": "College",
+                "countryType": "Country",
+                "school": "School",
+                "student": "Student",
+                "orgCollege": "College or institution name",
+                "orgCountry": "National church or movement",
+                "orgSchool": "School name",
+                "orgStudent": "School or church, if any",
+                "country": "Country",
+                "city": "City",
+                "contact": "Contact name",
+                "role": "Role",
+                "email": "Email",
+                "phone": "Phone or WhatsApp",
+                "language": "Language",
+                "heard": "How did you hear about PTC?",
+                "heardOptions": [
+                    ("church", "A church or pastor"),
+                    ("site", "The PTC website"),
+                    ("messenger", "Messenger College"),
+                    ("moe", "Mission One Eleven"),
+                    ("person", "Another person"),
+                    ("other", "Other"),
+                ],
+                "training": "What training do you want?",
+                "message": "Message",
+                "consent": "I agree that PTC may email me about this application and keep this record for review.",
+                "submit": "Apply to PTC",
+                "thanksTitle": "Thank you",
+                "thanks": "Your application is in. The PTC team will review it.",
+                "invalid": "Check the fields marked * and the consent box.",
+                "busy": "Too many applications from this connection. Please wait a few minutes and try again.",
+                "failed": "The application could not be delivered. Please try again later.",
+                "select": "Select",
+            },
+            "es": {
+                "title": "Postular a PTC",
+                "lead": "PTC es un portal mundial de formación para pastores, países y escuelas. Postule como universidad, país, escuela o estudiante.",
+                "type": "Postulo como",
+                "college": "Universidad",
+                "countryType": "País",
+                "school": "Escuela",
+                "student": "Estudiante",
+                "orgCollege": "Nombre de la universidad o institución",
+                "orgCountry": "Iglesia nacional o movimiento",
+                "orgSchool": "Nombre de la escuela",
+                "orgStudent": "Escuela o iglesia, si corresponde",
+                "country": "País",
+                "city": "Ciudad",
+                "contact": "Nombre de contacto",
+                "role": "Función",
+                "email": "Correo",
+                "phone": "Teléfono o WhatsApp",
+                "language": "Idioma",
+                "heard": "¿Cómo conoció PTC?",
+                "heardOptions": [
+                    ("church", "Una iglesia o un pastor"),
+                    ("site", "El sitio de PTC"),
+                    ("messenger", "Messenger College"),
+                    ("moe", "Mission One Eleven"),
+                    ("person", "Otra persona"),
+                    ("other", "Otro"),
+                ],
+                "training": "¿Qué formación busca?",
+                "message": "Mensaje",
+                "consent": "Acepto que PTC me escriba sobre esta solicitud y conserve este registro para su revisión.",
+                "submit": "Postular a PTC",
+                "thanksTitle": "Gracias",
+                "thanks": "Recibimos su solicitud. El equipo de PTC la revisará.",
+                "invalid": "Revise los campos marcados con * y la casilla de consentimiento.",
+                "busy": "Demasiadas solicitudes desde esta conexión. Espere unos minutos e inténtelo de nuevo.",
+                "failed": "No se pudo entregar la solicitud. Inténtelo más tarde.",
+                "select": "Seleccione",
+            },
+            "pt": {
+                "title": "Candidatar-se ao PTC",
+                "lead": "O PTC é um portal mundial de formação para pastores, países e escolas. Candidate-se como faculdade, país, escola ou estudante.",
+                "type": "Candidato-me como",
+                "college": "Faculdade",
+                "countryType": "País",
+                "school": "Escola",
+                "student": "Estudante",
+                "orgCollege": "Nome da faculdade ou instituição",
+                "orgCountry": "Igreja nacional ou movimento",
+                "orgSchool": "Nome da escola",
+                "orgStudent": "Escola ou igreja, se houver",
+                "country": "País",
+                "city": "Cidade",
+                "contact": "Nome do contato",
+                "role": "Função",
+                "email": "E-mail",
+                "phone": "Telefone ou WhatsApp",
+                "language": "Idioma",
+                "heard": "Como conheceu o PTC?",
+                "heardOptions": [
+                    ("church", "Uma igreja ou um pastor"),
+                    ("site", "O site do PTC"),
+                    ("messenger", "Messenger College"),
+                    ("moe", "Mission One Eleven"),
+                    ("person", "Outra pessoa"),
+                    ("other", "Outro"),
+                ],
+                "training": "Que formação você busca?",
+                "message": "Mensagem",
+                "consent": "Concordo que o PTC me escreva sobre esta candidatura e guarde este registro para revisão.",
+                "submit": "Candidatar-se ao PTC",
+                "thanksTitle": "Obrigado",
+                "thanks": "Recebemos sua candidatura. A equipe do PTC vai analisá-la.",
+                "invalid": "Confira os campos marcados com * e a caixa de consentimento.",
+                "busy": "Muitas candidaturas desta conexão. Aguarde alguns minutos e tente de novo.",
+                "failed": "Não foi possível entregar a candidatura. Tente mais tarde.",
+                "select": "Selecione",
+            },
+        }[lang]
+        heard = "".join(
+            f'<option value="{esc(value)}">{esc(label)}</option>'
+            for value, label in copy["heardOptions"]
+        )
+        req = '<span class="req" aria-hidden="true">*</span>'
+        body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(copy["title"])}</h1><p class="lead">{esc(copy["lead"])}</p></header>
+<article class="prose catalog">
+<form id="ptc-apply" class="submit-form" action="/api/apply" method="post" data-lang="{lang}" data-invalid="{esc(copy["invalid"])}" data-busy="{esc(copy["busy"])}" data-failed="{esc(copy["failed"])}">
+<p class="hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label></p>
+<input type="hidden" name="lang" value="{lang}">
+<fieldset>
+<legend class="field-label">{esc(copy["type"])} {req}</legend>
+<div class="type-choices">
+<label><input type="radio" name="applicantType" value="college" required> {esc(copy["college"])}</label>
+<label><input type="radio" name="applicantType" value="country"> {esc(copy["countryType"])}</label>
+<label><input type="radio" name="applicantType" value="school"> {esc(copy["school"])}</label>
+<label><input type="radio" name="applicantType" value="student"> {esc(copy["student"])}</label>
+</div>
+</fieldset>
+<label id="apply-org-label" for="apply-organization" data-college="{esc(copy["orgCollege"])}" data-country="{esc(copy["orgCountry"])}" data-school="{esc(copy["orgSchool"])}" data-student="{esc(copy["orgStudent"])}">{esc(copy["orgCollege"])} {req}</label>
+<input id="apply-organization" name="organization" type="text" required maxlength="200" autocomplete="organization">
+<label for="apply-country">{esc(copy["country"])} {req}</label>
+<input id="apply-country" name="country" type="text" required maxlength="80" autocomplete="country-name">
+<label for="apply-city">{esc(copy["city"])} {req}</label>
+<input id="apply-city" name="city" type="text" required maxlength="80" autocomplete="address-level2">
+<label for="apply-contact">{esc(copy["contact"])} {req}</label>
+<input id="apply-contact" name="contactName" type="text" required maxlength="120" autocomplete="name">
+<label id="apply-role-label" for="apply-role">{esc(copy["role"])} {req}</label>
+<input id="apply-role" name="role" type="text" required maxlength="120">
+<label for="apply-email">{esc(copy["email"])} {req}</label>
+<input id="apply-email" name="email" type="email" required maxlength="200" autocomplete="email" inputmode="email">
+<label for="apply-phone">{esc(copy["phone"])} {req}</label>
+<input id="apply-phone" name="phone" type="tel" required maxlength="40" autocomplete="tel" inputmode="tel">
+<label for="apply-language">{esc(copy["language"])} {req}</label>
+<input id="apply-language" name="language" type="text" required maxlength="80">
+<label for="apply-heard">{esc(copy["heard"])} {req}</label>
+<select id="apply-heard" name="heard" required>
+<option value="">{esc(copy["select"])}</option>
+{heard}
+</select>
+<label for="apply-training">{esc(copy["training"])} {req}</label>
+<input id="apply-training" name="training" type="text" required maxlength="300">
+<label for="apply-message">{esc(copy["message"])}</label>
+<textarea id="apply-message" name="message" maxlength="1000"></textarea>
+<ul class="checks"><li><label><input type="checkbox" name="consent" value="yes" required> {esc(copy["consent"])}</label></li></ul>
+<button type="submit">{esc(copy["submit"])}</button>
+<p id="apply-status" role="status"></p>
+</form>
+<div id="apply-thanks" class="apply-thanks" hidden>
+<h2>{esc(copy["thanksTitle"])}</h2>
+<p>{esc(copy["thanks"])}</p>
+</div>
+</article>
+<script src="/assets/js/apply.js"></script>'''
+        page = self.document(
+            lang,
+            "apply",
+            copy["title"],
+            copy["lead"],
+            body,
+            self.jsonld("page", lang, "apply", copy["title"], copy["lead"]),
+            "prose-page",
+        )
+        self.emit(self.out_path(lang, "apply"), page)
+
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "privacy", "terms", "copyright", "submit"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "apply", "privacy", "terms", "copyright", "submit"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
         urls = []
         for route in routes:
@@ -1165,6 +1348,7 @@ class Site:
             self.render_messenger(lang)
             for page_id in self.pages:
                 self.render_prose(page_id, lang)
+            self.render_apply(lang)
             self.patch_home(lang)
             self.patch_submit(lang)
         self.sitemap()
@@ -1177,7 +1361,7 @@ class Site:
             print(f"Built {len(self.courses)} courses × {len(LANGS)} languages, plus catalog, messenger, prose and home pages.")
 
 
-LASTMOD = "2026-11-11"  # bump when generated pages change
+LASTMOD = "2026-11-14"  # bump when generated pages change
 
 
 def main():

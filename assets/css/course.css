@@ -299,6 +299,7 @@ video {
 }
 .submit-form input[type="text"],
 .submit-form input[type="email"],
+.submit-form input[type="tel"],
 .submit-form input[type="url"],
 .submit-form select,
 .submit-form textarea {
@@ -348,10 +349,35 @@ video {
   overflow: hidden;
 }
 
+.type-choices {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.type-choices label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #d9d3c8;
+  border-radius: 4px;
+  background: #fff;
+  font-weight: 700;
+}
+.type-choices input { width: 1.15rem; height: 1.15rem; margin: 0; }
+.apply-thanks { max-width: 42rem; }
+.apply-thanks h2 { margin-top: 0; }
+@media (min-width: 721px) {
+  .type-choices { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 720px) {
   .catalog-grid { grid-template-columns: 1fr; }
   .actions { flex-direction: column; }
   .actions .button { width: 100%; }
+  .submit-form button { width: 100%; }
 }
 
 .terms-note {

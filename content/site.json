@@ -21,7 +21,6 @@
   "moeEnrollUrl": "https://www.missiononeeleven.se/home/sign-up/",
   "pcgUrl": "https://www.pcgmission.org",
   "worldMissionsUrl": "https://www.pcgmission.org/world-missions/",
-  "missionaryApplyUrl": "https://www.pcgmission.org/missionaries/#missionaries-apply",
   "usHomeUrl": "https://www.pcg.org/",
   "globalMissionsUrl": "https://pcgmission.org/",
   "portalSignInUrl": "https://www.pcgmission.org/login",
@@ -93,20 +92,15 @@
       "es": "Abrir este curso en Canvas",
       "pt": "Abrir este curso no Canvas"
     },
-    "pathStart": {
-      "en": "New here? Every path starts with the PCG missionary application.",
-      "es": "¿Primera vez aquí? Todo camino empieza con la solicitud de misionero de PCG.",
-      "pt": "Primeira vez? Todo caminho começa com a candidatura missionária da PCG."
+    "applyToPtc": {
+      "en": "Apply to PTC",
+      "es": "Postular a PTC",
+      "pt": "Candidatar-se ao PTC"
     },
-    "startApplication": {
-      "en": "Start your application",
-      "es": "Comience su solicitud",
-      "pt": "Comece sua candidatura"
-    },
-    "pathRule": {
-      "en": "Anyone new, at any age, starts with the PCG missionary application. PCG then directs people to Mission One Eleven or PTC.",
-      "es": "Quien es nuevo, a cualquier edad, empieza con la solicitud de misionero de PCG. Después, PCG orienta a las personas hacia Mission One Eleven o hacia PTC.",
-      "pt": "Quem é novo, em qualquer idade, começa pela candidatura missionária da PCG. Depois, a PCG encaminha as pessoas para a Mission One Eleven ou para o PTC."
+    "applyNote": {
+      "en": "Apply to PTC as a college, a country, a school, or a student.",
+      "es": "Postule a PTC como universidad, país, escuela o estudiante.",
+      "pt": "Candidate-se ao PTC como faculdade, país, escola ou estudante."
     },
     "startCourse": {
       "en": "Start the course, self-paced, free, no login",
