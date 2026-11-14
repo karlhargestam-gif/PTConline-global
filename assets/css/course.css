@@ -430,6 +430,39 @@ a.button.secondary,
 .submit-form fieldset { margin: 18px 0 0; padding: 0; border: 0; }
 .submit-form legend { padding: 0; }
 .submit-form input[type="file"] { max-width: 100%; }
-.privacy-note { margin: 18px 0 0; padding: 12px 14px; background: #f7f4ee; font-size: 0.95rem; }
+.privacy-note { margin: 18px 0 0; padding: 12px 14px; background: #f7f4ee; font-size: var(--size-small); }
+
+.page-split { display: block; }
+.page-figure { margin: var(--space-block) var(--gutter) 0; }
+.page-figure img,
+.page-figure.is-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.page-figure.is-placeholder {
+  border: 2px dashed var(--brand);
+  background:
+    linear-gradient(135deg, transparent 47%, var(--brand) 47%, var(--brand) 53%, transparent 53%),
+    #f7f4ee;
+}
+@media (min-width: 820px) {
+  .page-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+    column-gap: var(--space-block);
+    align-items: start;
+    padding-right: var(--gutter);
+  }
+  .page-copy { grid-column: 1; grid-row: 1; }
+  .page-figure {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 96px;
+    margin: var(--space-section) 0 0;
+  }
+}
 .privacy-note h3 { margin: 0 0 8px; font-size: 1rem; }
 .privacy-note p { margin: 6px 0; }

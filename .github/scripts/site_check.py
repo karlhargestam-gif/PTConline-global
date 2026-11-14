@@ -774,6 +774,37 @@ def scale_problems(root, pages):
     return problems
 
 
+def figure_problems(root, pages):
+    wanted = {
+        "enroll/index.html": "img",
+        "apply/index.html": "img",
+        "about/index.html": "img",
+        "courses/index.html": "img",
+        "es/enroll/index.html": "img",
+        "pt/apply/index.html": "img",
+        "about/karl-hargestam/index.html": "placeholder",
+        "privacy/index.html": "placeholder",
+        "terms/index.html": "placeholder",
+        "copyright/index.html": "placeholder",
+    }
+    problems = []
+    have = {}
+    for page in pages:
+        rel = os.path.relpath(page, root)
+        with open(page, encoding="utf-8", errors="replace") as fh:
+            html = fh.read()
+        have[rel] = html
+    for rel, kind in wanted.items():
+        html = have.get(rel, "")
+        if 'class="page-split"' not in html:
+            problems.append(f"{rel}: inner page is still a single left column")
+        elif kind == "img" and "<img" not in html.split('class="page-figure"', 1)[-1][:400]:
+            problems.append(f"{rel}: missing the page image")
+        elif kind == "placeholder" and "is-placeholder" not in html:
+            problems.append(f"{rel}: missing the marked image placeholder")
+    return problems
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
@@ -869,6 +900,7 @@ def check(root, host, max_page_kb):
     errors.extend(layout_problems(root, pages))
     errors.extend(scale_problems(root, pages))
     errors.extend(text_problems(root, pages))
+    errors.extend(figure_problems(root, pages))
     return pages, errors, warnings
 
 

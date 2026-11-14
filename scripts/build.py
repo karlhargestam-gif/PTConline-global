@@ -814,7 +814,7 @@ class Site:
             route,
             title,
             description,
-            body,
+            self.with_figure(route, body, course.get("provider")),
             self.course_schema(course, lang, route),
             "course-page",
         )
@@ -906,7 +906,7 @@ class Site:
         title = self.ui["catalogTitle"][lang]
         description = self.ui["catalogLead"][lang]
         page = self.document(
-            lang, "courses", title, description, body,
+            lang, "courses", title, description, self.with_figure("courses", body),
             self.jsonld("page", lang, "courses", title, description),
             "catalog-page",
         )
@@ -933,7 +933,7 @@ class Site:
   </div>
 </div>'''
         page = self.document(
-            lang, "courses/messenger", title, description, body,
+            lang, "courses/messenger", title, description, self.with_figure("courses/messenger", body),
             self.jsonld("page", lang, "courses/messenger", title, description),
             "catalog-page",
         )
@@ -967,6 +967,28 @@ class Site:
                 "https://karlhargestam.com",
             ],
         }
+
+    def with_figure(self, route, body, provider=None):
+        figures = {
+            "about": "/assets/hero/02-nations-1280.webp",
+            "contact": "/assets/ptc-worship-hero.jpg",
+            "enroll": "/assets/mission-one-eleven-pioneer.jpg",
+            "apply": "/assets/hero/01-conference-arena-1280.webp",
+            "courses": "/assets/messenger-college-classroom.jpg",
+            "courses/messenger": "/assets/messenger-college-classroom.jpg",
+            "submit": "/assets/messenger-college-classroom.jpg",
+        }
+        src = figures.get(route)
+        if src is None and str(route).startswith("courses/"):
+            if provider == "messenger":
+                src = "/assets/messenger-college-classroom.jpg"
+            elif provider == "moe":
+                src = "/assets/mission-one-eleven-pioneer.jpg"
+        if src:
+            figure = f'<figure class="page-figure"><img src="{esc(src)}" alt=""></figure>'
+        else:
+            figure = '<figure class="page-figure is-placeholder" aria-hidden="true"></figure>'
+        return f'<div class="page-split">{figure}<div class="page-copy">{body}</div></div>'
 
     def render_prose(self, page_id, lang):
         page = self.pages[page_id]
@@ -1035,7 +1057,7 @@ class Site:
         else:
             linked_data = self.jsonld("page", lang, page_id, title, description)
         html_page = self.document(
-            lang, page_id, title, description, body,
+            lang, page_id, title, description, self.with_figure(page_id, body),
             linked_data,
             "prose-page",
         )
@@ -1236,7 +1258,7 @@ class Site:
             "apply",
             copy["title"],
             copy["lead"],
-            body,
+            self.with_figure("apply", body),
             self.jsonld("page", lang, "apply", copy["title"], copy["lead"]),
             "prose-page",
         )
@@ -1327,6 +1349,15 @@ class Site:
         """Submit pages are kept by hand, outside head.tpl. Refresh the shared chrome only."""
         rel = "submit/index.html" if lang == "en" else f"{lang}/submit/index.html"
         text = (ROOT / rel).read_text(encoding="utf-8")
+        if 'class="page-split"' not in text:
+            text = text.replace(
+                '<main id="main" class="prose-page">',
+                '<main id="main" class="prose-page">\n<div class="page-split">'
+                '<figure class="page-figure"><img src="/assets/messenger-college-classroom.jpg" alt=""></figure>'
+                '<div class="page-copy">',
+                1,
+            )
+            text = text.replace("</main>", "</div></div>\n</main>", 1)
         text = self.install_official_bar(text, lang, r'^([ \t]*)<header class="site-banner">', rel)
         if not re.search(r'<footer class="site-footer">', text):
             raise SystemExit(f"{rel}: site footer missing")
