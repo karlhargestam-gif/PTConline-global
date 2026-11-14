@@ -251,8 +251,7 @@ class Site:
             {
                 "note": esc(self.ui[note_key][lang]),
                 "label": esc(self.ui[label_key][lang]),
-                "global_education_url": esc(self.site["globalEducationUrl"]),
-                "global_education": esc(self.ui["globalEducation"][lang]),
+                "world_missions_url": esc(self.site["worldMissionsUrl"]),
                 "pcg_url": esc(self.site["pcgUrl"]),
                 "pcg": esc(self.ui["pcg"][lang]),
                 "submit_href": href_for(lang, "submit"),

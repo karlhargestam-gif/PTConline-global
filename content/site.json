@@ -19,8 +19,8 @@
   },
   "messengerApplyUrl": "https://www.messengercollege.edu/apply",
   "moeEnrollUrl": "https://www.missiononeeleven.se/home/sign-up/",
-  "globalEducationUrl": "https://pcgmission.org/#global-education",
   "pcgUrl": "https://www.pcgmission.org",
+  "worldMissionsUrl": "https://www.pcgmission.org/world-missions/",
   "usHomeUrl": "https://www.pcg.org/",
   "globalMissionsUrl": "https://pcgmission.org/",
   "portalSignInUrl": "https://www.pcgmission.org/login",
@@ -50,9 +50,9 @@
       "pt": "PCG Global Missions"
     },
     "homeFooterNote": {
-      "en": "Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God, connected with its Global Education department and an academic pathway through Messenger College.",
-      "es": "El Consorcio Teológico Pentecostal (PTC) es una iniciativa de PCG Global Missions, Pentecostal Church of God, en conexión con su departamento de Educación Global y una vía académica a través de Messenger College.",
-      "pt": "O Consórcio Teológico Pentecostal (PTC) é uma iniciativa do PCG Global Missions, Pentecostal Church of God, em conexão com seu departamento de Educação Global e uma via acadêmica por meio do Messenger College."
+      "en": "PTC is the training and education path of PCG Global Missions. Degrees: Messenger College.",
+      "es": "PTC es la vía de formación y educación de PCG Global Missions. Títulos: Messenger College.",
+      "pt": "O PTC é a via de formação e educação do PCG Global Missions. Diplomas: Messenger College."
     },
     "courseFooterNote": {
       "en": "Pentecostal Theological Consortium (PTC) is an initiative of PCG Global Missions, Pentecostal Church of God.",
@@ -73,7 +73,6 @@
     "privacy": { "en": "Privacy", "es": "Privacidad", "pt": "Privacidade" },
     "terms": { "en": "Terms", "es": "Términos", "pt": "Termos" },
     "copyright": { "en": "Copyright", "es": "Derechos de autor", "pt": "Direitos autorais" },
-    "globalEducation": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
     "pcg": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" },
     "usHome": { "en": "US Home", "es": "Inicio EE. UU.", "pt": "Sede EUA" },
     "globalMissions": { "en": "Global Missions", "es": "Misiones Globales", "pt": "Missões Globais" },
