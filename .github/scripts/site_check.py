@@ -805,6 +805,19 @@ def figure_problems(root, pages):
     return problems
 
 
+def polish_problems(root):
+    problems = []
+    course = open(os.path.join(root, "assets/css/course.css"), encoding="utf-8").read()
+    base = open(os.path.join(root, "assets/css/base.css"), encoding="utf-8").read()
+    if ".catalog-card:focus-visible" not in course:
+        problems.append("course cards have no visible focus state")
+    if ".button:focus-visible" not in course and ".button:focus-visible" not in base:
+        problems.append("buttons have no visible focus state")
+    if ".site-footer a:focus-visible" not in base:
+        problems.append("footer links have no visible focus state")
+    return problems
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
@@ -901,6 +914,7 @@ def check(root, host, max_page_kb):
     errors.extend(scale_problems(root, pages))
     errors.extend(text_problems(root, pages))
     errors.extend(figure_problems(root, pages))
+    errors.extend(polish_problems(root))
     return pages, errors, warnings
 
 

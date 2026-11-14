@@ -355,10 +355,10 @@ body {
 
 .site-footer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 16px 32px;
   padding: 24px var(--gutter) 27px;
   background: #f7f4ee;
   border-top: 1px solid #d9dde2;
@@ -381,6 +381,13 @@ body {
   font-weight: 700;
   text-decoration: none;
   text-underline-offset: 4px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.site-footer a:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
 }
 
 .site-footer a:hover { text-decoration: underline; }
@@ -472,7 +479,7 @@ body {
   min-height: 44px;
   padding: 12px 18px;
   border: 1px solid var(--red);
-  border-radius: 5px;
+  border-radius: 6px;
   background: var(--red);
   color: var(--white);
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -481,20 +488,12 @@ body {
   text-align: center;
 }
 
-a.button,
-.button {
-  color: #ffffff;
-  text-decoration: none;
-}
-.button:hover,
-a.button:hover,
-.button:focus-visible,
-a.button:focus-visible {
-  color: #ffffff;
-  background: #d12e20;
-  border-color: #d12e20;
+.button:hover, .button:focus-visible {
   text-decoration: none;
   opacity: 1;
+  background: var(--brand-hover);
+  color: var(--on-brand);
+  border-color: var(--brand-hover);
 }
 .button:focus-visible,
 a.button:focus-visible {
