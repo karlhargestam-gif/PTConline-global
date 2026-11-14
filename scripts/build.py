@@ -251,8 +251,7 @@ class Site:
             {
                 "note": esc(self.ui[note_key][lang]),
                 "label": esc(self.ui[label_key][lang]),
-                "global_education_url": esc(self.site["globalEducationUrl"]),
-                "global_education": esc(self.ui["globalEducation"][lang]),
+                "world_missions_url": esc(self.site["worldMissionsUrl"]),
                 "pcg_url": esc(self.site["pcgUrl"]),
                 "pcg": esc(self.ui["pcg"][lang]),
                 "submit_href": href_for(lang, "submit"),
@@ -264,6 +263,16 @@ class Site:
                 "global_missions": esc(self.ui["globalMissions"][lang]),
             },
         ).rstrip("\n")
+
+    def application_gate(self, lang):
+        """First step for anyone new. Existing learners still use sign-in and partner tools."""
+        url = self.site["missionaryApplyUrl"]
+        return (
+            f'<p class="path-start">{esc(self.ui["pathStart"][lang])}</p>\n'
+            f'<div class="actions">\n'
+            f'  <a class="button" href="{esc(url)}" target="_blank" rel="noopener noreferrer">{esc(self.ui["startApplication"][lang])}</a>\n'
+            f'</div>'
+        )
 
     def hreflang(self, route):
         lines = []
@@ -708,7 +717,8 @@ class Site:
             f'{esc(self.ui["cohortMinimumAfter"][lang])}'
         )
         return (
-            '<div class="actions">\n    '
+            self.application_gate(lang)
+            + '\n  <div class="actions">\n    '
             + "\n    ".join(parts)
             + "\n  </div>\n"
             + f'  <p class="hint cohort-how">{how}</p>\n'
@@ -763,8 +773,9 @@ class Site:
     <div><dt>{esc(self.ui["language"][lang])}</dt><dd>{esc(course["teachingLanguage"][lang])}</dd></div>
   </dl>
   <div class="notice" role="note"><p>{esc(self.site["lockNotice"][lang])}</p></div>
+  {self.application_gate(lang)}
   <div class="actions">
-    <a class="button" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
+    <a class="button secondary" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
   </div>
 </header>'''
         else:
@@ -875,8 +886,9 @@ class Site:
     <div class="catalog-grid">
       {moe_cards}
     </div>
+    {self.application_gate(lang)}
     <div class="actions">
-      <a class="button" href="{esc(self.site["moeEnrollUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMoe"][lang])}</a>
+      <a class="button secondary" href="{esc(self.site["moeEnrollUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMoe"][lang])}</a>
     </div>
     <p class="hint">{esc(self.ui["moePanel"][lang])}</p>
   </section>
@@ -886,9 +898,10 @@ class Site:
     <div class="catalog-grid">
       {messenger_cards}
     </div>
+    {self.application_gate(lang)}
     <div class="actions">
       <a class="button secondary" href="{href_for(lang, "courses/messenger")}">{esc(self.ui["messengerCatalogTitle"][lang])}</a>
-      <a class="button" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
+      <a class="button secondary" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
     </div>
   </section>{ptc_block}
 </div>'''
@@ -911,8 +924,9 @@ class Site:
   <h1>{esc(title)}</h1>
   <p class="lead">{esc(description)}</p>
   <div class="notice" role="note"><p>{esc(self.site["lockNotice"][lang])}</p></div>
+  {self.application_gate(lang)}
   <div class="actions">
-    <a class="button" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
+    <a class="button secondary" href="{esc(self.site["messengerApplyUrl"])}" target="_blank" rel="noopener noreferrer">{esc(self.ui["applyMessenger"][lang])}</a>
   </div>
 </header>
 <div class="catalog">
@@ -981,10 +995,20 @@ class Site:
             extra = ""
             if page_id == "copyright" and section["heading"]["en"] == "Course files":
                 extra = self.hosted_files(lang)
-            sections.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{links}{extra}")
+            gate = ""
+            if section["heading"]["en"] in {
+                "Enrollment",
+                "2. Certificate or cohort with Mission One Eleven",
+                "3. Credit at Messenger College",
+                "4. Missionary application",
+            }:
+                gate = self.application_gate(lang)
+            sections.append(f"<h2>{esc(section['heading'][lang])}</h2>{paras}{gate}{links}{extra}")
         lead = "" if page.get("lead") is False else f"<p class=\"lead\">{esc(description)}</p>"
+        opening = self.application_gate(lang) if page_id == "enroll" else ""
         body = f'''<header class="masthead"><p class="kicker">PTC</p><h1>{esc(title)}</h1>{lead}</header>
 <article class="prose catalog">
+{opening}
 {''.join(sections)}
 </article>'''
         if page.get("schema") == "person":

@@ -297,6 +297,23 @@
         line-height: 1.32;
       }
 
+      .message .path-start {
+        max-width: 600px;
+        margin: 22px 0 0;
+        color: var(--hero-ink);
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.45;
+      }
+
+      .application-panel > div { max-width: 650px; }
+      .application-panel .path-start {
+        margin: 0 0 8px;
+        color: var(--ink);
+        font-weight: 700;
+      }
+
       .global-vision {
         max-width: 600px;
         margin: 18px 0 0;

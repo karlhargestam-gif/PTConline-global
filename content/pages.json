@@ -32,18 +32,27 @@
         "heading": { "en": "Education partners", "es": "Socios educativos", "pt": "Parceiros educacionais" },
         "paragraphs": {
           "en": [
+            "PTC is the training and education path of PCG Global Missions. Degrees: Messenger College.",
+            "It is AI-first and built on PCG's full intelligence platform.",
             "Mission One Eleven prepares pioneer missionaries. Its seven courses on this site are open courseware: watch, read and study without an account on ptconline.global.",
             "Messenger College is the academic pathway partner. Its credit courses are listed as overviews. The college keeps the full materials and the admission decision."
           ],
           "es": [
+            "PTC es la vía de formación y educación de PCG Global Missions. Títulos: Messenger College.",
+            "Es primero en IA y está construido sobre la plataforma de inteligencia completa de PCG.",
             "Mission One Eleven prepara misioneros pioneros. Sus siete cursos en este sitio son material abierto: se pueden ver, leer y estudiar sin una cuenta en ptconline.global.",
             "Messenger College es el socio de la vía académica. Sus cursos con crédito aparecen como resúmenes. La universidad conserva los materiales completos y la decisión de admisión."
           ],
           "pt": [
+            "O PTC é a via de formação e educação do PCG Global Missions. Diplomas: Messenger College.",
+            "É primeiro em IA e está construído sobre a plataforma de inteligência completa da PCG.",
             "A Mission One Eleven prepara missionários pioneiros. Seus sete cursos neste site são material aberto: podem ser assistidos, lidos e estudados sem uma conta em ptconline.global.",
             "O Messenger College é o parceiro da via acadêmica. Seus cursos com crédito aparecem como resumos. A faculdade guarda os materiais completos e a decisão de admissão."
           ]
-        }
+        },
+        "links": [
+          { "href": "https://www.messengercollege.edu", "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" } }
+        ]
       },
       {
         "heading": { "en": "What this website is", "es": "Qué es este sitio", "pt": "O que este site é" },
@@ -118,27 +127,45 @@
   "contact": {
     "title": { "en": "Contact", "es": "Contacto", "pt": "Contato" },
     "description": {
-      "en": "How to reach Global Education, Mission One Eleven and Messenger College.",
-      "es": "Cómo contactar a Educación Global, Mission One Eleven y Messenger College.",
-      "pt": "Como falar com Educação Global, Mission One Eleven e Messenger College."
+      "en": "PTC is the training and education path of PCG Global Missions. Degrees: Messenger College.",
+      "es": "PTC es la vía de formación y educación de PCG Global Missions. Títulos: Messenger College.",
+      "pt": "O PTC é a via de formação e educação do PCG Global Missions. Diplomas: Messenger College."
     },
     "sections": [
       {
-        "heading": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" },
+        "heading": { "en": "Training and education", "es": "Formación y educación", "pt": "Formação e educação" },
         "paragraphs": {
           "en": [
-            "PTC is connected with the Global Education department at PCG Global Missions. This site does not yet publish a separate PTC email address. Start with the department page, or with the partner that runs the course you need."
+            "PTC is the training and education path of PCG Global Missions. Degrees: Messenger College. A PTC contact address is not published. [TO CONFIRM]"
           ],
           "es": [
-            "PTC está conectado con el departamento de Educación Global de PCG Global Missions. Este sitio todavía no publica un correo propio de PTC. Empiece por la página del departamento, o por el socio que dirige el curso que necesita."
+            "PTC es la vía de formación y educación de PCG Global Missions. Títulos: Messenger College. No hay una dirección de contacto de PTC publicada. [TO CONFIRM]"
           ],
           "pt": [
-            "O PTC está ligado ao departamento de Educação Global do PCG Global Missions. Este site ainda não publica um e-mail próprio do PTC. Comece pela página do departamento, ou pelo parceiro que conduz o curso de que você precisa."
+            "O PTC é a via de formação e educação do PCG Global Missions. Diplomas: Messenger College. Não há um endereço de contato do PTC publicado. [TO CONFIRM]"
           ]
         },
         "links": [
-          { "href": "https://pcgmission.org/#global-education", "label": { "en": "Global Education", "es": "Educación Global", "pt": "Educação Global" } },
-          { "href": "https://www.pcgmission.org", "label": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" } }
+          { "href": "https://www.pcgmission.org/world-missions/", "label": { "en": "PCG Global Missions", "es": "PCG Global Missions", "pt": "PCG Global Missions" } },
+          { "href": "https://www.messengercollege.edu", "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" } }
+        ]
+      },
+      {
+        "heading": { "en": "Enrollment", "es": "Inscripción", "pt": "Inscrição" },
+        "paragraphs": {
+          "en": [
+            "Anyone new, at any age, starts with the PCG missionary application. PCG then directs people to Mission One Eleven or PTC."
+          ],
+          "es": [
+            "Quien es nuevo, a cualquier edad, empieza con la solicitud de misionero de PCG. Después, PCG orienta a las personas hacia Mission One Eleven o hacia PTC."
+          ],
+          "pt": [
+            "Quem é novo, em qualquer idade, começa pela candidatura missionária da PCG. Depois, a PCG encaminha as pessoas para a Mission One Eleven ou para o PTC."
+          ]
+        },
+        "links": [
+          { "href": "/enroll/", "label": { "en": "PTC enrollment", "es": "Inscripción en PTC", "pt": "Inscrição no PTC" }, "internal": true },
+          { "href": "https://www.pcgmission.org/missionaries/#missionaries-apply", "label": { "en": "Start your application", "es": "Comience su solicitud", "pt": "Comece sua candidatura" } }
         ]
       },
       {
@@ -232,7 +259,25 @@
         },
         "links": [
           { "href": "/courses/messenger/", "label": { "en": "Messenger College catalog", "es": "Catálogo de Messenger College", "pt": "Catálogo do Messenger College" }, "internal": true },
+          { "href": "https://www.messengercollege.edu", "label": { "en": "Messenger College", "es": "Messenger College", "pt": "Messenger College" } },
           { "href": "https://www.messengercollege.edu/apply", "label": { "en": "Apply at Messenger College", "es": "Solicitar en Messenger College", "pt": "Candidatar-se no Messenger College" } }
+        ]
+      },
+      {
+        "heading": { "en": "4. Missionary application", "es": "4. Solicitud de misionero", "pt": "4. Candidatura missionária" },
+        "paragraphs": {
+          "en": [
+            "Anyone new, at any age, starts with the PCG missionary application. PCG then directs people to Mission One Eleven or PTC. People who already have an account can still sign in."
+          ],
+          "es": [
+            "Quien es nuevo, a cualquier edad, empieza con la solicitud de misionero de PCG. Después, PCG orienta a las personas hacia Mission One Eleven o hacia PTC. Quien ya tiene una cuenta puede seguir entrando."
+          ],
+          "pt": [
+            "Quem é novo, em qualquer idade, começa pela candidatura missionária da PCG. Depois, a PCG encaminha as pessoas para a Mission One Eleven ou para o PTC. Quem já tem uma conta pode continuar entrando."
+          ]
+        },
+        "links": [
+          { "href": "https://www.pcgmission.org/missionaries/#missionaries-apply", "label": { "en": "Start your application", "es": "Comience su solicitud", "pt": "Comece sua candidatura" } }
         ]
       }
     ]
@@ -289,15 +334,18 @@
         "heading": { "en": "Questions", "es": "Preguntas", "pt": "Perguntas" },
         "paragraphs": {
           "en": [
-            "To ask about this notice, use the Global Education page linked from the footer. If a direct PTC address is published later, this page will say so."
+            "To ask about this notice, use the contact page. A PTC contact address is not published. [TO CONFIRM]"
           ],
           "es": [
-            "Para preguntar sobre este aviso, use la página de Educación Global enlazada en el pie. Si más adelante se publica una dirección directa de PTC, esta página lo dirá."
+            "Para preguntar sobre este aviso, use la página de contacto. No hay una dirección de contacto de PTC publicada. [TO CONFIRM]"
           ],
           "pt": [
-            "Para perguntar sobre este aviso, use a página de Educação Global ligada no rodapé. Se mais tarde for publicado um endereço direto do PTC, esta página dirá."
+            "Para perguntar sobre este aviso, use a página de contato. Não há um endereço de contato do PTC publicado. [TO CONFIRM]"
           ]
-        }
+        },
+        "links": [
+          { "href": "/contact/", "label": { "en": "Contact", "es": "Contacto", "pt": "Contato" }, "internal": true }
+        ]
       }
     ]
   },
@@ -403,15 +451,18 @@
         "heading": { "en": "Takedown", "es": "Retiro", "pt": "Remoção" },
         "paragraphs": {
           "en": [
-            "If you hold the rights in a file on this site and want it removed or credited differently, contact Global Education through the link in the footer and name the file."
+            "If you hold the rights in a file on this site and want it removed or credited differently, use the contact page and name the file. A PTC contact address is not published. [TO CONFIRM]"
           ],
           "es": [
-            "Si usted tiene los derechos de un archivo de este sitio y quiere que se retire o que se acredite de otra manera, contacte a Educación Global por el enlace del pie e indique el archivo."
+            "Si usted tiene los derechos de un archivo de este sitio y quiere que se retire o que se acredite de otra manera, use la página de contacto e indique el archivo. No hay una dirección de contacto de PTC publicada. [TO CONFIRM]"
           ],
           "pt": [
-            "Se você tem os direitos de um arquivo deste site e quer que ele seja removido ou creditado de outro modo, fale com Educação Global pelo link do rodapé e indique o arquivo."
+            "Se você tem os direitos de um arquivo deste site e quer que ele seja removido ou creditado de outro modo, use a página de contato e indique o arquivo. Não há um endereço de contato do PTC publicado. [TO CONFIRM]"
           ]
-        }
+        },
+        "links": [
+          { "href": "/contact/", "label": { "en": "Contact", "es": "Contacto", "pt": "Contato" }, "internal": true }
+        ]
       }
     ]
   }

@@ -53,7 +53,7 @@ Single sign-on from the catalog to the LMS can come after the LMS exists. The ca
 These are for Karl Hargestam, not settled by the generator:
 
 1. The missiology and orality syllabus links are marked Unavailable and are not linked. The PDF files are still in `assets/syllabi/` from the recovery commit. Confirm whether those files should be linked again.
-2. There is no PTC email address in the repository. The contact page points at Global Education, Mission One Eleven and Messenger College. Publish an address, or leave it this way.
+2. There is no PTC email address in the repository. A PTC contact address is not published. [TO CONFIRM] The contact page says PTC is the training and education path of PCG Global Missions, and that degrees are at Messenger College.
 3. Privacy, terms and copyright are plain-language notices. They need counsel before they are treated as final, including a rights review of the hosted textbooks.
 4. Choose Moodle or LearnWorlds (or another LMS) for Mission One Eleven non-credit enrollment. Populi remains the credit system.
 5. Book of Acts week titles on the page are the chapter ranges covered by that week’s tests (Chapters 1–2, and so on). Replace them if the official outline uses different titles.
