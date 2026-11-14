@@ -23,8 +23,8 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -363,8 +363,8 @@ body {
   background: #f7f4ee;
   border-top: 1px solid #d9dde2;
   color: #344454;
-  font-size: .84rem;
-  line-height: 1.45;
+  font-size: var(--size-small);
+  line-height: var(--leading-body);
 }
 
 .site-footer p { margin: 0; max-width: 660px; }
@@ -439,7 +439,7 @@ body {
   padding: 28px var(--gutter) 36px;
   background: var(--espresso);
   color: #E7E1D8;
-  font-size: 0.84rem;
+  font-size: var(--size-small);
   line-height: 1.5;
 }
 

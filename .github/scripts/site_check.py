@@ -10,7 +10,8 @@ Fails the build when a change would ship:
   - a robots.txt or sitemap.xml that is missing, invalid, or points off-host
   - a .button whose text color matches its background, or whose visible text is empty
   - a top-bar logo taller than 24.8px, or touching the bar edges, at phone, 820px, and desktop widths
-  - a .button whose text color matches its background, or whose visible text is empty
+  - body text, headings, or section spacing off the shared type scale
+  - visible text that does not match the baseline, aside from whitespace
 
 Usage: python3 site_check.py --host www.example.com [--root .] [--max-page-kb 1024]
 External links are not fetched (keeps CI fast and deterministic).
@@ -22,6 +23,7 @@ import os
 import re
 import sys
 import xml.etree.ElementTree as ET
+from html import unescape as html_unescape
 from html.parser import HTMLParser
 from urllib.parse import unquote, urlsplit
 
@@ -677,6 +679,101 @@ def layout_problems(root, pages):
     return problems
 
 
+def _length_px(value, variables, root_px=16.0):
+    resolved = _resolve(value or "", variables).strip().lower()
+    match = re.match(r"^(-?\d+(?:\.\d+)?)(px|rem)$", resolved)
+    if not match:
+        return _px(resolved)
+    number = float(match.group(1))
+    return number * root_px if match.group(2) == "rem" else number
+
+
+def _unitless(value, variables):
+    resolved = _resolve(value or "", variables).strip().lower()
+    match = re.match(r"^(-?\d+(?:\.\d+)?)$", resolved)
+    return float(match.group(1)) if match else None
+
+
+def visible_text(html):
+    cleaned = re.sub(r"<(script|style|noscript)\b[^>]*>.*?</\1>", " ", html, flags=re.I | re.S)
+    cleaned = re.sub(r"<[^>]+>", " ", cleaned)
+    cleaned = html_unescape(cleaned)
+    return re.sub(r"\s+", " ", cleaned).strip()
+
+
+def text_problems(root, pages):
+    baseline_path = os.path.join(root, ".github", "visible-text.txt")
+    if not os.path.isfile(baseline_path):
+        return ["visible text baseline is missing"]
+    expected = {}
+    with open(baseline_path, encoding="utf-8") as fh:
+        for line in fh:
+            rel, _, text = line.rstrip("\n").partition("\t")
+            if rel:
+                expected[rel] = text
+    problems = []
+    seen = set()
+    for page in pages:
+        rel = os.path.relpath(page, root)
+        seen.add(rel)
+        with open(page, encoding="utf-8", errors="replace") as fh:
+            current = visible_text(fh.read())
+        if rel not in expected:
+            problems.append(f"{rel}: visible text has no baseline")
+        elif current != expected[rel]:
+            problems.append(f"{rel}: visible text changed")
+    for rel in sorted(set(expected) - seen):
+        problems.append(f"{rel}: page missing from the visible text check")
+    return problems
+
+
+def scale_problems(root, pages):
+    problems = []
+    cache = {}
+    for page in pages:
+        rel = os.path.relpath(page, root)
+        with open(page, encoding="utf-8", errors="replace") as fh:
+            html = fh.read()
+        hrefs = re.findall(r'<link[^>]+href="([^"]+\.css)"', html)
+        key = tuple(hrefs)
+        if key not in cache:
+            cache[key] = _sheet_bundle(root, hrefs)
+        rules, _unused = cache[key]
+        home = "home.css" in " ".join(hrefs)
+        for width in LOCKUP_WIDTHS:
+            variables = {}
+            for selector, decls, media in rules:
+                if selector.strip() == ":root" and _media_matches(media, width):
+                    for prop, raw in decls.items():
+                        if prop.startswith("--"):
+                            variables[prop] = raw
+            body = _paint("body", set(), [], rules, width)
+            body_size = _length_px(body.get("font-size"), variables)
+            leading = _unitless(body.get("line-height"), variables)
+            where = f"{rel} at {width}px"
+            if body_size is None or abs(body_size - 18) > 0.2:
+                problems.append(f"{where}: body text is not the 18px scale")
+            if leading is None or abs(leading - 1.65) > 0.01:
+                problems.append(f"{where}: body line-height is not 1.65")
+            if home:
+                heading = _paint("h1", set(), [], rules, width)
+                section = _paint("section", {"vision-section"}, [], rules, width)
+                expected = _length_px("var(--size-display)", variables)
+            else:
+                heading = _paint("h1", set(), [("header", {"masthead"})], rules, width)
+                section = _paint("header", {"masthead"}, [], rules, width)
+                expected = _length_px("var(--size-h1)", variables)
+            actual = _length_px(heading.get("font-size"), variables)
+            if expected is None or actual is None or abs(actual - expected) > 0.2:
+                problems.append(f"{where}: heading is off the shared scale")
+            space = _length_px("var(--space-section)", variables)
+            padding = _padding_parts(_resolve(section.get("padding", ""), variables))
+            top = _length_px(padding[0], variables) if padding else None
+            if space is None or top is None or abs(top - space) > 0.2:
+                problems.append(f"{where}: section spacing is off the shared scale")
+    return problems
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
@@ -770,6 +867,8 @@ def check(root, host, max_page_kb):
 
     errors.extend(lockup_problems(root, pages))
     errors.extend(layout_problems(root, pages))
+    errors.extend(scale_problems(root, pages))
+    errors.extend(text_problems(root, pages))
     return pages, errors, warnings
 
 
