@@ -141,7 +141,7 @@
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
   border: 1px solid var(--brand-text);
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .week-jump { margin-top: 16px; }
@@ -446,6 +446,18 @@ a.button.secondary,
   background:
     linear-gradient(135deg, transparent 47%, var(--brand) 47%, var(--brand) 53%, transparent 53%),
     #f7f4ee;
+}
+
+.catalog-card {
+  border: 1px solid #e6e0d6;
+  border-top: 3px solid var(--brand);
+  border-radius: 6px;
+  padding: var(--space-block);
+}
+.catalog-card:hover { border-color: var(--brand); text-decoration: none; }
+.catalog-card:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
 }
 @media (min-width: 820px) {
   .page-split {

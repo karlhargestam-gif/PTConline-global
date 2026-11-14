@@ -378,7 +378,7 @@
         min-height: 44px;
         padding: 12px 18px;
         border: 1px solid #ffffff;
-        border-radius: 5px;
+        border-radius: 6px;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: var(--size-body);
         font-weight: 600;
@@ -711,6 +711,13 @@
         border-top: 4px solid var(--rule);
       }
 
+      .partner-card {
+        border: 1px solid var(--rule);
+        border-top-width: 4px;
+        border-radius: 6px;
+      }
+      .partner-card:hover { border-top-color: var(--brand); }
+      .partner-card:focus-within { outline: 3px solid #111827; outline-offset: 3px; }
       .partner-card.featured { border-top-color: var(--red); }
 
       .partner-photo {
@@ -940,7 +947,7 @@
         color: #ffffff;
         background: var(--red);
         border: 1px solid var(--red);
-        border-radius: 5px;
+        border-radius: 6px;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.84rem;
         font-weight: 600;
@@ -989,10 +996,10 @@
 
       .footer {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 24px;
+        gap: 16px 32px;
         padding: 24px var(--gutter) 27px;
         background: var(--warm);
         border-top: 1px solid var(--rule);
