@@ -149,12 +149,13 @@ class Site:
             key = "messengerName"
         return self.ui[key][lang]
 
-    def lang_links(self, lang, route):
+    def lang_links(self, lang, route, english_only=False):
         parts = []
         for code in LANGS:
             current = ' aria-current="true"' if code == lang else ""
+            target = "en" if english_only else code
             parts.append(
-                f'<a href="{href_for(code, route)}" hreflang="{code}"{current}>{code.upper()}</a>'
+                f'<a href="{href_for(target, route)}" hreflang="{code}"{current}>{code.upper()}</a>'
             )
         return "".join(parts)
 
@@ -163,7 +164,7 @@ class Site:
             return "assets/pcg-flame-96.webp"
         return "/assets/pcg-flame-96.webp"
 
-    def banner(self, lang, route, home=False):
+    def banner(self, lang, route, home=False, english_only=False):
         mapping = {
             "home_href": href_for(lang, ""),
             "name": esc(self.ui["bannerName"][lang]),
@@ -177,7 +178,7 @@ class Site:
             "home_label": esc(self.ui["home"][lang]),
             "pcg_url": esc(self.site["pcgUrl"]),
             "pcg_label": esc(self.ui["pcg"][lang]),
-            "lang_switch": self.lang_links(lang, route),
+            "lang_switch": self.lang_links(lang, route, english_only=english_only),
         }
         template = self.banner_home_t if home else self.banner_t
         return fill(template, mapping).rstrip("\n")
@@ -272,7 +273,13 @@ class Site:
             f'</div>'
         )
 
-    def hreflang(self, route):
+    def hreflang(self, route, english_only=False):
+        if english_only:
+            url = canonical_for(self.site, "en", route)
+            return (
+                f'<link rel="alternate" hreflang="en" href="{url}">\n'
+                f'<link rel="alternate" hreflang="x-default" href="{url}">'
+            )
         lines = []
         for lang in LANGS:
             lines.append(
@@ -309,6 +316,19 @@ class Site:
         """BreadcrumbList for every page below the home page."""
         if not route:
             return None
+        if route == "resources/short-hand-gospel":
+            trail = [
+                (self.ui["home"][lang], canonical_for(self.site, "en", "")),
+                (title, canonical_for(self.site, "en", route)),
+            ]
+            return {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": i, "name": name, "item": url}
+                    for i, (name, url) in enumerate(trail, 1)
+                ],
+            }
         trail = [(self.ui["home"][lang], canonical_for(self.site, lang, ""))]
         parts = route.split("/")
         for i in range(1, len(parts)):
@@ -329,7 +349,7 @@ class Site:
         """Search snippet for the head tags. Visible text keeps the full description."""
         return self.meta.get(route, {}).get(lang) or description
 
-    def document(self, lang, route, title, description, body, jsonld, main_class):
+    def document(self, lang, route, title, description, body, jsonld, main_class, english_only=False):
         full_title = title if title.endswith(SITE_SUFFIX[lang]) else f"{title} | {SITE_SUFFIX[lang]}"
         description = self.meta_description(lang, route, description)
         head = fill(
@@ -341,7 +361,7 @@ class Site:
                 "og_image": self.site["ogImage"],
                 "og_alt": esc(self.site["ogAlt"][lang]),
                 "og_locale": self.site["locale"][lang],
-                "hreflang": self.hreflang(route),
+                "hreflang": self.hreflang(route, english_only=english_only),
                 "jsonld": jsonld,
             },
         )
@@ -349,7 +369,7 @@ class Site:
             f'<!doctype html>\n<html lang="{lang}">\n<head>\n{head}\n</head>\n<body>\n'
             f'<a class="skip-link" href="#main">{esc(self.ui["skip"][lang])}</a>\n'
             f"{self.official_bar(lang, '    ')}\n"
-            f"{self.banner(lang, route)}\n"
+            f"{self.banner(lang, route, english_only=english_only)}\n"
             f'<main id="main" class="{main_class}">\n{body}\n</main>\n'
             f"{self.footer(lang)}\n</body>\n</html>\n"
         )
@@ -1002,8 +1022,10 @@ class Site:
                 rendered = []
                 buttons = []
                 for link in section["links"]:
+                    if link.get("enOnly") and lang != "en":
+                        continue
                     href = link["href"]
-                    if link.get("internal"):
+                    if link.get("internal") and not link.get("enOnly"):
                         route = href.strip("/")
                         if lang != "en":
                             href = f"/{lang}/{route}/"
@@ -1265,15 +1287,17 @@ class Site:
         self.emit(self.out_path(lang, "apply"), page)
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "apply", "privacy", "terms", "copyright", "submit"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "apply", "privacy", "terms", "copyright", "submit", "resources/short-hand-gospel"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
+        english_only = {"resources/short-hand-gospel"}
         urls = []
         for route in routes:
-            for lang in LANGS:
+            codes = ("en",) if route in english_only else LANGS
+            for lang in codes:
                 loc = canonical_for(self.site, lang, route)
                 alternates = "".join(
                     f'<xhtml:link rel="alternate" hreflang="{code}" href="{canonical_for(self.site, code, route)}"/>'
-                    for code in LANGS
+                    for code in codes
                 )
                 alternates += f'<xhtml:link rel="alternate" hreflang="x-default" href="{canonical_for(self.site, "en", route)}"/>'
                 urls.append(
@@ -1370,6 +1394,50 @@ class Site:
         )
         self.emit(rel, text)
 
+    def render_short_hand_gospel(self):
+        route = "resources/short-hand-gospel"
+        data = json.loads((ROOT / "content/short-hand-gospel.json").read_text(encoding="utf-8"))
+        jumps = "".join(
+            f'<li><a href="#step-{n}">{esc(step["title"])}</a></li>'
+            for n, step in enumerate(data["steps"], 1)
+        )
+        steps = []
+        last = len(data["steps"])
+        for n, step in enumerate(data["steps"], 1):
+            pause = data["pauseLast"] if n == last else data["pause"]
+            steps.append(
+                f'<section class="gospel-step" id="step-{n}">'
+                f'<h2>{n}. {esc(step["title"])}</h2>'
+                f'<p class="gospel-say-label">Say this</p>'
+                f'<blockquote class="gospel-say"><p>{esc(step["say"])}</p></blockquote>'
+                f'<p class="gospel-pause">{esc(pause)}</p>'
+                f'</section>'
+            )
+        how = "".join(f"<li>{esc(item)}</li>" for item in data["howTo"])
+        body = f'''<header class="masthead">
+<p class="kicker">PTC</p>
+<h1>{esc(data["title"])}</h1>
+<p class="gospel-subtitle">{esc(data["subtitle"])}</p>
+<p class="lead">{esc(data["description"])}</p>
+<div class="actions"><a class="button" href="/assets/short-hand-gospel.pdf">Download PDF</a></div>
+</header>
+<article class="prose gospel">
+<h2>How to use</h2>
+<ol class="gospel-how">{how}</ol>
+<nav class="gospel-jump" aria-label="Steps">
+<ol>{jumps}</ol>
+</nav>
+{''.join(steps)}
+<p class="gospel-publisher">{esc(data["publisher"])}</p>
+</article>'''
+        html_page = self.document(
+            "en", route, data["title"], data["description"], body,
+            self.jsonld("page", "en", route, data["title"], data["description"]),
+            "prose-page",
+            english_only=True,
+        )
+        self.emit(self.out_path("en", route), html_page)
+
     def build(self):
         for course in self.courses:
             for lang in LANGS:
@@ -1382,6 +1450,7 @@ class Site:
             self.render_apply(lang)
             self.patch_home(lang)
             self.patch_submit(lang)
+        self.render_short_hand_gospel()
         self.sitemap()
         if self.errors:
             print("Generated files differ from the working tree:")

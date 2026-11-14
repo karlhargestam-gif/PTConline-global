@@ -69,7 +69,15 @@
             "ptconline.global é a porta de entrada e o catálogo em vários idiomas. Não é o sistema que inscreve um aluno, registra o progresso ou emite um certificado. Esses passos acontecem com o parceiro dono do curso.",
             "As páginas estão em inglês, espanhol e português. Os vídeos de ensino estão em inglês. Há legendas em português nos vídeos que têm um arquivo de legenda."
           ]
-        }
+        },
+        "links": [
+          {
+            "internal": true,
+            "enOnly": true,
+            "href": "/resources/short-hand-gospel/",
+            "label": { "en": "Short-hand Gospel", "es": "Short-hand Gospel", "pt": "Short-hand Gospel" }
+          }
+        ]
       },
       {
         "heading": {
