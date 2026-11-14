@@ -2,14 +2,17 @@
  * PTC application intake.
  *
  * Sends with Resend when PTC_APPLY_EMAIL_API_KEY and PTC_APPLY_EMAIL_FROM are set.
- * Recipients come from env, with these defaults when a real send is enabled:
- *   PTC_APPLY_EMAIL_TO  -> wm@pcg.org
- *   PTC_APPLY_EMAIL_CC  -> globalmissions.ea@pcg.org
+ * PTC_APPLY_TEST_MODE defaults to on. While it is on, both the staff notice and
+ * the applicant confirmation go only to globalmissions.ea@pcg.org.
+ * When it is off, the notice goes to wm@pcg.org with globalmissions.ea@pcg.org
+ * as backup, and the confirmation goes to the applicant.
  * Without the API key this handler validates, logs a redacted summary, and
- * does not send. No credentials belong in this file.
+ * does not send. No credentials belong in this file. Wording lives in
+ * apply-email-templates.js.
  */
 
 const crypto = require("crypto");
+const templates = require("./apply-email-templates");
 
 const TYPES = new Set(["college", "country", "school", "student"]);
 const HEARD = new Set(["church", "site", "messenger", "moe", "person", "other"]);
@@ -118,46 +121,38 @@ function mailReady() {
   return Boolean(process.env.PTC_APPLY_EMAIL_API_KEY && process.env.PTC_APPLY_EMAIL_FROM);
 }
 
-function recipients() {
+function testMode() {
+  const raw = process.env.PTC_APPLY_TEST_MODE;
+  if (raw == null || String(raw).trim() === "") return true;
+  return !["0", "false", "off", "no"].includes(String(raw).trim().toLowerCase());
+}
+
+function routes(applicantEmail) {
+  const laiza = templates.TEST_INBOX;
+  if (testMode()) {
+    return {
+      test: true,
+      notice: { to: laiza, cc: "" },
+      reply: { to: laiza, cc: "" },
+    };
+  }
   return {
-    to: process.env.PTC_APPLY_EMAIL_TO || DEFAULT_TO,
-    cc: process.env.PTC_APPLY_EMAIL_CC || DEFAULT_CC,
-    from: process.env.PTC_APPLY_EMAIL_FROM,
+    test: false,
+    notice: {
+      to: process.env.PTC_APPLY_EMAIL_TO || DEFAULT_TO,
+      cc: process.env.PTC_APPLY_EMAIL_CC || DEFAULT_CC,
+    },
+    reply: { to: applicantEmail, cc: "" },
   };
 }
 
-function emailText(value) {
-  const lines = [
-    "PTC application",
-    "",
-    `Type: ${value.applicantType}`,
-    `Organization: ${value.organization || "(none)"}`,
-    `Country: ${value.country}`,
-    `City: ${value.city}`,
-    `Contact: ${value.contactName}`,
-    `Role: ${value.role || "(none)"}`,
-    `Email: ${value.email}`,
-    `Phone or WhatsApp: ${value.phone}`,
-    `Language: ${value.language}`,
-    `Heard: ${value.heard}`,
-    `Training: ${value.training}`,
-    `Message: ${value.message || "(none)"}`,
-    `Consent: yes`,
-    `Page language: ${value.lang}`,
-    `Received: ${value.receivedAt}`,
-    "",
-    "JSON record:",
-    JSON.stringify(value, null, 2),
-  ];
-  return lines.join("\n");
-}
-
-async function sendMail(payload, to, cc) {
+async function sendMail(mail, to, cc) {
   const body = {
     from: process.env.PTC_APPLY_EMAIL_FROM,
     to: [to],
-    subject: `PTC application: ${payload.applicantType} (${payload.country})`.slice(0, 180),
-    text: emailText(payload),
+    subject: mail.subject,
+    text: mail.text,
+    html: mail.html,
   };
   if (cc && cc !== to) body.cc = [cc];
   const response = await fetch("https://api.resend.com/emails", {
@@ -174,23 +169,38 @@ async function sendMail(payload, to, cc) {
   }
 }
 
-async function deliver(payload) {
-  if (!mailReady()) {
-    console.log(JSON.stringify({ fn: "apply", mode: "dry-run", summary: redact(payload) }));
-    return { mode: "dry-run" };
-  }
-  const { to, cc } = recipients();
+async function sendNotice(payload, route) {
+  const mail = templates.renderNotice(payload, { test: route.test });
   try {
-    await sendMail(payload, to, cc);
-    return { mode: "sent" };
+    await sendMail(mail, route.notice.to, route.notice.cc);
+    return "sent";
   } catch (err) {
-    console.error(JSON.stringify({ fn: "apply", stage: "primary", error: String(err.message || err).slice(0, 300) }));
-    if (cc && cc !== to) {
-      await sendMail(payload, cc, "");
-      return { mode: "sent-backup" };
+    console.error(JSON.stringify({ fn: "apply", stage: "notice", error: String(err.message || err).slice(0, 300) }));
+    if (!route.test && route.notice.cc && route.notice.cc !== route.notice.to) {
+      await sendMail(mail, route.notice.cc, "");
+      return "sent-backup";
     }
     throw err;
   }
+}
+
+async function deliver(payload) {
+  const route = routes(payload.email);
+  if (!mailReady()) {
+    console.log(JSON.stringify({
+      fn: "apply",
+      mode: "dry-run",
+      testMode: route.test,
+      noticeTo: route.notice.to,
+      replyTo: route.reply.to,
+      summary: redact(payload),
+    }));
+    return { mode: "dry-run", testMode: route.test };
+  }
+  const noticeMode = await sendNotice(payload, route);
+  const reply = templates.renderReply(payload, { test: route.test });
+  await sendMail(reply, route.reply.to, route.reply.cc);
+  return { mode: route.test ? "sent-test" : noticeMode, testMode: route.test };
 }
 
 function readBody(req) {
@@ -264,3 +274,5 @@ module.exports.validate = validate;
 module.exports.redact = redact;
 module.exports.deliver = deliver;
 module.exports.mailReady = mailReady;
+module.exports.testMode = testMode;
+module.exports.routes = routes;
