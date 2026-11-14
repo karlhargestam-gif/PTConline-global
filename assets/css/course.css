@@ -3,8 +3,8 @@
   align-items: center;
   gap: 16px;
   background: #332D26;
-  border-bottom: 4px solid #ee3626;
-  padding: 16px;
+  border-bottom: 4px solid var(--brand);
+  padding: 16px var(--gutter);
 }
 
 .banner .provider-logo {
@@ -19,14 +19,13 @@
 @media (min-width: 768px) {
   .banner {
     gap: 24px;
-    padding: 16px 24px;
   }
 }
 
 .masthead,
 .catalog,
 .course {
-  padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 48px) clamp(40px, 6vw, 72px);
+  padding: clamp(28px, 5vw, 56px) var(--gutter) clamp(40px, 6vw, 72px);
 }
 
 .masthead h1,
@@ -114,7 +113,7 @@
 .cohort-how a,
 .cohort-minimum a,
 .cohort-note a {
-  color: #ee3626;
+  color: var(--brand-text);
   font-weight: 700;
 }
 
@@ -138,7 +137,7 @@
   font-weight: 600;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
-  border: 1px solid #ee3626;
+  border: 1px solid var(--brand-text);
   border-radius: 5px;
 }
 
@@ -151,7 +150,7 @@
 .resources a:focus-visible,
 .cohort-how a:focus-visible,
 .cohort-note a:focus-visible {
-  outline: 2px solid #ee3626;
+  outline: 2px solid var(--brand-text);
   outline-offset: 3px;
 }
 
@@ -159,7 +158,7 @@
 
 .week {
   background: #ffffff;
-  border-top: 4px solid #ee3626;
+  border-top: 4px solid var(--brand-text);
   padding: clamp(18px, 3vw, 28px);
 }
 
@@ -168,7 +167,7 @@
 .accent {
   width: 56px;
   height: 3px;
-  background: #ee3626;
+  background: var(--brand-text);
   margin: 10px 0 16px;
 }
 
@@ -191,7 +190,7 @@
 .resources p,
 .note-block p { margin: 0; }
 
-.resources a { color: #ee3626; font-weight: 700; }
+.resources a { color: var(--brand-text); font-weight: 700; }
 
 .where,
 .unavailable,
@@ -220,8 +219,8 @@ video {
   display: inline-block;
   margin: 0 0 10px;
   padding: 4px 8px;
-  border: 1px solid #ee3626;
-  color: #ee3626;
+  border: 1px solid var(--brand-text);
+  color: var(--brand-text);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -231,7 +230,7 @@ video {
 .notice {
   background: #ffffff;
   border: 1px solid #D8D0C4;
-  border-left: 4px solid #ee3626;
+  border-left: 4px solid var(--brand-text);
   padding: 14px 16px;
   margin: 18px 0;
   max-width: 42rem;
@@ -262,14 +261,14 @@ video {
   min-height: 100%;
   padding: 20px;
   background: #ffffff;
-  border-top: 3px solid #ee3626;
+  border-top: 3px solid var(--brand-text);
   color: inherit;
   text-decoration: none;
 }
 
 .catalog-card h3, .catalog-card h2 { margin: 0; font-size: 1.35rem; }
 .catalog-card p { margin: 10px 0 0; color: #332D26; }
-.card-open { color: #ee3626; font-weight: 700; }
+.card-open { color: var(--brand-text); font-weight: 700; }
 .card-meta {
   display: flex;
   flex-wrap: wrap;
@@ -286,14 +285,14 @@ video {
 .prose h2 { font-size: 1.35rem; margin: 28px 0 8px; }
 .prose p { margin: 0 0 12px; }
 .prose ul { margin: 0 0 12px; padding-left: 1.2rem; }
-.prose a { color: #ee3626; }
-/* Article links are red. A .button inside prose must stay white on red. */
+.prose a { color: var(--brand-text); }
 .prose a.button,
 a.button,
-.button {
-  color: #ffffff;
-  background: #ee3626;
-  border-color: #ee3626;
+.button,
+.submit-form button {
+  color: var(--on-brand);
+  background: var(--brand);
+  border-color: var(--brand);
   text-decoration: none;
 }
 .prose a.button:hover,
@@ -301,25 +300,28 @@ a.button,
 a.button:hover,
 a.button:focus-visible,
 .button:hover,
-.button:focus-visible {
-  color: #ffffff;
-  background: #d12e20;
-  border-color: #d12e20;
+.button:focus-visible,
+.submit-form button:hover,
+.submit-form button:focus-visible {
+  color: var(--on-brand);
+  background: var(--brand-hover);
+  border-color: var(--brand-hover);
   text-decoration: none;
   opacity: 1;
 }
 .prose a.button:focus-visible,
 a.button:focus-visible,
-.button:focus-visible {
+.button:focus-visible,
+.submit-form button:focus-visible {
   outline: 3px solid #111827;
   outline-offset: 3px;
 }
 .prose a.button.secondary,
 a.button.secondary,
 .button.secondary {
-  color: #ffffff;
-  background: #ee3626;
-  border-color: #ee3626;
+  color: var(--on-brand);
+  background: var(--brand);
+  border-color: var(--brand);
   text-decoration: none;
 }
 .prose .file-list { padding-left: 1.1rem; }
@@ -357,7 +359,7 @@ a.button.secondary,
 .draft-note {
   margin: 18px 0;
   padding: 12px 14px;
-  border-left: 4px solid #ee3626;
+  border-left: 4px solid var(--brand-text);
   background: #f7f4ee;
 }
 .how-list { padding-left: 1.2rem; }
@@ -367,15 +369,15 @@ a.button.secondary,
   min-height: 46px;
   padding: 12px 18px;
   border: 0;
-  background: #ee3626;
-  color: #fff;
+  background: var(--brand);
+  color: var(--on-brand);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
-.submit-form button:focus-visible { outline: 2px solid #ee3626; outline-offset: 3px; }
+.submit-form button:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 3px; }
 #submit-status { margin-top: 16px; font-weight: 700; }
-#submit-status a { color: #ee3626; }
+#submit-status a { color: var(--brand-text); }
 .hp {
   position: absolute;
   left: -10000px;
@@ -418,10 +420,10 @@ a.button.secondary,
 .terms-note {
   margin: 18px 0;
   padding: 12px 14px;
-  border-left: 4px solid #ee3626;
+  border-left: 4px solid var(--brand-text);
   background: #f7f4ee;
 }
-.submit-form .req { color: #ee3626; }
+.submit-form .req { color: var(--brand-text); }
 .submit-form fieldset { margin: 18px 0 0; padding: 0; border: 0; }
 .submit-form legend { padding: 0; }
 .submit-form input[type="file"] { max-width: 100%; }

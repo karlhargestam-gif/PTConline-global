@@ -1,0 +1,16 @@
+/* Shared color and gutter. This is the only place these values are defined. */
+:root {
+  --brand: #d42a1b;
+  --brand-text: #b81f12;
+  --brand-hover: #9e1b10;
+  --on-brand: #ffffff;
+  --gutter: 16px;
+}
+
+@media (min-width: 820px) {
+  :root { --gutter: 28px; }
+}
+
+@media (min-width: 1280px) {
+  :root { --gutter: 48px; }
+}

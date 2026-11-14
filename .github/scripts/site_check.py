@@ -495,6 +495,188 @@ def lockup_problems(root, pages):
     return problems
 
 
+def _resolve(value, variables, depth=0):
+    if not value or depth > 8 or "var(" not in value:
+        return value or ""
+    def repl(match):
+        return variables.get(match.group(1), "")
+    return _resolve(re.sub(r"var\(\s*(--[\w-]+)\s*\)", repl, value), variables, depth + 1)
+
+
+def _px_resolved(value, variables):
+    return _px(_resolve(value, variables))
+
+
+def _contrast(hex_a, hex_b):
+    def channel(value):
+        value = value / 255
+        return value / 12.92 if value <= 0.04045 else ((value + 0.055) / 1.055) ** 2.4
+
+    def lum(color):
+        red = int(color[1:3], 16)
+        green = int(color[3:5], 16)
+        blue = int(color[5:7], 16)
+        return 0.2126 * channel(red) + 0.7152 * channel(green) + 0.0722 * channel(blue)
+
+    lighter, darker = sorted((lum(hex_a), lum(hex_b)), reverse=True)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def _color(value, variables):
+    resolved = _resolve(value or "", variables).strip().lower()
+    named = {"white": "#ffffff", "black": "#000000", "#fff": "#ffffff"}
+    if resolved in named:
+        return named[resolved]
+    match = re.search(r"#([0-9a-f]{3,8})", resolved)
+    if not match:
+        return None
+    digits = match.group(1)
+    if len(digits) == 3:
+        digits = "".join(ch * 2 for ch in digits)
+    return "#" + digits[:6]
+
+
+def _sheet_bundle(root, hrefs):
+    rules = []
+    variables = {}
+    seen = set()
+
+    def absorb(href):
+        path = href.strip("\"' ").split("?", 1)[0]
+        path = re.sub(r"^url\((.*)\)$", r"\1", path).strip("\"' ")
+        if path.startswith("/"):
+            path = path[1:]
+        full = os.path.normpath(os.path.join(root, path))
+        if full in seen or not full.startswith(root) or not os.path.isfile(full):
+            return
+        seen.add(full)
+        with open(full, encoding="utf-8", errors="replace") as fh:
+            css = fh.read()
+        for kind, payload, media in _css_rules(css):
+            if kind == "import":
+                match = re.search(r"""['"]([^'"]+)['"]""", payload)
+                if match:
+                    absorb(match.group(1))
+                continue
+            decls = _decls(payload)
+            if kind.strip() == ":root":
+                for prop, raw in decls.items():
+                    if prop.startswith("--"):
+                        variables[prop] = raw
+            rules.append((kind, decls, media))
+
+    for href in hrefs:
+        absorb(href)
+    return rules, variables
+
+
+def _padding_parts(value):
+    parts = []
+    buf = []
+    depth = 0
+    for ch in value:
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if ch.isspace() and depth == 0:
+            if buf:
+                parts.append("".join(buf))
+                buf = []
+            continue
+        buf.append(ch)
+    if buf:
+        parts.append("".join(buf))
+    return parts
+
+
+def _padding_left(decls, variables):
+    for prop in ("padding-left", "padding-inline"):
+        if prop in decls:
+            return _px_resolved(decls[prop], variables)
+    parts = _padding_parts(_resolve(decls.get("padding", ""), variables))
+    if len(parts) == 1:
+        return _px(parts[0])
+    if len(parts) in (2, 3):
+        return _px(parts[1])
+    if len(parts) >= 4:
+        return _px(parts[3])
+    return None
+
+
+def layout_problems(root, pages):
+    problems = []
+    cache = {}
+    checks = [
+        ("a", {"button"}, [("article", {"prose"})], "button"),
+        ("a", {"give-button"}, [], "Give"),
+        ("a", set(), [("article", {"prose"})], "article link"),
+        ("a", set(), [("footer", {"site-footer"})], "footer link"),
+    ]
+    for page in pages:
+        rel = os.path.relpath(page, root)
+        with open(page, encoding="utf-8", errors="replace") as fh:
+            html = fh.read()
+        if 'class="button"' in html:
+            for match in re.finditer(r'<a class="([^"]*\bbutton\b[^"]*)"[^>]*>(.*?)</a>', html, flags=re.S):
+                text = re.sub(r"<[^>]+>", "", match.group(2))
+                text = re.sub(r"\s+", " ", text).strip()
+                if not text:
+                    problems.append(f"{rel}: .button has no visible text")
+        hrefs = re.findall(r'<link[^>]+href="([^"]+\.css)"', html)
+        key = tuple(hrefs)
+        if key not in cache:
+            cache[key] = _sheet_bundle(root, hrefs)
+        rules, _unused = cache[key]
+        for width in LOCKUP_WIDTHS:
+            variables = {}
+            for selector, decls, media in rules:
+                if selector.strip() == ":root" and _media_matches(media, width):
+                    for prop, raw in decls.items():
+                        if prop.startswith("--"):
+                            variables[prop] = raw
+            button = _paint("a", {"button"}, [("article", {"prose"})], rules, width)
+            color = _color(button.get("color"), variables)
+            background = _color(button.get("background") or button.get("background-color"), variables)
+            if color and background and color == background:
+                problems.append(f"{rel} at {width}px: .button text {color} matches its background")
+            if color and background and _contrast(color, background) < 4.5:
+                problems.append(f"{rel} at {width}px: .button contrast {_contrast(color, background):.2f} is below 4.5")
+            link = _paint("a", set(), [("article", {"prose"})], rules, width)
+            link_color = _color(link.get("color"), variables)
+            if link_color and _contrast(link_color, "#ffffff") < 4.5:
+                problems.append(f"{rel} at {width}px: article link contrast {_contrast(link_color, '#ffffff'):.2f} is below 4.5")
+            sign_in = _paint("a", {"official-bar-sign-in"}, [("nav", {"official-bar"})], rules, width)
+            wrap = (sign_in.get("white-space") or "").lower()
+            if wrap != "nowrap":
+                problems.append(f"{rel} at {width}px: Portal sign-in can wrap")
+            if width >= 820:
+                banner = _paint("header", {"site-banner"}, [], rules, width)
+                nav = _paint("nav", {"banner-nav"}, [("header", {"site-banner"})], rules, width)
+                if (banner.get("flex-wrap") or "").lower() == "wrap":
+                    problems.append(f"{rel} at {width}px: header row wraps")
+                if (nav.get("flex-wrap") or "").lower() == "wrap":
+                    problems.append(f"{rel} at {width}px: header nav wraps")
+            bar = _paint("nav", {"official-bar"}, [], rules, width)
+            banner = _paint("header", {"site-banner"}, [], rules, width)
+            footer = _paint("footer", {"site-footer"}, [], rules, width)
+            if not _padding_left(footer, variables):
+                footer = _paint("footer", {"footer"}, [], rules, width)
+            content = _paint("header", {"masthead"}, [], rules, width)
+            if _padding_left(content, variables) is None:
+                content = _paint("div", {"content"}, [], rules, width)
+            edges = [
+                _padding_left(bar, variables),
+                _padding_left(banner, variables),
+                _padding_left(footer, variables),
+                _padding_left(content, variables),
+            ]
+            edges = [edge for edge in edges if edge is not None]
+            if len(edges) >= 2 and max(edges) - min(edges) > 0.6:
+                problems.append(f"{rel} at {width}px: gutter misaligned {edges}")
+    return problems
+
+
 def check(root, host, max_page_kb):
     errors, warnings = [], []
     root = os.path.abspath(root)
@@ -587,6 +769,7 @@ def check(root, host, max_page_kb):
             errors.append(f"sitemap.xml is not valid XML ({exc})")
 
     errors.extend(lockup_problems(root, pages))
+    errors.extend(layout_problems(root, pages))
     return pages, errors, warnings
 
 
