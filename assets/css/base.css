@@ -496,6 +496,12 @@ body {
 
 .button:hover { text-decoration: none; opacity: 0.86; }
 
+.path-start {
+  max-width: 42rem;
+  margin: 22px 0 0;
+  font-weight: 700;
+}
+
 .button.secondary {
   background: transparent;
   color: var(--red);
