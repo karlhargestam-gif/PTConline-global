@@ -432,6 +432,54 @@ a.button.secondary,
 .submit-form input[type="file"] { max-width: 100%; }
 .privacy-note { margin: 18px 0 0; padding: 12px 14px; background: #f7f4ee; font-size: var(--size-small); }
 
+.gospel-subtitle {
+  margin: 8px 0 0;
+  max-width: 40rem;
+  color: var(--brand-text);
+  font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+  font-size: var(--size-lead);
+  line-height: var(--leading-heading);
+}
+.gospel-jump {
+  margin: var(--space-block) 0;
+  padding: var(--space-block);
+  background: #ffffff;
+  border-top: 3px solid var(--brand);
+}
+.gospel-jump ol { margin: 0; padding-left: 1.2rem; }
+.gospel-jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--brand-text);
+  font-weight: 700;
+}
+.gospel-say-label {
+  margin: 12px 0 0;
+  color: var(--brand);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.gospel-say {
+  margin: 8px 0 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--brand);
+  background: #f7f4ee;
+}
+.gospel-say p { margin: 0; }
+.gospel-pause {
+  margin: 12px 0 0;
+  color: var(--brand-text);
+  font-weight: 700;
+}
+.gospel-publisher {
+  margin: var(--space-section) 0 0;
+  color: #59554F;
+  font-size: var(--size-small);
+}
+
 .page-split { display: block; }
 .page-figure { margin: var(--space-block) var(--gutter) 0; }
 .page-figure img,
