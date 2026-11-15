@@ -189,14 +189,6 @@ article.gospel { max-width: 860px; }
 .gospel .gospel-note p { margin: 0; }
 .gospel .gospel-note .gospel-say-label { margin: 0 0 6px; }
 .gospel-path-title { margin-top: 0; }
-.gospel-next {
-  margin-top: 16px;
-  padding: 16px;
-  background: #ffffff;
-  border: 1px solid #e6e0d6;
-  border-radius: 6px;
-}
-.gospel-next h2 { margin-top: 0; }
 .gospel .gospel-publisher { margin-top: var(--space-block); }
 @media (min-width: 820px) {
   .gospel-chooser { grid-template-columns: 1fr 1fr; align-items: stretch; }
@@ -1662,10 +1654,6 @@ class Site:
 <div class="gospel-steps" data-steps>
 {mission_cards}
 </div>
-<aside class="gospel-next">
-<h2>{esc(mission["nextTitle"])}</h2>
-<a class="button" href="{esc(mission["nextHref"])}">{esc(mission["nextLabel"])}</a>
-</aside>
 </section>
 <section class="gospel-path gospel-path-guide" id="personal-guide" aria-label="{esc(guide["label"])}">
 <h2 class="gospel-path-title">{esc(guide["title"])}</h2>

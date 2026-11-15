@@ -28,9 +28,6 @@
       "Ask: \"Do you have any questions?\"",
       "Ask: \"Can we pray?\""
     ],
-    "nextTitle": "Next step",
-    "nextLabel": "Start your missionary application",
-    "nextHref": "/apply/",
     "steps": [
       {
         "title": "In the beginning, God",
