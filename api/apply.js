@@ -2,13 +2,20 @@
  * PTC application intake.
  *
  * Sends with Resend when PTC_APPLY_EMAIL_API_KEY and PTC_APPLY_EMAIL_FROM are set.
- * PTC_APPLY_TEST_MODE defaults to on. While it is on, both the staff notice and
- * the applicant confirmation go only to globalmissions.ea@pcg.org.
- * When it is off, the notice goes to wm@pcg.org with globalmissions.ea@pcg.org
- * as backup, and the confirmation goes to the applicant.
- * Without the API key this handler validates, logs a redacted summary, and
- * does not send. No credentials belong in this file. Wording lives in
- * apply-email-templates.js.
+ * PTC_APPLY_EMAIL_FROM must be a bare address. A display name stays in dry-run.
+ * PTC_APPLY_TEST_MODE is opt-in. Only 1, true, on, or yes turns it on.
+ * Unset, empty, or anything else means off, so a future key cannot keep mail
+ * on the backup inbox. While test mode is on, both the staff notice and the
+ * applicant confirmation go only to PTC_APPLY_EMAIL_CC, or
+ * globalmissions.ea@pcg.org when that variable is unset.
+ * When test mode is off, the notice goes to wm@pcg.org (PTC_APPLY_EMAIL_TO
+ * overrides it) with globalmissions.ea@pcg.org as backup, and the confirmation
+ * goes to the applicant. A failed confirmation does not change the mode.
+ * Without the API key or a bare From address this handler validates, logs a
+ * redacted summary, and does not send.
+ * The JSON mode is dry-run, test, sent-to, fallback-copy, to-only, or
+ * send-failed. The same value is returned as code. No credentials belong in
+ * this file. Wording lives in apply-email-templates.js.
  */
 
 const crypto = require("crypto");
@@ -117,70 +124,92 @@ function rateLimited(hash) {
   return times.length > RATE_MAX;
 }
 
+function bareEmail(value) {
+  const text = clean(typeof value === "string" ? value : "", 200);
+  if (!text || /[<>\s]/.test(text) || !validEmail(text)) return "";
+  return text;
+}
+
 function mailReady() {
-  return Boolean(process.env.PTC_APPLY_EMAIL_API_KEY && process.env.PTC_APPLY_EMAIL_FROM);
+  return Boolean(process.env.PTC_APPLY_EMAIL_API_KEY && bareEmail(process.env.PTC_APPLY_EMAIL_FROM));
 }
 
 function testMode() {
   const raw = process.env.PTC_APPLY_TEST_MODE;
-  if (raw == null || String(raw).trim() === "") return true;
-  return !["0", "false", "off", "no"].includes(String(raw).trim().toLowerCase());
+  if (raw == null || String(raw).trim() === "") return false;
+  return ["1", "true", "on", "yes"].includes(String(raw).trim().toLowerCase());
+}
+
+function address(name, fallback) {
+  return bareEmail(process.env[name]) || fallback;
 }
 
 function routes(applicantEmail) {
-  const laiza = templates.TEST_INBOX;
+  const to = address("PTC_APPLY_EMAIL_TO", DEFAULT_TO);
+  const cc = address("PTC_APPLY_EMAIL_CC", DEFAULT_CC);
   if (testMode()) {
     return {
       test: true,
-      notice: { to: laiza, cc: "" },
-      reply: { to: laiza, cc: "" },
+      notice: { to: cc, cc: "" },
+      reply: { to: cc, cc: "" },
     };
   }
   return {
     test: false,
-    notice: {
-      to: process.env.PTC_APPLY_EMAIL_TO || DEFAULT_TO,
-      cc: process.env.PTC_APPLY_EMAIL_CC || DEFAULT_CC,
-    },
+    notice: { to, cc },
     reply: { to: applicantEmail, cc: "" },
   };
 }
 
-async function sendMail(mail, to, cc) {
-  const body = {
-    from: process.env.PTC_APPLY_EMAIL_FROM,
-    to: [to],
+function mailDraft(application) {
+  const mail = templates.renderNotice(application, { test: false });
+  const marker = "\nJSON record:";
+  const cut = mail.text.indexOf(marker);
+  return {
+    to: DEFAULT_TO,
+    cc: DEFAULT_CC,
     subject: mail.subject,
+    text: (cut === -1 ? mail.text : mail.text.slice(0, cut)).trim(),
+  };
+}
+
+async function sendOne(mail, to, cc, subject) {
+  const body = {
+    from: bareEmail(process.env.PTC_APPLY_EMAIL_FROM),
+    to: [to],
+    subject: subject || mail.subject,
     text: mail.text,
     html: mail.html,
   };
   if (cc && cc !== to) body.cc = [cc];
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${process.env.PTC_APPLY_EMAIL_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`resend ${response.status} ${detail.slice(0, 180)}`);
-  }
-}
-
-async function sendNotice(payload, route) {
-  const mail = templates.renderNotice(payload, { test: route.test });
   try {
-    await sendMail(mail, route.notice.to, route.notice.cc);
-    return "sent";
-  } catch (err) {
-    console.error(JSON.stringify({ fn: "apply", stage: "notice", error: String(err.message || err).slice(0, 300) }));
-    if (!route.test && route.notice.cc && route.notice.cc !== route.notice.to) {
-      await sendMail(mail, route.notice.cc, "");
-      return "sent-backup";
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${process.env.PTC_APPLY_EMAIL_API_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) {
+      const detail = await response.text();
+      console.error(JSON.stringify({
+        fn: "apply",
+        stage: "resend",
+        status: response.status,
+        error: detail.slice(0, 180),
+      }));
+      return false;
     }
-    throw err;
+    return true;
+  } catch (err) {
+    console.error(JSON.stringify({
+      fn: "apply",
+      stage: "resend",
+      error: String(err.message || err).slice(0, 180),
+    }));
+    return false;
   }
 }
 
@@ -191,16 +220,39 @@ async function deliver(payload) {
       fn: "apply",
       mode: "dry-run",
       testMode: route.test,
-      noticeTo: route.notice.to,
-      replyTo: route.reply.to,
       summary: redact(payload),
     }));
-    return { mode: "dry-run", testMode: route.test };
+    return { ok: true, mode: "dry-run" };
   }
-  const noticeMode = await sendNotice(payload, route);
+  const notice = templates.renderNotice(payload, { test: route.test });
+  let noticeOk = false;
+  let mode = route.test ? "test" : "sent-to";
+  if (route.test) {
+    noticeOk = await sendOne(notice, route.notice.to, "");
+  } else {
+    noticeOk = await sendOne(notice, route.notice.to, route.notice.cc);
+    if (!noticeOk) {
+      console.error(JSON.stringify({ fn: "apply", stage: "cc-failed" }));
+      noticeOk = await sendOne(notice, route.notice.to, "");
+      if (noticeOk) {
+        const backupSubject = `${notice.subject} (backup copy)`.slice(0, 180);
+        const backup = await sendOne(notice, route.notice.cc, "", backupSubject);
+        mode = backup ? "fallback-copy" : "to-only";
+        if (!backup) console.error(JSON.stringify({ fn: "apply", stage: "backup-failed" }));
+      }
+    }
+  }
+  if (!noticeOk) {
+    console.error(JSON.stringify({ fn: "apply", stage: "send-failed", testMode: route.test }));
+    return { ok: false, mode: "send-failed" };
+  }
   const reply = templates.renderReply(payload, { test: route.test });
-  await sendMail(reply, route.reply.to, route.reply.cc);
-  return { mode: route.test ? "sent-test" : noticeMode, testMode: route.test };
+  if (!route.reply.to) return { ok: true, mode };
+  const replyOk = await sendOne(reply, route.reply.to, route.reply.cc);
+  if (!replyOk) {
+    console.error(JSON.stringify({ fn: "apply", stage: "reply-failed", mode, testMode: route.test }));
+  }
+  return { ok: true, mode };
 }
 
 function readBody(req) {
@@ -222,10 +274,13 @@ function readBody(req) {
   });
 }
 
-function thanksLocation(lang) {
-  if (lang === "es") return "/es/apply/?sent=1";
-  if (lang === "pt") return "/pt/apply/?sent=1";
-  return "/apply/?sent=1";
+function thanksLocation(lang, mode) {
+  const allowed = new Set(["dry-run", "test", "sent-to", "fallback-copy", "to-only", "send-failed"]);
+  const safe = allowed.has(mode) ? mode : "send-failed";
+  const query = `mode=${encodeURIComponent(safe)}`;
+  if (lang === "es") return `/es/apply/?${query}`;
+  if (lang === "pt") return `/pt/apply/?${query}`;
+  return `/apply/?${query}`;
 }
 
 async function handler(req, res) {
@@ -256,16 +311,29 @@ async function handler(req, res) {
     return;
   }
   const wantsHtml = !String((req.headers && req.headers.accept) || "").includes("application/json");
+  const mail = mailDraft(checked.value);
   try {
     const result = await deliver(checked.value);
-    if (wantsHtml) {
-      res.status(303).setHeader("location", thanksLocation(checked.value.lang)).end();
+    if (!result.ok) {
+      if (wantsHtml) {
+        res.status(303).setHeader("location", thanksLocation(checked.value.lang, "send-failed")).end();
+        return;
+      }
+      res.status(502).json({ ok: false, code: "send-failed", mode: "send-failed", mail });
       return;
     }
-    res.status(200).json({ ok: true, code: "ok", mode: result.mode });
+    if (wantsHtml) {
+      res.status(303).setHeader("location", thanksLocation(checked.value.lang, result.mode)).end();
+      return;
+    }
+    res.status(200).json({ ok: true, code: result.mode, mode: result.mode, mail });
   } catch (err) {
     console.error(JSON.stringify({ fn: "apply", stage: "send", error: String(err.message || err).slice(0, 300) }));
-    res.status(502).json({ ok: false, code: "failed" });
+    if (wantsHtml) {
+      res.status(303).setHeader("location", thanksLocation(checked.value.lang, "send-failed")).end();
+      return;
+    }
+    res.status(502).json({ ok: false, code: "send-failed", mode: "send-failed", mail });
   }
 }
 
@@ -274,5 +342,6 @@ module.exports.validate = validate;
 module.exports.redact = redact;
 module.exports.deliver = deliver;
 module.exports.mailReady = mailReady;
+module.exports.mailDraft = mailDraft;
 module.exports.testMode = testMode;
 module.exports.routes = routes;

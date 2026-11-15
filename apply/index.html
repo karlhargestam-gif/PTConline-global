@@ -122,9 +122,10 @@
 <button type="submit">Apply to PTC</button>
 <p id="apply-status" role="status"></p>
 </form>
-<div id="apply-thanks" class="apply-thanks" hidden>
-<h2>Thank you</h2>
-<p>Your application is in. The PTC team will review it.</p>
+<div id="apply-thanks" class="apply-thanks" hidden data-thanks-title="Thank you" data-failed-title="Application not sent" data-office="Your application is in. The PTC team will review it." data-dry-run="Thank you. This preview checked your application. Email is not turned on yet, so nothing was sent to PCG. Use Email my application to send the same copy from your email app." data-test="Thank you. This was a test copy only. It did not go to the office. Use Email my application to send the same copy from your email app." data-send-failed="We could not send it automatically. Use Email my application to send the same copy from your email app.">
+<h2 id="apply-thanks-title">Thank you</h2>
+<p id="apply-thanks-detail">Your application is in. The PTC team will review it.</p>
+<p id="apply-email-row" hidden><a class="button" id="apply-email-link" href="mailto:wm@pcg.org?cc=globalmissions.ea%40pcg.org">Email my application</a></p>
 </div>
 </article>
 <script src="/assets/js/apply.js"></script></div></div>
