@@ -49,6 +49,200 @@ def esc(value):
     return html.escape(value or "", quote=True)
 
 
+GOSPEL_STYLE = '''<style>
+article.gospel { max-width: 860px; }
+.gospel-chooser {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 18px 0 16px;
+}
+.gospel-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: 16px;
+  border: 2px solid #d9d3c8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #332D26;
+  cursor: pointer;
+}
+.gospel-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+.gospel-card-title {
+  font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+  font-size: var(--size-h3);
+  line-height: var(--leading-heading);
+  color: #332D26;
+}
+.gospel-card-line { color: #59554F; font-size: var(--size-body); line-height: var(--leading-body); }
+.gospel-card:has(input:checked) {
+  border-color: var(--brand);
+  background: #f7f4ee;
+  box-shadow: inset 4px 0 0 var(--brand);
+}
+.gospel-card:has(input:checked) .gospel-card-title { color: var(--brand-text); }
+.gospel-card:focus-within {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+}
+.gospel-path-guide { display: none; }
+.gospel:has(#pick-guide:checked) .gospel-path-guide { display: block; }
+.gospel:has(#pick-guide:checked) .gospel-path-mission { display: none; }
+.gospel-why {
+  margin: 0 0 16px;
+  padding: 16px 16px 4px;
+  background: #ffffff;
+  border: 1px solid #e6e0d6;
+  border-top: 4px solid var(--brand);
+  border-radius: 6px;
+}
+.gospel-why h2 { margin-top: 0; }
+.gospel .actions { margin-top: 0; margin-bottom: 16px; }
+.gospel-steps { display: grid; gap: 10px; }
+.gospel-step {
+  min-width: 0;
+  border: 1px solid #e6e0d6;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #332D26;
+  scroll-margin-top: 120px;
+}
+.gospel-step[open] { border-color: var(--brand); }
+.gospel-step > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+.gospel-step > summary::-webkit-details-marker { display: none; }
+.gospel-step > summary::marker { content: ""; }
+.gospel-step > summary h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: var(--size-body);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #332D26;
+}
+.gospel-name { min-width: 0; }
+.gospel-num {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.gospel-step > summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-right: 2px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+.gospel-step[open] > summary { border-bottom: 1px solid #e6e0d6; }
+.gospel-step[open] > summary::after { transform: translateY(2px) rotate(225deg); }
+.gospel-step > summary:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+}
+.gospel-step-body { padding: 4px 16px 16px; }
+.gospel .gospel-pause { margin: 12px 0 0; }
+.gospel .gospel-pause + .gospel-pause { margin-top: 4px; }
+.gospel-fill { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.gospel-note {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: #f7f4ee;
+  border-left: 4px solid var(--brand-text);
+}
+.gospel .gospel-note p { margin: 0; }
+.gospel .gospel-note .gospel-say-label { margin: 0 0 6px; }
+.gospel-path-title { margin-top: 0; }
+.gospel-next {
+  margin-top: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e6e0d6;
+  border-radius: 6px;
+}
+.gospel-next h2 { margin-top: 0; }
+.gospel .gospel-publisher { margin-top: var(--space-block); }
+@media (min-width: 820px) {
+  .gospel-chooser { grid-template-columns: 1fr 1fr; align-items: stretch; }
+}
+</style>
+'''
+
+GOSPEL_SCRIPT = '''<script>
+(function () {
+  function bind(root) {
+    var cards = Array.prototype.slice.call(root.querySelectorAll("details.gospel-step"));
+    var summaries = cards.map(function (card) { return card.querySelector("summary"); });
+    cards.forEach(function (card) {
+      var summary = card.querySelector("summary");
+      function sync() {
+        summary.setAttribute("aria-expanded", card.open ? "true" : "false");
+      }
+      sync();
+      card.addEventListener("toggle", function () {
+        if (card.open) {
+          cards.forEach(function (other) {
+            if (other !== card && other.open) other.open = false;
+          });
+        }
+        sync();
+      });
+    });
+    summaries.forEach(function (summary, index) {
+      summary.addEventListener("keydown", function (event) {
+        var next = -1;
+        if (event.key === "ArrowDown") next = (index + 1) % summaries.length;
+        else if (event.key === "ArrowUp") next = (index - 1 + summaries.length) % summaries.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = summaries.length - 1;
+        else return;
+        event.preventDefault();
+        summaries[next].focus();
+      });
+    });
+  }
+  document.querySelectorAll("[data-steps]").forEach(bind);
+})();
+</script>
+'''
+
+
 def fill(template, mapping):
     def replace(match):
         key = match.group(1)
@@ -1394,42 +1588,95 @@ class Site:
         )
         self.emit(rel, text)
 
+    def gospel_cards(self, data, steps, group, pause_after=(), closing=()):
+        pause_after = set(pause_after or ())
+        last = len(steps)
+        chunks = []
+        for n, step in enumerate(steps, 1):
+            open_attr = " open" if n == 1 else ""
+            cues = []
+            if n in pause_after:
+                cues.append(f'<p class="gospel-pause">{esc(data["pause"])}</p>')
+            if n == last:
+                for line in closing or ():
+                    cues.append(f'<p class="gospel-pause">{esc(line)}</p>')
+            note = ""
+            if step.get("note"):
+                note = (
+                    '<aside class="gospel-note">'
+                    f'<p class="gospel-say-label">{esc(data["noteLabel"])}</p>'
+                    f'<p>{esc(step["note"])}</p>'
+                    "</aside>"
+                )
+            say = esc(step["say"]).replace(
+                "( FILL IN NAME )",
+                '<span class="gospel-fill">( FILL IN NAME )</span>',
+            )
+            chunks.append(
+                f'<details class="gospel-step" id="{group}-{n}" name="{group}-steps"{open_attr}>'
+                f'<summary aria-controls="{group}-{n}-panel">'
+                f'<h2><span class="gospel-num">{n}</span><span class="gospel-name">{esc(step["title"])}</span></h2>'
+                "</summary>"
+                f'<div class="gospel-step-body" id="{group}-{n}-panel">'
+                f'<p class="gospel-say-label">{esc(data["sayLabel"])}</p>'
+                f'<blockquote class="gospel-say">{say}</blockquote>'
+                f'{"".join(cues)}{note}'
+                "</div></details>"
+            )
+        return "".join(chunks)
+
+    def gospel_choice(self, path, input_id, checked=False):
+        checked_attr = " checked" if checked else ""
+        return (
+            '<label class="gospel-card">'
+            f'<input type="radio" name="gospel-path" id="{input_id}"{checked_attr}>'
+            f'<span class="gospel-card-title">{esc(path["title"])}</span>'
+            f'<span class="gospel-card-line">{esc(path["line"])}</span>'
+            "</label>"
+        )
+
     def render_short_hand_gospel(self):
         route = "resources/short-hand-gospel"
         data = json.loads((ROOT / "content/short-hand-gospel.json").read_text(encoding="utf-8"))
-        jumps = "".join(
-            f'<li><a href="#step-{n}">{esc(step["title"])}</a></li>'
-            for n, step in enumerate(data["steps"], 1)
+        mission = data["mission"]
+        guide = data["guide"]
+        mission_cards = self.gospel_cards(
+            data, mission["steps"], "step", mission["pauseAfter"], mission["closing"]
         )
-        steps = []
-        last = len(data["steps"])
-        for n, step in enumerate(data["steps"], 1):
-            pause = data["pauseLast"] if n == last else data["pause"]
-            steps.append(
-                f'<section class="gospel-step" id="step-{n}">'
-                f'<h2>{n}. {esc(step["title"])}</h2>'
-                f'<p class="gospel-say-label">Say this</p>'
-                f'<blockquote class="gospel-say"><p>{esc(step["say"])}</p></blockquote>'
-                f'<p class="gospel-pause">{esc(pause)}</p>'
-                f'</section>'
-            )
-        how = "".join(f"<li>{esc(item)}</li>" for item in data["howTo"])
+        guide_cards = self.gospel_cards(data, guide["steps"], "guide")
         body = f'''<header class="masthead">
 <p class="kicker">PTC</p>
 <h1>{esc(data["title"])}</h1>
 <p class="gospel-subtitle">{esc(data["subtitle"])}</p>
-<p class="lead">{esc(data["description"])}</p>
-<div class="actions"><a class="button" href="/assets/short-hand-gospel.pdf">Download PDF</a></div>
-</header>
 <article class="prose gospel">
-<h2>How to use</h2>
-<ol class="gospel-how">{how}</ol>
-<nav class="gospel-jump" aria-label="Steps">
-<ol>{jumps}</ol>
-</nav>
-{''.join(steps)}
+<div class="gospel-chooser" role="radiogroup" aria-label="{esc(data["chooserLabel"])}">
+{self.gospel_choice(mission, "pick-mission", True)}
+{self.gospel_choice(guide, "pick-guide")}
+</div>
+<section class="gospel-path gospel-path-mission" id="short-hand-path" aria-label="{esc(mission["label"])}">
+<section class="gospel-why" aria-labelledby="why-title">
+<h2 id="why-title">{esc(data["whyTitle"])}</h2>
+<p>{esc(data["why"])}</p>
+</section>
+<div class="actions"><a class="button" href="/assets/short-hand-gospel.pdf" download>{esc(data["downloadLabel"])}</a></div>
+<div class="gospel-steps" data-steps>
+{mission_cards}
+</div>
+<aside class="gospel-next">
+<h2>{esc(mission["nextTitle"])}</h2>
+<a class="button" href="{esc(mission["nextHref"])}">{esc(mission["nextLabel"])}</a>
+</aside>
+</section>
+<section class="gospel-path gospel-path-guide" id="personal-guide" aria-label="{esc(guide["label"])}">
+<h2 class="gospel-path-title">{esc(guide["title"])}</h2>
+<div class="gospel-steps" data-steps>
+{guide_cards}
+</div>
+</section>
 <p class="gospel-publisher">{esc(data["publisher"])}</p>
-</article>'''
+</article>
+</header>
+''' + GOSPEL_STYLE + GOSPEL_SCRIPT
         html_page = self.document(
             "en", route, data["title"], data["description"], body,
             self.jsonld("page", "en", route, data["title"], data["description"]),
