@@ -1137,6 +1137,11 @@ class Site:
                 "submit": "Apply to PTC",
                 "thanksTitle": "Thank you",
                 "thanks": "Your application is in. The PTC team will review it.",
+                "failedTitle": "Application not sent",
+                "dryRun": "Thank you. This preview checked your application. Email is not turned on yet, so nothing was sent to PCG. Use Email my application to send the same copy from your email app.",
+                "test": "Thank you. This was a test copy only. It did not go to the office. Use Email my application to send the same copy from your email app.",
+                "sendFailed": "We could not send it automatically. Use Email my application to send the same copy from your email app.",
+                "emailMine": "Email my application",
                 "invalid": "Check the fields marked * and the consent box.",
                 "busy": "Too many applications from this connection. Please wait a few minutes and try again.",
                 "failed": "The application could not be delivered. Please try again later.",
@@ -1176,6 +1181,11 @@ class Site:
                 "submit": "Postular a PTC",
                 "thanksTitle": "Gracias",
                 "thanks": "Recibimos su solicitud. El equipo de PTC la revisará.",
+                "failedTitle": "Solicitud no enviada",
+                "dryRun": "Gracias. Esta vista previa revisó su solicitud. El correo aún no está activado, así que no se envió nada a PCG. Use Enviar mi solicitud para enviar la misma copia desde su aplicación de correo.",
+                "test": "Gracias. Esta fue solo una copia de prueba. No llegó a la oficina. Use Enviar mi solicitud para enviar la misma copia desde su aplicación de correo.",
+                "sendFailed": "No pudimos enviarla de forma automática. Use Enviar mi solicitud para enviar la misma copia desde su aplicación de correo.",
+                "emailMine": "Enviar mi solicitud",
                 "invalid": "Revise los campos marcados con * y la casilla de consentimiento.",
                 "busy": "Demasiadas solicitudes desde esta conexión. Espere unos minutos e inténtelo de nuevo.",
                 "failed": "No se pudo entregar la solicitud. Inténtelo más tarde.",
@@ -1215,6 +1225,11 @@ class Site:
                 "submit": "Candidatar-se ao PTC",
                 "thanksTitle": "Obrigado",
                 "thanks": "Recebemos sua candidatura. A equipe do PTC vai analisá-la.",
+                "failedTitle": "Candidatura não enviada",
+                "dryRun": "Obrigado. Esta prévia conferiu sua candidatura. O e-mail ainda não está ativado, então nada foi enviado à PCG. Use Enviar minha candidatura para enviar a mesma cópia pelo seu aplicativo de e-mail.",
+                "test": "Obrigado. Esta foi apenas uma cópia de teste. Ela não foi para o escritório. Use Enviar minha candidatura para enviar a mesma cópia pelo seu aplicativo de e-mail.",
+                "sendFailed": "Não conseguimos enviá-la automaticamente. Use Enviar minha candidatura para enviar a mesma cópia pelo seu aplicativo de e-mail.",
+                "emailMine": "Enviar minha candidatura",
                 "invalid": "Confira os campos marcados com * e a caixa de consentimento.",
                 "busy": "Muitas candidaturas desta conexão. Aguarde alguns minutos e tente de novo.",
                 "failed": "Não foi possível entregar a candidatura. Tente mais tarde.",
@@ -1269,9 +1284,10 @@ class Site:
 <button type="submit">{esc(copy["submit"])}</button>
 <p id="apply-status" role="status"></p>
 </form>
-<div id="apply-thanks" class="apply-thanks" hidden>
-<h2>{esc(copy["thanksTitle"])}</h2>
-<p>{esc(copy["thanks"])}</p>
+<div id="apply-thanks" class="apply-thanks" hidden data-thanks-title="{esc(copy["thanksTitle"])}" data-failed-title="{esc(copy["failedTitle"])}" data-office="{esc(copy["thanks"])}" data-dry-run="{esc(copy["dryRun"])}" data-test="{esc(copy["test"])}" data-send-failed="{esc(copy["sendFailed"])}">
+<h2 id="apply-thanks-title">{esc(copy["thanksTitle"])}</h2>
+<p id="apply-thanks-detail">{esc(copy["thanks"])}</p>
+<p id="apply-email-row" hidden><a class="button" id="apply-email-link" href="mailto:wm@pcg.org?cc=globalmissions.ea%40pcg.org">{esc(copy["emailMine"])}</a></p>
 </div>
 </article>
 <script src="/assets/js/apply.js"></script>'''

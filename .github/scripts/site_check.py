@@ -12,6 +12,7 @@ Fails the build when a change would ship:
   - a top-bar logo taller than 24.8px, or touching the bar edges, at phone, 820px, and desktop widths
   - body text, headings, or section spacing off the shared type scale
   - visible text that does not match the baseline, aside from whitespace
+  - an application page that claims the office received mail for a dry-run or test
 
 Usage: python3 site_check.py --host www.example.com [--root .] [--max-page-kb 1024]
 External links are not fetched (keeps CI fast and deterministic).
@@ -21,6 +22,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 from html import unescape as html_unescape
@@ -930,6 +932,12 @@ def main():
     args = ap.parse_args()
 
     pages, errors, warnings = check(args.root, args.host, args.max_page_kb)
+    delivery = subprocess.run(
+        ["node", os.path.join(os.path.dirname(__file__), "application_delivery_check.mjs")],
+        cwd=args.root,
+    )
+    if delivery.returncode:
+        errors.append("application delivery check failed")
     for w in warnings:
         print(f"warning: {w}")
     for e in errors:

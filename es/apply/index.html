@@ -122,9 +122,10 @@
 <button type="submit">Postular a PTC</button>
 <p id="apply-status" role="status"></p>
 </form>
-<div id="apply-thanks" class="apply-thanks" hidden>
-<h2>Gracias</h2>
-<p>Recibimos su solicitud. El equipo de PTC la revisará.</p>
+<div id="apply-thanks" class="apply-thanks" hidden data-thanks-title="Gracias" data-failed-title="Solicitud no enviada" data-office="Recibimos su solicitud. El equipo de PTC la revisará." data-dry-run="Gracias. Esta vista previa revisó su solicitud. El correo aún no está activado, así que no se envió nada a PCG. Use Enviar mi solicitud para enviar la misma copia desde su aplicación de correo." data-test="Gracias. Esta fue solo una copia de prueba. No llegó a la oficina. Use Enviar mi solicitud para enviar la misma copia desde su aplicación de correo." data-send-failed="No pudimos enviarla de forma automática. Use Enviar mi solicitud para enviar la misma copia desde su aplicación de correo.">
+<h2 id="apply-thanks-title">Gracias</h2>
+<p id="apply-thanks-detail">Recibimos su solicitud. El equipo de PTC la revisará.</p>
+<p id="apply-email-row" hidden><a class="button" id="apply-email-link" href="mailto:wm@pcg.org?cc=globalmissions.ea%40pcg.org">Enviar mi solicitud</a></p>
 </div>
 </article>
 <script src="/assets/js/apply.js"></script></div></div>
