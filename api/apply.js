@@ -7,10 +7,13 @@
  * Unset, empty, or anything else means off, so a future key cannot keep mail
  * on the backup inbox. While test mode is on, both the staff notice and the
  * applicant confirmation go only to PTC_APPLY_EMAIL_CC, or
- * globalmissions.ea@pcg.org when that variable is unset.
- * When test mode is off, the notice goes to wm@pcg.org (PTC_APPLY_EMAIL_TO
- * overrides it) with globalmissions.ea@pcg.org as backup, and the confirmation
- * goes to the applicant. A failed confirmation does not change the mode.
+ * khargestam@pcg.org when that variable is unset.
+ * When test mode is off, Laiza (globalmissions.ea@pcg.org) and wm@pcg.org are
+ * primary recipients, with khargestam@pcg.org copied until Karl verifies
+ * delivery. PTC_APPLY_EMAIL_TO and PTC_APPLY_EMAIL_CC override these defaults
+ * with comma-separated bare addresses. Invalid lists use the full defaults.
+ * The confirmation goes only to the applicant. Its failure does not change
+ * the mode. Provider acceptance does not verify inbox delivery or remove CC.
  * Without the API key or a bare From address this handler validates, logs a
  * redacted summary, and does not send.
  * The JSON mode is dry-run, test, sent-to, fallback-copy, to-only, or
@@ -27,8 +30,8 @@ const ORG_REQUIRED = new Set(["college", "country", "school"]);
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 5;
 const recent = new Map();
-const DEFAULT_TO = "wm@pcg.org";
-const DEFAULT_CC = "globalmissions.ea@pcg.org";
+const DEFAULT_TO = ["globalmissions.ea@pcg.org", "wm@pcg.org"];
+const DEFAULT_CC = ["khargestam@pcg.org"];
 
 function clean(value, max) {
   if (typeof value !== "string") return "";
@@ -126,7 +129,7 @@ function rateLimited(hash) {
 
 function bareEmail(value) {
   const text = clean(typeof value === "string" ? value : "", 200);
-  if (!text || /[<>\s]/.test(text) || !validEmail(text)) return "";
+  if (!text || /[<>,;\s]/.test(text) || !validEmail(text)) return "";
   return text;
 }
 
@@ -140,24 +143,36 @@ function testMode() {
   return ["1", "true", "on", "yes"].includes(String(raw).trim().toLowerCase());
 }
 
-function address(name, fallback) {
-  return bareEmail(process.env[name]) || fallback;
+function addresses(name, fallback) {
+  const raw = process.env[name];
+  if (typeof raw !== "string" || !raw.trim()) return [...fallback];
+  const parts = raw.split(",").map((part) => part.trim());
+  // Reject a whole malformed list rather than silently dropping a recipient.
+  if (parts.some((part) => !part || part !== bareEmail(part))) return [...fallback];
+  const seen = new Set();
+  return parts.filter((part) => {
+    const key = part.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function routes(applicantEmail) {
-  const to = address("PTC_APPLY_EMAIL_TO", DEFAULT_TO);
-  const cc = address("PTC_APPLY_EMAIL_CC", DEFAULT_CC);
+  const to = addresses("PTC_APPLY_EMAIL_TO", DEFAULT_TO);
+  const cc = addresses("PTC_APPLY_EMAIL_CC", DEFAULT_CC);
   if (testMode()) {
     return {
       test: true,
-      notice: { to: cc, cc: "" },
-      reply: { to: cc, cc: "" },
+      notice: { to: cc, cc: [] },
+      reply: { to: cc, cc: [] },
     };
   }
+  const primary = new Set(to.map((value) => value.toLowerCase()));
   return {
     test: false,
-    notice: { to, cc },
-    reply: { to: applicantEmail, cc: "" },
+    notice: { to, cc: cc.filter((value) => !primary.has(value.toLowerCase())) },
+    reply: { to: applicantEmail ? [applicantEmail] : [], cc: [] },
   };
 }
 
@@ -166,8 +181,8 @@ function mailDraft(application) {
   const marker = "\nJSON record:";
   const cut = mail.text.indexOf(marker);
   return {
-    to: DEFAULT_TO,
-    cc: DEFAULT_CC,
+    to: DEFAULT_TO.join(","),
+    cc: DEFAULT_CC.join(","),
     subject: mail.subject,
     text: (cut === -1 ? mail.text : mail.text.slice(0, cut)).trim(),
   };
@@ -176,12 +191,12 @@ function mailDraft(application) {
 async function sendOne(mail, to, cc, subject) {
   const body = {
     from: bareEmail(process.env.PTC_APPLY_EMAIL_FROM),
-    to: [to],
+    to,
     subject: subject || mail.subject,
     text: mail.text,
     html: mail.html,
   };
-  if (cc && cc !== to) body.cc = [cc];
+  if (cc.length) body.cc = cc;
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -228,15 +243,15 @@ async function deliver(payload) {
   let noticeOk = false;
   let mode = route.test ? "test" : "sent-to";
   if (route.test) {
-    noticeOk = await sendOne(notice, route.notice.to, "");
+    noticeOk = await sendOne(notice, route.notice.to, []);
   } else {
     noticeOk = await sendOne(notice, route.notice.to, route.notice.cc);
-    if (!noticeOk) {
+    if (!noticeOk && route.notice.cc.length) {
       console.error(JSON.stringify({ fn: "apply", stage: "cc-failed" }));
-      noticeOk = await sendOne(notice, route.notice.to, "");
+      noticeOk = await sendOne(notice, route.notice.to, []);
       if (noticeOk) {
         const backupSubject = `${notice.subject} (backup copy)`.slice(0, 180);
-        const backup = await sendOne(notice, route.notice.cc, "", backupSubject);
+        const backup = await sendOne(notice, route.notice.cc, [], backupSubject);
         mode = backup ? "fallback-copy" : "to-only";
         if (!backup) console.error(JSON.stringify({ fn: "apply", stage: "backup-failed" }));
       }
@@ -247,7 +262,7 @@ async function deliver(payload) {
     return { ok: false, mode: "send-failed" };
   }
   const reply = templates.renderReply(payload, { test: route.test });
-  if (!route.reply.to) return { ok: true, mode };
+  if (!route.reply.to.length) return { ok: true, mode };
   const replyOk = await sendOne(reply, route.reply.to, route.reply.cc);
   if (!replyOk) {
     console.error(JSON.stringify({ fn: "apply", stage: "reply-failed", mode, testMode: route.test }));

@@ -1,6 +1,6 @@
 (function () {
-  var OFFICE = "wm@pcg.org";
-  var BACKUP = "globalmissions.ea@pcg.org";
+  var OFFICE = "globalmissions.ea@pcg.org,wm@pcg.org";
+  var BACKUP = "khargestam@pcg.org";
   var form = document.getElementById("ptc-apply");
   var thanks = document.getElementById("apply-thanks");
 

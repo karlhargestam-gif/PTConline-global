@@ -274,5 +274,5 @@ module.exports = {
   renderReply,
   renderNotice,
   previewDocument,
-  TEST_INBOX: "globalmissions.ea@pcg.org",
+  TEST_INBOX: "khargestam@pcg.org",
 };

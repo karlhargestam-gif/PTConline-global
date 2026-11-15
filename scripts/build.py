@@ -1473,7 +1473,7 @@ class Site:
 <div id="apply-thanks" class="apply-thanks" hidden data-thanks-title="{esc(copy["thanksTitle"])}" data-failed-title="{esc(copy["failedTitle"])}" data-office="{esc(copy["thanks"])}" data-dry-run="{esc(copy["dryRun"])}" data-test="{esc(copy["test"])}" data-send-failed="{esc(copy["sendFailed"])}">
 <h2 id="apply-thanks-title">{esc(copy["thanksTitle"])}</h2>
 <p id="apply-thanks-detail">{esc(copy["thanks"])}</p>
-<p id="apply-email-row" hidden><a class="button" id="apply-email-link" href="mailto:wm@pcg.org?cc=globalmissions.ea%40pcg.org">{esc(copy["emailMine"])}</a></p>
+<p id="apply-email-row" hidden><a class="button" id="apply-email-link" href="mailto:globalmissions.ea@pcg.org,wm@pcg.org?cc=khargestam%40pcg.org">{esc(copy["emailMine"])}</a></p>
 </div>
 </article>
 <script src="/assets/js/apply.js"></script>'''
