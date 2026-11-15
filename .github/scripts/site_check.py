@@ -10,6 +10,7 @@ Fails the build when a change would ship:
   - a robots.txt or sitemap.xml that is missing, invalid, or points off-host
   - a .button whose text color matches its background, or whose visible text is empty
   - a top-bar logo taller than 24.8px, or touching the bar edges, at phone, 820px, and desktop widths
+  - a top bar whose height leaves the live size, or a Portal pill shorter on clearance than 6px
   - body text, headings, or section spacing off the shared type scale
   - visible text that does not match the baseline, aside from whitespace
   - an application page that claims the office received mail for a dry-run or test
@@ -499,6 +500,143 @@ def lockup_problems(root, pages):
     return problems
 
 
+# Live https://ptconline.global bar heights. The Portal control is content-sized
+# inside that bar: at least 6px of black above it and above the 2px coral line,
+# and at least 16px between the control and the right edge.
+BAR_WIDTHS = (390, 720, 820, 1024, 1180, 1280)
+BAR_HEIGHT = {
+    390: 48.0,
+    720: 48.0,
+    820: 48.0,
+    1024: 48.0,
+    1180: 36.0,
+    1280: 36.0,
+}
+PILL_HEIGHT = {
+    390: 11.0,
+    720: 11.0,
+    820: 20.0,
+    1024: 20.0,
+    1180: 20.0,
+    1280: 20.0,
+}
+PILL_CLEARANCE_MIN = 6.0
+PILL_RIGHT_MIN = 16.0
+
+
+def _vertical_padding(decls):
+    if "padding-top" in decls or "padding-bottom" in decls:
+        return (_px(decls.get("padding-top")) or 0) + (_px(decls.get("padding-bottom")) or 0)
+    parts = _padding_parts(decls.get("padding", "0"))
+    if not parts:
+        return 0.0
+    top = _px(parts[0]) or 0
+    if len(parts) in (1, 2):
+        bottom = top
+    else:
+        bottom = _px(parts[2]) or 0
+    return top + bottom
+
+
+def _used_height(decls, content):
+    fixed = _px(decls.get("height"))
+    if (decls.get("height") or "").strip() == "auto":
+        fixed = None
+    minimum = _px(decls.get("min-height"))
+    height = content
+    if fixed is not None:
+        height = fixed if height is None else max(height, fixed)
+    if minimum is not None:
+        height = minimum if height is None else max(height, minimum)
+    return height
+
+
+def _padding_right(decls, variables):
+    for prop in ("padding-right", "padding-inline"):
+        if prop in decls:
+            return _px_resolved(decls[prop], variables)
+    parts = _padding_parts(_resolve(decls.get("padding", ""), variables))
+    if len(parts) == 1:
+        return _px(parts[0])
+    if len(parts) in (2, 3):
+        return _px(parts[1])
+    if len(parts) >= 4:
+        return _px(parts[3])
+    return None
+
+
+def _variables_at(rules, width):
+    variables = {}
+    for selector, decls, media in rules:
+        if selector.strip() == ":root" and _media_matches(media, width):
+            for prop, raw in decls.items():
+                if prop.startswith("--"):
+                    variables[prop] = raw
+    return variables
+
+
+def bar_problems(root, pages):
+    """Fail when the top bar grows or the Portal control loses its clearance."""
+    problems = []
+    cache = {}
+    ancestors = [("nav", {"official-bar"})]
+    for page in pages:
+        rel = os.path.relpath(page, root)
+        with open(page, encoding="utf-8", errors="replace") as fh:
+            html = fh.read()
+        if 'class="official-bar"' not in html and "class='official-bar'" not in html:
+            continue
+        hrefs = re.findall(r'<link[^>]+href="([^"]+\.css)"', html)
+        key = tuple(hrefs)
+        if key not in cache:
+            rules = []
+            seen = set()
+            for href in hrefs:
+                rules.extend(_read_sheet(root, href, seen))
+            cache[key] = rules
+        rules = cache[key]
+        for width in BAR_WIDTHS:
+            variables = _variables_at(rules, width)
+            bar = _paint("nav", {"official-bar"}, [], rules, width)
+            pill = _paint("a", {"official-bar-sign-in"}, ancestors, rules, width)
+            font = pill.get("font-size", "")
+            if font.strip() == "inherit":
+                font_px = _px(bar.get("font-size"))
+            else:
+                font_px = _px(font)
+            content = (font_px or 0) + _vertical_padding(pill)
+            bar_h = _used_height(bar, None)
+            pill_h = _used_height(pill, content)
+            border = _px(bar.get("border-bottom")) or _px(bar.get("border-bottom-width")) or 0
+            where = f"{rel} at {width}px"
+            if bar_h is None or pill_h is None:
+                problems.append(f"{where}: top-bar or Portal sign-in size is unset")
+                continue
+            clearance = (bar_h - border - pill_h) / 2
+            expected_bar = BAR_HEIGHT[width]
+            expected_pill = PILL_HEIGHT[width]
+            if abs(bar_h - expected_bar) > 0.6:
+                problems.append(
+                    f"{where}: top bar is {bar_h:.0f}px; live height is {expected_bar:.0f}px"
+                )
+            if abs(pill_h - expected_pill) > 0.6:
+                problems.append(
+                    f"{where}: Portal sign-in is {pill_h:.0f}px; expected {expected_pill:.0f}px"
+                )
+            if clearance < PILL_CLEARANCE_MIN - 0.05:
+                problems.append(
+                    f"{where}: Portal sign-in clearance is {clearance:.1f}px, below {PILL_CLEARANCE_MIN:.0f}px"
+                )
+            right = _padding_right(bar, variables)
+            margin_right = _px(pill.get("margin-right")) or 0
+            if right is None or right - margin_right < PILL_RIGHT_MIN - 0.05:
+                got = None if right is None else right - margin_right
+                problems.append(
+                    f"{where}: Portal sign-in right gap is {got}px, below {PILL_RIGHT_MIN:.0f}px"
+                )
+    return problems
+
+
 def _resolve(value, variables, depth=0):
     if not value or depth > 8 or "var(" not in value:
         return value or ""
@@ -916,6 +1054,7 @@ def check(root, host, max_page_kb):
             errors.append(f"sitemap.xml is not valid XML ({exc})")
 
     errors.extend(lockup_problems(root, pages))
+    errors.extend(bar_problems(root, pages))
     errors.extend(layout_problems(root, pages))
     errors.extend(scale_problems(root, pages))
     errors.extend(text_problems(root, pages))
