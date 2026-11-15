@@ -183,6 +183,8 @@ body {
   margin-left: 14px;
   padding: 4px 10px;
   font-size: 12px;
+  /* The 44px link target must not stretch this pill to the bar edges. */
+  min-height: 0;
   border-radius: 999px;
   background: var(--brand);
   color: #ffffff;
