@@ -27,6 +27,7 @@
 .course {
   padding: var(--space-section) var(--gutter);
 }
+.masthead { padding-top: 20px; }
 
 .masthead h1,
 .week h2,
@@ -63,10 +64,10 @@
 }
 
 .lead {
-  max-width: 42rem;
+  max-width: 66ch;
   margin: var(--space-block) 0 0;
   color: #332D26;
-  font-size: var(--size-lead);
+  font-size: var(--size-body);
   line-height: var(--leading-body);
 }
 
@@ -157,7 +158,8 @@
   outline-offset: 3px;
 }
 
-.course { display: grid; gap: 22px; max-width: 920px; }
+.course { display: grid; gap: 22px; max-width: none; }
+.week p, .note-text, .open-course-lead, .cohort-how, .cohort-note { max-width: 66ch; }
 
 .week {
   background: #ffffff;
@@ -253,7 +255,7 @@ video {
 
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 16px;
   margin-top: 18px;
 }
@@ -261,8 +263,8 @@ video {
 .catalog-card {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  padding: 20px;
+  min-height: 0;
+  padding: 16px 18px;
   background: #ffffff;
   border-top: 3px solid var(--brand-text);
   color: inherit;
@@ -273,18 +275,25 @@ video {
 .catalog-card p { margin: 10px 0 0; color: #332D26; }
 .card-open { color: var(--brand-text); font-weight: 700; }
 .card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 12px;
+  display: grid;
+  grid-template-columns: max-content;
+  justify-content: start;
+  gap: 4px;
   margin-top: auto;
   padding-top: 14px;
   color: #59554F;
-  font-size: 0.78rem;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1.35;
   list-style: none;
 }
+.card-meta li { white-space: nowrap; }
 
-.prose { max-width: 42rem; }
+.prose { max-width: none; }
+.prose p,
+.lead,
+.prose li,
+.submit-form { max-width: 66ch; }
 .prose h2 { font-size: var(--size-h2); line-height: var(--leading-heading); margin: var(--space-block) 0 8px; }
 .prose p { margin: 0 0 var(--space-block); font-size: var(--size-body); line-height: var(--leading-body); }
 .prose ul { margin: 0 0 12px; padding-left: 1.2rem; }
@@ -482,14 +491,17 @@ a.button.secondary,
 
 .page-split { display: block; }
 .page-figure { margin: var(--space-block) var(--gutter) 0; }
-.page-figure img,
-.page-figure.is-placeholder {
+.page-figure img {
   display: block;
   width: 100%;
+  max-width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 .page-figure.is-placeholder {
+  display: block;
+  width: auto;
+  aspect-ratio: 4 / 3;
   border: 2px dashed var(--brand);
   background:
     linear-gradient(135deg, transparent 47%, var(--brand) 47%, var(--brand) 53%, transparent 53%),
@@ -500,7 +512,7 @@ a.button.secondary,
   border: 1px solid #e6e0d6;
   border-top: 3px solid var(--brand);
   border-radius: 6px;
-  padding: var(--space-block);
+  padding: 16px 18px;
 }
 .catalog-card:hover { border-color: var(--brand); text-decoration: none; }
 .catalog-card:focus-visible {
@@ -510,19 +522,76 @@ a.button.secondary,
 @media (min-width: 820px) {
   .page-split {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
     column-gap: var(--space-block);
     align-items: start;
     padding-right: var(--gutter);
   }
-  .page-copy { grid-column: 1; grid-row: 1; }
-  .page-figure {
+  .page-copy { display: contents; }
+  .page-split .masthead { grid-column: 1; grid-row: 1; }
+  .page-split .masthead { padding-bottom: 0; }
+  .page-split .page-figure {
     grid-column: 2;
     grid-row: 1;
-    position: sticky;
-    top: 96px;
-    margin: var(--space-section) 0 0;
+    margin: 20px 0 0;
   }
+  .page-split .catalog,
+  .page-split .course,
+  .page-split .prose {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-top: 20px;
+    padding-left: var(--gutter);
+    padding-right: 0;
+  }
+  .page-split .catalog > .provider-block:first-child { margin-top: 0; }
+}
+@media (min-width: 900px) {
+  #ptc-apply {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 28px;
+    align-items: start;
+    width: 100%;
+    max-width: none;
+  }
+  #ptc-apply > fieldset,
+  #ptc-apply > label[for="apply-message"],
+  #ptc-apply > textarea,
+  #ptc-apply > .checks,
+  #ptc-apply > button,
+  #ptc-apply > #apply-status {
+    grid-column: 1 / -1;
+  }
+  #ptc-apply > label[for="apply-organization"],
+  #ptc-apply > #apply-organization { grid-column: 1; }
+  #ptc-apply > label[for="apply-country"],
+  #ptc-apply > #apply-country { grid-column: 2; }
+  #ptc-apply > label[for="apply-organization"] { grid-row: 2; }
+  #ptc-apply > label[for="apply-country"] { grid-row: 2; align-self: end; }
+  #ptc-apply > #apply-organization { grid-row: 3; }
+  #ptc-apply > #apply-country { grid-row: 3; }
+  #ptc-apply > label[for="apply-city"] { grid-column: 1; grid-row: 4; }
+  #ptc-apply > #apply-city { grid-column: 1; grid-row: 5; }
+  #ptc-apply > label[for="apply-contact"] { grid-column: 2; grid-row: 4; align-self: end; }
+  #ptc-apply > #apply-contact { grid-column: 2; grid-row: 5; }
+  #ptc-apply > label[for="apply-role"] { grid-column: 1; grid-row: 6; }
+  #ptc-apply > #apply-role { grid-column: 1; grid-row: 7; }
+  #ptc-apply > label[for="apply-email"] { grid-column: 2; grid-row: 6; align-self: end; }
+  #ptc-apply > #apply-email { grid-column: 2; grid-row: 7; }
+  #ptc-apply > label[for="apply-phone"] { grid-column: 1; grid-row: 8; }
+  #ptc-apply > #apply-phone { grid-column: 1; grid-row: 9; }
+  #ptc-apply > label[for="apply-language"] { grid-column: 2; grid-row: 8; align-self: end; }
+  #ptc-apply > #apply-language { grid-column: 2; grid-row: 9; }
+  #ptc-apply > label[for="apply-heard"] { grid-column: 1; grid-row: 10; }
+  #ptc-apply > #apply-heard { grid-column: 1; grid-row: 11; }
+  #ptc-apply > label[for="apply-training"] { grid-column: 2; grid-row: 10; align-self: end; }
+  #ptc-apply > #apply-training { grid-column: 2; grid-row: 11; }
+  #ptc-apply > label[for="apply-message"] { grid-row: 12; }
+  #ptc-apply > textarea { grid-row: 13; }
+  #ptc-apply > .checks { grid-row: 14; }
+  #ptc-apply > button { grid-row: 15; justify-self: start; }
+  #ptc-apply > #apply-status { grid-row: 16; }
 }
 .privacy-note h3 { margin: 0 0 8px; font-size: 1rem; }
 .privacy-note p { margin: 6px 0; }
