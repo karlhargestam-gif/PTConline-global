@@ -364,6 +364,9 @@ class Site:
             "home_label": esc(self.ui["home"][lang]),
             "pcg_url": esc(self.site["pcgUrl"]),
             "pcg_label": esc(self.ui["pcg"][lang]),
+            "resources_label": esc(self.ui["resources"][lang]),
+            "gospel_label": esc(self.ui["gospelMenu"][lang]),
+            "gospel_href": "/resources/short-hand-gospel/",
             "lang_switch": self.lang_links(lang, route, english_only=english_only),
         }
         template = self.banner_home_t if home else self.banner_t

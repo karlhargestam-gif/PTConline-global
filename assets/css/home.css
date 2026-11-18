@@ -194,6 +194,81 @@
           align-items: flex-start;
           gap: 8px;
         }
+        .resources-menu { width: 100%; }
+        .resources-menu summary { display: none; }
+        .resources-menu .nav-gospel,
+        .resources-menu[open] .nav-gospel {
+          display: flex;
+          position: static;
+          width: 100%;
+          min-height: 48px;
+          margin-top: 4px;
+          background: var(--brand);
+          color: #ffffff;
+        }
+      }
+
+      .gospel-band {
+        background: #111827;
+        color: #ffffff;
+      }
+      .gospel-band-inner {
+        padding: var(--space-section) var(--gutter);
+        max-width: 46rem;
+      }
+      .gospel-band h2 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-heading);
+        font-size: clamp(2.4rem, 7vw, 3.6rem);
+        font-weight: 400;
+        line-height: 1.05;
+      }
+      .gospel-band-subtitle {
+        margin: 12px 0 0;
+        color: #ffffff;
+        font-family: var(--font-heading);
+        font-size: clamp(1.35rem, 3vw, 1.75rem);
+        line-height: 1.25;
+      }
+      .gospel-band-line {
+        margin: 14px 0 0;
+        max-width: 36rem;
+        color: #f7f4ee;
+        font-size: var(--size-body);
+        line-height: var(--leading-body);
+      }
+      .gospel-band-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+      .gospel-band-actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 56px;
+        padding: 14px 22px;
+        border-radius: 6px;
+        font-size: 1.125rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-decoration: none;
+      }
+      .gospel-band-primary {
+        background: var(--brand);
+        color: #ffffff;
+      }
+      .gospel-band-secondary {
+        background: #ffffff;
+        color: var(--brand-text);
+      }
+      .gospel-band-actions a:hover { text-decoration: none; }
+      .gospel-band-primary:hover { background: var(--brand-hover); }
+      .gospel-band-actions a:focus-visible {
+        outline: 3px solid #ffffff;
+        outline-offset: 3px;
       }
 
       .banner-nav {
@@ -211,6 +286,44 @@
       }
 
       .banner-nav a:hover { color: var(--red-deep); text-decoration: underline; text-underline-offset: 4px; }
+      @media (min-width: 820px) {
+        .resources-menu { position: relative; }
+        .resources-menu summary {
+          display: inline-flex;
+          align-items: center;
+          min-height: 44px;
+          color: var(--ink);
+          font-size: 0.84rem;
+          font-weight: 700;
+          list-style: none;
+          cursor: pointer;
+        }
+        .resources-menu summary::-webkit-details-marker { display: none; }
+        .resources-menu summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+        .resources-menu .nav-gospel { display: none; }
+        .resources-menu[open] .nav-gospel {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          z-index: 40;
+          top: calc(100% + 6px);
+          left: 0;
+          min-width: 15rem;
+          min-height: 48px;
+          padding: 12px 16px;
+          background: var(--brand);
+          color: #ffffff;
+          font-weight: 700;
+          text-decoration: none;
+        }
+      }
+      .resources-menu .nav-gospel:hover,
+      .resources-menu .nav-gospel:focus-visible {
+        background: #ffffff;
+        color: var(--brand-text);
+        outline: 3px solid #ffffff;
+        outline-offset: 2px;
+      }
       .banner-nav a:focus-visible {
         outline: 2px solid var(--red);
         outline-offset: 4px;
