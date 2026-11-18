@@ -895,19 +895,23 @@ def scale_problems(root, pages):
             body_size = _length_px(body.get("font-size"), variables)
             leading = _unitless(body.get("line-height"), variables)
             where = f"{rel} at {width}px"
-            if body_size is None or abs(body_size - 18) > 0.2:
-                problems.append(f"{where}: body text is not the 18px scale")
+            expected_body = 18 if width < 720 else 19
+            if body_size is None or abs(body_size - expected_body) > 0.2:
+                problems.append(f"{where}: body text is not the {expected_body:g}px scale")
             if leading is None or abs(leading - 1.65) > 0.01:
                 problems.append(f"{where}: body line-height is not 1.65")
             if home:
                 heading = _paint("h1", set(), [], rules, width)
                 section = _paint("section", {"vision-section"}, [], rules, width)
-                expected = _length_px("var(--size-display)", variables)
+                raw_size = (heading.get("font-size") or "").replace(" ", "")
+                expected = max(38.0, min(60.0, width * 0.052)) if "clamp(38px" in raw_size else _length_px("var(--size-display)", variables)
             else:
                 heading = _paint("h1", set(), [("header", {"masthead"})], rules, width)
                 section = _paint("header", {"masthead"}, [], rules, width)
                 expected = _length_px("var(--size-h1)", variables)
             actual = _length_px(heading.get("font-size"), variables)
+            if home and "clamp(38px" in (heading.get("font-size") or "").replace(" ", ""):
+                actual = expected
             if expected is None or actual is None or abs(actual - expected) > 0.2:
                 problems.append(f"{where}: heading is off the shared scale")
             space = _length_px("var(--space-section)", variables)

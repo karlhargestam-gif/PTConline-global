@@ -294,10 +294,10 @@ body {
   border-radius: 4px;
   background: #ffffff;
   color: #000000;
-  min-height: 34px;
+  min-height: 44px;
   padding: 6px 12px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: .04em;
   cursor: pointer;
@@ -333,14 +333,22 @@ body {
   .banner-brand { flex: 1 1 auto; min-width: 0; }
   .banner-name { font-size: 1.15rem; }
   .lang-switch { margin-left: 0; }
-  .give-button { min-height: 44px; padding: 8px 14px; font-size: 11px; margin-left: auto; }
+  .give-button { min-height: 44px; padding: 8px 14px; font-size: 13px; margin-left: auto; }
   .site-banner .banner-nav { display: none; }
   .site-banner .banner-nav.is-open {
     display: flex;
     flex: 1 1 100%;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    align-items: stretch;
+    gap: 0;
+    border-top: 1px solid #e6e0d6;
+  }
+  .site-banner .banner-nav.is-open a {
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 2px;
+    border-bottom: 1px solid #e6e0d6;
+    font-size: 16px;
   }
 }
 
@@ -348,7 +356,10 @@ body {
 
 .banner-nav a {
   color: #111827;
-  font-size: .84rem;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-weight: 700;
   text-decoration: none;
 }
@@ -482,7 +493,12 @@ body {
 
 .lang-switch a {
   color: #111827;
-  font-size: .72rem;
+  font-size: 13px;
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
   letter-spacing: .1em;
   text-decoration: none;
@@ -576,9 +592,9 @@ a.button:focus-visible {
   .site-banner { gap: 8px 10px; }
   .banner-name { font-size: 1.05rem; }
   .banner-nav { gap: 10px; }
-  .banner-nav a { font-size: 0.75rem; }
+  .banner-nav a { font-size: 13px; }
   .lang-switch { gap: 8px; }
-  .give-button { padding: 8px 12px; font-size: 12px; }
+  .give-button { padding: 8px 12px; font-size: 13px; }
 }
 
 @media (max-width: 599px) {
@@ -598,7 +614,11 @@ a.button:focus-visible {
     gap: 8px;
   }
   .site-banner:has(.banner-nav.is-open) .lang-switch a {
-    min-width: 44px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0;
     justify-content: center;
   }
 }
@@ -617,6 +637,24 @@ a.button:focus-visible {
     min-height: 44px;
   }
   .nav-toggle { min-height: 44px; align-items: center; }
+}
+
+@media (max-width: 1400px) {
+  .banner-nav a,
+  .lang-switch a,
+  .give-button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .lang-switch a {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 720px) {
