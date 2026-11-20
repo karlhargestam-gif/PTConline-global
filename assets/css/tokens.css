@@ -8,7 +8,7 @@
   --font-body: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-heading: "Crimson Text", Georgia, "Times New Roman", serif;
   --size-small: 1rem;
-  --size-body: 1.125rem;
+  --size-body: 1.125rem; /* 18px on phones */
   --size-lead: 1.375rem;
   --size-h3: 1.5rem;
   --size-h2: 1.75rem;
@@ -18,6 +18,10 @@
   --leading-heading: 1.2;
   --space-block: 1.75rem;
   --space-section: 4.5rem;
+}
+
+@media (min-width: 720px) {
+  :root { --size-body: 1.1875rem; } /* 19px on tablet and desktop */
 }
 
 @media (min-width: 820px) {

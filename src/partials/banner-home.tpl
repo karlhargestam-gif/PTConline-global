@@ -7,6 +7,10 @@
             <a href="{{courses_href}}">{{courses_label}}</a>
             <a href="{{submit_href}}">{{submit_label}}</a>
             <a href="{{pcg_url}}" target="_blank" rel="noopener noreferrer">{{pcg_label}}</a>
+            <details class="resources-menu">
+              <summary>{{resources_label}}</summary>
+              <a class="nav-gospel" href="{{gospel_href}}">{{gospel_label}}</a>
+            </details>
           </nav>
           <span class="lang-switch" aria-label="Language">{{lang_switch}}</span>
           <a class="give-button" href="https://www.pcgmission.org/give/" target="_blank" rel="noopener noreferrer">GIVE</a>
