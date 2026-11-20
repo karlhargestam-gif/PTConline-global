@@ -15,7 +15,9 @@ const require = createRequire(join(root, "api/apply.js"));
 const handler = require("./apply.js");
 
 const OFFICE = "wm@pcg.org";
-const BACKUP = "globalmissions.ea@pcg.org";
+const PRIMARY = ["globalmissions.ea@pcg.org", OFFICE];
+const MAIL_TO = PRIMARY.join(",");
+const BACKUP = "khargestam@pcg.org";
 const APPLICANT = "applicant@example.com";
 const OFFICE_SENTENCE = "Your application is in. The PTC team will review it.";
 const DRY_RUN_SENTENCE = "Thank you. This preview checked your application. Email is not turned on yet, so nothing was sent to PCG. Use Email my application to send the same copy from your email app.";
@@ -168,7 +170,7 @@ async function checkApi() {
     assertMode(dry.result, "dry-run", 200);
     assert.equal(dry.result.body.ok, true);
     assert.equal(dry.calls.length, 0);
-    assert.equal(dry.result.body.mail.to, OFFICE);
+    assert.equal(dry.result.body.mail.to, MAIL_TO);
     assert.equal(dry.result.body.mail.cc, BACKUP);
     assert.equal(dry.result.body.mail.subject, `PTC application: ${type} (Kenya)`);
     assert.match(dry.result.body.mail.text, /Sample Applicant/);
@@ -189,7 +191,7 @@ async function checkApi() {
 
     const sent = await post(type, LIVE, [200, 200]);
     assertMode(sent.result, "sent-to", 200);
-    assert.deepEqual(sent.calls[0].to, [OFFICE]);
+    assert.deepEqual(sent.calls[0].to, PRIMARY);
     assert.deepEqual(sent.calls[0].cc, [BACKUP]);
     assert.deepEqual(sent.calls[1].to, [APPLICANT]);
     assert.equal(sent.calls[0].from, LIVE.PTC_APPLY_EMAIL_FROM);
@@ -198,20 +200,20 @@ async function checkApi() {
     assertMode(fallback.result, "fallback-copy", 200);
     assert.equal(wentToOffice(fallback.calls), true);
     assert.equal(fallback.calls[1].cc, undefined);
-    assert.deepEqual(fallback.calls[1].to, [OFFICE]);
+    assert.deepEqual(fallback.calls[1].to, PRIMARY);
     assert.deepEqual(fallback.calls[2].to, [BACKUP]);
     assert.match(fallback.calls[2].subject, /\(backup copy\)$/);
 
     const alone = await post(type, LIVE, [500, 200, 500, 200]);
     assertMode(alone.result, "to-only", 200);
-    assert.deepEqual(alone.calls[1].to, [OFFICE]);
+    assert.deepEqual(alone.calls[1].to, PRIMARY);
 
     const failed = await post(type, LIVE, [500, 500]);
     assertMode(failed.result, "send-failed", 502);
     assert.equal(failed.result.body.ok, false);
     assert.equal(failed.calls.length, 2);
     assert.equal(failed.calls.some((call) => call.to.includes(APPLICANT)), false);
-    assert.equal(failed.result.body.mail.to, OFFICE);
+    assert.equal(failed.result.body.mail.to, MAIL_TO);
 
     const replyFailed = await post(type, LIVE, [200, 500]);
     assertMode(replyFailed.result, "sent-to", 200);
@@ -230,7 +232,7 @@ async function checkApi() {
     delete process.env.PTC_APPLY_TEST_MODE;
     const sent = await post("school", { ...LIVE, ...(flag === undefined ? {} : { PTC_APPLY_TEST_MODE: flag }) }, [200, 200]);
     assertMode(sent.result, "sent-to", 200);
-    assert.deepEqual(sent.calls[0].to, [OFFICE]);
+    assert.deepEqual(sent.calls[0].to, PRIMARY);
   }
 
   const custom = await post("country", {
@@ -242,12 +244,91 @@ async function checkApi() {
   for (const call of custom.calls) assert.deepEqual(call.to, ["reviewer@example.com"]);
   assert.equal(wentToOffice(custom.calls), false);
 
+  const customLive = await post("college", {
+    ...LIVE,
+    PTC_APPLY_EMAIL_TO: "first@example.com, second@example.com, FIRST@example.com",
+    PTC_APPLY_EMAIL_CC: "second@EXAMPLE.com, reviewer@example.com, REVIEWER@example.com",
+  }, [200, 200]);
+  assertMode(customLive.result, "sent-to", 200);
+  assert.deepEqual(customLive.calls[0].to, ["first@example.com", "second@example.com"]);
+  assert.deepEqual(customLive.calls[0].cc, ["reviewer@example.com"]);
+  assert.deepEqual(customLive.calls[1].to, [APPLICANT]);
+  assert.equal(customLive.calls[1].cc, undefined);
+
+  const single = await post("college", {
+    ...LIVE,
+    PTC_APPLY_EMAIL_TO: "office@example.com",
+    PTC_APPLY_EMAIL_CC: "reviewer@example.com",
+  }, [200, 200]);
+  assert.deepEqual(single.calls[0].to, ["office@example.com"]);
+  assert.deepEqual(single.calls[0].cc, ["reviewer@example.com"]);
+
+  const overlap = await post("college", {
+    ...LIVE,
+    PTC_APPLY_EMAIL_TO: "office@example.com",
+    PTC_APPLY_EMAIL_CC: "OFFICE@example.com",
+  }, [500]);
+  assertMode(overlap.result, "send-failed", 502);
+  assert.equal(overlap.calls.length, 1, "no duplicate retry when CC is already primary");
+  assert.equal(overlap.calls[0].cc, undefined);
+
+  for (const invalidList of [
+    "valid@example.com, invalid",
+    "valid@example.com,",
+    "valid@example.com,,other@example.com",
+    "Name <valid@example.com>",
+    "valid@example.com;other@example.com",
+    "valid@example.com\r\nBcc:other@example.com",
+    "a".repeat(201) + "@example.com",
+  ]) {
+    const invalid = await post("school", {
+      ...LIVE,
+      PTC_APPLY_EMAIL_TO: invalidList,
+      PTC_APPLY_EMAIL_CC: invalidList,
+    }, [200, 200]);
+    assertMode(invalid.result, "sent-to", 200);
+    assert.deepEqual(invalid.calls[0].to, PRIMARY);
+    assert.deepEqual(invalid.calls[0].cc, [BACKUP]);
+  }
+
+  const testedList = await post("college", {
+    ...LIVE,
+    PTC_APPLY_TEST_MODE: "true",
+    PTC_APPLY_EMAIL_TO: "office@example.com, other-office@example.com",
+    PTC_APPLY_EMAIL_CC: "reviewer@example.com, another-reviewer@example.com",
+  }, [200, 200]);
+  assertMode(testedList.result, "test", 200);
+  for (const call of testedList.calls) {
+    assert.deepEqual(call.to, ["reviewer@example.com", "another-reviewer@example.com"]);
+    assert.equal(call.cc, undefined);
+    assert.match(call.subject, /^\[TEST/);
+  }
+
+  const multiFallback = await post("school", {
+    ...LIVE,
+    PTC_APPLY_EMAIL_TO: "first@example.com, second@example.com",
+    PTC_APPLY_EMAIL_CC: "reviewer@example.com, another-reviewer@example.com",
+  }, [500, 200, 200, 200]);
+  assertMode(multiFallback.result, "fallback-copy", 200);
+  assert.deepEqual(multiFallback.calls[1].to, ["first@example.com", "second@example.com"]);
+  assert.equal(multiFallback.calls[1].cc, undefined);
+  assert.deepEqual(multiFallback.calls[2].to, ["reviewer@example.com", "another-reviewer@example.com"]);
+  assert.deepEqual(multiFallback.calls[3].to, [APPLICANT]);
+  assert.equal(multiFallback.calls[3].cc, undefined);
+
   const named = await post("college", {
     PTC_APPLY_EMAIL_API_KEY: "test-key-not-real",
     PTC_APPLY_EMAIL_FROM: "PTC <applications@notifications.ptconline.global>",
   });
   assertMode(named.result, "dry-run", 200);
   assert.equal(named.calls.length, 0);
+
+  const multipleFrom = await post("college", {
+    ...LIVE,
+    PTC_APPLY_EMAIL_FROM: "first@example.com,second@example.com",
+  });
+  assertMode(multipleFrom.result, "dry-run", 200);
+  assert.equal(multipleFrom.calls.length, 0);
 
   const spamCalls = [];
   globalThis.fetch = async () => { spamCalls.push("sent"); throw new Error("email send attempted"); };
@@ -294,6 +375,8 @@ async function checkApi() {
 function checkPage() {
   const source = readFileSync(join(root, "api/apply.js"), "utf8");
   const client = readFileSync(join(root, "assets/js/apply.js"), "utf8");
+  assert.ok(client.includes(`var OFFICE = "${MAIL_TO}";`));
+  assert.ok(client.includes(`var BACKUP = "${BACKUP}";`));
   assert.equal(source.includes('code: "sent"'), false);
   assert.equal(source.includes("sent-test"), false);
   assert.equal(source.includes("sent-backup"), false);
@@ -306,7 +389,7 @@ function checkPage() {
   );
   const mailtoFor = vm.runInNewContext(
     `"use strict";\n${extractFunction(client, "mailtoFor")}\nmailtoFor;`,
-    { encodeURIComponent, OFFICE, BACKUP },
+    { encodeURIComponent, OFFICE: MAIL_TO, BACKUP },
   );
   const officeModes = ["sent-to", "fallback-copy", "to-only"];
   const otherModes = ["dry-run", "test", "send-failed", "busy", "invalid", "sent", "sent-test", "sent-backup", "cc", ""];
@@ -379,14 +462,14 @@ function checkPage() {
     assert.equal(copy.failedTitle, expected.failedTitle, rel);
     assert.match(html, new RegExp(`<p id="apply-thanks-detail">${expected.office.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</p>`));
     assert.match(html, new RegExp(`id="apply-email-link"[^>]*>${expected.button}</a>`));
-    assert.match(html, /href="mailto:wm@pcg\.org\?cc=globalmissions\.ea%40pcg\.org"/);
+    assert.match(html, /href="mailto:globalmissions\.ea@pcg\.org,wm@pcg\.org\?cc=khargestam%40pcg\.org"/);
     assert.equal(applicationResult("dry-run", copy).detail, expected.dry);
     assert.equal(applicationResult("dry-run", copy).detail.includes(expected.office), false);
     assert.equal(applicationResult("test", copy).detail.includes(expected.office), false);
     assert.equal(applicationResult("send-failed", copy).detail.includes(expected.office), false);
     assert.equal(applicationResult("sent-to", copy).detail, expected.office);
     const link = mailtoFor({ subject: "PTC application: college (Kenya)", text: "Contact: Sample Applicant" });
-    assert.equal(link.startsWith(`mailto:${OFFICE}?`), true);
+    assert.equal(link.startsWith(`mailto:${MAIL_TO}?`), true);
     assert.equal(link.includes(`cc=${encodeURIComponent(BACKUP)}`), true);
     assert.equal(link.includes(`body=${encodeURIComponent("Contact: Sample Applicant")}`), true);
     assert.equal(link.includes("reviewer@example.com"), false);
