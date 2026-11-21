@@ -86,6 +86,10 @@ for (const area of areas) {
 
 assert.equal(content.meta.showEkklesiaStory, true);
 assert.equal(content.steps[0].story.note, "Pending confirmation with Pastor Eyan");
+assert.match(
+  content.steps[0].story.paragraphs[1],
+  /They held to what Jesus commanded: win souls, and make disciples who make disciples\. What changed was the form, reshaped for their people and their city\. Pastor Eyan Galvez, who has come out of the PCGAMI movement/,
+);
 assert.equal(content.ui.inviteHref, null);
 assert.match(content.steps.find((step) => step.id === "check").notice[0], /a reflection tool, not a validated assessment/);
 
