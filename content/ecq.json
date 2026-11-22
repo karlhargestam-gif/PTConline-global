@@ -1,0 +1,259 @@
+{
+  "editor": "Edit this file to change the ECQ intro. It is the only copy source. Set meta.showEkklesiaStory to false to hide the opening church story. Leave ui.inviteHref null until the Come over and help us form is live. TODO: do not point inviteHref at a missionary application, or at /apply/. Do not add review notes, source maps, or unpublished questions here. Check the bands with: node scripts/ecq_score_check.mjs",
+  "meta": {
+    "title": "ECQ: Embodied Cultural Intelligence",
+    "kicker": "From PCG Global Missions",
+    "lead": "A free, self-paced intro. About 40–50 minutes, best walked with one other person or a small group.",
+    "documentTitle": "ECQ: Embodied Cultural Intelligence | Pentecostal Theological Consortium",
+    "showEkklesiaStory": true
+  },
+  "ui": {
+    "back": "Back",
+    "next": "Next",
+    "page": "Page {n} of {total}",
+    "print": "Print or save as PDF",
+    "inviteLabel": "Come over and help us",
+    "inviteHref": null,
+    "inviteTodo": "TODO: This stays off until the Come over and help us form is live. Do not link it to a missionary application.",
+    "learn": "Learn",
+    "pictureTitle": "An everyday picture",
+    "pictureDisclaimer": "An illustrative scenario, not a real story.",
+    "promptsTitle": "For your church or movement",
+    "practiceTitle": "Live it with someone",
+    "resultsTitle": "The four areas",
+    "resultsNote": "A reflection tool, not a validated assessment. The useful picture is the four areas side by side, not a single grade.",
+    "of25": "of 25",
+    "nextStep": "Next step.",
+    "needAll": "Answer all 20 scored items to see the four areas.",
+    "answered": "{n} of 20 answered",
+    "unscoredTitle": "Living it with others",
+    "unscoredNote": "These four items are a mirror for practice. They are not folded into the four area totals, and they are not a grade. They ask whether the four areas are being lived with someone, or only read.",
+    "unscoredResults": "Not scored.",
+    "unscoredEmpty": "These four were left blank.",
+    "reflectionTitle": "Open reflection",
+    "reflectionNote": "Write a few lines. This is not scored.",
+    "scaleHint": "Same scale for every item.",
+    "loadError": "This path could not be loaded. Please refresh the page."
+  },
+  "steps": [
+    {
+      "id": "welcome",
+      "nav": "Welcome",
+      "heading": "A church that kept the core and reshaped the form",
+      "paragraphs": [
+        "This free path is from **PCG Global Missions**. We are sharing it first with our churches and movements. We also welcome partners, and anyone who is hungry to learn. Our hope is to help people everywhere.",
+        "Jesus said, “But you shall receive power when the Holy Spirit has come upon you; and you shall be witnesses to Me in Jerusalem, and in all Judea and Samaria, and to the end of the earth” (Acts 1:8, NKJV). That is the frame: from our own streets to the nations, by the Spirit, as witnesses.",
+        "The core does not change. We win souls, and we make disciples who make disciples. How we gather, tell the story, lead, and serve — that is the form. The form should fit the people in front of you. It should not be copied from somewhere else and dropped in place.",
+        "This path is not mainly a set of ideas to study. Disciple-making is a life passed on, among people, not only knowledge handed over. “And the Word became flesh and dwelt among us” (John 1:14, NKJV). We learn the same way: by walking with someone, not only by reading a page. Cultural Intelligence, as we teach it, has four parts — **Drive, Knowledge, Strategy, and Action** — and each one is something to live with others, not only to understand.",
+        "Karl and Jennifer wrote about these four areas for a Pentecostal gathering in Singapore. This path uses that teaching. It is our own training for churches, not a business tool and not someone else’s test. You will hear a church story, sit with each of the four areas, practice each one with someone else, and then use a brief self-check. The self-check is **a reflection tool, not a validated assessment.**"
+      ],
+      "story": {
+        "title": "The opening story: Ekklesia, Cagayan de Oro",
+        "note": "Pending confirmation with Pastor Eyan",
+        "paragraphs": [
+          "In Cagayan de Oro, in the Philippines, a church called Ekklesia shows what we mean. It began in 2004 with five to eight people in a rented house in Bonbon. The pastors were ordained on 10 August 2009 under Pentecostal Church of God Asian Missions Inc. The church grew from twenty to six hundred, and later to more than three thousand. In March 2020, during COVID, they moved into Simbalay house churches.",
+          "They did not invent a new gospel. They held to what Jesus commanded: win souls, and make disciples who make disciples. What changed was the form, reshaped for their people and their city. Pastor Eyan Galvez, who has come out of the PCGAMI movement, has walked this with his church. (Bishop Felix Labang leads PCGAMI. Pastor Eyan is not an official representative of that movement.)",
+          "That is the journey we are inviting churches, movements, and partners into. Not a system to install, and not a story that only belongs on a distant frontier. A church in its own city, keeping the core and reshaping the form, by living it with people."
+        ]
+      },
+      "remember": {
+        "title": "On this page",
+        "items": [
+          "**Reflect, with someone if you can:** Where is your “Jerusalem,” and who is still beyond it? What are you longing to see God do — and where does an old form feel like a ceiling?",
+          "**Remember:** The core stays. The form can change. We learn this by practicing with people.",
+          "**Then go on** to Drive, and plan now who you will walk these pages with."
+        ]
+      }
+    },
+    {
+      "id": "drive",
+      "nav": "Drive",
+      "heading": "Drive: the motivation to go and to adapt",
+      "learn": [
+        "Drive is motivation. For us, that motivation comes from Scripture. Paul asked, “How then shall they call on Him in whom they have not believed? And how shall they believe in Him of whom they have not heard? And how shall they hear without a preacher?” (Romans 10:14, NKJV). Jesus said, “All authority has been given to Me in heaven and on earth. Go therefore and make disciples of all the nations” (Matthew 28:18–19, NKJV).",
+        "Drive is more than enthusiasm. “Adaptation is the key to CQ Drive.” We must be motivated to adapt, so we can communicate the most important message — the gospel — without asking people to become like us first. Leaders with this kind of drive want to learn and to enter new and different settings. That hunger, not a finished program, is what we look for in churches and movements who want to walk with us."
+      ],
+      "picture": "A church cares deeply about people in a nearby neighborhood, or in a district that feels out of reach. The desire is real. But the only form they know is the one that already works for them, so they wait for others to come in and become like them. Drive would mean letting Scripture and the Spirit move them to go, and to adapt the form so those people can actually hear.",
+      "prompts": [
+        "What are you longing to see God do among people who still need a chance to hear?",
+        "Where do you feel a ceiling you cannot break by doing more of the same?",
+        "Is your motivation coming from Scripture and the Spirit, or mainly from a plan you want to export?"
+      ],
+      "practice": "Do not only write this down alone. Sit with one other person or a small group. Pray Romans 10:14–15 and Acts 1:8 together over one people, neighborhood, or nation on your heart. Then walk or visit that place together if you can, even briefly. Before you finish, name out loud one form (a gathering style, a method, a habit) you would be willing to adapt so they can hear, and agree who will help you remember it."
+    },
+    {
+      "id": "knowledge",
+      "nav": "Knowledge",
+      "heading": "Knowledge: become a student of the people",
+      "learn": [
+        "Knowledge is the hard work of learning what matters most about a culture: how people speak, lead, and live, and what they believe. You cannot skip this and still serve well. Become “a student of their culture, language, society, and religious systems.”",
+        "That includes faith and worldview — the questions people already carry: Who am I? Is there a God? Why is there evil? How should I live? When we honor those questions, we are less likely to impose a form that does not fit, and more likely to see what a church or people already do well and should not set aside. The gospel stays the same. Knowledge helps us carry it in a way that can be recognized in this place, not only in ours."
+      ],
+      "picture": "A congregation wants to welcome families who speak another language at home, or young people whose week looks different from the church’s usual rhythm. The invitation is sincere, but no one has yet sat with them long enough to learn how they live, what they already practice, or what they hope for. Knowledge would mean becoming a student first, and noticing what should not be set aside.",
+      "prompts": [
+        "What do you already do well that discipleship could grow from?",
+        "What do you still need to learn about the people you hope to reach — their language, customs, or faith?",
+        "Whose questions are you listening to: yours, or theirs?"
+      ],
+      "practice": "This week, go with one other person and listen more than you speak. Ask a neighbor, a new believer, or a leader from another culture how the gospel sounds in their world, and what you might be missing. Afterward, debrief together: what did you hear, and what might that mean for the form you use?"
+    },
+    {
+      "id": "strategy",
+      "nav": "Strategy",
+      "heading": "Strategy: plan, pay attention, and check your assumptions",
+      "learn": [
+        "Strategy is how understanding becomes a plan. Drive and knowledge matter, but they are not enough on their own. “What works with one UPG may not work for another.” The same is true of churches, districts, and movements. Strategy asks what is needed here, and what the next faithful step is.",
+        "A simple way to work, which Karl and Jennifer used with their team, is: (1) plan the cross-cultural conversation; (2) become more aware as you go; and (3) check whether your assumptions were right. Then adjust. “CQ Strategy is all about how to address the challenges, thoughtfully and often subtly.” This is not a template we bring to your nation or your street. It is a way of thinking together, with local leaders, about how disciples might multiply in your culture."
+      ],
+      "picture": "A church or district copies a model that helped somewhere else. The core of that model — disciples who make disciples — was sound. The form does not take root in the new place. Strategy would mean sitting with local leaders, testing assumptions, and reshaping the plan instead of pushing the copy harder.",
+      "prompts": [
+        "Where have you copied a form that is not fitting?",
+        "What would it look like to plan *with* the people you serve, instead of *for* them?",
+        "Which assumption about “how church should look” are you willing to test?"
+      ],
+      "practice": "With two or three leaders or trusted friends, write down one assumption about how church or discipleship should look, and one way you will test it this month with the people you serve — not by deciding it in a room they are not in. Agree who will ask, who will listen, and when you will check what you learned."
+    },
+    {
+      "id": "action",
+      "nav": "Action",
+      "heading": "Action: adjust how we actually live and serve",
+      "learn": [
+        "Action is what comes of Drive, Knowledge, and Strategy. The question is, “What behaviours do I need to adjust?” “Actions taken will vary as the people groups change.” Communication, leadership, and the way we meet needs should fit the people being reached.",
+        "“Without Cultural Intelligence, the focus could be placed on the outsider rather than on the people being reached.” With it, we can engage in a way that lets people see Jesus, who loves and receives people of every culture. The core stays: a disciple-making church, and a chance for people to hear. The actions — how we show up, speak, gather, and serve — are what we adapt.",
+        "A page cannot do this part for you. Action happens with real people. These lessons can only send you there, together."
+      ],
+      "picture": "Leaders talk often about reaching a new group in their city, and they mean it. But every gathering, greeting, and follow-up still runs exactly as it always has, with the same people at the center. Action would mean changing how they actually show up this week, and letting the people being reached stay at the center.",
+      "prompts": [
+        "What are you willing to change in how you speak, gather, or serve so that disciples can make disciples here?",
+        "Where might your current habits put the visitor or the leader at the center?",
+        "What time, leaders, or people are you prepared to invest — and who will you walk with as you do it?"
+      ],
+      "practice": "This week, try one adapted practice *with* another person or a small group — a story told simply, a visit, a smaller gathering, a habit of listening — then sit down together and notice what you learned, what you would change, and who you might walk with next. Do not count the practice as done until you have done it with someone, not only planned it."
+    },
+    {
+      "id": "check",
+      "nav": "Self-check",
+      "heading": "Self-check",
+      "notice": [
+        "This is **a reflection tool, not a validated assessment.** It will not certify you, and it is not the Cultural Intelligence Center’s instrument or any other published test. We wrote these questions from our own teaching — Drive, Knowledge, Strategy, and Action — so a church or movement can see where they are strong and where they need to grow. Answer honestly. There is no best “church personality,” and a lower number is not a failure. It is a place to take a next step.",
+        "You may answer as a church or movement (“we”) or as a person (“I”). Use the same voice all the way through. Results stay on this device unless you choose to save or share them."
+      ]
+    },
+    {
+      "id": "close",
+      "nav": "Closing",
+      "heading": "Practice, then come over and help us",
+      "sections": [
+        {
+          "paragraphs": [
+            "If this path has done its work, you now have a clearer picture of Drive, Knowledge, Strategy, and Action — and at least one practice you have begun *with someone*. Please do not stop at the scores.",
+            "We learn this by living it with people. An online intro can wake hunger, name the core, and help you see the next step. It cannot, by itself, form a church or a disciple-maker. Humility, listening, and a form that fits are learned in ordinary days, often uncomfortable ones, among real people. The self-check is a mirror. The work is in the congregation, the neighborhood, and the relationships you already have.",
+            "So take the practice you chose, with the person or group you chose. Walk it for a week or more. Notice what you learned together."
+          ]
+        },
+        {
+          "heading": "Where we first learned this",
+          "paragraphs": [
+            "We first learned how much this matters in frontier work among people who had never heard the name of Jesus, including oral cultures very different from our own. In our published chapter, we told the story of Ato Bekele, an evangelist in Ethiopia, who walked until he found the Tara people, became a student of their life, and helped see a local church planted through Bible stories in their own language (Karl and Jennifer Hargestam, “Unreached People Groups and the Cultural Intelligence Model,” 2024). That is where the four areas became clear to us. We share this path now because the same core — and the same need to reshape the form, by walking with people — belongs to churches and movements in every kind of place, not only on a distant frontier."
+          ]
+        },
+        {
+          "heading": "The invitation",
+          "paragraphs": [
+            "If your church or movement is hungry to go further — not only curious, but willing to learn, to practice with people, and to invest — we want to hear from you.",
+            "**Come over and help us.** This invitation is for PCG churches and movements, and for partners and others who are ready. We are not arriving with a system to install in your nation. We are willing to come alongside, listen, and serve where we are invited, and to walk slowly with people who are ready. The core will stay the same: winning souls and making disciples who make disciples, from our Jerusalem to the end of the earth. The form will be yours to shape in your culture."
+          ]
+        }
+      ]
+    }
+  ],
+  "check": {
+    "scale": [
+      {"value": 1, "label": "Rarely true", "short": "Rarely"},
+      {"value": 2, "label": "Occasionally true", "short": "Occasionally"},
+      {"value": 3, "label": "Sometimes true", "short": "Sometimes"},
+      {"value": 4, "label": "Often true", "short": "Often"},
+      {"value": 5, "label": "Very true of us (or of me)", "short": "Very true"}
+    ],
+    "areas": [
+      {
+        "id": "drive",
+        "name": "Drive",
+        "items": [
+          {"n": 1, "text": "We are moved by Scripture to give people who have not heard the gospel a real chance to hear it."},
+          {"n": 2, "text": "We are willing to change our methods so people of another culture can understand the good news, without changing the gospel itself."},
+          {"n": 3, "text": "We stay curious about people whose ways are different from ours, even when that feels uncomfortable."},
+          {"n": 4, "text": "Our desire to reach others is kept alive in prayer and by the Holy Spirit, not only by a program we want to run."},
+          {"n": 5, "text": "We are prepared to be witnesses both where we already live and among people farther away, as Acts 1:8 describes."}
+        ]
+      },
+      {
+        "id": "knowledge",
+        "name": "Knowledge",
+        "items": [
+          {"n": 6, "text": "Before we try to serve people of another culture, we take time to learn how they live, speak, and understand the world."},
+          {"n": 7, "text": "We work to learn what matters most in their culture, rather than assuming it is like ours."},
+          {"n": 8, "text": "We pay attention to the spiritual questions people already carry, instead of starting only with our own questions."},
+          {"n": 9, "text": "We look for what a church or people already do well, and we do not set that aside without first listening."},
+          {"n": 10, "text": "Someone among us is deliberately learning the language, stories, or faith of the people we hope to reach."}
+        ]
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy",
+        "items": [
+          {"n": 11, "text": "We do not assume that what helped in one church, district, or nation will automatically help in another."},
+          {"n": 12, "text": "We make a simple plan before we enter a cross-cultural conversation or a new work."},
+          {"n": 13, "text": "As we go, we watch and listen so we can become more aware of what is really happening."},
+          {"n": 14, "text": "We check our assumptions with local believers or leaders, and we change course when we were wrong."},
+          {"n": 15, "text": "We form the plan *with* the people we serve, rather than finishing it first and handing it to them."}
+        ]
+      },
+      {
+        "id": "action",
+        "name": "Action",
+        "items": [
+          {"n": 16, "text": "We are willing to change how we speak, gather, or serve so the people being reached stay at the center, not us."},
+          {"n": 17, "text": "We expect our actions to look different in different places, because people and cultures differ."},
+          {"n": 18, "text": "We adjust how we tell the Bible’s story so it can be received in this place (for example, spoken stories where people learn by hearing), without changing the message."},
+          {"n": 19, "text": "After we learn and plan, we take a real next step with actual people, not only talk about what we might do."},
+          {"n": 20, "text": "When we notice that our habits put the visitor or the leader at the center, we correct that and try again."}
+        ]
+      }
+    ],
+    "practice": [
+      {"n": 21, "text": "When we learn something on this path, we go try it the same week with another person or a small group, not only on our own."},
+      {"n": 22, "text": "We are passing on a life with people — walking, praying, listening, or serving together — not only passing on information."},
+      {"n": 23, "text": "We have someone who can tell us the truth about how we show up, and we are willing to be changed by that."},
+      {"n": 24, "text": "We keep practicing with others even after a page or a meeting is finished."}
+    ],
+    "reflection": "Who did you practice with this week, and what did you actually do together? If you have not yet practiced with someone, who will you ask, and when?",
+    "bands": [
+      {"id": "growing", "label": "Growing", "min": 5, "max": 11, "meaning": "This area is still early. That is a good place to begin, not a reason to stop."},
+      {"id": "developing", "label": "Developing", "min": 12, "max": 18, "meaning": "You have some practice here. A focused next step, lived with someone, will help it take root."},
+      {"id": "strong", "label": "Strong", "min": 19, "max": 25, "meaning": "This area is a strength. Use it to walk with others, and keep practicing so it does not stay only an idea."}
+    ],
+    "nextSteps": {
+      "drive": {
+        "growing": "Return to Page 2. With someone else, pray Acts 1:8 and Romans 10:14–15 over one people or neighborhood, and name one form you are willing to adapt.",
+        "developing": "Tell one trusted person why you care about the people on your heart. Ask together whether the hunger is from Scripture and prayer, or mainly from a model you hope to copy.",
+        "strong": "Your motivation is a gift. Do not run ahead of Knowledge and Strategy. Invite someone else to take this path with you, and keep the core (disciples who make disciples) at the center."
+      },
+      "knowledge": {
+        "growing": "Return to Page 3. This week, go with someone and listen more than you speak. Ask one person how the gospel sounds in their world, then debrief together.",
+        "developing": "With a partner, choose one concrete thing to learn in the next month: a greeting, a family custom, a local belief, or a few words of a language. Write what you learned and what it might mean for the form you use.",
+        "strong": "You are already becoming a student. Share what you are learning with your leaders, and name together what the people already do well that should not be set aside."
+      },
+      "strategy": {
+        "growing": "Return to Page 4. With two or three others, write one assumption about “how church should look,” and one way you will test it with local believers rather than decide it alone.",
+        "developing": "Before your next cross-cultural conversation or new effort, sit with a small group and write a short plan: who you will listen to, what you might be assuming, and how you will check it.",
+        "strong": "You already know that one form will not fit every place. Use that strength to help others plan *with* local leaders, and to stop plans that are only copies."
+      },
+      "action": {
+        "growing": "Return to Page 5. This week, try one small adapted practice *with* someone — a visit, a simply told story, a habit of listening — and notice together what you learned.",
+        "developing": "Repeat the practice you already started, with the same people, adjusting one thing you noticed. Action grows by doing it together, not by adding more pages.",
+        "strong": "You are already adjusting how you show up. Make sure the people being reached, not the visitor, stay at the center, and consider walking with another church that is just beginning."
+      }
+    }
+  }
+}

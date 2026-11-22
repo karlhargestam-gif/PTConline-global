@@ -19,3 +19,5 @@ jobs:
         run: python3 scripts/build.py --check
       - name: Check page size, canonical URLs, structured data, links, robots and sitemap
         run: python3 .github/scripts/site_check.py --host ptconline.global --max-page-kb 1024
+      - name: Check ECQ reflection bands
+        run: node scripts/ecq_score_check.mjs
