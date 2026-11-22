@@ -84,12 +84,11 @@ for (const area of areas) {
   }
 }
 
-assert.equal(content.meta.showEkklesiaStory, true);
-assert.equal(content.steps[0].story.note, "Pending confirmation with Pastor Eyan");
-assert.match(
-  content.steps[0].story.paragraphs[1],
-  /They held to what Jesus commanded: win souls, and make disciples who make disciples\. What changed was the form, reshaped for their people and their city\. Pastor Eyan Galvez, who has come out of the PCGAMI movement/,
-);
+assert.equal(content.meta.showEkklesiaStory, undefined);
+assert.equal(content.steps[0].story, undefined);
+assert.equal(content.steps[0].heading, "The core stays. The form can change.");
+assert.match(content.steps[0].paragraphs[4], /You will sit with each of the four areas, practice each one with someone else/);
+assert.doesNotMatch(content.steps[0].paragraphs[4], /church story/);
 assert.equal(content.ui.inviteHref, null);
 assert.match(content.steps.find((step) => step.id === "check").notice[0], /a reflection tool, not a validated assessment/);
 
@@ -99,7 +98,7 @@ const bundled = [
   read("assets/js/ecq.js"),
   read("assets/css/ecq.css"),
 ].join("\n");
-for (const phrase of ["Questions for Jennifer", "Internal source map", "Notes for later", "dissertation"]) {
+for (const phrase of ["Questions for Jennifer", "Internal source map", "Notes for later", "dissertation", "Eyan", "Galvez", "Ekklesia", "Cagayan de Oro", "Pending confirmation"]) {
   assert.equal(bundled.includes(phrase), false, phrase);
 }
 assert.match(read("ecq/index.html"), /name="robots" content="index, follow"/);
