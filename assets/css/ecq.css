@@ -98,6 +98,7 @@ main.prose-page > header.masthead {
 
 .ecq-picture,
 .ecq-practice,
+.ecq-story,
 .ecq-score,
 .ecq-nexts section,
 .ecq-practice-summary {
@@ -105,13 +106,15 @@ main.prose-page > header.masthead {
 }
 
 .ecq-picture,
-.ecq-practice {
+.ecq-practice,
+.ecq-story {
   margin: var(--space-block) 0;
   padding: 14px 16px;
   border: 1px solid #e6e0d6;
 }
 
-.ecq-practice { border-left: 4px solid var(--brand); }
+.ecq-practice,
+.ecq-story { border-left: 4px solid var(--brand); }
 
 .ecq-disclaimer {
   margin: 0 0 8px;
@@ -121,7 +124,8 @@ main.prose-page > header.masthead {
 }
 
 .ecq-picture h3,
-.ecq-practice h3 { margin-top: 0; }
+.ecq-practice h3,
+.ecq-story h3 { margin-top: 0; }
 
 .ecq-scale-hint {
   margin: 0 0 8px;
