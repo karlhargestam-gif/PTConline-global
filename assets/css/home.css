@@ -981,55 +981,49 @@
       }
 
       .tool-resources {
-        margin-top: clamp(52px, 7vw, 78px);
-        padding-top: clamp(30px, 4vw, 42px);
-        border-top: 1px solid var(--rule);
+        margin-top: 28px;
+      }
+
+      .resources-heading {
+        margin: 0 0 4px;
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: var(--size-small);
+        font-weight: 700;
+        line-height: var(--leading-body);
       }
 
       .tool-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 22px;
-      }
-
-      .tool-card {
-        padding: 16px 18px;
-        background: var(--quiet);
-        border-top: 3px solid var(--red);
-      }
-
-      .tool-card h3 {
         margin: 0;
-        color: var(--ink);
-        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-        font-size: var(--size-h2);
-        font-weight: 400;
-        line-height: var(--leading-heading);
+        padding: 0;
+        list-style: none;
       }
 
-      .tool-card p {
-        margin: 14px 0 0;
+      .tool-list li {
+        margin: 0;
+        padding: 4px 0;
         color: var(--body);
         font-size: var(--size-body);
-        line-height: 1.68;
+        line-height: var(--leading-body);
       }
 
-      .tool-card-kicker {
+      .tool-list strong {
         color: var(--ink);
-        font-family: "Crimson Text", Georgia, "Times New Roman", serif;
-      }
-
-      .tool-card-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 18px;
-      }
-
-      .tool-card-links a {
-        color: var(--red-deep);
         font-weight: 700;
+      }
+
+      .tool-list a {
+        color: var(--ink);
+        font-weight: 700;
+        text-decoration: underline;
         text-underline-offset: 3px;
+      }
+
+      .tool-list a:hover { color: var(--red-deep); }
+
+      .tool-list a:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 3px;
       }
 
       .library-entity {
@@ -1339,8 +1333,7 @@
         .member-roster { grid-template-columns: 1fr; }
         .partner-card { min-height: 0; }
         .course-grid,
-        .course-grid.single,
-        .tool-list { grid-template-columns: 1fr; }
+        .course-grid.single { grid-template-columns: 1fr; }
         .course-card { min-height: 0; }
         .level-two { grid-template-columns: 1fr; }
         .application-panel {
