@@ -165,6 +165,15 @@
 
   function renderWelcome(step) {
     var html = paras(step.paragraphs);
+    if (step.story) {
+      html += '<section class="ecq-story">';
+      html += "<h3>" + inline(step.story.title) + "</h3>";
+      html += paras(step.story.paragraphs);
+      if (step.story.watchHref) {
+        html += '<p><a class="button" href="' + escapeHtml(step.story.watchHref) + '" target="_blank" rel="noopener">' + inline(step.story.watchLabel) + "</a></p>";
+      }
+      html += "</section>";
+    }
     if (step.remember) {
       html += "<h3>" + inline(step.remember.title) + "</h3><ul>";
       step.remember.items.forEach(function (item) {

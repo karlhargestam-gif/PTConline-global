@@ -84,11 +84,21 @@ for (const area of areas) {
   }
 }
 
-assert.equal(content.meta.showEkklesiaStory, undefined);
-assert.equal(content.steps[0].story, undefined);
 assert.equal(content.steps[0].heading, "The core stays. The form can change.");
-assert.match(content.steps[0].paragraphs[4], /You will sit with each of the four areas, practice each one with someone else/);
-assert.doesNotMatch(content.steps[0].paragraphs[4], /church story/);
+assert.match(content.steps[0].paragraphs[4], /You will hear one church’s story, sit with each of the four areas, practice each one with someone else, and then use a brief self-check/);
+const story = content.steps[0].story;
+assert.equal(story.title, "One church’s story: Ekklesia, Cagayan de Oro");
+assert.equal(story.paragraphs.length, 1);
+assert.equal(story.watchLabel, "Watch Ekklesia’s story");
+assert.equal(story.watchHref, "https://www.youtube.com/watch?v=HLse_5FT1yQ");
+const storyWords = story.paragraphs[0].trim().split(/\s+/);
+assert.ok(storyWords.length >= 70 && storyWords.length <= 90, "story length " + storyWords.length);
+assert.equal((story.paragraphs[0].match(/[.!?](?:\s|$)/g) || []).length, 4);
+for (const phrase of ["G12", "Castellanos", "adopt not adapt", "one world", "Pending confirmation"]) {
+  assert.equal(story.paragraphs[0].toLowerCase().includes(phrase.toLowerCase()), false, phrase);
+}
+assert.doesNotMatch(story.paragraphs[0], /\badapt\b/i);
+assert.doesNotMatch(story.paragraphs[0], /\d+(?:\.\d+)?%/);
 assert.equal(content.ui.inviteHref, null);
 assert.match(content.steps.find((step) => step.id === "check").notice[0], /a reflection tool, not a validated assessment/);
 
@@ -98,7 +108,7 @@ const bundled = [
   read("assets/js/ecq.js"),
   read("assets/css/ecq.css"),
 ].join("\n");
-for (const phrase of ["Questions for Jennifer", "Internal source map", "Notes for later", "dissertation", "Eyan", "Galvez", "Ekklesia", "Cagayan de Oro", "Pending confirmation"]) {
+for (const phrase of ["Questions for Jennifer", "Internal source map", "Notes for later", "dissertation", "Pending confirmation", "G12", "Castellanos", "adopt not adapt", "one world"]) {
   assert.equal(bundled.includes(phrase), false, phrase);
 }
 assert.match(read("ecq/index.html"), /name="robots" content="index, follow"/);
