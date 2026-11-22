@@ -367,6 +367,8 @@ class Site:
             "resources_label": esc(self.ui["resources"][lang]),
             "gospel_label": esc(self.ui["gospelMenu"][lang]),
             "gospel_href": "/resources/short-hand-gospel/",
+            "cq_label": esc(self.ui["cqMenu"][lang]),
+            "cq_href": "/ecq/",
             "lang_switch": self.lang_links(lang, route, english_only=english_only),
         }
         template = self.banner_home_t if home else self.banner_t
@@ -1492,9 +1494,9 @@ class Site:
         self.emit(self.out_path(lang, "apply"), page)
 
     def sitemap(self):
-        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "apply", "privacy", "terms", "copyright", "submit", "resources/short-hand-gospel"]
+        routes = ["", "courses", "courses/messenger", "about", "about/karl-hargestam", "contact", "enroll", "apply", "privacy", "terms", "copyright", "submit", "resources/short-hand-gospel", "ecq"]
         routes.extend(f"courses/{course['id']}" for course in self.courses)
-        english_only = {"resources/short-hand-gospel"}
+        english_only = {"resources/short-hand-gospel", "ecq"}
         urls = []
         for route in routes:
             codes = ("en",) if route in english_only else LANGS

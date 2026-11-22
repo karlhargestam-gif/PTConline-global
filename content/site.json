@@ -67,6 +67,7 @@
     "submit": { "en": "Submit a course", "es": "Enviar un curso", "pt": "Enviar um curso" },
     "resources": { "en": "Resources", "es": "Recursos", "pt": "Recursos" },
     "gospelMenu": { "en": "Short-hand Gospel", "es": "Short-hand Gospel", "pt": "Short-hand Gospel" },
+    "cqMenu": { "en": "CQ journey", "es": "CQ journey", "pt": "CQ journey" },
     "contributedBy": { "en": "Contributed by", "es": "Aportado por", "pt": "Contribuição de" },
     "licence": { "en": "Licence", "es": "Licencia", "pt": "Licença" },
     "licencePtc": { "en": "Used with permission (PTC licence)", "es": "Usado con permiso (licencia de PTC)", "pt": "Usado com permissão (licença do PTC)" },

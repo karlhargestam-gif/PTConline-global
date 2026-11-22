@@ -58,7 +58,10 @@
             <a href="https://www.pcgmission.org" target="_blank" rel="noopener noreferrer">PCG Global Missions</a>
             <details class="resources-menu">
               <summary>Resources</summary>
-              <a class="nav-gospel" href="/resources/short-hand-gospel/">Short-hand Gospel</a>
+              <div class="resources-panel">
+                <a class="nav-gospel" href="/resources/short-hand-gospel/">Short-hand Gospel</a>
+                <a class="nav-cq" href="/ecq/">CQ journey</a>
+              </div>
             </details>
           </nav>
           <span class="lang-switch" aria-label="Language"><a href="/" hreflang="en" aria-current="true">EN</a><a href="/es/" hreflang="es">ES</a><a href="/pt/" hreflang="pt">PT</a></span>
@@ -78,6 +81,14 @@
                 toggle.setAttribute("aria-expanded", open ? "false" : "true");
                 nav.classList.toggle("is-open", !open);
               });
+              var resources = nav.querySelector(".resources-menu");
+              var mobileResources = window.matchMedia("(max-width: 819px)");
+              var syncResources = function () {
+                if (!resources) return;
+                resources.open = mobileResources.matches;
+              };
+              syncResources();
+              if (mobileResources.addEventListener) mobileResources.addEventListener("change", syncResources);
             })();
           </script>
         </header>
@@ -116,6 +127,14 @@
               <a class="gospel-band-primary" href="/resources/short-hand-gospel/">Open the guide</a>
               <a class="gospel-band-secondary" href="/assets/short-hand-gospel.pdf">Download PDF</a>
             </div>
+          </div>
+        </section>
+
+        <section class="cq-band" aria-labelledby="cq-band-title">
+          <div class="cq-band-inner">
+            <h2 id="cq-band-title">Start with the CQ journey</h2>
+            <p>A set of questions to help you reflect on your current ministry, what you're willing to change, and how ready you are to gather leaders. It's a first step toward training and disciples making disciples.</p>
+            <a class="cq-band-action" href="/ecq/">Start the CQ journey</a>
           </div>
         </section>
 
