@@ -102,10 +102,11 @@ const bundled = [
 for (const phrase of ["Questions for Jennifer", "Internal source map", "Notes for later", "dissertation"]) {
   assert.equal(bundled.includes(phrase), false, phrase);
 }
-assert.match(read("ecq/index.html"), /noindex, nofollow/);
-assert.doesNotMatch(read("sitemap.xml"), /ecq/i);
+assert.match(read("ecq/index.html"), /name="robots" content="index, follow"/);
+assert.doesNotMatch(read("ecq/index.html"), /noindex/);
+assert.match(read("sitemap.xml"), /<loc>https:\/\/ptconline\.global\/ecq<\/loc>/);
 const nav = read("ecq/index.html").split('id="banner-nav"')[1].split("</nav>")[0];
-assert.doesNotMatch(nav, /\/ecq/);
+assert.match(nav, /href="\/ecq\/"/);
 assert.doesNotMatch(read("assets/js/ecq.js"), /localStorage|sessionStorage|indexedDB|sendBeacon|gtag|analytics/i);
 
 console.log("ECQ bands: 11 Growing, 12 Developing, 18 Developing, 19 Strong.");

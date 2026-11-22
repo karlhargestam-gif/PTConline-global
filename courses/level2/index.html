@@ -59,7 +59,10 @@
         <a href="/submit/">Submit a course</a>
         <details class="resources-menu">
           <summary>Resources</summary>
-          <a class="nav-gospel" href="/resources/short-hand-gospel/">Short-hand Gospel</a>
+          <div class="resources-panel">
+            <a class="nav-gospel" href="/resources/short-hand-gospel/">Short-hand Gospel</a>
+            <a class="nav-cq" href="/ecq/">CQ journey</a>
+          </div>
         </details>
       </nav>
       <span class="lang-switch" aria-label="Language"><a href="/courses/level2/" hreflang="en" aria-current="true">EN</a><a href="/es/courses/level2/" hreflang="es">ES</a><a href="/pt/courses/level2/" hreflang="pt">PT</a></span>
@@ -79,6 +82,14 @@
             toggle.setAttribute("aria-expanded", open ? "false" : "true");
             nav.classList.toggle("is-open", !open);
           });
+          var resources = nav.querySelector(".resources-menu");
+          var mobileResources = window.matchMedia("(max-width: 819px)");
+          var syncResources = function () {
+            if (!resources) return;
+            resources.open = mobileResources.matches;
+          };
+          syncResources();
+          if (mobileResources.addEventListener) mobileResources.addEventListener("change", syncResources);
         })();
       </script>
     </header>

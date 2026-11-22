@@ -206,8 +206,15 @@
         }
         .resources-menu { width: 100%; }
         .resources-menu summary { display: none; }
-        .resources-menu .nav-gospel,
-        .resources-menu[open] .nav-gospel {
+        .resources-menu .resources-panel,
+        .resources-menu[open] .resources-panel {
+          display: flex;
+          flex-direction: column;
+          position: static;
+          width: 100%;
+        }
+        .resources-menu .resources-panel a,
+        .resources-menu[open] .resources-panel a {
           display: flex;
           position: static;
           width: 100%;
@@ -281,6 +288,51 @@
         outline-offset: 3px;
       }
 
+      .cq-band {
+        background: var(--warm);
+        border-top: 4px solid var(--brand);
+        color: var(--ink);
+      }
+      .cq-band-inner {
+        padding: 2.25rem var(--gutter) 2.5rem;
+        max-width: 46rem;
+      }
+      .cq-band h2 {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-heading);
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 400;
+        line-height: 1.15;
+      }
+      .cq-band p {
+        margin: 14px 0 0;
+        max-width: 40rem;
+        color: var(--body);
+        font-size: var(--size-body);
+        line-height: var(--leading-body);
+      }
+      .cq-band-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 56px;
+        margin-top: 22px;
+        padding: 14px 22px;
+        border-radius: 6px;
+        background: var(--brand);
+        color: #ffffff;
+        font-size: 1.125rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-decoration: none;
+      }
+      .cq-band-action:hover { background: var(--brand-hover); color: #ffffff; text-decoration: none; }
+      .cq-band-action:focus-visible {
+        outline: 3px solid var(--brand);
+        outline-offset: 3px;
+      }
+
       .banner-nav {
         display: flex;
         align-items: center;
@@ -313,25 +365,35 @@
         }
         .resources-menu summary::-webkit-details-marker { display: none; }
         .resources-menu summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
-        .resources-menu .nav-gospel { display: none; }
-        .resources-menu[open] .nav-gospel {
+        .resources-menu .resources-panel { display: none; }
+        .resources-menu[open] .resources-panel {
           display: flex;
-          align-items: center;
+          flex-direction: column;
           position: absolute;
           z-index: 40;
           top: calc(100% + 6px);
           left: 0;
           min-width: 15rem;
+          background: var(--brand);
+        }
+        .resources-menu[open] .resources-panel a {
+          display: flex;
+          align-items: center;
+          position: static;
+          width: 100%;
           min-height: 48px;
           padding: 12px 16px;
-          background: var(--brand);
+          background: transparent;
           color: #ffffff;
           font-weight: 700;
           text-decoration: none;
         }
+        .resources-menu[open] .resources-panel .nav-cq {
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
       }
-      .resources-menu .nav-gospel:hover,
-      .resources-menu .nav-gospel:focus-visible {
+      .resources-menu .resources-panel a:hover,
+      .resources-menu .resources-panel a:focus-visible {
         background: #ffffff;
         color: var(--brand-text);
         outline: 3px solid #ffffff;

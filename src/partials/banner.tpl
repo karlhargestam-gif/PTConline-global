@@ -9,7 +9,10 @@
         <a href="{{submit_href}}">{{submit_label}}</a>
         <details class="resources-menu">
           <summary>{{resources_label}}</summary>
-          <a class="nav-gospel" href="{{gospel_href}}">{{gospel_label}}</a>
+          <div class="resources-panel">
+            <a class="nav-gospel" href="{{gospel_href}}">{{gospel_label}}</a>
+            <a class="nav-cq" href="{{cq_href}}">{{cq_label}}</a>
+          </div>
         </details>
       </nav>
       <span class="lang-switch" aria-label="Language">{{lang_switch}}</span>
@@ -29,6 +32,14 @@
             toggle.setAttribute("aria-expanded", open ? "false" : "true");
             nav.classList.toggle("is-open", !open);
           });
+          var resources = nav.querySelector(".resources-menu");
+          var mobileResources = window.matchMedia("(max-width: 819px)");
+          var syncResources = function () {
+            if (!resources) return;
+            resources.open = mobileResources.matches;
+          };
+          syncResources();
+          if (mobileResources.addEventListener) mobileResources.addEventListener("change", syncResources);
         })();
       </script>
     </header>
