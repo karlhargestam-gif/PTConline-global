@@ -13,8 +13,7 @@ main.prose-page > header.masthead {
 
 .ecq-progress,
 #ecq-heading,
-#ecq-results-heading,
-.ecq-preview { scroll-margin-top: 84px; }
+#ecq-results-heading { scroll-margin-top: 84px; }
 
 .ecq-count {
   margin: 0 0 8px;
@@ -85,7 +84,6 @@ main.prose-page > header.masthead {
   color: #332d26;
 }
 
-.ecq-preview,
 .ecq-notice {
   margin: 0 0 var(--space-block);
   padding: 14px 16px;

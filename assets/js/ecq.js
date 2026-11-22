@@ -165,14 +165,6 @@
 
   function renderWelcome(step) {
     var html = paras(step.paragraphs);
-    if (content.meta.showEkklesiaStory !== false && step.story) {
-      var note = step.story.note || "Pending confirmation with Pastor Eyan";
-      html += '<section class="ecq-story" data-preview="ekklesia">';
-      html += "<h3>" + inline(step.story.title) + "</h3>";
-      html += '<p class="ecq-preview" role="note">' + inline(note) + "</p>";
-      html += paras(step.story.paragraphs);
-      html += "</section>";
-    }
     if (step.remember) {
       html += "<h3>" + inline(step.remember.title) + "</h3><ul>";
       step.remember.items.forEach(function (item) {
