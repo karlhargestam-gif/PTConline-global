@@ -89,6 +89,8 @@ assert.match(content.steps[0].paragraphs[4], /You will hear one church’s story
 const story = content.steps[0].story;
 assert.equal(story.title, "One church’s story: Ekklesia, Cagayan de Oro");
 assert.equal(story.paragraphs.length, 1);
+assert.match(story.paragraphs[0], /^Ekklesia is a church in Cagayan de Oro, Philippines, led by Pastor Eyan Galvez, who has come out of the PCGAMI movement\./);
+assert.doesNotMatch(story.paragraphs[0], /Pentecostal Church of God church/);
 assert.equal(story.watchLabel, "Watch Ekklesia’s story");
 assert.equal(story.watchHref, "https://www.youtube.com/watch?v=HLse_5FT1yQ");
 const storyWords = story.paragraphs[0].trim().split(/\s+/);
