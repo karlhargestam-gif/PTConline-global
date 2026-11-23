@@ -15,6 +15,25 @@ main.prose-page > header.masthead {
 #ecq-heading,
 #ecq-results-heading { scroll-margin-top: 84px; }
 
+.ecq-sources {
+  margin-top: var(--space-block);
+  color: #59554f;
+  font-size: var(--size-small);
+  line-height: var(--leading-body);
+}
+
+.ecq-sources h3 {
+  margin: 0 0 6px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: var(--leading-body);
+  color: #59554f;
+}
+
+.ecq-sources ul { margin: 0; padding-left: 1.2rem; }
+.ecq-sources li { margin: 0 0 4px; }
+
 .ecq-count {
   margin: 0 0 8px;
   color: #332d26;
