@@ -85,7 +85,7 @@ for (const area of areas) {
 }
 
 assert.equal(content.steps[0].heading, "The core stays. The form can change.");
-assert.match(content.steps[0].paragraphs[4], /You will hear one church’s story, sit with each of the four areas, practice each one with someone else, and then use a brief self-check/);
+assert.match(content.steps[0].paragraphs[5], /You will hear one church’s story, sit with each of the four areas, practice each one with someone else, and then use a brief self-check/);
 const story = content.steps[0].story;
 assert.equal(story.title, "One church’s story: Ekklesia, Cagayan de Oro");
 assert.equal(story.paragraphs.length, 1);

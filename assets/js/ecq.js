@@ -181,6 +181,13 @@
       });
       html += "</ul>";
     }
+    if (step.sources) {
+      html += '<section class="ecq-sources"><h3>' + inline(step.sources.title) + "</h3><ul>";
+      step.sources.items.forEach(function (item) {
+        html += "<li>" + inline(item) + "</li>";
+      });
+      html += "</ul></section>";
+    }
     return html;
   }
 
