@@ -237,7 +237,17 @@ main.prose-page > header.masthead {
   outline-offset: 2px;
 }
 
+.ecq-item { scroll-margin-top: 84px; }
+
 .ecq-wait { font-weight: 700; }
+
+.ecq-missing { margin-top: 8px; }
+
+.ecq-missing a {
+  color: var(--brand-text);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
 
 .ecq-results-note { font-weight: 700; }
 

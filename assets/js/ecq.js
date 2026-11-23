@@ -1,7 +1,6 @@
 /* ECQ intro. Answers live in memory for this page view only.
    Nothing is written to storage, and nothing is sent except the GET for the copy file.
-   TODO: Link the live "Come over and help us" form only after that page is working,
-   Karl has previewed it, and he has said to publish. Never link it to a missionary application. */
+   The closing button opens the Come over and help us form. Never link it to a missionary application. */
 (function () {
   "use strict";
 
@@ -53,8 +52,13 @@
     return content.steps[0];
   }
 
+  function hashId() {
+    return (location.hash || "").replace(/^#/, "");
+  }
+
   function currentStep() {
-    var id = (location.hash || "").replace(/^#/, "");
+    var id = hashId();
+    if (id.indexOf("ecq-q-") === 0) return stepById("check");
     return stepById(id);
   }
 
@@ -62,14 +66,28 @@
     return content.steps.indexOf(step);
   }
 
+  function scoredItems() {
+    var items = [];
+    content.check.areas.forEach(function (area) {
+      area.items.forEach(function (item) { items.push(item); });
+    });
+    return items;
+  }
+
   function scoredCount() {
     var n = 0;
-    content.check.areas.forEach(function (area) {
-      area.items.forEach(function (item) {
-        if (typeof answers[String(item.n)] === "number") n += 1;
-      });
+    scoredItems().forEach(function (item) {
+      if (typeof answers[String(item.n)] === "number") n += 1;
     });
     return n;
+  }
+
+  function missingScored() {
+    var missing = [];
+    scoredItems().forEach(function (item) {
+      if (typeof answers[String(item.n)] !== "number") missing.push(item.n);
+    });
+    return missing;
   }
 
   function results() {
@@ -82,7 +100,7 @@
 
   function choiceRow(item) {
     var name = "ecq-q-" + item.n;
-    var html = '<fieldset class="ecq-item"><legend><span class="ecq-n">' + item.n + ".</span> " + inline(item.text) + "</legend>";
+    var html = '<fieldset class="ecq-item" id="ecq-q-' + item.n + '" tabindex="-1"><legend><span class="ecq-n">' + item.n + ".</span> " + inline(item.text) + "</legend>";
     html += '<div class="ecq-choices">';
     content.check.scale.forEach(function (point) {
       var id = name + "-" + point.value;
@@ -111,7 +129,11 @@
     var done = rows.every(function (area) { return area.complete && area.band; });
     var count = fill(ui.answered, { n: scoredCount() });
     if (!done) {
-      return '<p class="ecq-wait">' + inline(ui.needAll) + ' <strong id="ecq-answered">' + escapeHtml(count) + "</strong></p>";
+      var links = missingScored().map(function (n) {
+        return '<a href="#ecq-q-' + n + '">' + n + "</a>";
+      }).join(", ");
+      return '<p class="ecq-wait">' + inline(ui.needAll) + ' <strong id="ecq-answered">' + escapeHtml(count) + "</strong></p>"
+        + '<p class="ecq-missing">Still to answer: ' + links + "</p>";
     }
     var html = '<section class="ecq-results" aria-labelledby="ecq-results-heading">';
     html += '<h3 id="ecq-results-heading" tabindex="-1">' + inline(ui.resultsTitle) + "</h3>";
@@ -224,11 +246,10 @@
     var ui = content.ui;
     var href = ui.inviteHref;
     var allowed = typeof href === "string" && href.length > 0 && href !== "#" && !BLOCKED_INVITE.test(href);
-    if (!allowed) {
-      return '<p class="ecq-invite-wrap"><button type="button" class="button ecq-invite" disabled>'
-        + inline(ui.inviteLabel) + "</button><span class=\"ecq-todo\">" + inline(ui.inviteTodo) + "</span></p>";
-    }
-    return '<p class="ecq-invite-wrap"><a class="button" href="' + escapeHtml(href) + '">' + inline(ui.inviteLabel) + "</a></p>";
+    if (!allowed) return "";
+    var external = /^https?:/i.test(href);
+    var attrs = external ? ' target="_blank" rel="noopener"' : "";
+    return '<p class="ecq-invite-wrap"><a class="button" href="' + escapeHtml(href) + '"' + attrs + ">" + inline(ui.inviteLabel) + "</a></p>";
   }
 
   function renderClose(step) {
@@ -287,7 +308,12 @@
     root.innerHTML = progress(step)
       + '<div class="ecq-step"><h2 id="ecq-heading" tabindex="-1">' + inline(step.heading) + "</h2>"
       + bodyFor(step) + "</div>" + nav(step);
-    if (changed) {
+    var itemId = hashId();
+    var item = itemId.indexOf("ecq-q-") === 0 ? document.getElementById(itemId) : null;
+    if (item) {
+      item.scrollIntoView({ block: "start" });
+      item.focus({ preventScroll: true });
+    } else if (changed) {
       var heading = document.getElementById("ecq-heading");
       if (heading) heading.focus({ preventScroll: true });
       var bar = document.getElementById("ecq-progress");

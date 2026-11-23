@@ -101,7 +101,9 @@ for (const phrase of ["G12", "Castellanos", "adopt not adapt", "one world", "Pen
 }
 assert.doesNotMatch(story.paragraphs[0], /\badapt\b/i);
 assert.doesNotMatch(story.paragraphs[0], /\d+(?:\.\d+)?%/);
-assert.equal(content.ui.inviteHref, null);
+assert.equal(content.ui.inviteHref, "https://www.pcgmission.org/come-over-and-help-us/");
+assert.equal(content.ui.inviteTodo, undefined);
+assert.doesNotMatch(read("content/ecq.json") + read("assets/js/ecq.js"), /This stays off until the Come over and help us form is live/);
 assert.match(content.steps.find((step) => step.id === "check").notice[0], /a reflection tool, not a validated assessment/);
 
 const bundled = [
