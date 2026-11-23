@@ -51,12 +51,12 @@
       .hero {
         position: relative;
         height: auto;
-        max-height: min(640px, 76svh);
+        max-height: none;
         min-height: 0;
         display: grid;
         grid-template-rows: 1fr;
         isolation: isolate;
-        overflow: hidden;
+        overflow: visible;
         color: var(--hero-ink);
         background: #140c0e;
       }
@@ -970,8 +970,60 @@
         border-top: 1px solid var(--rule);
       }
 
+      .library-tools-line a {
+        color: var(--red-deep);
+        font-weight: 700;
+        text-underline-offset: 3px;
+      }
+
       .library-series {
         margin-top: clamp(52px, 7vw, 78px);
+      }
+
+      .tool-resources {
+        margin-top: 28px;
+      }
+
+      .resources-heading {
+        margin: 0 0 4px;
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: var(--size-small);
+        font-weight: 700;
+        line-height: var(--leading-body);
+      }
+
+      .tool-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .tool-list li {
+        margin: 0;
+        padding: 4px 0;
+        color: var(--body);
+        font-size: var(--size-body);
+        line-height: var(--leading-body);
+      }
+
+      .tool-list strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .tool-list a {
+        color: var(--ink);
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .tool-list a:hover { color: var(--red-deep); }
+
+      .tool-list a:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 3px;
       }
 
       .library-entity {
@@ -1251,7 +1303,7 @@
           min-height: 100svh;
           box-shadow: none;
         }
-        .hero { height: auto; max-height: min(640px, 76svh); min-height: 0; }
+        .hero { height: auto; max-height: none; min-height: 0; overflow: visible; }
         .hero-shade {
           background: linear-gradient(180deg, rgba(12, 6, 8, 0.55) 0%, rgba(12, 6, 8, 0.78) 42%, rgba(12, 6, 8, 0.92) 100%);
         }
